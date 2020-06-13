@@ -1,7 +1,7 @@
 # A simplified Jira clone built with Angular 9 and Akita
 
 <h3 align="center">
-  <a href="https://jira.trungk18.com/">Visit the app</a> |
+  <a href="https://jira.trungk18.com/wip">Visit the app</a> |
   <a href="https://github.com/trungk18/jira-clone-angular/tree/master/frontend">View front-end code</a>
 </h3>
 
