@@ -1,0 +1,23 @@
+{
+  "name": "jira-clone-angular",
+  "version": "1.0.0",
+  "description": "Simple Jira kanban board clone using Angular 9 + ngrx",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungk18/jira-clone-angular.git"
+  },
+  "keywords": [
+    "angular",
+    "ngrx",
+    "jira-clone"
+  ],
+  "author": "Trung Vo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trungk18/jira-clone-angular/issues"
+  },
+  "homepage": "https://github.com/trungk18/jira-clone-angular#readme"
+}
