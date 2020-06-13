@@ -8,7 +8,7 @@
     "build:front": "cd frontend && npm run build",
     "test:front": "cd frontend && npm run test",
     "start": "npm run start:front",
-    "build": "npm run build:front"
+    "build": "npm run install-dependencies && npm run build:front"
   },
   "repository": {
     "type": "git",
