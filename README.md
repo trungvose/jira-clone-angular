@@ -1,8 +1,8 @@
 # A simplified Jira clone built with Angular 9 and Akita
 
 <h3 align="center">
-  <a href="https://jira.trungk18.com/wip">Visit the app</a> |
-  <a href="hthttps://github.com/trungk18/jira-clone-angular/tree/master/frontend">View front-end code</a> |  
+  <a href="https://jira.trungk18.com/">Visit the app</a> |
+  <a href="hhttps://github.com/trungk18/jira-clone-angular/tree/master/frontend">View front-end code</a>
 </h3>
 
 It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. In the meantime, I will gradually publish a series of tutorial how I built it from scratch.
@@ -60,8 +60,13 @@ I only write test for some functions and skipped the end to end testing.
 
 I will not be accepting PR's on this repository. Feel free to fork and maintain your own version.
 
+## Credits
+
+Insprited by [oldboyxx/jira_clone] and [Datlyfe/jira_clone][Datlyfe]
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
-
+[oldboyxx]: https://github.com/oldboyxx/jira_clone
+[Datlyfe]: https://github.com/Datlyfe/jira_clone
 [stack]: https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-tech-stack.png
