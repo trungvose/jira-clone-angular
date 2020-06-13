@@ -2,7 +2,7 @@
 
 <h3 align="center">
   <a href="https://jira.trungk18.com/">Visit the app</a> |
-  <a href="hhttps://github.com/trungk18/jira-clone-angular/tree/master/frontend">View front-end code</a>
+  <a href="https://github.com/trungk18/jira-clone-angular/tree/master/frontend">View front-end code</a>
 </h3>
 
 It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. In the meantime, I will gradually publish a series of tutorial how I built it from scratch.

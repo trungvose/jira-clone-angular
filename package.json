@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "A simplified Jira clone built with Angular 9 and Akita",
   "scripts": {
-    "test": "test"
+    "install-dependencies": "npm i && cd frontend && npm i",
+    "start:front": "cd frontend && npm start",
+    "build:front": "cd frontend && npm run build",
+    "test:front": "cd frontend && npm run test",
+    "start": "npm run start:front",
+    "build": "npm run build:front"
   },
   "repository": {
     "type": "git",
