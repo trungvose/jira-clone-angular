@@ -58,7 +58,9 @@ I only write test for some functions and skipped the end to end testing.
 
 ## Contributing
 
-I will not be accepting PR's on this repository. Feel free to fork and maintain your own version.
+If you have any ideas, just [open an issue][issues] and tell me what you think.
+
+If you'd like to contribute, please fork the repository and make changes as you'd like. [Pull requests][pull] are warmly welcome.
 
 ## Credits
 
@@ -71,3 +73,5 @@ Insprited by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][Datlyfe]
 [oldboyxx]: https://github.com/oldboyxx/jira_clone
 [Datlyfe]: https://github.com/Datlyfe/jira_clone
 [stack]: https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-tech-stack.png
+[issues]: https://github.com/trungk18/jira-clone-angular/issues/new
+[pull]: https://github.com/trungk18/jira-clone-angular/compare
