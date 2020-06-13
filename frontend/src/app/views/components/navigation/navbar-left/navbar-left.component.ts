@@ -13,14 +13,16 @@ export class NavbarLeftComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = [
-      new NavItem('search', 'Search issues', () => {}),
+      new NavItem('search', 'Search issues', () => {
+
+      }),
       new NavItem('plus', 'Create issue', () => {})
     ];
   }
 }
 
 class NavItem {
-  constructor(public icon: string, public tooltip: string, handler: Handler) {}
+  constructor(public icon: string, public tooltip: string, public handler: Handler) {}
 }
 
 interface Handler {
