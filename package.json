@@ -1,7 +1,7 @@
 {
   "name": "jira-clone-angular",
   "version": "1.0.0",
-  "description": "Simple Jira kanban board clone using Angular 9 + ngrx",
+  "description": "A simplified Jira clone built with Angular 9 and Akita",
   "scripts": {
     "test": "test"
   },
@@ -11,8 +11,10 @@
   },
   "keywords": [
     "angular",
-    "ngrx",
-    "jira-clone"
+    "akita",
+    "jira-clone",
+    "tailwind",
+    "typescript"
   ],
   "author": "Trung Vo",
   "license": "MIT",
