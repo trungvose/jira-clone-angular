@@ -62,11 +62,12 @@ I will not be accepting PR's on this repository. Feel free to fork and maintain 
 
 ## Credits
 
-Insprited by [oldboyxx/jira_clone] and [Datlyfe/jira_clone][Datlyfe]
+Insprited by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][Datlyfe]
 
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
+
 [oldboyxx]: https://github.com/oldboyxx/jira_clone
 [Datlyfe]: https://github.com/Datlyfe/jira_clone
 [stack]: https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-tech-stack.png
