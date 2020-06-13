@@ -13,6 +13,8 @@ import { ProjectComponent } from './views/pages/project/project.component';
 import { WorksInProgressComponent } from './views/pages/works-in-progress/works-in-progress.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config';
+import { SvgDefinitionsComponent } from './views/components/shared/svg-definitions/svg-definitions.component';
+import { SvgIconComponent } from './views/components/shared/svg-icon/svg-icon.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config';
     ProjectComponent,
     NavbarLeftComponent,
     SidebarComponent,
-    NavigationComponent
+    NavigationComponent,
+    SvgDefinitionsComponent,
+    SvgIconComponent
   ],
   imports: [
     BrowserModule,
