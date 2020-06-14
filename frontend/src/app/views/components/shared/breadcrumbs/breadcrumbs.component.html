@@ -1,0 +1,7 @@
+<div class="text-textMedium text-15">
+    <span *ngFor="let item of items; let idx = index">
+        <span class="relative mx-2 font-lg"
+              *ngIf="idx !== 0">/</span>
+        {{ item }}
+    </span>
+</div>

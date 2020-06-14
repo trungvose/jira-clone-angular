@@ -12,9 +12,14 @@ import { SidebarComponent } from './views/components/navigation/sidebar/sidebar.
 import { ProjectComponent } from './views/pages/project/project.component';
 import { WorksInProgressComponent } from './views/pages/works-in-progress/works-in-progress.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NzConfig, NZ_CONFIG } from 'ng-zorro-antd/core/config';
 import { SvgDefinitionsComponent } from './views/components/shared/svg-definitions/svg-definitions.component';
 import { SvgIconComponent } from './views/components/shared/svg-icon/svg-icon.component';
+import { BoardComponent } from './views/pages/board/board.component';
+import { BreadcrumbsComponent } from './views/components/shared/breadcrumbs/breadcrumbs.component';
+import { ButtonComponent } from './views/components/shared/button/button.component';
+import { BoardFilterComponent } from './views/components/board/board-filter/board-filter.component';
+import { BoardDndComponent } from './views/components/board/board-dnd/board-dnd.component';
+import { SettingsComponent } from './views/pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,13 @@ import { SvgIconComponent } from './views/components/shared/svg-icon/svg-icon.co
     SidebarComponent,
     NavigationComponent,
     SvgDefinitionsComponent,
-    SvgIconComponent
+    SvgIconComponent,
+    BoardComponent,
+    BreadcrumbsComponent,
+    ButtonComponent,
+    BoardFilterComponent,
+    BoardDndComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
