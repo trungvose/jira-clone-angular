@@ -1,0 +1,51 @@
+<div [style.width.px]="sidebarWidth"
+     class="sidebar">
+    <div class="sidebar-content">
+        <div class="flex py-6 px-1">
+            <svg-icon name="project-avatar"
+                      [size]="40">
+            </svg-icon>
+            <div class="pl-2">
+                <div class="mb-1 text-textDark text-15 font-medium">
+                    Money Height
+                </div>
+                <div class="text-textMedium text-13">
+                    Marketing project
+                </div>
+            </div>
+        </div>
+
+        <div *ngFor="let link of sideBarLinks; let idx = index">
+            <a *ngIf="link.url"
+               :is="link.to ? 'router-link' : 'div'"
+               [routerLink]="link.url"
+               routerLinkActive="active"
+               tag="a"
+               class="link allowed">
+
+                <svg-icon class="mr-4"
+                          [name]="link.icon"
+                          [size]="24">
+                </svg-icon>
+
+                <div class="text-15 pt-px">{{ link.name }}</div>
+            </a>
+            <div *ngIf="!link.url"
+                 class="link not-allowed">
+
+                <svg-icon class="mr-4"
+                          [name]="link.icon"
+                          [size]="24">
+                </svg-icon>
+
+                <div class="text-15 pt-px">{{ link.name }}</div>
+                <div class="not-implemented">
+                    Not implemented
+                </div>
+            </div>
+
+            <div *ngIf="idx === 1"
+                 class="divider"></div>
+        </div>
+    </div>
+</div>
