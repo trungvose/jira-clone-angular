@@ -1,0 +1,12 @@
+<div class="pr-6 py-8 pl-10 h-full w-full flex flex-col">
+    <breadcrumbs [items]="breadcrumbs"></breadcrumbs>
+    <header class="mt-3 flex justify-between text-textDarkest">
+        <div class="text-2xl font-medium">Kanban board</div>
+        <a href="https://github.com/trungk18/jira-clone-angular"
+           target="_blank"
+           rel="noreferrer noopener">
+        </a>
+    </header>
+    <board-filter (filterChanged)="onFilterChanged($event)"></board-filter>
+    <board-dnd></board-dnd>
+</div>
