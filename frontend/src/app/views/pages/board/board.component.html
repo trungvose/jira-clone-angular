@@ -5,8 +5,12 @@
         <a href="https://github.com/trungk18/jira-clone-angular"
            target="_blank"
            rel="noreferrer noopener">
+            <j-button className="btn-secondary"
+                      icon="github">Github Repo
+            </j-button>
         </a>
     </header>
+
     <board-filter (filterChanged)="onFilterChanged($event)"></board-filter>
     <board-dnd></board-dnd>
 </div>

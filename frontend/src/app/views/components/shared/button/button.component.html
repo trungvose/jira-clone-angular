@@ -1,1 +1,16 @@
-<p>button works!</p>
+<button type="button"
+        [ngClass]="['button', className]"
+        (click)="clicked.next()">
+    <svg-icon *ngIf="!isWorking && icon"
+              [name]="icon"
+              [size]="iconSize">
+    </svg-icon>
+    <svg-icon *ngIf="isWorking"
+              name="spin"
+              class="spinner"
+              [size]="iconSize">
+    </svg-icon>
+    <span [class.with-padding]="isWorking || icon">
+        <ng-content></ng-content>
+    </span>
+</button>
