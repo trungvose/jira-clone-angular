@@ -16,10 +16,10 @@ import { SvgDefinitionsComponent } from './views/components/shared/svg-definitio
 import { SvgIconComponent } from './views/components/shared/svg-icon/svg-icon.component';
 import { BoardComponent } from './views/pages/board/board.component';
 import { BreadcrumbsComponent } from './views/components/shared/breadcrumbs/breadcrumbs.component';
-import { ButtonComponent } from './views/components/shared/button/button.component';
 import { BoardFilterComponent } from './views/components/board/board-filter/board-filter.component';
 import { BoardDndComponent } from './views/components/board/board-dnd/board-dnd.component';
 import { SettingsComponent } from './views/pages/settings/settings.component';
+import { ButtonComponent } from './views/components/shared/button/button.component';
 
 @NgModule({
   declarations: [
@@ -33,17 +33,17 @@ import { SettingsComponent } from './views/pages/settings/settings.component';
     SvgIconComponent,
     BoardComponent,
     BreadcrumbsComponent,
-    ButtonComponent,
     BoardFilterComponent,
     BoardDndComponent,
-    SettingsComponent
+    SettingsComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
+    HttpClientModule,    
     NzToolTipModule,
-    NzIconModule.forRoot(NZ_JIRA_ICONS),
+    NzIconModule.forRoot(NZ_JIRA_ICONS),    
     AppRoutingModule
   ],
   providers: [],

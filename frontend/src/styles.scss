@@ -1,7 +1,6 @@
+@import 'ng-zorro-antd/style/index.min.css';
+@import 'ng-zorro-antd/tooltip/style/index.min.css';
 
-@import "ng-zorro-antd/style/index.min.css"; /* Import basic styles */
-@import "ng-zorro-antd/tooltip/style/index.min.css"; /* Import basic styles */
-
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
