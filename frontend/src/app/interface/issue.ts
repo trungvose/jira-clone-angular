@@ -28,7 +28,7 @@ export enum IssuePriority {
   HIGHEST = 'Highest'
 }
 
-export interface Issue {
+export interface JIssue {
   id: string;
   title: string;
   type: IssueType;

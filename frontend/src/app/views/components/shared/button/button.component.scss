@@ -36,7 +36,8 @@ $secondary: #f4f5f7;
 .button {
   @apply inline-flex items-center justify-center h-8 align-middle leading-none whitespace-no-wrap rounded-sm transition-all duration-100 appearance-none cursor-pointer select-none px-3;
   font-size: 14.5px;
-  &.iconOnly {
+  
+  &.icon-only {
     @apply px-2;
   }
 
@@ -57,6 +58,30 @@ $secondary: #f4f5f7;
     &:active {
       @apply bg-backgroundLightPrimary;
       color: $primary;
+    }
+  }
+}
+
+.btn-empty {
+  background: white;
+  outline: none;
+  @apply text-textDark font-normal;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &:not(:disabled) {
+    &:hover {
+      @apply bg-backgroundLight;
+    }
+    &:active {
+      @apply bg-backgroundLightPrimary;
+      color: $primary;
+    }
+    &.is-active {
+      @apply bg-backgroundLight;
     }
   }
 }

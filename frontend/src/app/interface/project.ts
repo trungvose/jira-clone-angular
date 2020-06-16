@@ -1,7 +1,7 @@
-import { Issue } from './issue';
-import { User } from './user';
+import { JIssue } from './issue';
+import { JUser } from './user';
 
-export interface Project {
+export interface JProject {
   id: string;
   name: string;
   url: string;
@@ -9,8 +9,8 @@ export interface Project {
   category: ProjectCategory;
   createdAt: string;
   updateAt: string;
-  issues: Issue[];
-  users: User[];
+  issues: JIssue[];
+  users: JUser[];
 }
 
 export enum ProjectCategory {
