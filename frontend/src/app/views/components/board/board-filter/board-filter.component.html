@@ -1,0 +1,21 @@
+<div class="flex items-center mt-6">
+    <j-button class="ml-3"
+              className="btn-empty"
+              [isActive]="filter.onlyMyIssue"
+              (clicked)="recentUpdateChanged()">
+        Only My Issues
+    </j-button>
+    <j-button class="ml-3"
+              [isActive]="filter.recentUpdate"
+              (clicked)="recentUpdateChanged()"
+              className="btn-empty">
+        Recently Updated
+    </j-button>
+    <div class="ml-3 flex items-center"
+         *ngIf="filter.any">
+        <div class="mr-3 w-px bg-backgroundMedium self-stretch"></div>
+        <j-button variant="secondary"
+                  (clicked)="resetAll()">Clear all
+        </j-button>
+    </div>
+</div>

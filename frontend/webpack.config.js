@@ -1,3 +1,6 @@
+
+const whitelister = require('purgecss-whitelister')
+
 module.exports = {
   module: {
     rules: [
@@ -14,8 +17,11 @@ module.exports = {
                 require('tailwindcss'),
                 require('autoprefixer'),
                 require('@fullhuman/postcss-purgecss')({
-                  // Specify the paths to all of the template files in your project
-                  content: ['./src/**/*.html', './src/**/*.ts']
+                  content: ['./src/**/*.html', './src/**/*.ts'],
+                  whitelist: whitelister([
+                    './node_modules/ng-zorro-antd/style/index.css',
+                    './node_modules/ng-zorro-antd/tooltip/style/index.css'
+                  ])
                 })
               ]
             }

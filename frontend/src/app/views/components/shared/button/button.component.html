@@ -1,5 +1,5 @@
 <button type="button"
-        [ngClass]="['button', className]"
+        [ngClass]="['button', className, isActive ? 'is-active': '', content?.innerHTML?.trim() ? '': 'icon-only']"
         (click)="clicked.next()">
     <svg-icon *ngIf="!isWorking && icon"
               [name]="icon"
@@ -10,7 +10,8 @@
               class="spinner"
               [size]="iconSize">
     </svg-icon>
-    <span [class.with-padding]="isWorking || icon">
+    <span #content
+          [class.with-padding]="isWorking || icon">
         <ng-content></ng-content>
     </span>
 </button>

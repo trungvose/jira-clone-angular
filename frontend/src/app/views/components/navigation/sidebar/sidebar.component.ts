@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SideBarLink } from 'src/app/interface/ui-model/nav-link';
 import { SideBarLinks } from 'src/app/config/sidebar';
-import { Project } from 'src/app/interface/project';
+import { JProject } from 'src/app/interface/project';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +10,7 @@ import { Project } from 'src/app/interface/project';
 })
 export class SidebarComponent implements OnInit {
   @Input() expanded: boolean;
-  project: Project;
+  project: JProject;
   
   get sidebarWidth(): number {
     return this.expanded ? 240 : 20;
