@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,7 @@ import { BoardFilterComponent } from './views/components/board/board-filter/boar
 import { BoardDndComponent } from './views/components/board/board-dnd/board-dnd.component';
 import { SettingsComponent } from './views/pages/settings/settings.component';
 import { ButtonComponent } from './views/components/shared/button/button.component';
+import { InputComponent } from './views/components/shared/input/input.component';
 
 @NgModule({
   declarations: [
@@ -36,14 +38,16 @@ import { ButtonComponent } from './views/components/shared/button/button.compone
     BoardFilterComponent,
     BoardDndComponent,
     SettingsComponent,
-    ButtonComponent
+    ButtonComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,    
+    ReactiveFormsModule,
+    HttpClientModule,
     NzToolTipModule,
-    NzIconModule.forRoot(NZ_JIRA_ICONS),    
+    NzIconModule.forRoot(NZ_JIRA_ICONS),
     AppRoutingModule
   ],
   providers: [],
