@@ -1,0 +1,23 @@
+<div class="input-container">
+    <div *ngIf="icon"
+         class="input-icon-container"
+         [style.width.px]="iconContainerWidth">
+        <svg-icon [name]="icon"
+                  [size]="iconSize">
+        </svg-icon>
+    </div>
+
+    <input [formControl]="control"
+           [ngClass]="['input', inValid ? 'invalid': '']"
+           [style.padding-left.px]="icon ? iconContainerWidth : 0"
+           [style.padding-right.px]="isShowClearButton ? iconContainerWidth : 0" />
+
+    <div *ngIf="isShowClearButton"
+         class="input-icon-container right"
+         [style.width.px]="iconContainerWidth">
+        <i nz-icon
+           nzType="close"
+           nzTheme="outline"
+           (click)="clear()"></i>
+    </div>
+</div>

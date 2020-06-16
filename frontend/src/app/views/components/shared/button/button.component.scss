@@ -4,6 +4,7 @@ $danger: #e13c3c;
 $warning: #f89c1c;
 $info: #0fb9b1;
 $secondary: #f4f5f7;
+$jira-bg: rgb(222, 235, 255);
 
 @mixin buttonBackground($btn-variant, $background) {
   $background-dark: darken($background, 10%);
@@ -51,10 +52,12 @@ $secondary: #f4f5f7;
 .btn-secondary {
   @apply text-textDark font-normal;
   background: $secondary;
+
   &:not(:disabled) {
     &:hover {
       @apply bg-backgroundLight;
     }
+
     &:active {
       @apply bg-backgroundLightPrimary;
       color: $primary;
@@ -81,7 +84,8 @@ $secondary: #f4f5f7;
       color: $primary;
     }
     &.is-active {
-      @apply bg-backgroundLight;
+      background-color: $jira-bg;
+      @apply text-textDark;   
     }
   }
 }

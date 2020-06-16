@@ -1,8 +1,11 @@
 <div class="flex items-center mt-6">
+    <j-input aria-label="search"
+             icon="search">
+    </j-input>
     <j-button class="ml-3"
               className="btn-empty"
               [isActive]="filter.onlyMyIssue"
-              (clicked)="recentUpdateChanged()">
+              (clicked)="onlyMyIssueChanged()">
         Only My Issues
     </j-button>
     <j-button class="ml-3"

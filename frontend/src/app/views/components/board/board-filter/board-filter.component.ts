@@ -8,22 +8,22 @@ import { JFilter } from 'src/app/interface/filter';
 })
 export class BoardFilterComponent implements OnInit {
   filter: JFilter;
-  @Output() filterChanged = new EventEmitter();  
+  @Output() filterChanged = new EventEmitter();
   constructor() {
     this.filter = new JFilter();
   }
 
   ngOnInit(): void {}
 
-  recentUpdateChanged(){
-
+  recentUpdateChanged() {
+    this.filter.recentUpdate = !this.filter.recentUpdate;
   }
 
-  onlyMyIssueChanged(){
-
+  onlyMyIssueChanged() {
+    this.filter.onlyMyIssue = !this.filter.onlyMyIssue;
   }
 
-  resetAll(){
-    
+  resetAll() {
+    this.filter = new JFilter();
   }
 }
