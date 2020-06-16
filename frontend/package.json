@@ -45,6 +45,7 @@
     "postcss-loader": "^3.0.0",
     "postcss-scss": "^2.1.1",
     "protractor": "~7.0.0",
+    "purgecss-whitelister": "^2.4.0",
     "tailwindcss": "^1.4.6",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
