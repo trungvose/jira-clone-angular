@@ -1,0 +1,25 @@
+<div class="issue-wrap">
+    <div (click)="openIssueDetail()"
+         class="issue">
+        <p class="pb-3 text-15 text-textDarkest">
+            {{ issue.title }}
+        </p>
+        <div class="flex justify-between items-center">
+            <div class="flex items-center">
+
+                <svg-icon class="text-textMedium mr-1"
+                          [name]="issueTypeIcon"
+                          [size]="20">
+                </svg-icon>
+
+                <svg-icon [name]="priorityIcon.name"
+                          nz-tooltip
+                          [nzTooltipTitle]="priorityIcon.label"
+                          nzTooltipPlacement="right"
+                          [size]="20"
+                          [style.color]="priorityIcon.color">
+                </svg-icon>
+            </div>
+        </div>
+    </div>
+</div>

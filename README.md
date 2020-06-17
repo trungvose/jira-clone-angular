@@ -5,7 +5,7 @@
   <a href="https://github.com/trungk18/jira-clone-angular/tree/master/frontend">View front-end code</a>
 </h3>
 
-It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. In the meantime, I will gradually publish a series of tutorial how I built it from scratch.
+It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. After finished coding, I will gradually publish a series of tutorial how I built it from scratch.
 
 Thanks for visiting.
 
@@ -13,9 +13,11 @@ Thanks for visiting.
 
 ## What is this and who is it for 🤷‍♀️
 
-I do Angular development and this is a showcase product I've built in my spare time. It's a very good example of modern, real-world Angular codebase.
+I do Angular development and this is a showcase product I've built in my spare time to experiment the new library that I wanted to try before: Akita, TailwindCSS, ng-zorro.
 
-There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
+This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say a clone of a clone I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge of Angular as well.
+
+There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand. Plus, working with interactive UI is very exciting comparing to a simple CRUD form or a shopping cart application.
 
 ## Features
 
@@ -50,11 +52,13 @@ Not all components have properly defined [aria attributes](https://developer.moz
 
 ### Unit/Integration tests 🧪
 
-I only write test for some functions and skipped the end to end testing.
+I skipped writing test for this project. I will do it for the backend API.
 
 ## Author: Trung Vo ✍️
 
+- A young and passionate front-end engineer. Working with Angular and TypeScript. Like photography, running, cooking and reading book.
 - Website: https://trungk18.com/
+- Say hello: trungk18 [et] gmail [dot] com
 
 ## Contributing
 
@@ -64,14 +68,14 @@ If you'd like to contribute, please fork the repository and make changes as you'
 
 ## Credits
 
-Insprited by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][Datlyfe]
+Inspired by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][datlyfe]
 
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
 
 [oldboyxx]: https://github.com/oldboyxx/jira_clone
-[Datlyfe]: https://github.com/Datlyfe/jira_clone
+[datlyfe]: https://github.com/Datlyfe/jira_clone
 [stack]: https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-tech-stack.png
 [issues]: https://github.com/trungk18/jira-clone-angular/issues/new
 [pull]: https://github.com/trungk18/jira-clone-angular/compare

@@ -51,6 +51,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/data",
               {
                 "glob": "_redirects",
                 "input": "src",
