@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IssueStatus, JIssue, IssueType, IssuePriority } from '@trungk18/interface/issue';
-
+import { JProject } from '@trungk18/interface/project';
+import { JiraApiService } from '@trungk18/service/api.service';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+@UntilDestroy()
 @Component({
   selector: 'board-dnd',
   templateUrl: './board-dnd.component.html',
@@ -14,30 +17,20 @@ export class BoardDndComponent implements OnInit {
     IssueStatus.DONE
   ];
 
-  issues: JIssue[] = [
-    {
-      id: "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
-      title: "TailwindCSS configuration",
-      type: IssueType.TASK,
-      priority: IssuePriority.MEDIUM,
-      listPosition: 0,
-      description: "Configuration whitelist",
-      estimate: 120,
-      timeSpent: 90,
-      timeRemaining: 30,
-      createdAt: "2020-06-13T14:00:00.000Z",
-      updatedAt: "2020-06-13T14:00:00.000Z",
-      reporterId: "userId3",
-      userIds: [
-        "userId1",
-        "userId2"
-      ],
-      comments: [],
-      projectId: "Id1",
-    }
-  ];
+  project: JProject;
 
-  constructor() {}
+  constructor(private _api: JiraApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getProject();
+  }
+
+  getProject() {
+    this._api
+      .getProject()
+      .pipe(untilDestroyed(this))
+      .subscribe((project) => {
+        this.project = project;
+      });
+  }
 }

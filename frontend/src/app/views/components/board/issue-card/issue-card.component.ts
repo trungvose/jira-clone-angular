@@ -12,20 +12,18 @@ export class IssueCardComponent implements OnChanges {
   priorityIcon: PriorityIcon;
   constructor() {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     let issueChange = changes.issue;
-    if(issueChange?.currentValue !== issueChange.previousValue) {
+    if (issueChange?.currentValue !== issueChange.previousValue) {
       this.issueTypeIcon = this.issue.type?.toLowerCase();
       this.getIssuePriorityIcon();
     }
   }
 
-  getIssuePriorityIcon() {    
-    this.priorityIcon = new PriorityIcon(this.issue.priority)
+  getIssuePriorityIcon() {
+    this.priorityIcon = new PriorityIcon(this.issue.priority);
   }
 
   openIssueDetail() {}
@@ -33,11 +31,13 @@ export class IssueCardComponent implements OnChanges {
 
 class PriorityIcon {
   name: string;
+  label: string;
   color: string;
 
-  constructor(issuePriority: IssuePriority){
+  constructor(issuePriority: IssuePriority) {
     let lowerPriorities = [IssuePriority.LOW, IssuePriority.LOWEST];
-    this.name = lowerPriorities.includes(issuePriority) ? "arrow-down": "arrow-up";
+    this.label = issuePriority;
+    this.name = lowerPriorities.includes(issuePriority) ? 'arrow-down' : 'arrow-up';
     this.color = IssuePriorityColors[issuePriority];
   }
 }

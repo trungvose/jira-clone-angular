@@ -13,6 +13,9 @@
                 </svg-icon>
 
                 <svg-icon [name]="priorityIcon.name"
+                          nz-tooltip
+                          [nzTooltipTitle]="priorityIcon.label"
+                          nzTooltipPlacement="right"
                           [size]="20"
                           [style.color]="priorityIcon.color">
                 </svg-icon>
