@@ -1,5 +1,13 @@
 # Frontend
 
+The front end part of [Angular Jira clone][github] application built with.
+
+- Akita state management
+- TailwindCSS
+- Angular CDK Drag and drop
+- Ng zorro tooltip, icon
+- Custom SVG icon
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
 
 ## Development server
@@ -25,3 +33,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+[github]: https://github.com/trungk18/
