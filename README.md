@@ -15,9 +15,7 @@ Thanks for visiting.
 
 I do Angular development and this is a showcase product I've built in my spare time to experiment the new library that I wanted to try before: Akita, TailwindCSS, ng-zorro.
 
-It's a good example of modern, real-world Angular codebase with state management underlying.
-
-You can always argue about the need of the state management, to me it is a must in an Angular app. Why? Because with a single source of data, it will save you through hard times in the future.
+This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say a clone of a clone I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge of Angular as well.
 
 There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand. Plus, working with interactive UI is very exciting comparing to a simple CRUD form or a shopping cart application.
 
