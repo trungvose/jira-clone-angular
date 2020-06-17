@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IssueStatus } from 'src/app/interface/issue';
 
 @Component({
   selector: 'board-dnd',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-dnd.component.scss']
 })
 export class BoardDndComponent implements OnInit {
+  issueStatuses: IssueStatus[] = [
+    IssueStatus.BACKLOG,
+    IssueStatus.SELECTED,
+    IssueStatus.IN_PROGRESS,
+    IssueStatus.DONE,
+  ]
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

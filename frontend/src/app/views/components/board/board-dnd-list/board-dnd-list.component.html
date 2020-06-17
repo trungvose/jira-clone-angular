@@ -1,0 +1,13 @@
+<div class="list">
+    <div class="px-3 pb-4 pt-3 uppercase text-textMedium text-13 truncate">
+        {{ IssueStatusDisplay[status] }}
+        <span class="lowercase text-13">{{ issuesCount }}</span>
+    </div>
+    <div class="h-full px-2"
+         cdkDropList
+         (cdkDropListDropped)="drop($event)">
+        <div class="example-box"
+             *ngFor="let movie of movies"
+             cdkDrag>{{movie}}</div>
+    </div>
+</div>
