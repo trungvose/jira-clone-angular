@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { JFilter } from 'src/app/interface/filter';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { JFilter } from '@trungk18/interface/filter';
+
 @Component({
   selector: 'board-filter',
   templateUrl: './board-filter.component.html',

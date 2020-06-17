@@ -24,6 +24,7 @@ import { BoardComponent } from './views/pages/board/board.component';
 import { ProjectComponent } from './views/pages/project/project.component';
 import { SettingsComponent } from './views/pages/settings/settings.component';
 import { WorksInProgressComponent } from './views/pages/works-in-progress/works-in-progress.component';
+import { IssueCardComponent } from './views/components/board/issue-card/issue-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { WorksInProgressComponent } from './views/pages/works-in-progress/works-
     SettingsComponent,
     ButtonComponent,
     InputComponent,
-    BoardDndListComponent
+    BoardDndListComponent,
+    IssueCardComponent
   ],
   imports: [
     BrowserModule,

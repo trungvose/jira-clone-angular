@@ -4,6 +4,6 @@ export interface JUser {
   email: string;
   avatarUrl: string;
   createdAt: string;
-  updatedAtt: string;
+  updatedAt: string;
   issueIds: string[];
 }

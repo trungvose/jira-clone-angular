@@ -6,8 +6,8 @@
     <div class="h-full px-2"
          cdkDropList
          (cdkDropListDropped)="drop($event)">
-        <div class="example-box"
-             *ngFor="let movie of movies"
-             cdkDrag>{{movie}}</div>
+        <issue-card *ngFor="let issue of issues"
+                    [issue]="issue">
+        </issue-card>
     </div>
 </div>
