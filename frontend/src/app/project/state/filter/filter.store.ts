@@ -1,15 +1,19 @@
-import { JProject } from '@trungk18/interface/project';
-import { Store, StoreConfig } from '@datorama/akita';
-import { JFilter } from '@trungk18/interface/filter';
 import { Injectable } from '@angular/core';
+import { Store, StoreConfig } from '@datorama/akita';
 
 export interface FilterState {
-  filter: JFilter;
+  searchTerm: string;
+  userIds: string[];
+  onlyMyIssue: boolean;
+  recentUpdate: boolean;
 }
 
-function createInitialState(): FilterState {
+export function createInitialFilterState(): FilterState {
   return {
-    filter: new JFilter()
+    searchTerm: '',
+    userIds: [],
+    onlyMyIssue: false,
+    recentUpdate: false
   };
 }
 
@@ -21,6 +25,6 @@ function createInitialState(): FilterState {
 })
 export class FilterStore extends Store<FilterState> {
   constructor() {
-    super(createInitialState());
+    super(createInitialFilterState());
   }
 }
