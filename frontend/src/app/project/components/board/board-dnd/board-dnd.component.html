@@ -3,6 +3,6 @@
          board-dnd-list
          *ngFor="let status of issueStatuses"
          [status]="status"
-         [issues]="projectQuery.issue$ | async">
+         [issues]="projectQuery.issueByStatus$(status) | async">
     </div>
 </div>
