@@ -25,6 +25,10 @@ import { ProjectComponent } from './views/pages/project/project.component';
 import { SettingsComponent } from './views/pages/settings/settings.component';
 import { WorksInProgressComponent } from './views/pages/works-in-progress/works-in-progress.component';
 import { IssueCardComponent } from './views/components/board/issue-card/issue-card.component';
+import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,9 +57,11 @@ import { IssueCardComponent } from './views/components/board/issue-card/issue-ca
     NzToolTipModule,
     NzIconModule.forRoot(NZ_JIRA_ICONS),
     DragDropModule,
-    AppRoutingModule
+    AppRoutingModule,
+    environment.production ? [] : AkitaNgDevtools,
+    AkitaNgRouterStoreModule
   ],
-  providers: [],
+  providers: [{ provide: NG_ENTITY_SERVICE_CONFIG, useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
