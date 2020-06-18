@@ -1,18 +1,29 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { JIssue, IssuePriority, IssuePriorityColors } from '@trungk18/interface/issue';
+import { ProjectQuery } from '@trungk18/project/state/project/project.query';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { JUser } from '@trungk18/interface/user';
 
 @Component({
   selector: 'issue-card',
   templateUrl: './issue-card.component.html',
   styleUrls: ['./issue-card.component.scss']
 })
+@UntilDestroy()
 export class IssueCardComponent implements OnChanges {
   @Input() issue: JIssue;
+  assignees: JUser[];
   issueTypeIcon: string;
   priorityIcon: PriorityIcon;
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor(private _projectQuery: ProjectQuery) {}
+
+  ngOnInit(): void {
+    this._projectQuery.users$.pipe(untilDestroyed(this)).subscribe(users=> {
+      this.assignees = this.issue.userIds.map(userId => users.find(x => x.id ===userId)
+      )
+    })
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     let issueChange = changes.issue;

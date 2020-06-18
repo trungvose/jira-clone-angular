@@ -6,7 +6,6 @@
         </p>
         <div class="flex justify-between items-center">
             <div class="flex items-center">
-
                 <svg-icon class="text-textMedium mr-1"
                           [name]="issueTypeIcon"
                           [size]="20">
@@ -19,6 +18,13 @@
                           [size]="20"
                           [style.color]="priorityIcon.color">
                 </svg-icon>
+            </div>
+            <div class="flex flex-row-reverse ml-1">
+                <j-avatar *ngFor="let user of assignees"
+                          [className]="'shadow-outline-white -ml-1'"
+                          [size]="24"
+                          [avatarUrl]="user.avatarUrl">
+                </j-avatar>
             </div>
         </div>
     </div>

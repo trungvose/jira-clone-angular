@@ -11,8 +11,4 @@ export class BoardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  onFilterChanged(data){
-    
-  }
 }

@@ -1,8 +1,24 @@
 <div class="flex items-center mt-6">
     <j-input aria-label="search"
              icon="search"
+             class="w-40 mr-4"
              [control]="searchControl">
     </j-input>
+    <div class="flex flex-row mr-3">
+        <div *ngFor="let user of projectQuery.users$ | async"
+             class="lift-avatar"
+             nz-tooltip
+             [nzTooltipPlacement]="'bottom'"
+             [class.is-active]="isUserSelected(user)"
+             [nzTooltipTitle]="user.name">
+            <j-avatar class="flex"
+                      className="select-none shadow-outline-white"
+                      [avatarUrl]="user.avatarUrl"
+                      [size]="36"
+                      (click)="userChanged(user)">
+            </j-avatar>
+        </div>
+    </div>
     <j-button class="ml-3"
               className="btn-empty"
               [isActive]="filterQuery.onlyMyIssue$ | async"
@@ -14,7 +30,7 @@
               (clicked)="recentUpdateChanged()"
               className="btn-empty">
         Recently Updated
-    </j-button>    
+    </j-button>
     <div class="ml-3 flex items-center"
          *ngIf="filterQuery.any$ | async">
         <div class="mr-3 w-px bg-backgroundMedium self-stretch"></div>

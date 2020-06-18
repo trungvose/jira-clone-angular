@@ -2,14 +2,10 @@ import { JProject } from '@trungk18/interface/project';
 import { Store, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
 
-export interface ProjectState {
-  project: JProject;
-}
+export interface ProjectState extends JProject {}
 
 function createInitialState(): ProjectState {
-  return {
-    project: null
-  };
+  return {} as ProjectState;
 }
 
 @Injectable({

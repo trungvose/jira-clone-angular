@@ -18,3 +18,7 @@ app-project {
 board-dnd {
   @apply flex flex-grow;  
 }
+
+.global-spinner {
+  @apply min-h-screen;
+}

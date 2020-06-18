@@ -39,6 +39,7 @@ export interface JIssue {
   id: string;
   title: string;
   type: IssueType;
+  status: IssueStatus;
   priority: IssuePriority;
   listPosition: number;
   description: string;

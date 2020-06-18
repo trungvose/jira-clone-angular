@@ -11,8 +11,8 @@ export class FilterQuery extends Query<FilterState> {
   any$ = this.select(({ searchTerm, userIds, onlyMyIssue, recentUpdate }) => {
     return !!searchTerm || !!userIds?.length || onlyMyIssue || recentUpdate;
   });
-  
-  allState$ = this.select();
+
+  userIds$ = this.select('userIds');
   onlyMyIssue$ = this.select('onlyMyIssue');
   recentUpdate$ = this.select('recentUpdate');
 }

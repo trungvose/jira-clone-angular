@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { IssueStatus } from '@trungk18/interface/issue';
-import { JProject } from '@trungk18/interface/project';
-import { JiraApiService } from '@trungk18/project/project.service';
+import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 @UntilDestroy()
 @Component({
   selector: 'board-dnd',
@@ -17,20 +16,7 @@ export class BoardDndComponent implements OnInit {
     IssueStatus.DONE
   ];
 
-  project: JProject;
+  constructor(public projectQuery: ProjectQuery) {}
 
-  constructor(private _api: JiraApiService) {}
-
-  ngOnInit(): void {
-    this.getProject();
-  }
-
-  getProject() {
-    this._api
-      .getProject()
-      .pipe(untilDestroyed(this))
-      .subscribe((project) => {
-        this.project = project;
-      });
-  }
+  ngOnInit(): void {}
 }
