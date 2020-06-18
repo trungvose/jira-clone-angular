@@ -99,8 +99,8 @@
       "description": "<h2>Try assigning <u style=\"background-color: #ff7979;\">Dom</u> to this issue. <span style=\"color: rgb(51, 51, 51);\">🤣&nbsp;🤣&nbsp;🤣</span></h2><p><br></p>",
       "type": "Story",
       "status": "InProgress",
-      "priority": "4",
-      "listPosition": 1,
+      "priority": "Low",
+      "listPosition": 2,
       "createdAt": "2020-06-12T14:40:01.350Z",
       "updatedAt": "2020-06-12T14:51:09.653Z",
       "userIds": [
@@ -114,8 +114,8 @@
       "description": "<h2>I heard about Akita and would love to try this</h2><p>Akita is a state management pattern, built on top of RxJS, which takes the idea of multiple data stores from Flux and the immutable updates from Redux, along with the concept of streaming data, to create the Observable Data Stores model.</p><p></p>",
       "type": "story",
       "status": "Backlog",
-      "priority": "1",
-      "listPosition": 5,
+      "priority": "High",
+      "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.304Z",
       "updatedAt": "2020-06-12T14:52:02.173Z",
       "userIds": [
@@ -131,7 +131,7 @@
       "type": "Task",
       "status": "Backlog",
       "priority": "High",
-      "listPosition": 1,
+      "listPosition": 2,
       "createdAt": "2020-06-12T14:40:01.263Z",
       "updatedAt": "2020-06-12T14:51:08.254Z",
       "userIds": [
