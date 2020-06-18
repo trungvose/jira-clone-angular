@@ -4,6 +4,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FilterQuery } from '@trungk18/project/state/filter/filter.query';
 import { FilterService } from '@trungk18/project/state/filter/filter.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ProjectQuery } from '@trungk18/project/state/project/project.query';
+import { JUser } from '@trungk18/interface/user';
 
 @Component({
   selector: 'board-filter',
@@ -13,8 +15,15 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 @UntilDestroy()
 export class BoardFilterComponent implements OnInit {
   searchControl: FormControl = new FormControl();
+  userIds: string[];
 
-  constructor(public filterQuery: FilterQuery, public filterService: FilterService) {}
+  constructor(
+    public projectQuery: ProjectQuery,
+    public filterQuery: FilterQuery,
+    public filterService: FilterService
+  ) {
+    this.userIds = [];
+  }
 
   ngOnInit(): void {
     this.searchControl.valueChanges
@@ -23,7 +32,13 @@ export class BoardFilterComponent implements OnInit {
         this.filterService.updateSearchTerm(term);
       });
 
-    this.filterQuery.allState$.subscribe((x) => console.log);
+    this.filterQuery.userIds$.pipe(untilDestroyed(this)).subscribe((userIds) => {
+      this.userIds = userIds;
+    });
+  }
+
+  isUserSelected(user: JUser) {
+    return this.userIds.includes(user.id);
   }
 
   recentUpdateChanged() {
@@ -32,6 +47,10 @@ export class BoardFilterComponent implements OnInit {
 
   onlyMyIssueChanged() {
     this.filterService.toggleOnlyMyIssue();
+  }
+
+  userChanged(user: JUser) {
+    this.filterService.toggleUserId(user.id);
   }
 
   resetAll() {

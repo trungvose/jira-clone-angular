@@ -21,7 +21,8 @@ module.exports = {
                   whitelist: whitelister([
                     './node_modules/ng-zorro-antd/style/index.css',
                     './node_modules/ng-zorro-antd/tooltip/style/index.css',
-                    './node_modules/ng-zorro-antd/spin/style/index.css'
+                    './node_modules/ng-zorro-antd/spin/style/index.css',
+                    "./src/app/*.*"
                   ])
                 })
               ]

@@ -6,14 +6,16 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ButtonComponent } from './button/button.component';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AvatarComponent } from './avatar/avatar.component';
 
 const JiraControlComponents = [
   SvgDefinitionsComponent,
-    SvgIconComponent,
-    BreadcrumbsComponent,
-    ButtonComponent,
-    InputComponent
-]
+  SvgIconComponent,
+  BreadcrumbsComponent,
+  ButtonComponent,
+  InputComponent,
+  AvatarComponent
+];
 @NgModule({
   declarations: JiraControlComponents,
   exports: JiraControlComponents,
