@@ -48,8 +48,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
+            "assets": [              
               "src/assets",
               "src/data",
               {
@@ -125,8 +124,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
+            "assets": [              
               "src/assets"
             ],
             "styles": [

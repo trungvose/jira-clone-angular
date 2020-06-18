@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IssueStatus, JIssue, IssueType, IssuePriority } from '@trungk18/interface/issue';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { IssueStatus } from '@trungk18/interface/issue';
 import { JProject } from '@trungk18/interface/project';
-import { JiraApiService } from '@trungk18/service/api.service';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { JiraApiService } from '@trungk18/project/project.service';
 @UntilDestroy()
 @Component({
   selector: 'board-dnd',
