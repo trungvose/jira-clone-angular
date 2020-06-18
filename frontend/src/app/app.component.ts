@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { GoogleAnalyticsService } from './service/google-analytics.service';
 import { environment } from '../environments/environment';
+import { ProjectQuery } from './project/state/project/project.query';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,11 @@ import { environment } from '../environments/environment';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  constructor(public router: Router, private _googleAnalytics: GoogleAnalyticsService) {
+  constructor(
+    public router: Router,
+    public projectQuery: ProjectQuery,
+    private _googleAnalytics: GoogleAnalyticsService
+  ) {
     if (environment.production) {
       this.handleGoogleAnalytics();
     }

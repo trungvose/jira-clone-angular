@@ -4,11 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProjectComponent } from './project.component';
 import { BoardComponent } from './pages/board/board.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { ProjectGuard } from './project.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: ProjectComponent,
+    canActivate: [ProjectGuard],
     children: [
       {
         path: '',
