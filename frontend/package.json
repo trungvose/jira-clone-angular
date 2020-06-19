@@ -23,6 +23,7 @@
     "@datorama/akita": "^5.0.1",
     "@datorama/akita-ng-entity-service": "^2.0.0",
     "@ngneat/until-destroy": "^7.1.6",
+    "date-fns": "^2.14.0",
     "ng-zorro-antd": "^9.1.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
