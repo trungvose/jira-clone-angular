@@ -5,7 +5,10 @@ import { Injectable } from '@angular/core';
 export interface ProjectState extends JProject {}
 
 function createInitialState(): ProjectState {
-  return {} as ProjectState;
+  return {
+    issues: [],
+    users: []
+  } as ProjectState;
 }
 
 @Injectable({
