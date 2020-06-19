@@ -49,10 +49,7 @@
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.262Z",
       "updatedAt": "2020-06-12T14:40:01.262Z",
-      "userIds": [
-        "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
-        "7ac265f9-b9ac-443f-a2b2-795682e579a4"
-      ]
+      "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1", "7ac265f9-b9ac-443f-a2b2-795682e579a4"]
     },
     {
       "id": "9210",
@@ -64,10 +61,7 @@
       "listPosition": 2,
       "createdAt": "2020-06-12T14:40:01.262Z",
       "updatedAt": "2020-06-12T14:40:01.262Z",
-      "userIds": [
-        "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
-        "94502aad-c97f-43e1-a9d1-28cf3e4937a7"
-      ]
+      "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1", "94502aad-c97f-43e1-a9d1-28cf3e4937a7"]
     },
     {
       "id": "9361",
@@ -87,7 +81,7 @@
       "description": "<h3>I will set up a GraphQL endpoint as soon as possible</h3><p>I am currently using a <code>json</code> file for storing data. I like the idea behind GraphQL, it is the good chance to learn more about that technology.</p>",
       "type": "Story",
       "status": "InProgress",
-      "priority": "Low",
+      "priority": "Medium",
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.262Z",
       "updatedAt": "2020-06-12T14:48:00.807Z",
@@ -97,16 +91,13 @@
       "id": "9631",
       "title": "Each issue has a single reporter but can have multiple assignees.",
       "description": "<h2>Try assigning <u style=\"background-color: #ff7979;\">Dom</u> to this issue. <span style=\"color: rgb(51, 51, 51);\">🤣&nbsp;🤣&nbsp;🤣</span></h2><p><br></p>",
-      "type": "Story",
+      "type": "Task",
       "status": "InProgress",
       "priority": "Low",
       "listPosition": 2,
       "createdAt": "2020-06-12T14:40:01.350Z",
       "updatedAt": "2020-06-12T14:51:09.653Z",
-      "userIds": [
-        "610451aa-10c8-4d7e-9363-311357c0b0dd",
-        "94502aad-c97f-43e1-a9d1-28cf3e4937a7"
-      ]
+      "userIds": ["610451aa-10c8-4d7e-9363-311357c0b0dd", "94502aad-c97f-43e1-a9d1-28cf3e4937a7"]
     },
     {
       "id": "9546",
@@ -118,11 +109,7 @@
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.304Z",
       "updatedAt": "2020-06-12T14:52:02.173Z",
-      "userIds": [
-        "081ccaa1-5595-4621-8074-ede4927e67b0",
-        "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
-        "7ac265f9-b9ac-443f-a2b2-795682e579a4"
-      ]
+      "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1"]
     },
     {
       "id": "9584",
@@ -134,25 +121,19 @@
       "listPosition": 2,
       "createdAt": "2020-06-12T14:40:01.263Z",
       "updatedAt": "2020-06-12T14:51:08.254Z",
-      "userIds": [
-        "081ccaa1-5595-4621-8074-ede4927e67b0",
-        "610451aa-10c8-4d7e-9363-311357c0b0dd"
-      ]
+      "userIds": ["081ccaa1-5595-4621-8074-ede4927e67b0", "610451aa-10c8-4d7e-9363-311357c0b0dd"]
     },
     {
       "id": "9665",
       "title": "Angular router not working on Netlify on refresh",
       "description": "<p>Old question, but for those who might stumble on it on how to enable angular routing in Netlify. Create a file <code>_redirects</code> in your <code>src</code> folder, add the following to it:</p><pre><code>/*  /index.html 200</code></pre>",
-      "type": "Task",
+      "type": "Bug",
       "status": "Selected",
       "priority": "Highest",
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.263Z",
       "updatedAt": "2020-06-12T14:51:08.254Z",
-      "userIds": [
-        "081ccaa1-5595-4621-8074-ede4927e67b0",
-        "610451aa-10c8-4d7e-9363-311357c0b0dd"
-      ]
+      "userIds": ["94502aad-c97f-43e1-a9d1-28cf3e4937a7"]
     }
   ]
 }

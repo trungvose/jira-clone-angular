@@ -5,10 +5,13 @@
     </div>
     <div class="h-full px-2"
          cdkDropList
+         [cdkDropListData]="issues"
+         [id]="status"
          (cdkDropListDropped)="drop($event)">
         <issue-card *ngFor="let issue of issues"
                     [issue]="issue"
-                    cdkDrag>
+                    cdkDrag
+                    [cdkDragData]="issue">
         </issue-card>
     </div>
 </div>
