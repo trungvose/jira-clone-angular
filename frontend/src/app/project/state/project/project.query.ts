@@ -14,14 +14,16 @@ export class ProjectQuery extends Query<ProjectState> {
   isLoading$ = this.selectLoading();
   all$ = this.select();
   issue$ = this.select('issues');
-  
-  issueByStatus$ = (status: IssueStatus): Observable<JIssue[]> => {
+  users$ = this.select('users');
+
+  issueByStatusSorted$ = (status: IssueStatus): Observable<JIssue[]> => {
     return this.select('issues').pipe(
       map((issues) => {
-        let filteredIssues = issues.filter((x) => x.status === status);
+        let filteredIssues = issues
+          .filter((x) => x.status === status)
+          .sort((a, b) => a.listPosition - b.listPosition);
         return filteredIssues;
       })
     );
   };
-  users$ = this.select('users');
 }

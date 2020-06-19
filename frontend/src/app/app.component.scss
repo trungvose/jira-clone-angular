@@ -5,18 +5,26 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  > nz-spin {
+    @apply flex flex-grow;
+    
+    > .ant-spin-container {
+      @apply flex flex-grow;
+    }
+  }
 }
 
 app-project {
   @apply flex;
-  flex-grow: 1;  
+  flex-grow: 1;
   flex-direction: column;
   /* for Firefox */
   min-height: 0;
 }
 
 board-dnd {
-  @apply flex flex-grow;  
+  @apply flex flex-grow;
 }
 
 .global-spinner {

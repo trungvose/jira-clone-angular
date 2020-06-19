@@ -1,30 +1,63 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { IssueStatusDisplay, IssueStatus, JIssue } from '@trungk18/interface/issue';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { IssueStatus, IssueStatusDisplay, JIssue } from '@trungk18/interface/issue';
 import { FilterState } from '@trungk18/project/state/filter/filter.store';
+import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { Observable } from 'rxjs';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
 @Component({
   selector: '[board-dnd-list]',
   templateUrl: './board-dnd-list.component.html',
-  styleUrls: ['./board-dnd-list.component.scss']
+  styleUrls: ['./board-dnd-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
+@UntilDestroy()
 export class BoardDndListComponent implements OnInit {
   IssueStatusDisplay = IssueStatusDisplay;
   @Input() status: IssueStatus;
   @Input() currentUserId: string;
-  @Input() issues: JIssue[];
+  @Input() issues$: Observable<JIssue[]>;
+  issues: JIssue[] = [];
+
   get issuesCount(): number {
-    return 0;
+    return this.issues.length;
   }
 
-  constructor() {}
+  constructor(private _projectService: ProjectService) {}
 
-  ngOnInit(): void {}
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray([], event.previousIndex, event.currentIndex);
+  ngOnInit(): void {
+    this.issues$.pipe(untilDestroyed(this)).subscribe((issues) => {
+      this.issues = issues;
+    });
   }
-  
+
+  drop(event: CdkDragDrop<JIssue[]>) {
+    let newIssue: JIssue = { ...event.item.data };
+    let newIssues = [...event.container.data];
+    if (event.previousContainer === event.container) {
+      moveItemInArray(newIssues, event.previousIndex, event.currentIndex);
+      this.updateListPosition(newIssues);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        newIssues,
+        event.previousIndex,
+        event.currentIndex
+      );
+      this.updateListPosition(newIssues);
+      newIssue.status = event.container.id as IssueStatus;
+      this._projectService.updateIssue(newIssue);
+    }
+  }
+
+  private updateListPosition(newList: JIssue[]) {
+    newList.forEach((issue, idx) => {
+      let newIssueWithNewPosition = { ...issue, listPosition: idx + 1 };
+      this._projectService.updateIssue(newIssueWithNewPosition);
+    });
+  }
+
   filterIssues(issues: JIssue[], filter: FilterState): JIssue[] {
     const { onlyMyIssue, recentUpdate, searchTerm, userIds } = filter;
     return issues.filter((issue) => {
