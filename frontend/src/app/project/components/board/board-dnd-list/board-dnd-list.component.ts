@@ -3,8 +3,10 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { IssueStatus, IssueStatusDisplay, JIssue } from '@trungk18/interface/issue';
 import { FilterState } from '@trungk18/project/state/filter/filter.store';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { FilterQuery } from '@trungk18/project/state/filter/filter.query';
+import * as dateFns from 'date-fns';
 
 @Component({
   selector: '[board-dnd-list]',
@@ -24,12 +26,14 @@ export class BoardDndListComponent implements OnInit {
     return this.issues.length;
   }
 
-  constructor(private _projectService: ProjectService) {}
+  constructor(private _projectService: ProjectService, private _filterQuery: FilterQuery) {}
 
   ngOnInit(): void {
-    this.issues$.pipe(untilDestroyed(this)).subscribe((issues) => {
-      this.issues = issues;
-    });
+    combineLatest([this.issues$, this._filterQuery.all$])
+      .pipe(untilDestroyed(this))
+      .subscribe(([issues, filter]) => {
+        this.issues = this.filterIssues(issues, filter);
+      });
   }
 
   drop(event: CdkDragDrop<JIssue[]>) {
@@ -71,8 +75,15 @@ export class BoardDndListComponent implements OnInit {
       let isMyIssue = onlyMyIssue
         ? this.currentUserId && issue.userIds.includes(this.currentUserId)
         : true;
+      let isRecentUpdate = recentUpdate ? this.isDateWithinThreeDaysFromNow(issue.updatedAt) : true;
 
-      return isMatchTerm && isIncludeUsers && isMyIssue;
+      return isMatchTerm && isIncludeUsers && isMyIssue && isRecentUpdate;
     });
+  }
+
+  isDateWithinThreeDaysFromNow(date: string) {
+    let now = new Date();
+    let inputDate = new Date(date);
+    return dateFns.isAfter(inputDate, dateFns.subDays(now, 3));
   }
 }

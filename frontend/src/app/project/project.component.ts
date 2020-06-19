@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from './state/project/project.service';
+import { AuthService, LoginPayload } from './auth/auth.service';
 
 @Component({
   selector: 'app-project',
@@ -7,9 +8,10 @@ import { ProjectService } from './state/project/project.service';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
-  constructor(private _projectService: ProjectService) {}
+  constructor(private _projectService: ProjectService, private _authService: AuthService) {}
 
   ngOnInit(): void {
-    this._projectService.getProject().subscribe();
+    this._authService.login(new LoginPayload());
+    this._projectService.getProject();
   }
 }
