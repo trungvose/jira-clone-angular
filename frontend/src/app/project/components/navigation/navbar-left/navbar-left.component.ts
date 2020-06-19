@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AuthQuery } from '@trungk18/project/auth/auth.query';
 
 @Component({
   selector: 'app-navbar-left',
@@ -7,15 +7,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./navbar-left.component.scss']
 })
 export class NavbarLeftComponent implements OnInit {
-  currentUser$: Observable<any>;
   items: NavItem[];
-  constructor() {}
+  constructor(public authQuery: AuthQuery) {}
 
   ngOnInit(): void {
     this.items = [
-      new NavItem('search', 'Search issues', () => {
-
-      }),
+      new NavItem('search', 'Search issues', () => {}),
       new NavItem('plus', 'Create issue', () => {})
     ];
   }
@@ -26,5 +23,5 @@ class NavItem {
 }
 
 interface Handler {
-  (): void
+  (): void;
 }

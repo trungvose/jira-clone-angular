@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'j-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss']
 })
-export class AvatarComponent implements OnInit {
+export class AvatarComponent implements OnChanges {
   @Input() avatarUrl: string;
   @Input() name: string;
   @Input() size = 12;
@@ -15,8 +15,14 @@ export class AvatarComponent implements OnInit {
   style: {};
 
   constructor() {}
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    this.updateStyle();
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  private updateStyle() {
     this.style = {
       width: `${this.size}px`,
       height: `${this.size}px`,
