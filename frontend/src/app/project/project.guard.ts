@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, combineLatest } from 'rxjs';
 import { catchError, debounceTime, filter, switchMap, take } from 'rxjs/operators';
 import { ProjectQuery } from './state/project/project.query';
 import { ProjectService } from './state/project/project.service';
@@ -19,10 +19,10 @@ export class ProjectGuard implements CanActivate {
   }
 
   getFromStoreOrApi(): Observable<ProjectState> {
-    return this._projectQuery.all$.pipe(
-      debounceTime(10),
-      switchMap((state) => {
-        if (!state.id) {
+    return combineLatest([this._projectQuery.all$, this._projectQuery.isLoading$]).pipe(
+      debounceTime(1000),
+      switchMap(([state, loading]) => {
+        if (!loading && !state.id) {
           return this._projectService.getProject();
         }
         return of(state);
