@@ -3,6 +3,7 @@
   
   &.is-active {
     box-shadow: 0 0 0 4px #1255b9;
+    z-index: 1;
   }
 
   &:hover {
