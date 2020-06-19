@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { ProjectComponent } from './project.component';
+import { RouterModule, Routes } from '@angular/router';
 import { BoardComponent } from './pages/board/board.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-import { ProjectGuard } from './project.guard';
+import { ProjectComponent } from './project.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ProjectComponent,
-    canActivate: [ProjectGuard],
     children: [
       {
-        path: '',
+        path: 'board',
         component: BoardComponent
       },
       {
         path: 'settings',
         component: SettingsComponent
+      },
+      {
+        path: '',
+        redirectTo: 'board',
+        pathMatch: 'full'
       }
     ]
   }
