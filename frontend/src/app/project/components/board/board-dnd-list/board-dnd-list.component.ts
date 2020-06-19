@@ -4,6 +4,7 @@ import { IssueStatus, IssueStatusDisplay, JIssue } from '@trungk18/interface/iss
 import { FilterState } from '@trungk18/project/state/filter/filter.store';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { Observable } from 'rxjs';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
 @Component({
   selector: '[board-dnd-list]',
@@ -11,23 +12,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./board-dnd-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+@UntilDestroy()
 export class BoardDndListComponent implements OnInit {
   IssueStatusDisplay = IssueStatusDisplay;
   @Input() status: IssueStatus;
   @Input() currentUserId: string;
   @Input() issues$: Observable<JIssue[]>;
-  issues: JIssue[];
+  issues: JIssue[] = [];
 
   get issuesCount(): number {
-    return 0;
+    return this.issues.length;
   }
 
   constructor(private _projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.issues$.subscribe((issues) => {
+    this.issues$.pipe(untilDestroyed(this)).subscribe((issues) => {
       this.issues = issues;
-      console.log(issues);
     });
   }
 
