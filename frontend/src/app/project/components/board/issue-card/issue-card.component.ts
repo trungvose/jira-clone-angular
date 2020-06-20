@@ -3,6 +3,8 @@ import { JIssue, IssuePriority, IssuePriorityColors } from '@trungk18/interface/
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { JUser } from '@trungk18/interface/user';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { IssueModalComponent } from '../issue-modal/issue-modal.component';
 
 @Component({
   selector: 'issue-card',
@@ -16,13 +18,12 @@ export class IssueCardComponent implements OnChanges {
   issueTypeIcon: string;
   priorityIcon: PriorityIcon;
 
-  constructor(private _projectQuery: ProjectQuery) {}
+  constructor(private _projectQuery: ProjectQuery, private _modalService: NzModalService) {}
 
   ngOnInit(): void {
-    this._projectQuery.users$.pipe(untilDestroyed(this)).subscribe(users=> {
-      this.assignees = this.issue.userIds.map(userId => users.find(x => x.id ===userId)
-      )
-    })
+    this._projectQuery.users$.pipe(untilDestroyed(this)).subscribe((users) => {
+      this.assignees = this.issue.userIds.map((userId) => users.find((x) => x.id === userId));
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -37,7 +38,13 @@ export class IssueCardComponent implements OnChanges {
     this.priorityIcon = new PriorityIcon(this.issue.priority);
   }
 
-  openIssueDetail() {}
+  openIssueDetail(issueId: string) {
+    this._modalService.create({
+      nzContent: IssueModalComponent,
+      nzClosable: false,
+      nzFooter: null
+    });
+  }
 }
 
 class PriorityIcon {

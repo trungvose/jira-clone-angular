@@ -22,6 +22,7 @@
     "@angular/router": "~9.1.11",
     "@datorama/akita": "^5.0.1",
     "@datorama/akita-ng-entity-service": "^2.0.0",
+    "@ngneat/content-loader": "^4.1.0",
     "@ngneat/until-destroy": "^7.1.6",
     "date-fns": "^2.14.0",
     "ng-zorro-antd": "^9.1.2",
