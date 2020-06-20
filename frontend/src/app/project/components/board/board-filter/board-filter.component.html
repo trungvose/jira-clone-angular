@@ -34,7 +34,7 @@
     <div class="ml-3 flex items-center"
          *ngIf="filterQuery.any$ | async">
         <div class="mr-3 w-px bg-backgroundMedium self-stretch"></div>
-        <j-button variant="secondary"
+        <j-button [className]="'btn-secondary'"
                   (clicked)="resetAll()">Clear all
         </j-button>
     </div>
