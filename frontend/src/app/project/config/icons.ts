@@ -3,12 +3,14 @@ import {
   PlusOutline,
   QuestionCircleFill,
   SearchOutline,
-  CloseOutline
+  CloseOutline,
+  TwitterOutline,
 } from '@ant-design/icons-angular/icons';
 
 export const NZ_JIRA_ICONS: IconDefinition[] = [
   QuestionCircleFill,
   PlusOutline,
   SearchOutline,
-  CloseOutline
+  CloseOutline,
+  TwitterOutline
 ];
