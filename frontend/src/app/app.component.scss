@@ -31,6 +31,13 @@ board-dnd {
   @apply min-h-screen;
 }
 
+//ng-zorro override
 .ant-modal-body {
   padding: 0;
+}
+
+nz-select {
+  > nz-select-top-control {
+      padding-left: 0 !important;
+  }
 }
