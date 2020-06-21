@@ -1,8 +1,10 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { JIssue, IssuePriority, IssuePriorityColors } from '@trungk18/interface/issue';
-import { ProjectQuery } from '@trungk18/project/state/project/project.query';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { JIssue } from '@trungk18/interface/issue';
+import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
 import { JUser } from '@trungk18/interface/user';
+import { ProjectQuery } from '@trungk18/project/state/project/project.query';
+import { IssueUtil } from '@trungk18/project/utils/issue';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { IssueModalComponent } from '../issue-modal/issue-modal.component';
 
@@ -16,7 +18,7 @@ export class IssueCardComponent implements OnChanges {
   @Input() issue: JIssue;
   assignees: JUser[];
   issueTypeIcon: string;
-  priorityIcon: PriorityIcon;
+  priorityIcon: IssuePriorityIcon;
 
   constructor(private _projectQuery: ProjectQuery, private _modalService: NzModalService) {}
 
@@ -29,33 +31,20 @@ export class IssueCardComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     let issueChange = changes.issue;
     if (issueChange?.currentValue !== issueChange.previousValue) {
-      this.issueTypeIcon = this.issue.type?.toLowerCase();
-      this.getIssuePriorityIcon();
+      this.issueTypeIcon = IssueUtil.getIssueTypeIcon(this.issue.type);
+      this.priorityIcon = IssueUtil.getIssuePriorityIcon(this.issue.priority);
     }
-  }
-
-  getIssuePriorityIcon() {
-    this.priorityIcon = new PriorityIcon(this.issue.priority);
   }
 
   openIssueDetail(issueId: string) {
     this._modalService.create({
       nzContent: IssueModalComponent,
+      nzWidth: 1040,
       nzClosable: false,
-      nzFooter: null
+      nzFooter: null,
+      nzComponentParams: {
+        issue$: this._projectQuery.issueById$(issueId)
+      }
     });
-  }
-}
-
-class PriorityIcon {
-  name: string;
-  label: string;
-  color: string;
-
-  constructor(issuePriority: IssuePriority) {
-    let lowerPriorities = [IssuePriority.LOW, IssuePriority.LOWEST];
-    this.label = issuePriority;
-    this.name = lowerPriorities.includes(issuePriority) ? 'arrow-down' : 'arrow-up';
-    this.color = IssuePriorityColors[issuePriority];
   }
 }

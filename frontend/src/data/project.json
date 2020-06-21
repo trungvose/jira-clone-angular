@@ -49,6 +49,7 @@
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.262Z",
       "updatedAt": "2020-06-12T14:40:01.262Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1", "7ac265f9-b9ac-443f-a2b2-795682e579a4"]
     },
     {
@@ -61,6 +62,7 @@
       "listPosition": 2,
       "createdAt": "2020-06-12T14:40:01.262Z",
       "updatedAt": "2020-06-12T14:40:01.262Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1", "94502aad-c97f-43e1-a9d1-28cf3e4937a7"]
     },
     {
@@ -73,6 +75,7 @@
       "listPosition": 3,
       "createdAt": "2020-06-12T14:40:01.346Z",
       "updatedAt": "2020-06-12T14:40:01.346Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["081ccaa1-5595-4621-8074-ede4927e67b0"]
     },
     {
@@ -85,6 +88,7 @@
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.262Z",
       "updatedAt": "2020-06-12T14:48:00.807Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1"]
     },
     {
@@ -97,6 +101,7 @@
       "listPosition": 2,
       "createdAt": "2020-06-12T14:40:01.350Z",
       "updatedAt": "2020-06-12T14:51:09.653Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["610451aa-10c8-4d7e-9363-311357c0b0dd", "94502aad-c97f-43e1-a9d1-28cf3e4937a7"]
     },
     {
@@ -109,6 +114,7 @@
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.304Z",
       "updatedAt": "2020-06-12T14:52:02.173Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1"]
     },
     {
@@ -121,6 +127,7 @@
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.304Z",
       "updatedAt": "2020-06-12T14:52:02.173Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1"]
     },
     {
@@ -133,6 +140,7 @@
       "listPosition": 2,
       "createdAt": "2020-06-12T14:40:01.263Z",
       "updatedAt": "2020-06-12T14:51:08.254Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["081ccaa1-5595-4621-8074-ede4927e67b0", "610451aa-10c8-4d7e-9363-311357c0b0dd"]
     },
     {
@@ -145,6 +153,7 @@
       "listPosition": 3,
       "createdAt": "2020-06-12T14:40:01.263Z",
       "updatedAt": "2020-06-12T14:51:08.254Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1"]
     },
     {
@@ -157,6 +166,7 @@
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.263Z",
       "updatedAt": "2020-06-12T14:51:08.254Z",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["94502aad-c97f-43e1-a9d1-28cf3e4937a7", "7ac265f9-b9ac-443f-a2b2-795682e579a4"]
     }
   ]

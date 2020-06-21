@@ -34,12 +34,16 @@ $jira-bg: rgb(222, 235, 255);
   }
 }
 
-.button {
+.btn {
   @apply inline-flex items-center justify-center h-8 align-middle leading-none whitespace-no-wrap rounded-sm transition-all duration-100 appearance-none cursor-pointer select-none px-3;
   font-size: 14.5px;
-  
+
   &.icon-only {
     @apply px-2;
+    
+    .with-padding {
+      padding: 0;
+    }
   }
 
   &.disabled {
@@ -68,7 +72,7 @@ $jira-bg: rgb(222, 235, 255);
 .btn-empty {
   background: white;
   outline: none;
-  @apply text-textDark font-normal;
+  @apply text-textDark;
 
   &:focus,
   &:active {
@@ -85,7 +89,7 @@ $jira-bg: rgb(222, 235, 255);
     }
     &.is-active {
       background-color: $jira-bg;
-      @apply text-textDark;   
+      @apply text-textDark;
     }
   }
 }

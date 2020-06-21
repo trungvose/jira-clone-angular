@@ -2,6 +2,13 @@ module.exports = {
   prefix: '',
   important: false,
   separator: ':',
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.ts', './src/**/*.html'],
+    options: {      
+      whitelistPatterns: [/^font/]
+    }
+  },
   theme: {
     screens: {
       sm: '640px',
