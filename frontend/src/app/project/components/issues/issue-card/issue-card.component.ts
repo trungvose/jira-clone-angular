@@ -41,8 +41,12 @@ export class IssueCardComponent implements OnChanges {
   openIssueDetail(issueId: string) {
     this._modalService.create({
       nzContent: IssueModalComponent,
+      nzWidth: 1040,
       nzClosable: false,
-      nzFooter: null
+      nzFooter: null,
+      nzComponentParams: {
+        issue$: this._projectQuery.issueById$(issueId) 
+      }
     });
   }
 }

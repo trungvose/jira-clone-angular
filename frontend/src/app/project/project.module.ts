@@ -14,13 +14,16 @@ import { BoardComponent } from './pages/board/board.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
+import { IssueUtilComponents } from './components/issues';
+
  @NgModule({
   declarations: [
     ...NavigationComponents,
     ...BoardPageComponents,
+    ...IssueUtilComponents,
     ProjectComponent,
     BoardComponent,
-    SettingsComponent,
+    SettingsComponent,    
   ],
   imports: [
     CommonModule,
