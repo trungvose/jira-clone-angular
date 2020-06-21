@@ -2,7 +2,9 @@
 
 > It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. After finished coding, I will gradually publish a series of tutorial how I built it from scratch.
 
-This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say `a clone of a clone application` I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge about Angular. Plus, I like working with interactive UI because it is very challenging, but also exciting comparing to a simple CRUD form or a shopping cart application.
+This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say `a clone of a clone application` I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge about Angular.
+
+I like working with interactive UI because it is challenging, but also very exciting.
 
 ## Working application
 
@@ -23,23 +25,22 @@ I do Angular development and this is a showcase product I've built in my spare t
 
 There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
 
-## Technology 
+## Technology
 
 ![Tech logos][stack]
 
 - Project setup with Angular CLI
 - Use Akita state management
-- Use TailwindCSS
-- ng-zorro UI component: tooltip, select, icon.
+- TailwindCSS
+- ng-zorro UI component: `tooltip`, `select`, `icon`
 
 ## Features
 
 - Proven, scalable, and easy to understand project structure
-- Simple drag and drop kanban board.
+- Simple drag and drop kanban board
 - Search/filtering issues
 - Add/update issue
 - Comments
-
 
 ## What's missing?
 
