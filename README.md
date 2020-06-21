@@ -1,22 +1,25 @@
-# A simplified Jira clone built with Angular 9 and Akita
+# A simplified Jira clone app built with Angular 9 and Akita
+
+> It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. After finished coding, I will gradually publish a series of tutorial how I built it from scratch.
+
+This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say `a clone of a clone application` I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge about Angular. Plus, I like working with interactive UI because it is very challenging, but also exciting comparing to a simple CRUD form or a shopping cart application.
 
 ## Working application
 
 - https://jira.trungk18.com/
 
-Like the Angular Jira clone app, feel free to [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)][tweet] and :star:	this repository :)
+If you like my work, feel free to:
 
-Thanks for visiting.
+- [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)][tweet] about Angular Jira clone
+- And :star: this repository
+
+Thanks for visiting and your support :)
 
 [tweet]: https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Ftrungk18%2Fjira-clone-angular&text=Awesome%20Jira%20clone%20app%20built%20with%20Angular%209%20and%20Akita&hashtags=angular,akita,typescript
 
 ## What is this and who is it for 🤷‍♀️
 
-> It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. After finished coding, I will gradually publish a series of tutorial how I built it from scratch.
-
 I do Angular development and this is a showcase product I've built in my spare time to experiment the new library that I wanted to try before: `Akita`, `TailwindCSS`, `ng-zorro`.
-
-This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say `a clone of a clone application` I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge about Angular. Plus, I like working with interactive UI because it is very challenging, but also exciting comparing to a simple CRUD form or a shopping cart application.
 
 There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
 
