@@ -24,13 +24,7 @@ $jira-bg: rgb(222, 235, 255);
       &.active {
         background: $background-dark !important;
       }
-    }
-
-    &:focus,
-    &:active {
-      outline: none;
-      box-shadow: 0 0 0 2px var(--bg-variant);
-    }
+    }   
   }
 }
 
@@ -48,6 +42,11 @@ $jira-bg: rgb(222, 235, 255);
 
   &.disabled {
     @apply opacity-50 cursor-default pointer-events-none;
+  }  
+
+  &:focus,
+  &:active {      
+    outline-color: #1890ff;    
   }
 }
 
