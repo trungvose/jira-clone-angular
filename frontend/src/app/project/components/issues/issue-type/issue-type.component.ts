@@ -34,7 +34,8 @@ export class IssueTypeComponent implements OnInit, OnChanges {
     }
   }
 
-  updateIssue() {
+  updateIssue(issueType: IssueType) {
+    this.selectedIssueType = issueType;
     this._projectService.updateIssue({
       ...this.issue,
       type: this.selectedIssueType

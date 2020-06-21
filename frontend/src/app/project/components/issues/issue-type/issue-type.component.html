@@ -1,26 +1,25 @@
-<nz-select [nzCustomTemplate]="selectTmpl"
-           [(ngModel)]="selectedIssueType"
-           (ngModelChange)="updateIssue()"
-           [nzDropdownClassName]="'select-btn'"
-           [nzBorderless]="true"
-           [nzShowArrow]="false">
-    <nz-option nzCustomContent
-               *ngFor="let type of issueTypes"
-               [nzValue]="type.value"
-               [nzHide]="isTypeSelected(type.value)">
-        <div class="flex items-center">
-            <svg-icon [name]="type.icon"
-                      [size]="20">
-            </svg-icon>
-            <span class="ml-3 font-semibold uppercase text-textMedium text-13">{{ type.value }}</span>
-        </div>
-    </nz-option>
-</nz-select>
+<j-button nz-dropdown
+          nzTrigger="click"
+          [nzDropdownMenu]="menu"
+          [icon]="selectedIssueTypeIcon"
+          [iconSize]="20"
+          [className]="'btn-empty font-semibold uppercase text-textMedium text-13'">
+    {{ selectedIssueType }}-{{issue.id}}
+</j-button>
 
-<ng-template #selectTmpl>
-    <j-button [icon]="selectedIssueTypeIcon"
-              [iconSize]="20"
-              [className]="'btn-empty font-semibold uppercase text-textMedium text-13'">
-        {{ selectedIssueType }}-{{issue.id}}
-    </j-button>
-</ng-template>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+        <ng-container *ngFor="let option of issueTypes">
+            <li nz-menu-item
+                *ngIf="!isTypeSelected(option.value)"
+                (click)="updateIssue(option.value)">
+                <div class="flex items-center">
+                    <svg-icon [name]="option.icon"
+                              [size]="20">
+                    </svg-icon>
+                    <span class="ml-3 font-semibold uppercase text-textMedium text-13">{{ option.value }}</span>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+</nz-dropdown-menu>

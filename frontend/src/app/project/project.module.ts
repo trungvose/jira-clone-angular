@@ -16,23 +16,24 @@ import { BoardComponent } from './pages/board/board.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
- @NgModule({
+@NgModule({
   declarations: [
     ...NavigationComponents,
     ...BoardPageComponents,
     ...IssueUtilComponents,
     ProjectComponent,
     BoardComponent,
-    SettingsComponent,    
+    SettingsComponent
   ],
   imports: [
     CommonModule,
     ProjectRoutingModule,
-    NzIconModule.forChild(NZ_JIRA_ICONS),    
-    NzToolTipModule,    
+    NzIconModule.forChild(NZ_JIRA_ICONS),
+    NzToolTipModule,
     NzModalModule,
-    NzSelectModule,
+    NzDropDownModule,
     DragDropModule,
     FormsModule,
     ReactiveFormsModule,
