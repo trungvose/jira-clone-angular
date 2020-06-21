@@ -1,0 +1,9 @@
+/* purgecss start ignore */
+nz-select {
+  .ant-select-selector {
+    &:hover {
+      @apply bg-backgroundLight;
+    }
+  }
+}
+/* purgecss end ignore */
