@@ -7,5 +7,6 @@ export interface Comment {
   updatedAt: string;
   issueId: string;
   userId: string;
+  //mapped to display by userId
   user: JUser;
 }

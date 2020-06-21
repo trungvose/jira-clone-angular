@@ -1,1 +1,12 @@
-<p>issue-priority works!</p>
+<div class="mt-6 mb-1 uppercase text-textMedium text-13 font-bold">
+    Priority
+</div>
+<j-button className="btn-secondary">
+    <div class="flex items-center">
+        <svg-icon [name]="priorityIcon.name"
+                  [size]="20"
+                  [style.color]="priorityIcon.color">
+        </svg-icon>
+        {{ priorityIcon.label }}
+    </div>
+</j-button>

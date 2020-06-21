@@ -6,9 +6,9 @@ import { IssueTitleComponent } from './issue-title/issue-title.component';
 import { IssueDescriptionComponent } from './issue-description/issue-description.component';
 import { IssueTypeComponent } from './issue-type/issue-type.component';
 import { IssuePriorityComponent } from './issue-priority/issue-priority.component';
-import { IssueAssigneeComponent } from './issue-assignee/issue-assignee.component';
 import { IssueStatusComponent } from './issue-status/issue-status.component';
 import { IssueCommentsComponent } from './issue-comments/issue-comments.component';
+import { IssueAssigneesComponent } from './issue-assignees/issue-assignees.component';
 
 export const IssueUtilComponents = [
   IssueCardComponent,
@@ -19,7 +19,7 @@ export const IssueUtilComponents = [
   IssueDescriptionComponent,
   IssueTypeComponent,
   IssuePriorityComponent,
-  IssueAssigneeComponent,
+  IssueAssigneesComponent,
   IssueStatusComponent,
   IssueCommentsComponent
 ];

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { JIssue } from '@trungk18/interface/issue';
+import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 
 @Component({
   selector: 'issue-detail',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./issue-detail.component.scss']
 })
 export class IssueDetailComponent implements OnInit {
+  @Input() issue: JIssue;
+  @Input() isShowFullScreenButton: boolean;
+  @Input() isShowCloseButton: boolean;
+  @Output() onClosed = new EventEmitter();
 
-  constructor() { }
+  constructor(public projectQuery: ProjectQuery) {
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {}
+
+  openDeleteIssueModal() {}
+
+  closeModal(){
+    this.onClosed.emit()
+  }
 }

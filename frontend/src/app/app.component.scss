@@ -30,3 +30,7 @@ board-dnd {
 .global-spinner {
   @apply min-h-screen;
 }
+
+.ant-modal-body {
+  padding: 0;
+}

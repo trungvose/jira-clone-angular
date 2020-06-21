@@ -13,11 +13,11 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 export class IssueModalComponent implements OnInit {
   @Input() issue$: Observable<JIssue>;
 
-  constructor(private _modal: NzModalRef) {
+  constructor(private _modal: NzModalRef) {}
 
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    
+  closeModal() {
+    this._modal.close();
   }
 }

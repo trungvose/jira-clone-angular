@@ -1,1 +1,6 @@
-<p>issue-type works!</p>
+<j-button [icon]="issueTypeIcon"
+          [iconSize]="20"
+          class="issue-type"
+          [className]="'btn-empty uppercase text-textMedium text-13'">
+    {{ issue.type }}-{{issue.id}}
+</j-button>

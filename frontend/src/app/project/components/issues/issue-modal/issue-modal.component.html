@@ -1,9 +1,4 @@
-<div class="issue-modal"
-     *ngIf="issue$ | async as issue; else loaderTmpl">
-
-</div>
-
-<ng-template #loaderTmpl>
-    <pre>{{ issue$ | async | json}}</pre>
-    <issue-loader></issue-loader>
-</ng-template>
+<issue-detail [issue]="issue$ | async"
+              [isShowFullScreenButton]="true"
+              [isShowCloseButton]="true"
+              (onClosed)="closeModal()"></issue-detail>
