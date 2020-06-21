@@ -2,6 +2,10 @@ module.exports = {
   prefix: '',
   important: false,
   separator: ':',
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.ts', './src/**/*.html']
+  },
   theme: {
     screens: {
       sm: '640px',
