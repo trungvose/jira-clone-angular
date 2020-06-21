@@ -1,38 +1,42 @@
 # A simplified Jira clone built with Angular 9 and Akita
 
-<h3 align="center">
-  <a href="https://jira.trungk18.com/wip">Visit the app</a> |
-  <a href="https://github.com/trungk18/jira-clone-angular/tree/master/frontend">View front-end code</a>
-</h3>
+## Working application
 
-It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. After finished coding, I will gradually publish a series of tutorial how I built it from scratch.
+- https://jira.trungk18.com/
+
+Like the Angular Jira clone app, feel free to [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)][tweet] and :star:	this repository :)
 
 Thanks for visiting.
 
-![Tech logos][stack]
+[tweet]: https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Ftrungk18%2Fjira-clone-angular&text=Awesome%20Jira%20clone%20app%20built%20with%20Angular%209%20and%20Akita&hashtags=angular,akita,typescript
 
 ## What is this and who is it for 🤷‍♀️
 
-I do Angular development and this is a showcase product I've built in my spare time to experiment the new library that I wanted to try before: Akita, TailwindCSS, ng-zorro.
+> It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. After finished coding, I will gradually publish a series of tutorial how I built it from scratch.
 
-This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say a clone of a clone I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge of Angular as well.
+I do Angular development and this is a showcase product I've built in my spare time to experiment the new library that I wanted to try before: `Akita`, `TailwindCSS`, `ng-zorro`.
 
-There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand. Plus, working with interactive UI is very exciting comparing to a simple CRUD form or a shopping cart application.
+This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say `a clone of a clone application` I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge about Angular. Plus, I like working with interactive UI because it is very challenging, but also exciting comparing to a simple CRUD form or a shopping cart application.
+
+There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
+
+## Technology 
+
+![Tech logos][stack]
+
+- Project setup with Angular CLI
+- Use Akita state management
+- Use TailwindCSS
+- ng-zorro UI component: tooltip, select, icon.
 
 ## Features
 
 - Proven, scalable, and easy to understand project structure
-- All code are written in TypeScript
-- Project setup with Angular CLI
-- Use Akita state management
-- Use TailwindCSS
+- Simple drag and drop kanban board.
+- Search/filtering issues
+- Add/update issue
+- Comments
 
-## Setting up development environment 🛠
-
-- `git clone https://github.com/trungk18/jira-clone-angular.git`
-- `npm run install-dependencies`
-- `cd frontend && npm start`
-- App should now be running on `http://localhost:4200/`
 
 ## What's missing?
 
@@ -48,7 +52,14 @@ I am currently auto create an auth token and seed a project with issues and user
 
 ### Accessibility ♿
 
-Not all components have properly defined [aria attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA), visual focus indicators etc. Most early stage companies tend to ignore this aspect of their product but in many cases they shouldn't, especially once their userbase starts growing.
+Not all components have properly defined [aria attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA), visual focus indicators etc. Most early stage companies tend to ignore this aspect of their product but in many cases they shouldn't, especially once their users starts growing.
+
+## Setting up development environment 🛠
+
+- `git clone https://github.com/trungk18/jira-clone-angular.git`
+- `npm run install-dependencies`
+- `cd frontend && npm start`
+- App should now be running on `http://localhost:4200/`
 
 ### Unit/Integration tests 🧪
 
@@ -57,7 +68,7 @@ I skipped writing test for this project. I will do it for the backend API.
 ## Author: Trung Vo ✍️
 
 - A young and passionate front-end engineer. Working with Angular and TypeScript. Like photography, running, cooking and reading book.
-- Website: https://trungk18.com/
+- Personal blog: https://trungk18.com/
 - Say hello: trungk18 [et] gmail [dot] com
 
 ## Contributing
@@ -71,6 +82,8 @@ If you'd like to contribute, please fork the repository and make changes as you'
 Inspired by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][datlyfe]
 
 ## License
+
+You are free to use my code on your personal project. It would be great if you put a reference to this repository.
 
 [MIT](https://opensource.org/licenses/MIT)
 
