@@ -16,6 +16,12 @@ export class ProjectQuery extends Query<ProjectState> {
   issue$ = this.select('issues');
   users$ = this.select('users');
 
+  lastIssuePosition = (status: IssueStatus): number => {
+    let raw = this.store.getValue();
+    let issuesByStatus = raw.issues.filter(x => x.status === status);
+    return issuesByStatus.length;
+  }
+
   issueByStatusSorted$ = (status: IssueStatus): Observable<JIssue[]> => {
     return this.issue$.pipe(
       map((issues) => {

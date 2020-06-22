@@ -10,10 +10,9 @@ import { ProjectService } from '@trungk18/project/state/project/project.service'
 })
 export class IssueTypeComponent implements OnInit, OnChanges {
   @Input() issue: JIssue;
-  selectedIssueType: IssueType;
 
   get selectedIssueTypeIcon(): string {
-    return IssueUtil.getIssueTypeIcon(this.selectedIssueType);
+    return IssueUtil.getIssueTypeIcon(this.issue.type);
   }
 
   issueTypes: IssueTypeWithIcon[];
@@ -29,21 +28,18 @@ export class IssueTypeComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    if (this.issue) {
-      this.selectedIssueType = this.issue.type;
-    }
+    
   }
 
   updateIssue(issueType: IssueType) {
-    this.selectedIssueType = issueType;
     this._projectService.updateIssue({
       ...this.issue,
-      type: this.selectedIssueType
+      type: issueType
     });
   }
 
   isTypeSelected(type: IssueType) {
-    return this.selectedIssueType === type;
+    return this.issue.type === type;
   }
 }
 

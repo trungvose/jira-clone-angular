@@ -5,34 +5,35 @@ import { JUser } from '@trungk18/interface/user';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 
 @Component({
-  selector: 'issue-assignees',
-  templateUrl: './issue-assignees.component.html',
-  styleUrls: ['./issue-assignees.component.scss']
+  selector: 'issue-reporter',
+  templateUrl: './issue-reporter.component.html',
+  styleUrls: ['./issue-reporter.component.scss']
 })
 @UntilDestroy()
-export class IssueAssigneesComponent implements OnInit, OnChanges {
+export class IssueReporterComponent implements OnInit, OnChanges {
   @Input() issue: JIssue;
   @Input() users: JUser[];
-  assignees: JUser[];
+  reporter: JUser;
 
   constructor(private _projectService: ProjectService) {}
 
-  ngOnInit(): void {
-    this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
     let issueChange = changes.issue;
     if (this.users && issueChange.currentValue !== issueChange.previousValue) {
-      this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
+      this.reporter = this.users.find((x) => x.id === this.issue.reporterId);
     }
   }
 
-  removeUser(userId: string) {
-    let newUserIds = this.issue.userIds.filter((x) => x !== userId);
+  isUserSelected(user: JUser) {
+    return user.id === this.issue.reporterId;
+  }
+
+  updateIssue(user: JUser) {
     this._projectService.updateIssue({
       ...this.issue,
-      userIds: newUserIds
+      reporterId: user.id
     });
   }
 }

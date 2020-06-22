@@ -1,19 +1,4 @@
 <div class="mt-6 mb-1 uppercase text-textMedium text-13 font-bold">
-    Reporter
-</div>
-<div>
-    <j-button className="btn-secondary">
-        <div class="flex items-center">
-            <j-avatar [avatarUrl]="reporter?.avatarUrl"
-                      [size]="20">
-            </j-avatar>
-            <span class="ml-1-5 mr-1-5">
-                {{ reporter?.name }}
-            </span>
-        </div>
-    </j-button>
-</div>
-<div class="mt-6 mb-1 uppercase text-textMedium text-13 font-bold">
     Assignees
 </div>
 <div>
@@ -26,10 +11,11 @@
             <span class="ml-1-5 mr-1-5">
                 {{ assignee.name }}
             </span>
-            <svg-icon [size]="20"
+            <svg-icon (click)="removeUser(assignee.id)"
+                      [size]="20"
                       [name]="'times'"
                       class="text-textLight">
             </svg-icon>
         </div>
-    </j-button>
+    </j-button>    
 </div>
