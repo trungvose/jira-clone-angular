@@ -11,10 +11,11 @@
             <span class="ml-1-5 mr-1-5">
                 {{ assignee.name }}
             </span>
-            <svg-icon [size]="20"
+            <svg-icon (click)="removeUser(assignee.id)"
+                      [size]="20"
                       [name]="'times'"
                       class="text-textLight">
             </svg-icon>
         </div>
-    </j-button>
+    </j-button>    
 </div>

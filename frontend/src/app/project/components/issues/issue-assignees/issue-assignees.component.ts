@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { JIssue } from '@trungk18/interface/issue';
 import { JUser } from '@trungk18/interface/user';
+import { ProjectService } from '@trungk18/project/state/project/project.service';
 
 @Component({
   selector: 'issue-assignees',
@@ -14,7 +15,7 @@ export class IssueAssigneesComponent implements OnInit, OnChanges {
   @Input() users: JUser[];
   assignees: JUser[];
 
-  constructor() {}
+  constructor(private _projectService: ProjectService) {}
 
   ngOnInit(): void {
     this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
@@ -25,5 +26,13 @@ export class IssueAssigneesComponent implements OnInit, OnChanges {
     if (this.users && issueChange.currentValue !== issueChange.previousValue) {
       this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
     }
+  }
+
+  removeUser(userId: string) {
+    let newUserIds = this.issue.userIds.filter((x) => x !== userId);
+    this._projectService.updateIssue({
+      ...this.issue,
+      userIds: newUserIds
+    });
   }
 }
