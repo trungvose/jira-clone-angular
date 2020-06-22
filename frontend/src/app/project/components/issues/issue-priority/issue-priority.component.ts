@@ -1,20 +1,50 @@
-import { Component, Input, OnChanges } from '@angular/core';
-import { JIssue } from '@trungk18/interface/issue';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { JIssue, IssuePriority } from '@trungk18/interface/issue';
 import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
 import { IssueUtil } from '@trungk18/project/utils/issue';
+import { ProjectService } from '@trungk18/project/state/project/project.service';
 
 @Component({
   selector: 'issue-priority',
   templateUrl: './issue-priority.component.html',
   styleUrls: ['./issue-priority.component.scss']
 })
-export class IssuePriorityComponent implements OnChanges {
-  priorityIcon: IssuePriorityIcon;
+export class IssuePriorityComponent implements OnInit, OnChanges {
+  selectedPriority: IssuePriority;
+
+  get selectedPriorityIcon() {
+    return IssueUtil.getIssuePriorityIcon(this.selectedPriority);
+  }
+
+  priorities: IssuePriorityIcon[];
+
   @Input() issue: JIssue;
 
-  constructor() {}
+  constructor(private _projectService: ProjectService) {}
+
+  ngOnInit() {
+    this.priorities = [
+      IssueUtil.getIssuePriorityIcon(IssuePriority.LOWEST),
+      IssueUtil.getIssuePriorityIcon(IssuePriority.LOW),
+      IssueUtil.getIssuePriorityIcon(IssuePriority.MEDIUM),
+      IssueUtil.getIssuePriorityIcon(IssuePriority.HIGH),
+      IssueUtil.getIssuePriorityIcon(IssuePriority.HIGHEST)
+    ];
+  }
 
   ngOnChanges(): void {
-    this.priorityIcon = IssueUtil.getIssuePriorityIcon(this.issue?.priority);
+    this.selectedPriority = this.issue?.priority;
+  }
+
+  isPrioritySelected(priority: IssuePriority) {
+    return priority === this.selectedPriority;
+  }
+
+  updateIssue(priority: IssuePriority) {
+    this.selectedPriority = priority;
+    this._projectService.updateIssue({
+      ...this.issue,
+      priority: this.selectedPriority
+    });
   }
 }
