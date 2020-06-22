@@ -57,27 +57,33 @@
         <div class="flex-auto"></div>
         <div class="item"
              *ngIf="authQuery.user$ | async as user">
-            <div nz-tooltip
-                 [nzTooltipTitle]="user.name"
-                 nzTooltipPlacement="right"
-                 class="itemIcon">
-                <j-avatar class="flex"
-                          [avatarUrl]="user.avatarUrl"
-                          [size]="26">
-                </j-avatar>
-            </div>
+            <a target="_blank"
+               href="https://trungk18.com/">
+                <div nz-tooltip
+                     [nzTooltipTitle]="user.name"
+                     nzTooltipPlacement="right"
+                     class="itemIcon">
+                    <j-avatar class="flex"
+                              [avatarUrl]="user.avatarUrl"
+                              [size]="26">
+                    </j-avatar>
+                </div>
+            </a>
         </div>
         <div class="item">
-            <div nz-tooltip
-                 nzTooltipTitle="About"
-                 nzTooltipPlacement="right"
-                 class="itemIcon">
-                <i class="text-white text-xl"
-                   nz-icon
-                   nzType="question-circle"
-                   nzTheme="fill">
-                </i>
-            </div>
+            <a target="_blank"
+               href="https://github.com/trungk18/jira-clone-angular">
+                <div nz-tooltip
+                     nzTooltipTitle="About"
+                     nzTooltipPlacement="right"
+                     class="itemIcon">
+                    <i class="text-white text-xl"
+                       nz-icon
+                       nzType="question-circle"
+                       nzTheme="fill">
+                    </i>
+                </div>
+            </a>
         </div>
     </div>
 </aside>
