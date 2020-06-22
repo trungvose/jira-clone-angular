@@ -9,6 +9,7 @@ import { IssuePriorityComponent } from './issue-priority/issue-priority.componen
 import { IssueStatusComponent } from './issue-status/issue-status.component';
 import { IssueCommentsComponent } from './issue-comments/issue-comments.component';
 import { IssueAssigneesComponent } from './issue-assignees/issue-assignees.component';
+import { IssueReporterComponent } from './issue-reporter/issue-reporter.component';
 
 export const IssueUtilComponents = [
   IssueCardComponent,
@@ -20,6 +21,7 @@ export const IssueUtilComponents = [
   IssueTypeComponent,
   IssuePriorityComponent,
   IssueAssigneesComponent,
+  IssueReporterComponent,
   IssueStatusComponent,
   IssueCommentsComponent
 ];

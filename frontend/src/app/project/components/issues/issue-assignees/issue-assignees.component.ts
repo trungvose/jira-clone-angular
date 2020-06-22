@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { JIssue } from '@trungk18/interface/issue';
-import { Observable } from 'rxjs';
 import { JUser } from '@trungk18/interface/user';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'issue-assignees',
@@ -10,18 +9,21 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   styleUrls: ['./issue-assignees.component.scss']
 })
 @UntilDestroy()
-export class IssueAssigneesComponent implements OnInit {
+export class IssueAssigneesComponent implements OnInit, OnChanges {
   @Input() issue: JIssue;
-  @Input() users$: Observable<JUser[]>;
+  @Input() users: JUser[];
   assignees: JUser[];
-  reporter: JUser;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.users$.pipe(untilDestroyed(this)).subscribe((users) => {
-      this.assignees = this.issue.userIds.map((userId) => users.find((x) => x.id === userId));
-      this.reporter = users.find((x) => x.id === this.issue.reporterId);
-    });
+    this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    let issueChange = changes.issue;
+    if (this.users && issueChange.currentValue !== issueChange.previousValue) {
+      this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
+    }
   }
 }

@@ -29,8 +29,7 @@ $jira-bg: rgb(222, 235, 255);
 }
 
 .btn {
-  @apply inline-flex items-center justify-center h-8 align-middle leading-none whitespace-no-wrap rounded-sm transition-all duration-100 appearance-none cursor-pointer select-none px-3;
-  font-size: 14.5px;
+  @apply text-btn inline-flex items-center justify-center h-8 align-middle leading-none whitespace-no-wrap rounded-sm transition-all duration-100 appearance-none cursor-pointer select-none px-3;  
 
   &.icon-only {
     @apply px-2;
