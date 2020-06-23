@@ -32,15 +32,27 @@ There are many showcase/example Angular projects out there but most of them are 
 - Project setup with Angular CLI
 - Use Akita state management
 - TailwindCSS
-- ng-zorro UI component: `tooltip`, `select`, `icon`
+- Angular CDK drag and drop
+- ng-zorro UI component: `tooltip`, `dropdown`, `icon`
 
-## Features
+## Features and Roadmap
 
-- Proven, scalable, and easy to understand project structure
-- Simple drag and drop kanban board
-- Search/filtering issues
-- Add/update issue
-- Comments
+### Phase 1 - Angular application and simple Nest API
+
+[x] Proven, scalable, and easy to understand project structure
+[x] Simple drag and drop kanban board
+[x] Add/update issue
+[x] Search/filtering issues
+[ ] Comments
+
+> Noted: All of your interaction with data will not be save to the persistent database. Currently, the application will serve a fixed structure of data everytime you open the app, or on a full browser refresh. Phase 2 will bring you a proper API where you can login and save your work.
+
+### Phase 2
+
+[] GraphQL API and store data on the actual database
+[] Authentication
+[] Websocket realtime update
+[] Interactive report
 
 ## What's missing?
 
@@ -87,7 +99,7 @@ Inspired by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][datlyfe]
 
 ## License
 
-You are free to use my code on your personal project. It would be great if you put a reference to this repository.
+Feel free to use my code on your personal project. It would be great if you put a reference to this repository.
 
 [MIT](https://opensource.org/licenses/MIT)
 
