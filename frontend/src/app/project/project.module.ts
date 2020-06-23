@@ -17,6 +17,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     NzModalModule,
     NzDropDownModule,
     DragDropModule,
+    TextFieldModule,
     FormsModule,
     ReactiveFormsModule,
     JiraControlModule,

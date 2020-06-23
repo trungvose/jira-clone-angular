@@ -36,12 +36,12 @@ export class FilterService {
     });
   }
 
-  toggleRecentUpdate() {
+  toggleIgnoreResolve() {
     this.store.update((state) => {
-      let recentUpdate = !state.recentUpdate;
+      let ignoreResolved = !state.ignoreResolved;
       return {
         ...state,
-        recentUpdate
+        ignoreResolved
       };
     });
   }

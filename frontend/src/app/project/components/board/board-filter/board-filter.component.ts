@@ -41,8 +41,8 @@ export class BoardFilterComponent implements OnInit {
     return this.userIds.includes(user.id);
   }
 
-  recentUpdateChanged() {
-    this.filterService.toggleRecentUpdate();
+  ignoreResolvedChanged() {
+    this.filterService.toggleIgnoreResolve();
   }
 
   onlyMyIssueChanged() {

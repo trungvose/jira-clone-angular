@@ -8,11 +8,11 @@ export class FilterQuery extends Query<FilterState> {
     super(store);
   }
 
-  any$ = this.select(({ searchTerm, userIds, onlyMyIssue, recentUpdate }) => {
-    return !!searchTerm || !!userIds?.length || onlyMyIssue || recentUpdate;
+  any$ = this.select(({ searchTerm, userIds, onlyMyIssue, ignoreResolved }) => {
+    return !!searchTerm || !!userIds?.length || onlyMyIssue || ignoreResolved;
   });
   all$ = this.select();
   userIds$ = this.select('userIds');
   onlyMyIssue$ = this.select('onlyMyIssue');
-  recentUpdate$ = this.select('recentUpdate');
+  ignoreResolve$ = this.select('ignoreResolved');
 }

@@ -47,12 +47,21 @@
         <div class="sm:w-full md:w-5/12 lg:w-2/6 pt-1">
             <issue-status [issue]="issue"></issue-status>
             <issue-reporter [issue]="issue"
-                             [users]="projectQuery.users$ | async">
+                            [users]="projectQuery.users$ | async">
             </issue-reporter>
             <issue-assignees [issue]="issue"
                              [users]="projectQuery.users$ | async">
             </issue-assignees>
             <issue-priority [issue]="issue"></issue-priority>
+
+            <div class="mt-3 pt-3 leading-loose border-t border-borderLightest text-textMedium text-13">
+                <div>
+                    Created - {{ issue.createdAt | date }}
+                </div>
+                <div>
+                    Updated - {{ issue.updatedAt | date }}
+                </div>
+            </div>
         </div>
     </div>
 </div>

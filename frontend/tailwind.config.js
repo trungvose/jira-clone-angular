@@ -5,8 +5,8 @@ module.exports = {
   purge: {
     enabled: true,
     content: ['./src/**/*.ts', './src/**/*.html'],
-    options: {      
-      whitelistPatterns: [/^font/]
+    options: {
+      whitelistPatterns: [/^font/, /^m-/, /^p-/]
     }
   },
   theme: {
@@ -107,29 +107,7 @@ module.exports = {
         700: '#4c51bf',
         800: '#434190',
         900: '#3c366b'
-      },
-      purple: {
-        100: '#faf5ff',
-        200: '#e9d8fd',
-        300: '#d6bcfa',
-        400: '#b794f4',
-        500: '#9f7aea',
-        600: '#805ad5',
-        700: '#6b46c1',
-        800: '#553c9a',
-        900: '#44337a'
-      },
-      pink: {
-        100: '#fff5f7',
-        200: '#fed7e2',
-        300: '#fbb6ce',
-        400: '#f687b3',
-        500: '#ed64a6',
-        600: '#d53f8c',
-        700: '#b83280',
-        800: '#97266d',
-        900: '#702459'
-      },
+      },    
       primary: '#0747A6',
       tertiary: '#e6e9f0',
       textDarkest: '#172b4d',
