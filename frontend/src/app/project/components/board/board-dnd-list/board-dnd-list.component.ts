@@ -63,7 +63,7 @@ export class BoardDndListComponent implements OnInit {
   }
 
   filterIssues(issues: JIssue[], filter: FilterState): JIssue[] {
-    const { onlyMyIssue, recentUpdate, searchTerm, userIds } = filter;
+    const { onlyMyIssue, ignoreResolved, searchTerm, userIds } = filter;
     return issues.filter((issue) => {
       let isMatchTerm = searchTerm
         ? issue.title.toLowerCase().includes(searchTerm.trim().toLowerCase())
@@ -72,12 +72,14 @@ export class BoardDndListComponent implements OnInit {
       let isIncludeUsers = userIds.length
         ? issue.userIds.some((userId) => userIds.includes(userId))
         : true;
+
       let isMyIssue = onlyMyIssue
         ? this.currentUserId && issue.userIds.includes(this.currentUserId)
         : true;
-      let isRecentUpdate = recentUpdate ? this.isDateWithinThreeDaysFromNow(issue.updatedAt) : true;
 
-      return isMatchTerm && isIncludeUsers && isMyIssue && isRecentUpdate;
+      let isIgnoreResolved = ignoreResolved ? issue.status !== IssueStatus.DONE : true;
+
+      return isMatchTerm && isIncludeUsers && isMyIssue && isIgnoreResolved;
     });
   }
 

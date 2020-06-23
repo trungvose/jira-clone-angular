@@ -26,10 +26,10 @@
         Only My Issues
     </j-button>
     <j-button class="ml-3"
-              [isActive]="filterQuery.recentUpdate$ | async"
-              (clicked)="recentUpdateChanged()"
+              [isActive]="filterQuery.ignoreResolve$ | async"
+              (clicked)="ignoreResolvedChanged()"
               className="btn-empty">
-        Recently Updated
+        Ignore Resolved
     </j-button>
     <div class="ml-3 flex items-center"
          *ngIf="filterQuery.any$ | async">

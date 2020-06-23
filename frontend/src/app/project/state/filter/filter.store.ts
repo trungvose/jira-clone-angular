@@ -5,7 +5,7 @@ export interface FilterState {
   searchTerm: string;
   userIds: string[];
   onlyMyIssue: boolean;
-  recentUpdate: boolean;
+  ignoreResolved: boolean;
 }
 
 export function createInitialFilterState(): FilterState {
@@ -13,7 +13,7 @@ export function createInitialFilterState(): FilterState {
     searchTerm: '',
     userIds: [],
     onlyMyIssue: false,
-    recentUpdate: false
+    ignoreResolved: false
   };
 }
 
