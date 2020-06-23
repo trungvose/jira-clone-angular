@@ -35,4 +35,15 @@ export class IssueAssigneesComponent implements OnInit, OnChanges {
       userIds: newUserIds
     });
   }
+
+  addUserToIssue(user: JUser) {
+    this._projectService.updateIssue({
+      ...this.issue,
+      userIds: [...this.issue.userIds, user.id]
+    })
+  }
+
+  isUserSelected(user: JUser): boolean {
+    return this.issue.userIds.includes(user.id);
+  }
 }

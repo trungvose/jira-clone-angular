@@ -5,8 +5,8 @@ module.exports = {
   purge: {
     enabled: true,
     content: ['./src/**/*.ts', './src/**/*.html'],
-    options: {      
-      whitelistPatterns: [/^font/]
+    options: {
+      whitelistPatterns: [/^font/, /^m-/, /^p-/]
     }
   },
   theme: {
