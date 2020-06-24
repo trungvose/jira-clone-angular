@@ -1,6 +1,6 @@
-# A simplified Jira clone app built with Angular 9 and Akita
+# A simplified Jira clone built with Angular 9 and Akita
 
-> It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. After finished coding, I will gradually publish a series of tutorial how I built it from scratch.
+> It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. After finished Phase 1 coding , I will gradually publish a series of tutorial how I built it from scratch.
 
 This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say `a clone of a clone application` I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge about Angular.
 
@@ -8,7 +8,9 @@ I like working with interactive UI because it is challenging, but also very exci
 
 ## Working application
 
-- https://jira.trungk18.com/
+Check out the live demo at - https://jira.trungk18.com/
+
+--> SCREENSHOT GIF
 
 If you like my work, feel free to:
 
@@ -25,19 +27,28 @@ I do Angular development and this is a showcase product I've built in my spare t
 
 There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
 
-## Technology
+## Tech stack
 
 ![Tech logos][stack]
 
-- Project setup with Angular CLI
-- Use Akita state management
-- TailwindCSS
-- Angular CDK drag and drop
-- ng-zorro UI component: `tooltip`, `dropdown`, `icon`
-
+- Angular CLI
+- Akita state management
+- NestJS
+- UI modules:
+  - TailwindCSS
+  - Angular CDK drag and drop
+  - ng-zorro UI component: `tooltip`, `dropdown`, `icon`
+- Netlify
+  
 ## Features and Roadmap
 
+I built it as the side project so It usually took longer than expected. One day, my team and I did the fire fighting on PROD until 11PM. After taking shower, I continue with Angular Jira clone for another two hours...
+
+I set the tentative deadline to motivate myself to finish it on time. Otherwise, It will take forever to finish :)
+
 ### Phase 1 - Angular application and simple Nest API
+
+> June 13 - 27, 2020
 
 [x] Proven, scalable, and easy to understand project structure
 [x] Simple drag and drop kanban board
@@ -47,20 +58,28 @@ There are many showcase/example Angular projects out there but most of them are 
 
 > Noted: All of your interaction with data will not be save to the persistent database. Currently, the application will serve a fixed structure of data everytime you open the app, or on a full browser refresh. Phase 2 will bring you a proper API where you can login and save your work.
 
+During working with this application, I have the opportunity to revisit some of the interesting topic:
+
+- TailwindCSS configuration - that's awesome
+- Scrollable layout with Flexbox
+- Deploy Angular application to Netlify
+
 ### Phase 2
+
+> July 1 - 15, 2020
 
 [] GraphQL API and store data on the actual database
 [] Authentication
 [] Websocket realtime update
 [] Interactive report
 
-## What's missing?
+## What's currently missing?
 
-There are features missing from this showcase product which should exist in a real product:
+There are features missing from the live demo which should exist in a real product and should be finished on Phase 2:
 
 ### Proper backend API
 
-I am currently using a `json` file for storing data. I am planning to write a graphQL API soon in order to learn more about that.
+I am currently using a `json` file for storing data on the backend. I am planning to write a graphQL API soon in order to learn more about that.
 
 ### Proper authentication system 🔐
 
@@ -73,13 +92,14 @@ Not all components have properly defined [aria attributes](https://developer.moz
 ## Setting up development environment 🛠
 
 - `git clone https://github.com/trungk18/jira-clone-angular.git`
+- `cd jira-clone-angular`
 - `npm run install-dependencies`
 - `cd frontend && npm start`
 - App should now be running on `http://localhost:4200/`
 
 ### Unit/Integration tests 🧪
 
-I skipped writing test for this project. I will do it for the backend API.
+I skipped writing test for this project. I might do it for the proper backend GraphQL API.
 
 ## Author: Trung Vo ✍️
 
