@@ -18,6 +18,7 @@ import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { TextFieldModule } from '@angular/cdk/text-field';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TextFieldModule } from '@angular/cdk/text-field';
     FormsModule,
     ReactiveFormsModule,
     JiraControlModule,
-    ContentLoaderModule
+    ContentLoaderModule,
+    QuillModule
   ]
 })
 export class ProjectModule {}

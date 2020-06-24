@@ -1,12 +1,36 @@
 <div class="pt-4 pb-2 text-15 font-medium">Description</div>
-<div [innerHTML]="issue.description"></div>
-<div *ngIf="isEditing"
-     class="pt-3 flex items-center">
-    <j-button [isWorking]="isWorking"
-              [className]="'btn-primary'"
-              class="mr-2">
-        Save</j-button>
-    <j-button [className]="'btn-empty'">
-        Cancel
-    </j-button>
-</div>
+
+<ng-container *ngIf="isEditing; else readonlyModeTmpl">
+    <quill-editor class="content-editor"
+                  [modules]="editorOptions"
+                  [formControl]="descriptionControl">
+    </quill-editor>
+
+    <div class="pt-3 flex
+      items-center">
+        <j-button [isWorking]="isWorking"
+                  [className]="'btn-primary'"
+                  class="mr-2"
+                  (clicked)="save()">
+            Save</j-button>
+        <j-button (clicked)="cancel()" [className]="'btn-empty'">
+            Cancel
+        </j-button>
+    </div>
+</ng-container>
+
+<ng-template #readonlyModeTmpl>
+    <div class="ql-snow content-readonly"
+         *ngIf="!isEditing"
+         (click)="setEditMode(true)">
+        <div class="ql-editor"
+             [innerHTML]="issue.description"></div>
+        <div class="icon-edit">
+            <i nz-icon
+               class="cursor-pointer"
+               title="Click to edit"
+               nzType="edit"
+               nzTheme="outline"></i>
+        </div>
+    </div>
+</ng-template>

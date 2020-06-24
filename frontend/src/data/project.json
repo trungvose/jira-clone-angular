@@ -42,7 +42,7 @@
     {
       "id": "9013",
       "title": "Set up project structure ⛏️⛏️",
-      "description": "<h3>Create front end and backend folder</h3><p><br></p>npm init and ng new to create a new application<p></p>",
+      "description": "<h3>Create front end and backend folder</h3><ul><li>npm init</li><li>CLI new application</li><li>TailwindCSS configuration&nbsp;</li><li>WIP Landing Page</li><li>Build command on the root folder</li><li>Deploy to Netlify</li><li>Configure sub domain redirect - Need to retest</li><li>Configure SVG icon definition</li><li>Add Google Analytics - IMPORTANT</li><li>Refactor to module lazy loading</li><li>Add Akita - <a href='https://datorama.github.io/akita/docs/angular/architecture/#session-feature' rel='noopener noreferrer' target='_blank' style='color: inherit;'>https://datorama.github.io/akita/docs/angular/architecture/#session-feature</a></li><li>Tweet Icon</li></ul>",
       "type": "Task",
       "status": "Done",
       "priority": "Highest",
@@ -54,8 +54,8 @@
     },
     {
       "id": "9210",
-      "title": "TailwindCSS configuration",
-      "description": "<h1>No official guide to configure TailwindCSS and Angular<strong>⛏️⛏️</strong></h1><p><br></p><p>It took me few hours to try and configure with different option. Also, was confuse when PurgeCSS remove ng-zorro style...</p>",
+      "title": "TailwindCSS configuration 😭😭😭",
+      "description": "<h1>No official guide to configure TailwindCSS and Angular<strong>⛏️⛏️</strong></h1><p><br></p><p>It took me few hours to try and configure with different option. Also, was confuse when PurgeCSS remove ng-zorro style...</p><p><br></p><p>I wrote one myself</p><p><br></p><p><a href='https://trungk18.com/experience/configure-tailwind-css-with-angular/' rel='noopener noreferrer' target='_blank'>https://trungk18.com/experience/configure-tailwind-css-with-angular/</a></p><p><br></p>",
       "type": "Task",
       "status": "Done",
       "priority": "Medium",
@@ -81,7 +81,7 @@
     {
       "id": "9451",
       "title": "Preparing backend API with GraphQL",
-      "description": "<h3>I will set up a GraphQL endpoint as soon as possible</h3><p>I am currently using a <code>json</code> file for storing data. I like the idea behind GraphQL, it is the good chance to learn more about that technology.</p>",
+      "description": "<h3>I will set up a GraphQL endpoint as soon as possible</h3><p>I am currently using NestJS and storing data on a <code>json</code> file. I like the idea behind GraphQL, it is the good chance to learn more about that technology.</p>",
       "type": "Story",
       "status": "Backlog",
       "priority": "Medium",
@@ -94,7 +94,7 @@
     {
       "id": "9631",
       "title": "Each issue has a single reporter but can have multiple assignees.",
-      "description": "<h2>Try assigning <u style=\"background-color: #ff7979;\">Dom</u> to this issue. <span style=\"color: rgb(51, 51, 51);\">🤣&nbsp;🤣&nbsp;🤣</span></h2><p><br></p>",
+      "description": "<h2>Try assigning this issue to <strong><u>Spider Man</u></strong>. <span style='color: rgb(51, 51, 51);'>🤣&nbsp;🤣&nbsp;🤣</span></h2>",
       "type": "Task",
       "status": "InProgress",
       "priority": "Low",
@@ -133,26 +133,26 @@
     {
       "id": "9584",
       "title": "What is Angular Jira clone application?",
-      "description": "<h2>What is this and who is it for?</h2><p>I do Angular development and this is a showcase product I've built in my spare time. It's a very good example of modern, real-world Angular codebase.</p><ul><li>Proven, scalable, and easy to understand project structure</li><li>All code are written in TypeScript</li><li>Project setup with Angular CLI</li><li>Use Akita state management</li><li>Use TailwindCSS</li></ul>",
+      "description": "<p>This project is basically a clone of another open source Jira clone build in <strong>React</strong> and <strong>VueJS</strong> (you could say <u>a clone of a clone application</u> I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge about Angular.</p><p><br></p><p>I like working with interactive UI because it is challenging, but also very exciting.</p><p><br></p><p>This the the <strong>technology stack</strong> of this application</p><p><br></p><ul><li>Angular&nbsp;CLI</li><li>Akita&nbsp;state&nbsp;management</li><li>NestJS</li><li>UI&nbsp;modules:</li></ul><ol><li>TailwindCSS</li><li>Angular&nbsp;CDK&nbsp;drag&nbsp;and&nbsp;drop</li><li>ng-zorro&nbsp;UI&nbsp;component:&nbsp;<span style='color: rgb(206, 145, 120);'>`tooltip`</span>,&nbsp;<span style='color: rgb(206, 145, 120);'>`dropdown`</span>,&nbsp;<span style='color: rgb(206, 145, 120);'>`icon`</span></li><li>&nbsp;ngx-quill</li></ol><ul><li>Netlify</li></ul>",
       "type": "Task",
       "status": "Backlog",
       "priority": "Medium",
       "listPosition": 2,
-      "createdAt": "2020-06-12T14:40:01.263Z",
-      "updatedAt": "2020-06-12T14:51:08.254Z",
+      "createdAt": "2020-06-12T14:40:00.000Z",
+      "updatedAt": "2020-06-12T14:51:00.000Z",
       "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["081ccaa1-5595-4621-8074-ede4927e67b0", "610451aa-10c8-4d7e-9363-311357c0b0dd"]
     },
     {
       "id": "9554",
       "title": "Who is the author of Angular Jira clone?",
-      "description": "<h3>Hi! My name is Trung.</h3><p>I’m the only front-end engineer at Zyllem, where I work mostly with Angular to build client side web app. I love thinking about development and user experience.</p>",
+      "description": "<h3>Hi! My name is Trung.</h3><p>I’m the only front-end engineer at Zyllem, where I work mostly with Angular to build client side web app. I love thinking about development and user experience. </p><br/><p>Find me around the web</p><p><br></p><ul><li>My blog: <a href='https://trungk18.com/' rel='noopener noreferrer' target='_blank'>https://trungk18.com/</a></li><li><a href='https://github.com/trungk18' rel='noopener noreferrer' target='_blank'>https://github.com/trungk18</a></li><li><a href='https://stackoverflow.com/users/3375906/trungk18' rel='noopener noreferrer' target='_blank'>https://stackoverflow.com/users/3375906/trungk18</a></li></ul><p><br></p>",
       "type": "Task",
       "status": "Backlog",
       "priority": "High",
       "listPosition": 3,
-      "createdAt": "2020-06-12T14:40:01.263Z",
-      "updatedAt": "2020-06-12T14:51:08.254Z",
+      "createdAt": "2020-06-12T14:40:00.000Z",
+      "updatedAt": "2020-06-12T14:51:00.000Z",
       "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1"]
     },
@@ -164,8 +164,8 @@
       "status": "Done",
       "priority": "High",
       "listPosition": 1,
-      "createdAt": "2020-06-12T14:40:01.263Z",
-      "updatedAt": "2020-06-12T14:51:08.254Z",
+      "createdAt": "2020-06-12T14:40:00.000Z",
+      "updatedAt": "2020-06-12T14:51:00.000Z",
       "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "userIds": ["94502aad-c97f-43e1-a9d1-28cf3e4937a7", "7ac265f9-b9ac-443f-a2b2-795682e579a4"]
     }
