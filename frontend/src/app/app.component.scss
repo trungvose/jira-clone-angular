@@ -8,7 +8,7 @@
 
   > nz-spin {
     @apply flex flex-grow;
-    
+
     > .ant-spin-container {
       @apply flex flex-grow;
     }
@@ -32,12 +32,10 @@ board-dnd {
 }
 
 //ng-zorro override
-.ant-modal-body {
-  padding: 0;
+.ant-modal {
+  @apply text-textDark;
 }
 
-nz-select {
-  > nz-select-top-control {
-      padding-left: 0 !important;
-  }
+.ant-modal-body {
+  padding: 0;
 }

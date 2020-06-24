@@ -26,6 +26,8 @@
     "@ngneat/until-destroy": "^7.1.6",
     "date-fns": "^2.14.0",
     "ng-zorro-antd": "^9.1.2",
+    "ngx-quill": "^11.1.0",
+    "quill": "^1.3.7",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

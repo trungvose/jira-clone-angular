@@ -21,7 +21,7 @@ Thanks for visiting and your support :)
 
 [tweet]: https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Ftrungk18%2Fjira-clone-angular&text=Awesome%20Jira%20clone%20app%20built%20with%20Angular%209%20and%20Akita&hashtags=angular,akita,typescript
 
-## What is this and who is it for 🤷‍♀️
+## Who is it for 🤷‍♀️
 
 I do Angular development and this is a showcase product I've built in my spare time to experiment the new library that I wanted to try before: `Akita`, `TailwindCSS`, `ng-zorro`.
 
@@ -38,6 +38,7 @@ There are many showcase/example Angular projects out there but most of them are 
   - TailwindCSS
   - Angular CDK drag and drop
   - ng-zorro UI component: `tooltip`, `dropdown`, `icon`
+  - ngx-quill
 - Netlify
   
 ## Features and Roadmap

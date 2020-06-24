@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { JIssue } from '@trungk18/interface/issue';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { JIssue } from '@trungk18/interface/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 
 @Component({
