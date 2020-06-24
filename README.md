@@ -51,11 +51,11 @@ I set the tentative deadline to motivate myself to finish it on time. Otherwise,
 
 > June 13 - 27, 2020
 
-[x] Proven, scalable, and easy to understand project structure
-[x] Simple drag and drop kanban board
-[x] Add/update issue
-[x] Search/filtering issues
-[ ] Comments
+- [x] Proven, scalable, and easy to understand project structure
+- [x] Simple drag and drop kanban board
+- [x] Add/update issue
+- [x] Search/filtering issues
+- [ ] Comments
 
 > Noted: All of your interaction with data will not be save to the persistent database. Currently, the application will serve a fixed structure of data everytime you open the app, or on a full browser refresh. Phase 2 will bring you a proper API where you can login and save your work.
 
@@ -69,10 +69,10 @@ During working with this application, I have the opportunity to revisit some of 
 
 > July 1 - 15, 2020
 
-[] GraphQL API and store data on the actual database
-[] Authentication
-[] Websocket realtime update
-[] Interactive report
+- [ ] GraphQL API and store data on the actual database
+- [ ] Authentication
+- [ ] Websocket realtime update
+- [ ] Interactive report
 
 ## What's currently missing?
 
