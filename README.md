@@ -67,7 +67,7 @@ During working with this application, I have the opportunity to revisit some of 
 
 ### Phase 2
 
-> July 1 - 15, 2020
+> July 4 - 19, 2020
 
 - [ ] GraphQL API and store data on the actual database
 - [ ] Authentication
