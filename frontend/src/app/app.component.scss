@@ -58,7 +58,7 @@ board-dnd {
 }
 
 //ng-zorro override
-.ant-modal {
+body, .ant-modal {
   @apply text-textDark;
 }
 

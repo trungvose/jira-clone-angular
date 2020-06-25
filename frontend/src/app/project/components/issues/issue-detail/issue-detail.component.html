@@ -1,6 +1,6 @@
 <div *ngIf="issue; else loaderTmpl"
-     class="w-full h-full">
-    <div class="flex items-center px-3 pt-4 text-textDarkest">
+     class="w-full h-full" [class.pl-4]="isShowCloseButton">
+    <div class="flex items-center pt-4 text-textDarkest">
         <issue-type [issue]="issue"></issue-type>
         <div class="flex-auto"></div>
         <a target="_blank"
@@ -14,17 +14,20 @@
                   [className]="'btn-empty'"
                   (click)="openDeleteIssueModal()">
         </j-button>
-        <j-button icon="expand"
+        <j-button *ngIf="isShowCloseButton"
+                  icon="expand"
+                  (click)="openIssuePage()"
                   [iconSize]="24"
                   [className]="'btn-empty'">
         </j-button>
-        <j-button icon="times"
+        <j-button *ngIf="isShowCloseButton"
+                  icon="times"
                   [iconSize]="24"
                   (click)="closeModal()"
                   [className]="'btn-empty'">
         </j-button>
     </div>
-    <div class="flex w-full flex-wrap pb-16 px-7">
+    <div class="flex w-full flex-wrap pb-16">
         <div class="sm:w-full md:w-7/12 lg:w-4/6 pr-10">
             <issue-title [issue]="issue"></issue-title>
 
