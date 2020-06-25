@@ -8,14 +8,14 @@ I like working with interactive UI because it is challenging, but also very exci
 
 ## Working application
 
-Check out the live demo at - https://jira.trungk18.com/
+Check out the live demo -> https://jira.trungk18.com
 
 --> SCREENSHOT GIF
 
 If you like my work, feel free to:
 
 - [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)][tweet] about Angular Jira clone
-- And :star: this repository
+- :star: this repository. It will make both of us happy :)
 
 Thanks for visiting and your support :)
 
@@ -26,6 +26,10 @@ Thanks for visiting and your support :)
 I do Angular development and this is a showcase product I've built in my spare time to experiment the new library that I wanted to try before: `Akita`, `TailwindCSS`, `ng-zorro`.
 
 There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
+
+---
+
+This application is a part of our technical series [angular-vietnam/100-days-of-angular][100days]. It sets a new target that after 100 days of learning Angular through with us, everyone can build the application at the same scale. We also want to bring Angular to a broader developer community in Vietnam.
 
 ## Tech stack
 
@@ -40,7 +44,7 @@ There are many showcase/example Angular projects out there but most of them are 
   - ng-zorro UI component: `tooltip`, `dropdown`, `icon`
   - ngx-quill
 - Netlify
-  
+
 ## Features and Roadmap
 
 I built it as the side project so It usually took longer than expected. One day, my team and I did the fire fighting on PROD until 11PM. After taking shower, I continue with Angular Jira clone for another two hours...
@@ -57,7 +61,9 @@ I set the tentative deadline to motivate myself to finish it on time. Otherwise,
 - [x] Search/filtering issues
 - [ ] Comments
 
-> Noted: All of your interaction with data will not be save to the persistent database. Currently, the application will serve a fixed structure of data everytime you open the app, or on a full browser refresh. Phase 2 will bring you a proper API where you can login and save your work.
+> Noted: All of your interaction with data such as comment or change the issue detail will not be saved to the persistent database. Currently, the application will serve a fixed structure of data every time you open the app. It mean, if you reload the browser, all of your changes will be gone.
+>
+> Phase 2 will bring you a proper API where you can login and save your work.
 
 During working with this application, I have the opportunity to revisit some of the interesting topic:
 
@@ -67,7 +73,7 @@ During working with this application, I have the opportunity to revisit some of 
 
 ### Phase 2
 
-> July 1 - 15, 2020
+> July 4 - 19, 2020
 
 - [ ] GraphQL API and store data on the actual database
 - [ ] Authentication
@@ -129,3 +135,4 @@ Feel free to use my code on your personal project. It would be great if you put 
 [stack]: https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-tech-stack.png
 [issues]: https://github.com/trungk18/jira-clone-angular/issues/new
 [pull]: https://github.com/trungk18/jira-clone-angular/compare
+[100days]: https://github.com/angular-vietnam/100-days-of-angular

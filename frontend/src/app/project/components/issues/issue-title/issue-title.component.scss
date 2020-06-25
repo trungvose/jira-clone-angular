@@ -2,28 +2,7 @@
   @apply flex;
 }
 
-.title-textarea {
-  border-color: transparent;
-  padding: 7px 7px 8px;
+.textarea-control {
+  @apply text-2xl font-medium;
   margin-left: -8px;
-  line-height: 1.28;
-  resize: none;
-  box-shadow: transparent 0px 0px 0px 1px;
-  transition: background 0.1s ease 0s;
-  overflow: auto;
-  overflow-y: hidden;
-  width: 100%;
-  border-radius: 3px;
-  appearance: none;
-
-  @apply w-full h-auto font-medium text-2xl text-textDarkest;
-
-  &:hover:not(:focus) {
-    @apply bg-backgroundLight;
-  }
-
-  &:focus {
-    @apply bg-white border border-borderInputFocus;
-    box-shadow: 0 0 0 1px #4c9aff;
-  }
 }

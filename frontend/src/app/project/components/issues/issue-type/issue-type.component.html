@@ -1,14 +1,17 @@
-<j-button nz-dropdown
-          nzTrigger="click"
-          [nzDropdownMenu]="menu"
-          [icon]="selectedIssueTypeIcon"
-          [iconSize]="20"
-          [className]="'btn-empty font-semibold uppercase text-textMedium text-13'">
-    {{ issue.type }}-{{issue.id}}
-</j-button>
+<div class="type-dropdown">
+    <j-button nz-dropdown
+              nzTrigger="click"
+              [nzDropdownMenu]="menu"
+              [icon]="selectedIssueTypeIcon"
+              [iconSize]="20"
+              [className]="'btn-empty font-semibold uppercase text-textMedium text-13'">
+        {{ issue.type }}-{{issue.id}}
+    </j-button>
+</div>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">
-    <ul nz-menu nzNoAnimation>
+    <ul nz-menu
+        nzNoAnimation>
         <ng-container *ngFor="let option of issueTypes">
             <li nz-menu-item
                 *ngIf="!isTypeSelected(option.value)"

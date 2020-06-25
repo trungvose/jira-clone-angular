@@ -1,5 +1,3 @@
-<div class="pt-4 pb-2 text-15 font-medium">Description</div>
-
 <ng-container *ngIf="isEditing; else readonlyModeTmpl">
     <quill-editor class="content-editor"
                   [modules]="editorOptions"
@@ -11,9 +9,10 @@
         <j-button [isWorking]="isWorking"
                   [className]="'btn-primary'"
                   class="mr-2"
-                  (clicked)="save()">
+                  (click)="save()">
             Save</j-button>
-        <j-button (clicked)="cancel()" [className]="'btn-empty'">
+        <j-button (click)="cancel()"
+                  [className]="'btn-empty'">
             Cancel
         </j-button>
     </div>

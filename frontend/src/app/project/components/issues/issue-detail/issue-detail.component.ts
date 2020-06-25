@@ -12,16 +12,19 @@ export class IssueDetailComponent implements OnInit {
   @Input() isShowFullScreenButton: boolean;
   @Input() isShowCloseButton: boolean;
   @Output() onClosed = new EventEmitter();
+  @Output() onOpenIssue = new EventEmitter<string>();
 
-  constructor(public projectQuery: ProjectQuery) {
-
-  }
+  constructor(public projectQuery: ProjectQuery) {}
 
   ngOnInit(): void {}
 
   openDeleteIssueModal() {}
 
-  closeModal(){
-    this.onClosed.emit()
+  closeModal() {
+    this.onClosed.emit();
+  }
+
+  openIssuePage() {
+    this.onOpenIssue.emit(this.issue.id);
   }
 }

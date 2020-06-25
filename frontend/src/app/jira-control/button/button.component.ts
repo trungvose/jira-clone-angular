@@ -11,7 +11,6 @@ export class ButtonComponent implements OnInit {
   @Input() iconSize: number = 18;
   @Input() isWorking: boolean;
   @Input() isActive: boolean;
-  @Output() clicked = new EventEmitter();
 
   constructor() {}
 
