@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { JIssue } from '@trungk18/interface/issue';
 
 @Component({
   selector: 'issue-comments',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./issue-comments.component.scss']
 })
 export class IssueCommentsComponent implements OnInit {
+  @Input() issue: JIssue;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

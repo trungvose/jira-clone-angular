@@ -6,7 +6,7 @@ module.exports = {
     enabled: true,
     content: ['./src/**/*.ts', './src/**/*.html'],
     options: {
-      whitelistPatterns: [/^font/, /^m-/, /^p-/, /^cursor/]
+      whitelistPatterns: [/^font/, /^cursor/]
     }
   },
   theme: {

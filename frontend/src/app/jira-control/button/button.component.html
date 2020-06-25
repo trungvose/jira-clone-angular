@@ -1,6 +1,5 @@
 <button type="button"
-        [ngClass]="['btn', className, isActive ? 'is-active': '', content?.innerHTML?.trim() ? '': 'icon-only']"
-        (click)="clicked.next()">
+        [ngClass]="['btn', className, isActive ? 'is-active': '', content?.innerHTML?.trim() ? '': 'icon-only']">
     <svg-icon *ngIf="!isWorking && icon"
               [name]="icon"
               [size]="iconSize">

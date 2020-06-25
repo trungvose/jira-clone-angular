@@ -19,6 +19,7 @@ import { ProjectComponent } from './project.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { QuillModule } from 'ngx-quill';
+import { IssueCommentComponent } from './components/issues/issue-comment/issue-comment.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { QuillModule } from 'ngx-quill';
     ...IssueUtilComponents,
     ProjectComponent,
     BoardComponent,
-    SettingsComponent
+    SettingsComponent,
+    IssueCommentComponent
   ],
   imports: [
     CommonModule,

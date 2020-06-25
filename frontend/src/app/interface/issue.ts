@@ -1,4 +1,4 @@
-import { Comment } from './comment';
+import { JComment } from './comment';
 
 export enum IssueType {
   STORY = 'Story',
@@ -50,6 +50,6 @@ export interface JIssue {
   updatedAt: string;
   reporterId: string;
   userIds: string[];
-  comments: Comment[];
+  comments: JComment[];
   projectId: string;
 }

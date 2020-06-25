@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { arrayUpdate } from '@datorama/akita';
+import { arrayUpdate, arrayUpsert } from '@datorama/akita';
 import { JIssue } from '@trungk18/interface/issue';
 import { JProject } from '@trungk18/interface/project';
 import { JUser } from '@trungk18/interface/user';
 import { Observable, of, Subscription } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { ProjectStore } from './project.store';
+import { JComment } from '@trungk18/interface/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,20 @@ export class ProjectService {
         ...state,
         issues
       };
+    });
+  }
+
+  updateIssueComment(issueId: string, comment: JComment) {
+    let allIssues = this._store.getValue().issues;
+    let issue = allIssues.find((x) => x.id === issueId);
+    if (!issue) {
+      return;
+    }
+
+    let comments = arrayUpsert(issue.comments ?? [], comment.id, comment);
+    this.updateIssue({
+      ...issue,
+      comments
     });
   }
 }
