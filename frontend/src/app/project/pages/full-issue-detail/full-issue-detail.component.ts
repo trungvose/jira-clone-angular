@@ -6,6 +6,8 @@ import { JProject } from '@trungk18/interface/project';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 import { JIssue } from '@trungk18/interface/issue';
+import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-model';
 
 @Component({
   selector: 'full-issue-detail',
@@ -24,7 +26,8 @@ export class FullIssueDetailComponent implements OnInit {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
-    private _projectQuery: ProjectQuery
+    private _projectQuery: ProjectQuery,
+    private _projectService: ProjectService
   ) {}
 
   ngOnInit(): void {
@@ -35,11 +38,21 @@ export class FullIssueDetailComponent implements OnInit {
   }
 
   private getIssue() {
-    this.issueId = this._route.snapshot.paramMap.get(ProjectConst.IssueId);    
+    this.issueId = this._route.snapshot.paramMap.get(ProjectConst.IssueId);
     if (!this.issueId) {
-      this._router.navigate(['/']);
+      this.backHome();
       return;
     }
     this.issueById$ = this._projectQuery.issueById$(this.issueId);
+  }
+
+  deleteIssue({issueId, deleteModalRef}: DeleteIssueModel) {
+    this._projectService.deleteIssue(issueId);
+    deleteModalRef.close();
+    this.backHome();
+  }
+
+  private backHome() {
+    this._router.navigate(['/']);
   }
 }

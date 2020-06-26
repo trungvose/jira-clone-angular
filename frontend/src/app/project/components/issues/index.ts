@@ -11,6 +11,7 @@ import { IssueCommentsComponent } from './issue-comments/issue-comments.componen
 import { IssueAssigneesComponent } from './issue-assignees/issue-assignees.component';
 import { IssueReporterComponent } from './issue-reporter/issue-reporter.component';
 import { IssueCommentComponent } from './issue-comment/issue-comment.component';
+import { IssueDeleteModalComponent } from './issue-delete-modal/issue-delete-modal.component';
 
 export const IssueUtilComponents = [
   IssueCardComponent,
@@ -25,5 +26,6 @@ export const IssueUtilComponents = [
   IssueReporterComponent,
   IssueStatusComponent,
   IssueCommentsComponent,
-  IssueCommentComponent
+  IssueCommentComponent,
+  IssueDeleteModalComponent
 ];
