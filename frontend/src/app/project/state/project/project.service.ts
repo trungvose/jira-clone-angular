@@ -43,6 +43,13 @@ export class ProjectService {
     return this._http.get<JUser>('/data/user.json');
   }
 
+  updateProject(project: Partial<JProject>) {
+    this._store.update((state) => ({
+      ...state,
+      ...project
+    }));
+  }
+
   updateIssue(issue: JIssue) {
     this._store.update((state) => {
       let issues = arrayUpdate(state.issues, issue.id, issue);

@@ -4,33 +4,6 @@
   height: 32px;
   width: 100%;
 
-  .input {
-    height: 100%;
-    width: 100%;
-    padding: 0 7px;
-    border-radius: 3px;
-    border: 1px solid #ddd;
-    background: #f4f5f7;
-    color: #172b4d;
-    transition: background 0.1s;
-    font-size: 15px;
-
-    &:hover {
-      background: #ebecf0;
-    }
-
-    &:focus {
-      background: #fff;
-      border: 1px solid #4c9aff;
-      box-shadow: 0 0 0 1px #4c9aff;
-      outline: none;
-    }
-
-    &::placeholder {
-      font-size: 14px;
-    }
-  }
-
   &.flat {
     height: 40px;
     .input {
