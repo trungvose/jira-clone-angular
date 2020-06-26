@@ -1,4 +1,4 @@
-<div class="input-container">
+<div [ngClass]="['input-container', containerClassName]">
     <div *ngIf="icon"
          class="input-icon-container"
          [style.width.px]="iconContainerWidth">
@@ -8,6 +8,7 @@
     </div>
 
     <input [formControl]="control"
+           [placeholder]="placeholder"
            [ngClass]="['input', 'form-input']"
            [style.padding-left.px]="icon ? iconContainerWidth : 0"
            [style.padding-right.px]="isShowClearButton ? iconContainerWidth : 0" />
