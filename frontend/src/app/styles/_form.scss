@@ -1,0 +1,74 @@
+form {
+  .label {
+    padding-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: #5e6c84;
+    display: block;
+  }
+
+  .form-input {
+    height: 100%;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    background: #f4f5f7;
+    color: #172b4d;
+    transition: background 0.1s;
+    font-size: 15px;    
+
+    &:hover {
+      background: #ebecf0;
+    }
+
+    &:focus {
+      background: #fff;
+      border: 1px solid #4c9aff;
+      box-shadow: 0 0 0 1px #4c9aff;
+      outline: none;
+    }
+    
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+  
+  input:not(:disabled), text-area:not(:disabled) {
+    cursor: text;
+  }
+
+  .ng-invalid {
+    &.ng-dirty, &.ng-dirty:focus, &.ng-touched, &.ng-touched:focus {
+      background-color: #fff;
+      border-color: #ff4d4f;      
+      box-shadow: none;
+    }    
+  }
+}
+
+//text-area
+.textarea-inline-control {
+  border-color: transparent;
+  padding: 7px 7px 8px;
+  line-height: 1.28;
+  resize: none;
+  box-shadow: transparent 0px 0px 0px 1px;
+  transition: background 0.1s ease 0s;
+  overflow: auto;
+  overflow-y: hidden;
+  width: 100%;
+  border-radius: 3px;
+  appearance: none;
+
+  @apply w-full h-auto text-textDarkest;
+
+  &:hover:not(:focus) {
+    @apply bg-backgroundLight;
+  }
+
+  &:focus {
+    @apply bg-white border border-borderInputFocus;
+    box-shadow: 0 0 0 1px #4c9aff;
+  }
+}

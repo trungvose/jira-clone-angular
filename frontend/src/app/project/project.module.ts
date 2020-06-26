@@ -19,6 +19,7 @@ import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-d
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ProjectComponent } from './project.component';
     ReactiveFormsModule,
     JiraControlModule,
     ContentLoaderModule,
+    NzNotificationModule,
     QuillModule
   ]
 })

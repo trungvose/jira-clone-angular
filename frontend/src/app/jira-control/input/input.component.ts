@@ -10,7 +10,6 @@ export class InputComponent implements OnInit {
   @Input() control: FormControl;
   @Input() icon: string;
   @Input() iconSize: number = 16;
-  @Input() inValid: boolean;
   @Input() placeHolder = '';
   @Input() enableClearButton: boolean;
 

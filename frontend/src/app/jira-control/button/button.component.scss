@@ -43,6 +43,11 @@ $jira-bg: rgb(222, 235, 255);
     color: white;
     font-weight: 500;
     background: $background;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: lighten($background, 30%);
+    }
+
     &:not(:disabled) {
       &:hover {
         background: $background-light;
