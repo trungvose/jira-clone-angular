@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { arrayUpdate, arrayUpsert } from '@datorama/akita';
+import { arrayUpdate, arrayUpsert, arrayRemove } from '@datorama/akita';
 import { JIssue } from '@trungk18/interface/issue';
 import { JProject } from '@trungk18/interface/project';
 import { JUser } from '@trungk18/interface/user';
@@ -46,6 +46,16 @@ export class ProjectService {
   updateIssue(issue: JIssue) {
     this._store.update((state) => {
       let issues = arrayUpdate(state.issues, issue.id, issue);
+      return {
+        ...state,
+        issues
+      };
+    });
+  }
+
+  deleteIssue(issueId: string) {
+    this._store.update((state) => {
+      let issues = arrayRemove(state.issues, issueId);
       return {
         ...state,
         issues

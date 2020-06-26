@@ -1,0 +1,12 @@
+<div class="px-10 py-8">
+    <div class="pb-4 text-2xl font-medium leading-normal text-textDarkest">
+        Are you sure you want to delete this issue?
+    </div>
+    <p class="pb-4 whitespace-pre-wrap text-15">This action cannot be undone.</p>
+    <div class="flex pt-3">
+        <j-button className="btn-primary mr-2" (click)="deleteIssue()">Delete</j-button>
+        <j-button className="'btn-empty'"
+                  (click)="closeModal()">
+            Cancel</j-button>
+    </div>
+</div>
