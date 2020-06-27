@@ -1,4 +1,4 @@
-import { IssueType, IssuePriority, IssuePriorityColors } from '@trungk18/interface/issue';
+import { IssuePriority, IssueType } from '@trungk18/interface/issue';
 import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
 
 export class IssueUtil {
@@ -8,5 +8,11 @@ export class IssueUtil {
 
   static getIssuePriorityIcon(issuePriority: IssuePriority): IssuePriorityIcon {
     return new IssuePriorityIcon(issuePriority);
+  }
+
+  static searchString(str: string, searchString: string): boolean {
+    str = str ?? '';
+    searchString = searchString ?? '';
+    return str.trim().toLowerCase().includes(searchString.trim().toLowerCase());
   }
 }

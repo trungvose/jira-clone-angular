@@ -25,7 +25,7 @@ export class InputComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.control = this.control ?? new FormControl();
+    this.control = this.control ?? new FormControl("");
   }
 
   clear() {

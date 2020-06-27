@@ -13,7 +13,7 @@ export class ProjectQuery extends Query<ProjectState> {
   }
   isLoading$ = this.selectLoading();
   all$ = this.select();
-  issue$ = this.select('issues');
+  issues$ = this.select('issues');
   users$ = this.select('users');
 
   lastIssuePosition = (status: IssueStatus): number => {
@@ -23,7 +23,7 @@ export class ProjectQuery extends Query<ProjectState> {
   }
 
   issueByStatusSorted$ = (status: IssueStatus): Observable<JIssue[]> => {
-    return this.issue$.pipe(
+    return this.issues$.pipe(
       map((issues) => {
         let filteredIssues = issues
           .filter((x) => x.status === status)
@@ -34,7 +34,7 @@ export class ProjectQuery extends Query<ProjectState> {
   };
 
   issueById$(issueId: string){
-    return this.issue$.pipe(
+    return this.issues$.pipe(
       delay(500),
       map((issues) => {
         let issue = issues.find(x => x.id === issueId);

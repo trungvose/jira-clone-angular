@@ -24,7 +24,7 @@ export class IssueCommentComponent implements OnInit {
   constructor(private _authQuery: AuthQuery, private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.commentControl = new FormControl();
+    this.commentControl = new FormControl("");
     this._authQuery.user$.pipe(untilDestroyed(this)).subscribe((user) => {
       this.user = user;
       if (this.isCreate) {

@@ -7,6 +7,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { FilterQuery } from '@trungk18/project/state/filter/filter.query';
 import * as dateFns from 'date-fns';
+import { IssueUtil } from '@trungk18/project/utils/issue';
 
 @Component({
   selector: '[board-dnd-list]',
@@ -66,7 +67,7 @@ export class BoardDndListComponent implements OnInit {
     const { onlyMyIssue, ignoreResolved, searchTerm, userIds } = filter;
     return issues.filter((issue) => {
       let isMatchTerm = searchTerm
-        ? issue.title.toLowerCase().includes(searchTerm.trim().toLowerCase())
+        ? IssueUtil.searchString(issue.title, searchTerm)
         : true;
 
       let isIncludeUsers = userIds.length
