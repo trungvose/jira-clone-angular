@@ -10,31 +10,31 @@
     {
       "id": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
       "name": "Trung Vo",
-      "avatarUrl": "https://trungk18.com/img/profile.png",
+      "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1593253478/trung-vo_bioxmc.png",
       "projectId": "140892"
     },
     {
       "id": "7ac265f9-b9ac-443f-a2b2-795682e579a4",
       "name": "Iron Man",
-      "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/v1592405732/ironman_c3jrbc.jpg",
+      "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1592405732/ironman_c3jrbc.jpg",
       "projectId": "140892"
     },
     {
       "id": "94502aad-c97f-43e1-a9d1-28cf3e4937a7",
       "name": "Captain",
-      "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/v1592405732/captain_e8s9nk.jpg",
+      "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1592405732/captain_e8s9nk.jpg",
       "projectId": "140892"
     },
     {
       "id": "610451aa-10c8-4d7e-9363-311357c0b0dd",
       "name": "Thor",
-      "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/v1592405731/thor_juqwzf.jpg",
+      "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1592405731/thor_juqwzf.jpg",
       "projectId": "140892"
     },
     {
       "id": "081ccaa1-5595-4621-8074-ede4927e67b0",
       "name": "Spider Man",
-      "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/v1592405731/spiderman_zlrtx0.jpg",
+      "avatarUrl": "https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1592405731/spiderman_zlrtx0.jpg",
       "projectId": "140892"
     }
   ],
