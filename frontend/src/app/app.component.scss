@@ -31,6 +31,9 @@ board-dnd {
 
 .global-spinner {
   @apply min-h-screen;
+  .ant-spin {
+    max-height: unset !important;
+  }
 }
 
 //ng-zorro override
