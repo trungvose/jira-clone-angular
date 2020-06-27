@@ -15,8 +15,12 @@ import { JComment } from '@trungk18/interface/comment';
 export class ProjectService {
   constructor(private _http: HttpClient, private _store: ProjectStore) {}
 
+  setLoading(isLoading: boolean) {
+    this._store.setLoading(isLoading);
+  }
+
   getProject(): Subscription {
-    this._store.setLoading(true);
+    this.setLoading(true)
     return this._http
       .get<JProject>('/data/project.json')
       .pipe(
@@ -29,7 +33,7 @@ export class ProjectService {
           });
         }),
         finalize(() => {
-          this._store.setLoading(false);
+          this.setLoading(false)
         }),
         catchError((error) => {
           this._store.setError(error);
