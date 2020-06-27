@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { GoogleAnalyticsService } from './service/google-analytics.service';
 import { environment } from '../environments/environment';
 import { ProjectQuery } from './project/state/project/project.query';
 import { ProjectService } from './project/state/project/project.service';
+import { GoogleAnalyticsService } from './core/service/google-analytics.service';
 
 @Component({
   selector: 'app-root',

@@ -30,6 +30,7 @@ import { IssueTypeSelectComponent } from './components/add-issue-modal/issue-typ
 import { IssuePrioritySelectComponent } from './components/add-issue-modal/issue-priority-select/issue-priority-select.component';
 import { IssueReporterSelectComponent } from './components/add-issue-modal/issue-reporter-select/issue-reporter-select.component';
 import { IssueAssigneesSelectComponent } from './components/add-issue-modal/issue-assignees-select/issue-assignees-select.component';
+import { ResizerComponent } from './components/navigation/resizer/resizer.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { IssueAssigneesSelectComponent } from './components/add-issue-modal/issu
     IssueTypeSelectComponent,
     IssuePrioritySelectComponent,
     IssueReporterSelectComponent,
-    IssueAssigneesSelectComponent
+    IssueAssigneesSelectComponent,
+    ResizerComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 <div class="w-full h-full flex">
-    <app-navigation></app-navigation>
+    <app-navigation [expanded]="expanded" (manualToggle)="manualToggle()"></app-navigation>
     <div id="content">
         <router-outlet></router-outlet>
     </div>
