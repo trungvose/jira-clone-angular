@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { GoogleAnalyticsService } from './service/google-analytics.service';
 import { environment } from '../environments/environment';
 import { ProjectQuery } from './project/state/project/project.query';
+import { ProjectService } from './project/state/project/project.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,10 @@ export class AppComponent {
   constructor(
     public router: Router,
     public projectQuery: ProjectQuery,
+    private _projectService: ProjectService,
     private _googleAnalytics: GoogleAnalyticsService
   ) {
+    this._projectService.setLoading(true);
     if (environment.production) {
       this.handleGoogleAnalytics();
     }
