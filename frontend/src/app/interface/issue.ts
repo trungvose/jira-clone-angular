@@ -34,7 +34,7 @@ export const IssuePriorityColors = {
   [IssuePriority.MEDIUM]: '#E97F33',
   [IssuePriority.LOW]: '#2D8738',
   [IssuePriority.LOWEST]: '#57A55A'
-}
+};
 export interface JIssue {
   id: string;
   title: string;

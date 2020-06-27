@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { IssueType, JIssue } from '@trungk18/interface/issue';
-import { IssueUtil } from '@trungk18/project/utils/issue';
+import { IssueTypes, IssueTypeWithIcon } from '@trungk18/interface/issue-type';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { IssueUtil } from '@trungk18/project/utils/issue';
 
 @Component({
   selector: 'issue-type',
@@ -17,14 +18,12 @@ export class IssueTypeComponent implements OnInit, OnChanges {
 
   issueTypes: IssueTypeWithIcon[];
 
-  constructor(private _projectService: ProjectService) {}
+  constructor(private _projectService: ProjectService) {
+    this.issueTypes = IssueTypes;
+  }
 
   ngOnInit() {
-    this.issueTypes = [
-      new IssueTypeWithIcon(IssueType.BUG),
-      new IssueTypeWithIcon(IssueType.STORY),
-      new IssueTypeWithIcon(IssueType.TASK)
-    ];
+    
   }
 
   ngOnChanges(): void {
@@ -40,15 +39,5 @@ export class IssueTypeComponent implements OnInit, OnChanges {
 
   isTypeSelected(type: IssueType) {
     return this.issue.type === type;
-  }
-}
-
-class IssueTypeWithIcon {
-  value: string;
-  icon: string;
-
-  constructor(issueType: IssueType) {
-    this.value = issueType;
-    this.icon = IssueUtil.getIssueTypeIcon(issueType);
   }
 }

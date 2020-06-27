@@ -14,7 +14,13 @@
           [formGroup]="issueForm">
         <div class="form-group">
             <label class="label">
-                Short Summary
+                Issue type
+            </label>
+            <issue-type-select [control]="f?.type"></issue-type-select>
+        </div>
+        <div class="form-group">
+            <label class="label">
+                Short summary
             </label>
             <input class="form-input"
                    formControlName="title" />
@@ -35,7 +41,7 @@
                       type="submit"
                       [disabled]="issueForm?.invalid"
                       (click)="submitForm()">
-                Save
+                Create Issue
             </j-button>
             <j-button className="btn-empty"
                       (click)="cancel()">
