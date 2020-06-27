@@ -23,6 +23,8 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { SearchDrawerComponent } from './components/search/search-drawer/search-drawer.component';
 import { IssueResultComponent } from './components/search/issue-result/issue-result.component';
+import { AddIssueModalComponent } from './components/add-issue-modal/add-issue-modal.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { IssueResultComponent } from './components/search/issue-result/issue-res
     ProjectComponent,
     BoardComponent,
     SettingsComponent,    
-    FullIssueDetailComponent, SearchDrawerComponent, IssueResultComponent
+    FullIssueDetailComponent, SearchDrawerComponent, IssueResultComponent, AddIssueModalComponent, UserComponent
   ],
   imports: [
     CommonModule,
