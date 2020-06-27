@@ -28,6 +28,7 @@ import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
 import { IssueTypeSelectComponent } from './components/add-issue-modal/issue-type-select/issue-type-select.component';
 import { IssuePrioritySelectComponent } from './components/add-issue-modal/issue-priority-select/issue-priority-select.component';
+import { IssueReporterSelectComponent } from './components/add-issue-modal/issue-reporter-select/issue-reporter-select.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { IssuePrioritySelectComponent } from './components/add-issue-modal/issue
     AddIssueModalComponent,
     UserComponent,
     IssueTypeSelectComponent,
-    IssuePrioritySelectComponent
+    IssuePrioritySelectComponent,
+    IssueReporterSelectComponent
   ],
   imports: [
     CommonModule,

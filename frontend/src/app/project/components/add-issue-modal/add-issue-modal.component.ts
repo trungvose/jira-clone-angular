@@ -6,13 +6,20 @@ import { NoWhitespaceValidator } from '@trungk18/validators/no-whitespace.valida
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { IssueUtil } from '@trungk18/project/utils/issue';
+import { ProjectQuery } from '@trungk18/project/state/project/project.query';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { Observable } from 'rxjs';
+import { JUser } from '@trungk18/interface/user';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'add-issue-modal',
   templateUrl: './add-issue-modal.component.html',
   styleUrls: ['./add-issue-modal.component.scss']
 })
+@UntilDestroy()
 export class AddIssueModalComponent implements OnInit {
+  reporterUsers$: Observable<JUser[]>;
   issueForm: FormGroup;
   editorOptions = quillConfiguration;
 
@@ -23,11 +30,21 @@ export class AddIssueModalComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _modalRef: NzModalRef,
-    private _projectService: ProjectService
+    private _projectService: ProjectService,
+    public projectQuery: ProjectQuery
   ) {}
 
   ngOnInit(): void {
     this.initForm();
+    this.reporterUsers$ = this.projectQuery.users$.pipe(
+      untilDestroyed(this),
+      tap((users) => {
+        let [user] = users;
+        if (user) {
+          this.f.reporterId.patchValue(user.id);
+        }
+      })
+    );
   }
 
   initForm() {
@@ -35,11 +52,16 @@ export class AddIssueModalComponent implements OnInit {
       type: [IssueType.TASK],
       priority: [IssuePriority.MEDIUM],
       title: ['', NoWhitespaceValidator()],
-      description: ['']
+      description: [''],
+      reporterId: ['']
     });
   }
 
   submitForm() {
+    if (this.issueForm.invalid) {
+      return;
+    }
+    
     let issue: JIssue = {
       id: IssueUtil.getRandomId(),
       status: IssueStatus.BACKLOG,

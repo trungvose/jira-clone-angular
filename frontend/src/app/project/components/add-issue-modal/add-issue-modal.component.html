@@ -18,13 +18,13 @@
             </label>
             <issue-type-select [control]="f?.type"></issue-type-select>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label class="label">
                 Issue priority
             </label>
             <issue-priority-select [control]="f?.priority"></issue-priority-select>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label class="label">
                 Short summary
             </label>
@@ -43,6 +43,14 @@
             </quill-editor>
         </div>
         <div class="form-group mt-3">
+            <label class="label">
+                Reporter
+            </label>
+            <issue-reporter-select [control]="f?.reporterId"
+                                   [users]="reporterUsers$ | async">
+            </issue-reporter-select>
+        </div>
+        <div class="form-group mt-5 form-action">
             <j-button className="btn-primary mr-2"
                       type="submit"
                       [disabled]="issueForm?.invalid"
