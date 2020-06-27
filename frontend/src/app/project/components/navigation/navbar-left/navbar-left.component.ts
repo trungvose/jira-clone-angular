@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthQuery } from '@trungk18/project/auth/auth.query';
+import { NzDrawerService } from 'ng-zorro-antd/drawer';
+import { SearchDrawerComponent } from '../../search/search-drawer/search-drawer.component';
 
 @Component({
   selector: 'app-navbar-left',
@@ -8,13 +10,23 @@ import { AuthQuery } from '@trungk18/project/auth/auth.query';
 })
 export class NavbarLeftComponent implements OnInit {
   items: NavItem[];
-  constructor(public authQuery: AuthQuery) {}
+  constructor(public authQuery: AuthQuery, private _drawerService: NzDrawerService) {}
 
   ngOnInit(): void {
     this.items = [
-      new NavItem('search', 'Search issues', () => {}),
+      new NavItem('search', 'Search issues', this.openSearchDrawler.bind(this)),
       new NavItem('plus', 'Create issue', () => {})
     ];
+  }
+
+  openSearchDrawler(){
+    this._drawerService.create({
+      nzContent: SearchDrawerComponent,
+      nzTitle: null,
+      nzPlacement: "left",
+      nzClosable: false,
+      nzWidth: 500
+    })
   }
 }
 

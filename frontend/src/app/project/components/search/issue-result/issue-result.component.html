@@ -1,0 +1,12 @@
+<div class="flex items-center py-1 px-3 rounded transition duration-100 cursor-pointer select-none hover:bg-backgroundLight">
+    <svg-icon [name]="issueTypeIcon"
+              [size]="24"></svg-icon>
+    <div class="pl-4">
+        <div class="text-textDark text-15">
+            {{ issue?.title }}
+        </div>
+        <div class="uppercase text-xs text-textMedium">
+            {{ issue?.type }}-{{issue?.id}}
+        </div>
+    </div>
+</div>

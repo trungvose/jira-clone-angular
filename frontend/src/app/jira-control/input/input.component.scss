@@ -1,19 +1,20 @@
 .input-container {
   position: relative;
-  display: inline-block;
+  display: flex;
   height: 32px;
   width: 100%;
 
   &.flat {
     height: 40px;
     .input {
+      flex-grow: 1;
       border: none;
       border-bottom: 2px solid #0052cc;
       font-size: 21px;
       background: #fff;
 
       &::placeholder {
-        // @apply text-textLight;
+        @apply text-textLight;
         font-size: 21px;
       }
       &:focus,
@@ -22,6 +23,7 @@
         border-bottom: 2px solid #0052cc;
         box-shadow: none;
         background: #fff;
+        outline: 0;
       }
     }
   }

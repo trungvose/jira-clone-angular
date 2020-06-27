@@ -20,6 +20,9 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { SearchDrawerComponent } from './components/search/search-drawer/search-drawer.component';
+import { IssueResultComponent } from './components/search/issue-result/issue-result.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,7 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
     ProjectComponent,
     BoardComponent,
     SettingsComponent,    
-    FullIssueDetailComponent
+    FullIssueDetailComponent, SearchDrawerComponent, IssueResultComponent
   ],
   imports: [
     CommonModule,
@@ -38,14 +41,15 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
     NzToolTipModule,
     NzModalModule,
     NzDropDownModule,
-    DragDropModule,
+    NzNotificationModule,
+    NzDrawerModule,
+    DragDropModule,    
     TextFieldModule,
     FormsModule,
     ReactiveFormsModule,
     JiraControlModule,
-    ContentLoaderModule,
-    NzNotificationModule,
-    QuillModule
+    ContentLoaderModule,    
+    QuillModule    
   ]
 })
 export class ProjectModule {}

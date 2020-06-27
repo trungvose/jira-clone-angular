@@ -8,9 +8,10 @@ import { FormControl } from '@angular/forms';
 })
 export class InputComponent implements OnInit {
   @Input() control: FormControl;
+  @Input() containerClassName: string = '';
   @Input() icon: string;
   @Input() iconSize: number = 16;
-  @Input() placeHolder = '';
+  @Input() placeholder = '';
   @Input() enableClearButton: boolean;
 
   get iconContainerWidth(): number {
@@ -24,7 +25,7 @@ export class InputComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.control = this.control ?? new FormControl();
+    this.control = this.control ?? new FormControl("");
   }
 
   clear() {
