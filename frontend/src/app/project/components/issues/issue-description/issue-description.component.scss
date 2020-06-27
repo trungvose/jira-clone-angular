@@ -1,6 +1,8 @@
 .content-readonly {
   position: relative;
-
+  min-height: 50px;
+  cursor: pointer;
+  
   .icon-edit {
     @apply font-normal;
     display: none;

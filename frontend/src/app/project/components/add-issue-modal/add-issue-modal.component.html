@@ -50,6 +50,14 @@
                                    [users]="reporterUsers$ | async">
             </issue-reporter-select>
         </div>
+        <div class="form-group mt-3">
+            <label class="label">
+                Assignees
+            </label>
+            <issue-assignees-select [control]="f.userIds"
+                                    [users]="assignees$ | async">
+            </issue-assignees-select>
+        </div>
         <div class="form-group mt-5 form-action">
             <j-button className="btn-primary mr-2"
                       type="submit"

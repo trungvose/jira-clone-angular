@@ -11,6 +11,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 import { JUser } from '@trungk18/interface/user';
 import { tap } from 'rxjs/operators';
+import { until } from 'protractor';
 
 @Component({
   selector: 'add-issue-modal',
@@ -20,6 +21,7 @@ import { tap } from 'rxjs/operators';
 @UntilDestroy()
 export class AddIssueModalComponent implements OnInit {
   reporterUsers$: Observable<JUser[]>;
+  assignees$: Observable<JUser[]>;
   issueForm: FormGroup;
   editorOptions = quillConfiguration;
 
@@ -31,12 +33,12 @@ export class AddIssueModalComponent implements OnInit {
     private _fb: FormBuilder,
     private _modalRef: NzModalRef,
     private _projectService: ProjectService,
-    public projectQuery: ProjectQuery
+    public _projectQuery: ProjectQuery
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.reporterUsers$ = this.projectQuery.users$.pipe(
+    this.reporterUsers$ = this._projectQuery.users$.pipe(
       untilDestroyed(this),
       tap((users) => {
         let [user] = users;
@@ -45,6 +47,8 @@ export class AddIssueModalComponent implements OnInit {
         }
       })
     );
+
+    this.assignees$ = this._projectQuery.users$;
   }
 
   initForm() {
@@ -53,7 +57,8 @@ export class AddIssueModalComponent implements OnInit {
       priority: [IssuePriority.MEDIUM],
       title: ['', NoWhitespaceValidator()],
       description: [''],
-      reporterId: ['']
+      reporterId: [''],
+      userIds: [[]]
     });
   }
 
@@ -61,13 +66,10 @@ export class AddIssueModalComponent implements OnInit {
     if (this.issueForm.invalid) {
       return;
     }
-    
     let issue: JIssue = {
+      ...this.issueForm.getRawValue(),
       id: IssueUtil.getRandomId(),
-      status: IssueStatus.BACKLOG,
-      reporterId: '',
-      userIds: [],
-      ...this.issueForm.getRawValue()
+      status: IssueStatus.BACKLOG
     };
 
     this._projectService.updateIssue(issue);
