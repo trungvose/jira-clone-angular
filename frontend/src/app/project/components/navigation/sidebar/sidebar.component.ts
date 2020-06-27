@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   @Input() expanded: boolean;
 
   get sidebarWidth(): number {
-    return this.expanded ? 240 : 20;
+    return this.expanded ? 240 : 15;
   }
 
   project: JProject;
