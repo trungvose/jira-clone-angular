@@ -6,7 +6,7 @@
           nzTrigger="click"
           [nzDropdownMenu]="menu">
     <div class="flex items-center">
-        <svg-icon [name]="selectedPriorityIcon.name"
+        <svg-icon [name]="selectedPriorityIcon.icon"
                   [size]="20"
                   [style.color]="selectedPriorityIcon.color">
         </svg-icon>
@@ -23,7 +23,7 @@
                 *ngIf="!isPrioritySelected(option.value)"
                 (click)="updateIssue(option.value)">
                 <div class="flex items-center">
-                    <svg-icon [name]="option.name"
+                    <svg-icon [name]="option.icon"
                               [size]="20"
                               [style.color]="option.color">
                     </svg-icon>
