@@ -27,6 +27,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
 import { IssueTypeSelectComponent } from './components/add-issue-modal/issue-type-select/issue-type-select.component';
+import { IssuePrioritySelectComponent } from './components/add-issue-modal/issue-priority-select/issue-priority-select.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { IssueTypeSelectComponent } from './components/add-issue-modal/issue-typ
     IssueResultComponent,
     AddIssueModalComponent,
     UserComponent,
-    IssueTypeSelectComponent
+    IssueTypeSelectComponent,
+    IssuePrioritySelectComponent
   ],
   imports: [
     CommonModule,

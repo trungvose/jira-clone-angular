@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IssueType } from '@trungk18/interface/issue';
 import { IssueUtil } from '@trungk18/project/utils/issue';
-import { IssueTypeWithIcon, IssueTypes } from '@trungk18/interface/issue-type';
+import { IssueTypeWithIcon } from '@trungk18/interface/issue-type-icon';
 import { FormControl } from '@angular/forms';
+import { ProjectConst } from '@trungk18/project/config/const';
 
 @Component({
   selector: 'issue-type-select',
@@ -11,11 +12,11 @@ import { FormControl } from '@angular/forms';
 })
 export class IssueTypeSelectComponent implements OnInit {
   @Input() control: FormControl;
-  
+
   issueTypes: IssueTypeWithIcon[];
 
   constructor() {
-    this.issueTypes = IssueTypes;
+    this.issueTypes = ProjectConst.IssueTypesWithIcon;
   }
 
   ngOnInit(): void {}

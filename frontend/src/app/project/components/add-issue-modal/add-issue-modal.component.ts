@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IssueType, JIssue, IssueStatus } from '@trungk18/interface/issue';
+import { IssueType, JIssue, IssueStatus, IssuePriority } from '@trungk18/interface/issue';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { NoWhitespaceValidator } from '@trungk18/validators/no-whitespace.validator';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -33,6 +33,7 @@ export class AddIssueModalComponent implements OnInit {
   initForm() {
     this.issueForm = this._fb.group({
       type: [IssueType.TASK],
+      priority: [IssuePriority.MEDIUM],
       title: ['', NoWhitespaceValidator()],
       description: ['']
     });
@@ -42,7 +43,7 @@ export class AddIssueModalComponent implements OnInit {
     let issue: JIssue = {
       id: IssueUtil.getRandomId(),
       status: IssueStatus.BACKLOG,
-      reporterId: "",
+      reporterId: '',
       userIds: [],
       ...this.issueForm.getRawValue()
     };

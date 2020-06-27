@@ -10,9 +10,3 @@ export class IssueTypeWithIcon {
     this.icon = IssueUtil.getIssueTypeIcon(issueType);
   }
 }
-
-export const IssueTypes: IssueTypeWithIcon[] = [
-  new IssueTypeWithIcon(IssueType.BUG),
-  new IssueTypeWithIcon(IssueType.STORY),
-  new IssueTypeWithIcon(IssueType.TASK)
-];
