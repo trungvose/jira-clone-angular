@@ -6,8 +6,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { Router } from '@angular/router';
-import { NoWhitespaceValidator } from '@trungk18/validators/no-whitespace.validator';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 
 @Component({
   templateUrl: './settings.component.html',

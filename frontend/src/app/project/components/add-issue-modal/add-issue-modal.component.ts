@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IssueType, JIssue, IssueStatus, IssuePriority } from '@trungk18/interface/issue';
 import { quillConfiguration } from '@trungk18/project/config/editor';
-import { NoWhitespaceValidator } from '@trungk18/validators/no-whitespace.validator';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { IssueUtil } from '@trungk18/project/utils/issue';
@@ -12,6 +11,7 @@ import { Observable } from 'rxjs';
 import { JUser } from '@trungk18/interface/user';
 import { tap } from 'rxjs/operators';
 import { until } from 'protractor';
+import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 
 @Component({
   selector: 'add-issue-modal',
