@@ -1,6 +1,7 @@
 <nz-select class="w-full"
            [formControl]="control"
-           [nzCustomTemplate]="selectedReporterTmpl">
+           [nzCustomTemplate]="selectedReporterTmpl"
+           nzNoAnimation>
     <nz-option nzCustomContent
                *ngFor="let user of users"
                [nzValue]="user.id">

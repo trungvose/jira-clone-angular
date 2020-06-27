@@ -2,7 +2,8 @@
            [formControl]="control"
            nzMode="multiple"
            [nzCustomTemplate]="assigneesSelectedTmpl"
-           [nzNotFoundContent]="noUserFoundTmpl">
+           [nzNotFoundContent]="noUserFoundTmpl"
+           nzNoAnimation>
     <nz-option nzCustomContent
                *ngFor="let user of users"
                [nzValue]="user.id"
