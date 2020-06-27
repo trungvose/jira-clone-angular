@@ -56,7 +56,7 @@ export class ProjectService {
 
   updateIssue(issue: JIssue) {
     this._store.update((state) => {
-      let issues = arrayUpdate(state.issues, issue.id, issue);
+      let issues = arrayUpsert(state.issues, issue.id, issue);
       return {
         ...state,
         issues

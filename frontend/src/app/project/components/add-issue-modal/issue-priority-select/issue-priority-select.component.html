@@ -1,0 +1,25 @@
+<nz-select class="w-full"
+           [formControl]="control"
+           [nzCustomTemplate]="defaultTemplate">
+    <nz-option nzCustomContent
+               *ngFor="let priority of priorities"
+               [nzValue]="priority.value">
+        <div class="flex items-center">
+            <svg-icon [name]="priority.icon"
+                      [size]="20"
+                      [style.color]="priority.color">
+            </svg-icon>
+            <span class="ml-3 font-semibold uppercase text-textMedium text-13">{{ priority.value }}</span>
+        </div>
+    </nz-option>
+</nz-select>
+<ng-template #defaultTemplate
+             let-selected>
+    <div class="flex items-center">
+        <svg-icon [name]="getPriorityIcon(selected.nzValue)?.icon"
+                  [style.color]="getPriorityIcon(selected.nzValue)?.color"
+                  [size]="20">
+        </svg-icon>
+        <span class="ml-3 font-semibold uppercase text-textMedium text-13">{{ selected.nzValue }}</span>
+    </div>
+</ng-template>

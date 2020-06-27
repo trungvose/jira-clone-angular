@@ -3,6 +3,7 @@ import { JIssue, IssuePriority } from '@trungk18/interface/issue';
 import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { ProjectConst } from '@trungk18/project/config/const';
 
 @Component({
   selector: 'issue-priority',
@@ -23,13 +24,7 @@ export class IssuePriorityComponent implements OnInit, OnChanges {
   constructor(private _projectService: ProjectService) {}
 
   ngOnInit() {
-    this.priorities = [
-      IssueUtil.getIssuePriorityIcon(IssuePriority.LOWEST),
-      IssueUtil.getIssuePriorityIcon(IssuePriority.LOW),
-      IssueUtil.getIssuePriorityIcon(IssuePriority.MEDIUM),
-      IssueUtil.getIssuePriorityIcon(IssuePriority.HIGH),
-      IssueUtil.getIssuePriorityIcon(IssuePriority.HIGHEST)
-    ];
+    this.priorities = ProjectConst.PrioritiesWithIcon;
   }
 
   ngOnChanges(): void {

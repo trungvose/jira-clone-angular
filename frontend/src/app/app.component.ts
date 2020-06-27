@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { GoogleAnalyticsService } from './service/google-analytics.service';
 import { environment } from '../environments/environment';
@@ -11,10 +11,11 @@ import { ProjectService } from './project/state/project/project.service';
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   constructor(
     public router: Router,
     public projectQuery: ProjectQuery,
+    private _cdr: ChangeDetectorRef,
     private _projectService: ProjectService,
     private _googleAnalytics: GoogleAnalyticsService
   ) {
@@ -30,5 +31,9 @@ export class AppComponent {
         this._googleAnalytics.sendPageView(event.urlAfterRedirects);
       }
     });
+  }
+
+  ngAfterViewInit() {
+    this._cdr.detectChanges();
   }
 }
