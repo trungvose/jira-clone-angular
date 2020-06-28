@@ -156,7 +156,7 @@ export const Project = {
       id: '9584',
       title: 'What is Angular Jira clone application?',
       description:
-        "<p>This project is basically a clone of another open source Jira clone build in <strong>React</strong> and <strong>VueJS</strong> (you could say <u>a clone of a clone application</u> I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge about Angular.</p><p><br></p><p>I like working with interactive UI because it is challenging, but also very exciting.</p><p><br></p><p>This the the <strong>technology stack</strong> of this application</p><p><br></p><ul><li>Angular&nbsp;CLI</li><li>Akita&nbsp;state&nbsp;management</li><li>NestJS</li><li>UI&nbsp;modules:</li></ul><ol><li>TailwindCSS</li><li>Angular&nbsp;CDK&nbsp;drag&nbsp;and&nbsp;drop</li><li>ng-zorro&nbsp;UI&nbsp;component:&nbsp;<span style='color: rgb(206, 145, 120);'>tooltip</span>,&nbsp;<span style='color: rgb(206, 145, 120);'>dropdown</span>,&nbsp;<span style='color: rgb(206, 145, 120);'>icon</span></li><li>&nbsp;ngx-quill</li></ol><ul><li>Netlify</li></ul>",
+        "<p>There have been a handful of cool Jira-cloned apps written in React/VueJS, which makes me wonder <strong>Why not Angular</strong>? And here you go.</p><p><br></p><p>This is <u>not only</u> a simplified Jira clone built with Angular 9, but also an example of a <u>modern, real-world</u> Angular codebase.</p><p><br></p><p><strong>Tech stack</strong></p><p><br></p><p><a href='https://raw.githubusercontent.com/trungk18/jira-clone-angular/master/frontend/src/assets/img/jira-clone-tech-stack.png' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214); background-color: rgb(255, 255, 255);'><img src='https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-tech-stack.png' alt='Tech logos'></a></p><p><br></p><ul><li><a href='https://cli.angular.io/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Angular CLI</a></li><li><a href='https://datorama.github.io/akita/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Akita</a>&nbsp;state management</li><li><a href='https://nestjs.com/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>NestJS</a></li><li>UI modules:</li><li class='ql-indent-1'><a href='https://tailwindcss.com/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>TailwindCSS</a></li><li class='ql-indent-1'>Angular CDK&nbsp;<a href='https://material.angular.io/cdk/drag-drop/overview' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>drag and drop</a></li><li class='ql-indent-1'><a href='https://ng.ant.design/docs/introduce/en' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>ng-zorro</a>&nbsp;UI component:&nbsp;<code style='background-color: rgba(27, 31, 35, 0.05);'>tooltip</code>,&nbsp;<code style='background-color: rgba(27, 31, 35, 0.05);'>dropdown</code>,&nbsp;<code style='background-color: rgba(27, 31, 35, 0.05);'>select</code>,&nbsp;<code style='background-color: rgba(27, 31, 35, 0.05);'>icon</code></li><li class='ql-indent-1'><a href='https://github.com/KillerCodeMonkey/ngx-quill' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>ngx-quill</a></li><li><a href='https://www.netlify.com/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Netlify</a></li><li><a href='https://www.heroku.com/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Heroku</a></li></ul>",
       type: 'Task',
       status: 'Backlog',
       priority: 'Medium',
@@ -199,6 +199,21 @@ export const Project = {
         '94502aad-c97f-43e1-a9d1-28cf3e4937a7',
         '7ac265f9-b9ac-443f-a2b2-795682e579a4',
       ],
+    },
+    {
+      id: '9667',
+      title:
+        'When creating an issue, the assignee list is not working properly on searching',
+      description:
+        "After searching for an assignee on the list and clear the text, the option label was missing. It could be the bug on the ng-zorro select itself. If you have any idea, feel free to create a pull request. <br/> <br/><img src='https://raw.githubusercontent.com/trungk18/jira-clone-angular/master/frontend/src/assets/img/assignee-bug.gif' alt='Assignee issue' />",
+      type: 'Bug',
+      status: 'Selected',
+      priority: 'High',
+      listPosition: 1,
+      createdAt: '2020-06-28T15:30:00.000Z',
+      updatedAt: '2020-06-28T16:30:00.000Z',
+      reporterId: 'd65047e5-f4cf-4caa-9a38-6073dcbab7d1',
+      userIds: ['d65047e5-f4cf-4caa-9a38-6073dcbab7d1'],
     },
   ],
 };
