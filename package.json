@@ -1,14 +1,18 @@
 {
   "name": "jira-clone-angular",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A simplified Jira clone built with Angular 9 and Akita",
   "scripts": {
-    "install-dependencies": "npm i && cd frontend && npm i",
+    "install-dependencies": "npm run install-dependencies-front && npm run install-dependencies-back",
+    "install-dependencies-front": "cd frontend && npm i",
+    "install-dependencies-back": "cd backend && npm i",
     "start:front": "cd frontend && npm start",
     "build:front": "cd frontend && npm run build",
-    "test:front": "cd frontend && npm run test",
-    "start": "npm run start:front",
-    "build": "npm run install-dependencies && npm run build:front"
+    "start:back": "cd backend && npm start",
+    "build:back": "cd backend && npm run build",
+    "start": "npm run start:back && npm run start:front",
+    "build": "npm run install-dependencies && npm run build:back && npm run build:front",
+    "heroku-postbuild": "npm run install-dependencies-back && npm run build:back"
   },
   "repository": {
     "type": "git",
@@ -26,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/trungk18/jira-clone-angular/issues"
   },
-  "homepage": "https://github.com/trungk18/jira-clone-angular#readme"
+  "homepage": "https://github.com/trungk18/jira-clone-angular#readme",
+  "engines": {
+    "node": "12.x"
+  }
 }
