@@ -2,7 +2,8 @@
     <quill-editor class="content-editor"
                   [modules]="editorOptions"
                   [formControl]="descriptionControl"
-                  [placeholder]="'Click to add description'">
+                  [placeholder]="''"
+                  (onEditorCreated)="editorCreated($event)">
     </quill-editor>
 
     <div class="pt-3 flex
@@ -24,7 +25,7 @@
          *ngIf="!isEditing"
          (click)="setEditMode(true)">
         <div class="ql-editor"
-             [innerHTML]="issue.description"></div>
+             [innerHTML]="issue.description || 'Click to add description'"></div>
         <div class="icon-edit">
             <i nz-icon
                class="cursor-pointer"
