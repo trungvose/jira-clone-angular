@@ -16,10 +16,7 @@ export class AuthService {
   login({ email = '', password = '' }: LoginPayload) {
     this._store.setLoading(true);
     this._http
-      .post<JUser>(`${this.baseUrl}/auth`, {
-        email,
-        password
-      })
+      .get<JUser>(`${this.baseUrl}/auth.json`)
       .pipe(
         map((user) => {
           this._store.update((state) => ({
