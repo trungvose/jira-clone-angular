@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { JComment } from '@trungk18/interface/comment';
@@ -15,22 +15,32 @@ import { ProjectService } from '@trungk18/project/state/project/project.service'
 export class IssueCommentComponent implements OnInit {
   @Input() issueId: string;
   @Input() comment: JComment;
-  @Input() isCreate: boolean;
+  @Input() createMode: boolean;
+  @ViewChild('commentBoxRef') commentBoxRef: ElementRef;
   commentControl: FormControl;
   user: JUser;
-  isEditable: boolean;
   isEditing: boolean;
 
   constructor(private _authQuery: AuthQuery, private projectService: ProjectService) {}
 
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (!this.createMode || this.isEditing) {
+      return;
+    }
+    if (event.key == 'M') {
+      this.commentBoxRef.nativeElement.focus();
+      this.isEditing = true;
+    }
+  }
+
   ngOnInit(): void {
-    this.commentControl = new FormControl("");
+    this.commentControl = new FormControl('');
     this._authQuery.user$.pipe(untilDestroyed(this)).subscribe((user) => {
       this.user = user;
-      if (this.isCreate) {
+      if (this.createMode) {
         this.comment = new JComment(this.issueId, this.user);
       }
-      this.isEditable = user.id === this.comment.userId;
     });
   }
 
