@@ -4,10 +4,13 @@
 
   .cdk-drop-list-dragging {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+
+    .cdk-drag:not(.cdk-drag-placeholder) {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
   }
 }
 
-/* purgecss start ignore */
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
@@ -16,10 +19,17 @@
 }
 
 .cdk-drag-placeholder {
-  opacity: 0;
+  .issue-wrap {
+    background-color: rgba(150, 150, 200, 0.1);
+    border: 1px dashed #abc;
+    margin: 5px;
+
+    .issue {
+      opacity: 0;
+    }
+  }
 }
 
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-/* purgecss end ignore */
