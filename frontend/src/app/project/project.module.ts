@@ -31,9 +31,11 @@ import { IssuePrioritySelectComponent } from './components/add-issue-modal/issue
 import { IssueReporterSelectComponent } from './components/add-issue-modal/issue-reporter-select/issue-reporter-select.component';
 import { IssueAssigneesSelectComponent } from './components/add-issue-modal/issue-assignees-select/issue-assignees-select.component';
 import { ResizerComponent } from './components/navigation/resizer/resizer.component';
+import { AutofocusDirective } from '@trungk18/core/directives/autofocus.directive';
 
 @NgModule({
   declarations: [
+    AutofocusDirective,
     ...NavigationComponents,
     ...BoardPageComponents,
     ...IssueUtilComponents,
