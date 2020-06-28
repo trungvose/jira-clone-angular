@@ -16,7 +16,7 @@ export class ProjectService {
   baseUrl: string;
 
   constructor(private _http: HttpClient, private _store: ProjectStore) {
-    this.baseUrl = environment.API_URL;
+    this.baseUrl = environment.apiUrl;
   }
 
   setLoading(isLoading: boolean) {
@@ -26,7 +26,7 @@ export class ProjectService {
   getProject(): Subscription {
     this.setLoading(true);
     return this._http
-      .get<JProject>(`${this.baseUrl}/project.json`)
+      .get<JProject>(`${this.baseUrl}/project`)
       .pipe(
         map((project) => {
           this._store.update((state) => {

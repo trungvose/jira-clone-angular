@@ -10,13 +10,16 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private baseUrl: string;
   constructor(private _http: HttpClient, private _store: AuthStore) {
-    this.baseUrl = environment.API_URL;
+    this.baseUrl = environment.apiUrl;
   }
 
   login({ email = '', password = '' }: LoginPayload) {
     this._store.setLoading(true);
     this._http
-      .get<JUser>(`${this.baseUrl}/auth.json`)
+      .post<JUser>(`${this.baseUrl}/auth`, {
+        email,
+        password
+      })
       .pipe(
         map((user) => {
           this._store.update((state) => ({
