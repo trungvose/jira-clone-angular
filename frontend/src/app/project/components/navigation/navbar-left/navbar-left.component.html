@@ -57,18 +57,15 @@
         <div class="flex-auto"></div>
         <div class="item"
              *ngIf="authQuery.user$ | async as user">
-            <a target="_blank"
-               href="https://trungk18.com/">
-                <div nz-tooltip
-                     [nzTooltipTitle]="user.name"
-                     nzTooltipPlacement="right"
-                     class="itemIcon">
-                    <j-avatar class="flex"
-                              [avatarUrl]="user.avatarUrl"
-                              [size]="26">
-                    </j-avatar>
-                </div>
-            </a>
+            <div nz-tooltip
+                 [nzTooltipTitle]="user.name"
+                 nzTooltipPlacement="right"
+                 class="itemIcon">
+                <j-avatar class="flex"
+                          [avatarUrl]="user.avatarUrl"
+                          [size]="26">
+                </j-avatar>
+            </div>
         </div>
         <div class="item">
             <a target="_blank"
