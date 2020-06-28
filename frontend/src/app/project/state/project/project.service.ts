@@ -1,28 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { arrayUpdate, arrayUpsert, arrayRemove } from '@datorama/akita';
+import { arrayRemove, arrayUpsert } from '@datorama/akita';
+import { JComment } from '@trungk18/interface/comment';
 import { JIssue } from '@trungk18/interface/issue';
 import { JProject } from '@trungk18/interface/project';
-import { JUser } from '@trungk18/interface/user';
-import { Observable, of, Subscription } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { ProjectStore } from './project.store';
-import { JComment } from '@trungk18/interface/comment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  constructor(private _http: HttpClient, private _store: ProjectStore) {}
+  baseUrl: string;
+
+  constructor(private _http: HttpClient, private _store: ProjectStore) {
+    this.baseUrl = environment.API_URL;
+  }
 
   setLoading(isLoading: boolean) {
     this._store.setLoading(isLoading);
   }
 
   getProject(): Subscription {
-    this.setLoading(true)
+    this.setLoading(true);
     return this._http
-      .get<JProject>('/data/project.json')
+      .get<JProject>(`${this.baseUrl}/project.json`)
       .pipe(
         map((project) => {
           this._store.update((state) => {
@@ -33,7 +37,7 @@ export class ProjectService {
           });
         }),
         finalize(() => {
-          this.setLoading(false)
+          this.setLoading(false);
         }),
         catchError((error) => {
           this._store.setError(error);
@@ -41,10 +45,6 @@ export class ProjectService {
         })
       )
       .subscribe();
-  }
-
-  login(): Observable<JUser> {
-    return this._http.get<JUser>('/data/user.json');
   }
 
   updateProject(project: Partial<JProject>) {
