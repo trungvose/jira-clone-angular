@@ -1,10 +1,10 @@
 # A simplified Jira clone built with Angular 9 and Akita
 
-> Phase 2 will be started very soon with a lot of exciting features: GraphQL, Authentication, and more.
+> Phase 2 will start off very soon with several promisingly exciting features: GraphQL, Authentication, and more.
 
-I got the motivation from the similar clone app written in `React`/`VueJS`. And I thought **Why not Angular**? So here you go. It is a simplified Jira clone built with Angular 9.
+There have been a handful of cool Jira-cloned apps written in `React`/`VueJS`, which makes me wonder **Why not Angular**? And here you go.
 
-It is an example of a **modern**, **real-world** Angular codebase. Working on this project helped me to strengthen my knowledge about Angular.
+This is not only a simplified Jira clone built with Angular 9, but also an example of a **modern**, **real-world** Angular codebase.
 
 ## Working application
 
@@ -15,9 +15,9 @@ Check out the **live demo** -> https://jira.trungk18.com
 If you like my work, feel free to:
 
 - [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)][tweet] about Angular Jira clone
-- :star: this repository. It will make both of us happy :)
+- :star: this repository. And we will be happy together :)
 
-Thanks for visiting and your support :)
+Thanks a bunch for stopping by and supporting me!
 
 [tweet]: https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Ftrungk18%2Fjira-clone-angular&text=Awesome%20Jira%20clone%20app%20built%20with%20Angular%209%20and%20Akita&hashtags=angular,akita,typescript
 
@@ -31,7 +31,7 @@ There are many Angular examples on the web but most of them are way too simple. 
 
 ---
 
-This application is a part of our technical series [angular-vietnam/100-days-of-angular][100days] with a clear target: after 100 days of learning Angular through with us, **everyone can build the application at the same scale**. We also want to bring Angular to a **broader** developer community in Vietnam.
+This piece of work is part of our technical series [angular-vietnam/100-days-of-angular][100days] which aims at enabling everyone, after 100 days of learning Angular with us, to **self-build their application with the similar scale**. Our desire is to advocate and grow the Angular developer community in Vietnam.
 
 [zyllem]: https://www.zyllem.com/
 
@@ -62,7 +62,7 @@ This application is a part of our technical series [angular-vietnam/100-days-of-
 
 ## Features and Roadmap
 
-I set the tentative deadline to motivate myself to finish it on time. Otherwise, It will take forever to complete :)
+I set the tentative deadline for motivating myself to finish the work on time. Otherwise, It will take forever to complete :)
 
 ### Phase 1 - Angular application and simple Nest API
 
@@ -74,7 +74,7 @@ I set the tentative deadline to motivate myself to finish it on time. Otherwise,
 - [x] Search/filtering issues
 - [x] Add comments
 
-> Noted: All of your interactions with data such as a comment or change the issue detail will not be saved to the persistent database. Currently, the application will serve a fixed structure of data every time you open the app. It means if you reload the browser, all of your changes will be gone.
+> Noted: All of your interactions with data such as leave a comment or change the issue detail will not be saved to the persistent database. Currently, the application will serve a fixed structure of data every time you open the app. It means if you reload the browser, all of your changes will be gone.
 >
 > Phase 2 will bring you a proper API where you can log in and save your work.
 
@@ -99,13 +99,13 @@ I will take two weeks break to continue working with the [typescript-data-struct
 
 ## Tutorial
 
-When I look at the application, it is huge. When the task is huge, you don't know where and how to start working with them. I started to break them apart into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need to do is to follow the plan. That's how I built the app.
+When I look at the application, it is huge. When the task is huge, you don't know where and how to start working with them. I started to break the big task into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need is to follow the plan. That's is my approach.
 
-I learned a lot of stuff. I know you might also have a curiosity about the process of building the same scale app. That's why I am writing a list of tutorials on how I built Angular Jira clone from scratch. I hope you guys will learn something from that too :) 
+I learned a lot of stuff. I know you might also have a curiosity about the process of building the same scale app as well. That's why I am writing a tutorial series on how I built Angular Jira clone from scratch. I hope you guys will learn something from that too :)
 
-Please bear with me for a little longer. Because with almost 50 hours coding, to write every single step is impossible. But hopefully, through the tutorial, you will get the idea and can start building the app today.
+Please bear with me for a little longer. Because with almost 50 hours coding, to write every single step is impossible. But hopefully through the tutorial, you will get the idea and can start building your idea very soon.
 
-Its series will also be published in Vietnamese as a part of our [angular-vietnam/100-days-of-angular][100days].
+Its series will also be published in Vietnamese as part of our [angular-vietnam/100-days-of-angular][100days].
 
 | Part |                                                | Status      |
 | ---- | ---------------------------------------------- | ----------- |

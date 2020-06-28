@@ -8,7 +8,7 @@
     "install-dependencies-back": "cd backend && npm i",
     "start:front": "npm run install-dependencies-front && cd frontend && npm start",
     "build:front": "cd frontend && npm run build",
-    "start:back": "npm run install-dependencies-back && cd backend && npm start",
+    "start:back": "npm run install-dependencies-back && cd backend && npm run start:dev",
     "build:back": "cd backend && npm run build",
     "build": "npm run install-dependencies && npm run build:back && npm run build:front",
     "heroku-postbuild": "npm run install-dependencies-back && npm run build:back"
