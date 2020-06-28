@@ -1,19 +1,25 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthStore } from './auth.store';
+import { Injectable } from '@angular/core';
 import { JUser } from '@trungk18/interface/user';
-import { map, finalize, catchError } from 'rxjs/operators';
-import { ThrowStmt } from '@angular/compiler';
 import { of } from 'rxjs';
+import { catchError, finalize, map } from 'rxjs/operators';
+import { AuthStore } from './auth.store';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private _http: HttpClient, private _store: AuthStore) {}
+  private baseUrl: string;
+  constructor(private _http: HttpClient, private _store: AuthStore) {
+    this.baseUrl = environment.API_URL;
+  }
 
   login({ email = '', password = '' }: LoginPayload) {
     this._store.setLoading(true);
     this._http
-      .get<JUser>('/data/user.json')
+      .post<JUser>(`${this.baseUrl}/auth`, {
+        email,
+        password
+      })
       .pipe(
         map((user) => {
           this._store.update((state) => ({
