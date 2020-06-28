@@ -1,16 +1,16 @@
 # A simplified Jira clone built with Angular 9 and Akita
 
-> It is still <u>under development</u>. I am planning to build it in about two weeks (13 - 27 Jun 2020) in my spare time. After finished Phase 1 coding , I will gradually publish a series of tutorial how I built it from scratch.
+> Phase 2 will be started very soon with a lot of exciting features: GraphQL, Authentication, and more.
 
-This project is basically a clone of another open source Jira clone build in `React` and `VueJS` (you could say `a clone of a clone application` I know). I though it would be a great candidate of a modern, real-world Angular codebase and it really helps me to strengthen my knowledge about Angular.
+I got the motivation from the similar clone app written in `React`/`VueJS`. And I thought **Why not Angular**? So here you go. It is a simplified Jira clone built with Angular 9.
 
-I like working with interactive UI because it is challenging, but also very exciting.
+It is an example of a **modern**, **real-world** Angular codebase. Working on this project helped me to strengthen my knowledge about Angular.
 
 ## Working application
 
-Check out the live demo -> https://jira.trungk18.com
+Check out the **live demo** -> https://jira.trungk18.com
 
---> SCREENSHOT GIF
+![Jira clone built with Angular 9 and Akita][demo]
 
 If you like my work, feel free to:
 
@@ -23,33 +23,46 @@ Thanks for visiting and your support :)
 
 ## Who is it for 🤷‍♀️
 
-I do Angular development and this is a showcase product I've built in my spare time to experiment the new library that I wanted to try before: `Akita`, `TailwindCSS`, `ng-zorro`.
+I have been working with Angular for about four years. I built cool stuff at [Zyllem][zyllem] but almost all of them are internal apps which is difficult to show.
 
-There are many showcase/example Angular projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
+This is a showcase application I've built in my spare time to experiment the new library that I wanted to try before: `Akita`, `TailwindCSS`, `ng-zorro`.
+
+There are many Angular examples on the web but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
 
 ---
 
-This application is a part of our technical series [angular-vietnam/100-days-of-angular][100days]. It sets a new target that after 100 days of learning Angular through with us, everyone can build the application at the same scale. We also want to bring Angular to a broader developer community in Vietnam.
+This application is a part of our technical series [angular-vietnam/100-days-of-angular][100days] with a clear target: after 100 days of learning Angular through with us, **everyone can build the application at the same scale**. We also want to bring Angular to a **broader** developer community in Vietnam.
+
+[zyllem]: https://www.zyllem.com/
 
 ## Tech stack
 
 ![Tech logos][stack]
 
-- Angular CLI
-- Akita state management
-- NestJS
+- [Angular CLI][cli]
+- [Akita][akita] state management
+- [NestJS][nestjs]
 - UI modules:
-  - TailwindCSS
-  - Angular CDK drag and drop
-  - ng-zorro UI component: `tooltip`, `dropdown`, `icon`
-  - ngx-quill
-- Netlify
+  - [TailwindCSS][tailwind]
+  - Angular CDK [drag and drop][cdkdrag]
+  - [ng-zorro][ng-zorro] UI component: `tooltip`, `dropdown`, `select`, `icon`
+  - [ngx-quill][quill]
+- [Netlify][netlify]
+- [Heroku][heroku]
+
+[cli]: https://cli.angular.io/
+[akita]: https://datorama.github.io/akita/
+[nestjs]: https://nestjs.com/
+[tailwind]: https://tailwindcss.com/
+[cdkdrag]: https://material.angular.io/cdk/drag-drop/overview
+[ng-zorro]: https://ng.ant.design/docs/introduce/en
+[quill]: https://github.com/KillerCodeMonkey/ngx-quill
+[netlify]: https://www.netlify.com/
+[heroku]: https://www.heroku.com/
 
 ## Features and Roadmap
 
-I built it as the side project so It usually took longer than expected. One day, my team and I did the fire fighting on PROD until 11PM. After taking shower, I continue with Angular Jira clone for another two hours...
-
-I set the tentative deadline to motivate myself to finish it on time. Otherwise, It will take forever to finish :)
+I set the tentative deadline to motivate myself to finish it on time. Otherwise, It will take forever to complete :)
 
 ### Phase 1 - Angular application and simple Nest API
 
@@ -59,49 +72,66 @@ I set the tentative deadline to motivate myself to finish it on time. Otherwise,
 - [x] Simple drag and drop kanban board
 - [x] Add/update issue
 - [x] Search/filtering issues
-- [ ] Comments
+- [x] Add comments
 
-> Noted: All of your interaction with data such as comment or change the issue detail will not be saved to the persistent database. Currently, the application will serve a fixed structure of data every time you open the app. It mean, if you reload the browser, all of your changes will be gone.
+> Noted: All of your interactions with data such as a comment or change the issue detail will not be saved to the persistent database. Currently, the application will serve a fixed structure of data every time you open the app. It means if you reload the browser, all of your changes will be gone.
 >
-> Phase 2 will bring you a proper API where you can login and save your work.
+> Phase 2 will bring you a proper API where you can log in and save your work.
 
-During working with this application, I have the opportunity to revisit some of the interesting topic:
+While working with this application, I have the opportunity to revisit some of the interesting topics:
 
 - TailwindCSS configuration - that's awesome
 - Scrollable layout with Flexbox
 - Deploy Angular application to Netlify
 
+I will take two weeks break to continue working with the [typescript-data-structures][typescript-dsa] repo.
+
+[typescript-dsa]: https://github.com/trungk18/typescript-data-structures
+
 ### Phase 2
 
-> July 4 - 19, 2020
+> July 10 - 25, 2020
 
 - [ ] GraphQL API and store data on the actual database
 - [ ] Authentication
 - [ ] Websocket realtime update
 - [ ] Interactive report
 
+## Time spending
+
+I built it as the side project so It usually took longer than expected. One day, my team and I were fire fighting on PROD until 11 PM. After taking a shower, I continue with Angular Jira clone for another two hours...
+
+According to waka time report, I have spent about 45 hours working on this project. Which is equivalent to watch the [whole Stranger Things series twice][stranger].
+
+I enjoyed working on this project. The interactive kanban board took me sometimes, it is challenging but exciting at the same time.
+
+[stranger]: [https://www.bingeclock.com/s/stranger-things/]
+
+![Jira clone built with Angular 9 and Akita - Time spending][time]
+
 ## What's currently missing?
 
-There are features missing from the live demo which should exist in a real product and should be finished on Phase 2:
+There are missing features from the live demo which should exist in a real product. All of them will be finished on Phase 2:
 
 ### Proper backend API
 
-I am currently using a `json` file for storing data on the backend. I am planning to write a graphQL API soon in order to learn more about that.
+I built a very simple NestJS API to send a fixed data structure to the client. All of your interactivity with data will only be saved on the memory. If you refresh the page, it will be gone. Phase 2 will bring the application to live by saving the data into a database.
 
 ### Proper authentication system 🔐
 
-I am currently auto create an auth token and seed a project with issues and users for anyone who visits the API without valid credentials. In a real product you have to to implement a proper [email and password authentication system](https://www.google.com/search?q=email+and+password+authentication+node+js&oq=email+and+password+authentication+node+js).
+I am currently sending a fixed email and a random password to the server to get the current user back. Phase 2 will also bring a proper authentication system.
 
 ### Accessibility ♿
 
-Not all components have properly defined [aria attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA), visual focus indicators etc. Most early stage companies tend to ignore this aspect of their product but in many cases they shouldn't, especially once their users starts growing.
+Not all components have properly defined [aria attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA), visual focus indicators, etc.
 
 ## Setting up development environment 🛠
 
 - `git clone https://github.com/trungk18/jira-clone-angular.git`
 - `cd jira-clone-angular`
 - `npm run install-dependencies`
-- `cd frontend && npm start`
+- `npm run start:back` for the API
+- `npm run start:front` for angular web application
 - App should now be running on `http://localhost:4200/`
 
 ### Unit/Integration tests 🧪
@@ -110,7 +140,7 @@ I skipped writing test for this project. I might do it for the proper backend Gr
 
 ## Author: Trung Vo ✍️
 
-- A young and passionate front-end engineer. Working with Angular and TypeScript. Like photography, running, cooking and reading book.
+- A young and passionate front-end engineer. Working with Angular and TypeScript. Like photography, running, cooking, and reading books.
 - Personal blog: https://trungk18.com/
 - Say hello: trungk18 [et] gmail [dot] com
 
@@ -126,13 +156,15 @@ Inspired by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][datlyfe]
 
 ## License
 
-Feel free to use my code on your personal project. It would be great if you put a reference to this repository.
+Feel free to use my code on your project. It would be great if you put a reference to this repository.
 
 [MIT](https://opensource.org/licenses/MIT)
 
 [oldboyxx]: https://github.com/oldboyxx/jira_clone
 [datlyfe]: https://github.com/Datlyfe/jira_clone
-[stack]: https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-tech-stack.png
+[stack]: frontend/src/assets/img/jira-clone-tech-stack.png
+[demo]: frontend/src/assets/img/jira-clone-angular-demo-trungk18.gif
+[time]: frontend/src/assets/img/time-spending.png
 [issues]: https://github.com/trungk18/jira-clone-angular/issues/new
 [pull]: https://github.com/trungk18/jira-clone-angular/compare
 [100days]: https://github.com/angular-vietnam/100-days-of-angular

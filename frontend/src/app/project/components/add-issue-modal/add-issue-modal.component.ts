@@ -12,6 +12,7 @@ import { JUser } from '@trungk18/interface/user';
 import { tap } from 'rxjs/operators';
 import { until } from 'protractor';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
+import { DateUtil } from '@trungk18/project/utils/date';
 
 @Component({
   selector: 'add-issue-modal',
@@ -66,10 +67,13 @@ export class AddIssueModalComponent implements OnInit {
     if (this.issueForm.invalid) {
       return;
     }
+    let now = DateUtil.getNow();
     let issue: JIssue = {
       ...this.issueForm.getRawValue(),
       id: IssueUtil.getRandomId(),
-      status: IssueStatus.BACKLOG
+      status: IssueStatus.BACKLOG,
+      createdAt: now,
+      updatedAt: now
     };
 
     this._projectService.updateIssue(issue);

@@ -8,6 +8,7 @@ import { of, Subscription } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProjectStore } from './project.store';
+import { DateUtil } from '@trungk18/project/utils/date';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,7 @@ export class ProjectService {
   }
 
   updateIssue(issue: JIssue) {
+    issue.updatedAt = DateUtil.getNow();
     this._store.update((state) => {
       let issues = arrayUpsert(state.issues, issue.id, issue);
       return {
