@@ -3,7 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { environment } from '../environments/environment';
 import { ProjectQuery } from './project/state/project/project.query';
 import { ProjectService } from './project/state/project/project.service';
-import { GoogleAnalyticsService } from './core/service/google-analytics.service';
+import { GoogleAnalyticsService } from './core/services/google-analytics.service';
 
 @Component({
   selector: 'app-root',
