@@ -2,11 +2,24 @@
 
 The front end part of [Angular Jira clone][github] application built with.
 
-- Akita state management
-- TailwindCSS
-- Angular CDK Drag and drop
-- Ng zorro tooltip, icon
-- Custom SVG icon
+![Tech logos][stack]
+
+- [Angular CLI][cli]
+- [Akita][akita] state management
+- UI modules:
+  - [TailwindCSS][tailwind]
+  - Angular CDK [drag and drop][cdkdrag]
+  - [ng-zorro][ng-zorro] UI component: `tooltip`, `dropdown`, `select`, `icon`
+  - [ngx-quill][quill]
+
+[cli]: https://cli.angular.io/
+[akita]: https://datorama.github.io/akita/
+[nestjs]: https://nestjs.com/
+[tailwind]: https://tailwindcss.com/
+[cdkdrag]: https://material.angular.io/cdk/drag-drop/overview
+[ng-zorro]: https://ng.ant.design/docs/introduce/en
+[quill]: https://github.com/KillerCodeMonkey/ngx-quill
+[stack]: src/assets/img/jira-clone-tech-stack.png
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
 
@@ -21,17 +34,5 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 [github]: https://github.com/trungk18/
