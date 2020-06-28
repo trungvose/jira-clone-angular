@@ -1,4 +1,6 @@
-export const environment = {
+import { EnvironmentModel } from './environment-model';
+
+export const environment: EnvironmentModel = {
   production: true,
-  API_URL: '/data'
+  apiUrl: 'https://jira-clone-angular-api.herokuapp.com'
 };
