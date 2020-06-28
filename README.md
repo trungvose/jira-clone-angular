@@ -97,6 +97,34 @@ I will take two weeks break to continue working with the [typescript-data-struct
 - [ ] Websocket realtime update
 - [ ] Interactive report
 
+## Tutorial
+
+When I look at the application, it is huge. When the task is huge, you don't know where and how to start working with them. I started to break them apart into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need to do is to follow the plan. That's how I built the app.
+
+I learned a lot of stuff. I know you might also have a curiosity about the process of building the same scale app. That's why I am writing a list of tutorials on how I built Angular Jira clone from scratch. I hope you guys will learn something from that too :) 
+
+Please bear with me for a little longer. Because with almost 50 hours coding, to write every single step is impossible. But hopefully, through the tutorial, you will get the idea and can start building the app today.
+
+Its series will also be published in Vietnamese as a part of our [angular-vietnam/100-days-of-angular][100days].
+
+| Part |                                                | Status      |
+| ---- | ---------------------------------------------- | ----------- |
+| 01   | Setup and configure project with CLI           | In Progress |
+| 02   | [Configure TailwindCSS][part2]                 | Done        |
+| 03   | Configure SVG definition and using custom icon |             |
+| 04   | Google Analytics and Angular                   |             |
+| 05   | Flexbox scrollable layout                      |             |
+| 06   | Layout and left navigation                     |             |
+| 07   | Akita                                          |             |
+| 08   | Deploy to Netlify                              |             |
+| 09   | Drag and drop                                  |             |
+| 10   | Content loader                                 |             |
+| 11   | Quill Editor                                   |             |
+| 12   | Build an inline editable text box              |             |
+
+[todo-list]: https://www.notion.so/trungk18/Tasks-636be5c5c0dd4d8cab30808e4e41facc
+[part2]: https://trungk18.com/experience/configure-tailwind-css-with-angular/
+
 ## Time spending
 
 I built it as the side project so It usually took longer than expected. One day, my team and I were fire fighting on PROD until 11 PM. After taking a shower, I continue with Angular Jira clone for another two hours...
