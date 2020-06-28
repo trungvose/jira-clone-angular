@@ -5,25 +5,26 @@
     </j-avatar>
     <div class="pl-10"
          *ngIf="comment">
-        <ng-container *ngIf="!isCreate">
-
-        </ng-container>
         <div class="inline-block mr-3 mb-2 text-textDark font-medium">
             {{ comment.user.name}}
         </div>
-        <div *ngIf="!isCreate"
+        <div *ngIf="!createMode"
              class="inline-block pb-2 text-textDark text-sm">
             {{ comment.updatedAt | date:"medium" }}
         </div>
         <div class="editing-area"
-             *ngIf="isCreate">
-            <textarea class="textarea-inline-control textarea-border"
+             *ngIf="createMode">
+            <textarea #commentBoxRef
+                      class="textarea-inline-control textarea-border"
                       [formControl]="commentControl"
                       placeholder="Add a comment"
                       [rows]="2"
                       cdkTextareaAutosize
                       (click)="setCommentEdit(true)">
             </textarea>
+            <div *ngIf="!isEditing"
+                 class="text-xs"><strong>Pro tip: </strong>press <span class="px-1 font-semibold bg-backgroundMedium">M</span> to comment
+            </div>
             <div *ngIf="isEditing"
                  class="flex pt-2 pb-4 items-center">
                 <j-button [className]="'btn btn-primary mr-2'"
@@ -36,7 +37,7 @@
                 </j-button>
             </div>
         </div>
-        <div *ngIf="!isCreate"
+        <div *ngIf="!createMode"
              [innerHTML]="comment.body">
         </div>
     </div>

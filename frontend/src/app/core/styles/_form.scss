@@ -1,4 +1,5 @@
 $background: #f4f5f7;
+$blue-border: #4c9aff;
 
 form {
   .label {
@@ -14,10 +15,10 @@ form {
     width: 100%;
     padding: 0.325rem 0.75rem;
     border-radius: 3px;
-    border: 1px solid #ddd;    
+    border: 1px solid #ddd;
     color: #172b4d;
     transition: background 0.1s;
-    font-size: 15px;    
+    font-size: 15px;
 
     &:hover {
       background: #ebecf0;
@@ -25,26 +26,30 @@ form {
 
     &:focus {
       background: #fff;
-      border: 1px solid #4c9aff;
-      box-shadow: 0 0 0 1px #4c9aff;
+      border: 1px solid $blue-border;
+      box-shadow: 0 0 0 1px $blue-border;
       outline: none;
     }
-    
+
     &::placeholder {
       font-size: 14px;
     }
   }
-  
-  input:not(:disabled), text-area:not(:disabled) {
+
+  input:not(:disabled),
+  text-area:not(:disabled) {
     cursor: text;
   }
 
   .ng-invalid {
-    &.ng-dirty, &.ng-dirty:focus, &.ng-touched, &.ng-touched:focus {
+    &.ng-dirty,
+    &.ng-dirty:focus,
+    &.ng-touched,
+    &.ng-touched:focus {
       background-color: #fff;
-      border-color: #ff4d4f;      
+      border-color: #ff4d4f;
       box-shadow: none;
-    }    
+    }
   }
 }
 
@@ -69,7 +74,9 @@ form {
   }
 
   &:focus {
-    @apply bg-white border border-borderInputFocus;
-    box-shadow: 0 0 0 1px #4c9aff;
+    @apply bg-white;
+    border: 1px solid $blue-border;
+    box-shadow: 0 0 0 1px $blue-border;
+    outline: none;
   }
 }

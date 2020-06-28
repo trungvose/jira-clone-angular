@@ -15,7 +15,7 @@
                           nzTooltipPlacement="bottom"
                           [avatarUrl]="user.avatarUrl">
                 </j-avatar>                
-                <span class="uppercase ml-3">
+                <span [class.ml-3]="assignees?.length" class="uppercase">
                     {{issue.type}}-{{issue.id}}
                 </span>
             </div>

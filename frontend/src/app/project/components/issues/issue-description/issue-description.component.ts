@@ -30,6 +30,10 @@ export class IssueDescriptionComponent implements OnChanges {
     this.isEditing = mode;
   }
 
+  editorCreated(editor: any) {
+    editor.focus && editor.focus();
+  }
+
   save() {
     this._projectService.updateIssue({
       ...this.issue,
