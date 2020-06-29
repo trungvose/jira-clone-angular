@@ -11,7 +11,8 @@
     "start:back": "npm run install-dependencies-back && cd backend && npm run start:dev",
     "build:back": "cd backend && npm run build",
     "build": "npm run install-dependencies && npm run build:back && npm run build:front",
-    "heroku-postbuild": "npm run install-dependencies-back && npm run build:back"
+    "heroku-postbuild": "npm run install-dependencies-back && npm run build:back",
+    "netlify-build": "npm run install-dependencies-front && npm run build:front"
   },
   "repository": {
     "type": "git",
