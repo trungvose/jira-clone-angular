@@ -9,7 +9,7 @@ The front end part of [Angular Jira clone][github] application built with.
 - UI modules:
   - [TailwindCSS][tailwind]
   - Angular CDK [drag and drop][cdkdrag]
-  - [ng-zorro][ng-zorro] UI component: `tooltip`, `dropdown`, `select`, `icon`
+  - [ng-zorro][ng-zorro] UI component: `tooltip`, `modal`, `select`, `icon` and more.
   - [ngx-quill][quill]
 
 [cli]: https://cli.angular.io/

@@ -45,7 +45,7 @@ This piece of work is also part of our technical series [angular-vietnam/100-day
 - UI modules:
   - [TailwindCSS][tailwind]
   - Angular CDK [drag and drop][cdkdrag]
-  - [ng-zorro][ng-zorro] UI component: `tooltip`, `dropdown`, `select`, `icon`
+  - [ng-zorro][ng-zorro] UI component: `tooltip`, `modal`, `select`, `icon` and more.
   - [ngx-quill][quill]
 - [Netlify][netlify]
 - [Heroku][heroku]
@@ -103,7 +103,7 @@ I will take two weeks break to:
 
 ## Tutorial
 
-When I look at the application, it is huge. When the task is huge, you usually don't know where and how to start working with them. I started to break the big task into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need is to follow the plan. That's is my approach.
+When I look at the application, it is huge. When the task is huge, you usually don't know where and how to start working with them. I started to break the big task into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need is to follow the plan. That's my approach.
 
 I learned a lot of stuff. I know you might also have a curiosity about the process of building the same scale app as well. That's why I am writing a tutorial series on how I built Angular Jira clone from scratch. I hope you guys will learn something from that too :)
 

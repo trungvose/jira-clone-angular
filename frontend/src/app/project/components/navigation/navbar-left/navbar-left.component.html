@@ -68,8 +68,10 @@
             </div>
         </div>
         <div class="item">
-            <a target="_blank"
-               href="https://github.com/trungk18/jira-clone-angular">
+            <a nz-popover
+               nzPopoverPlacement="rightBottom"
+               [nzPopoverContent]="aboutPopoverTmpl"
+               nzPopoverTrigger="click">
                 <div nz-tooltip
                      nzTooltipTitle="About"
                      nzTooltipPlacement="right"
@@ -84,3 +86,16 @@
         </div>
     </div>
 </aside>
+
+<ng-template #aboutPopoverTmpl>
+    <div class="about-popover">
+        <p class="mb-2">This is a <strong>simplified</strong> Jira clone built with Angular 9, Akita and ng-zorro</p>
+        <p class="mb-2">Thanks a bunch for stopping by and supporting me!</p>
+        <p class="mb-3">Reach out to me via <a class="font-semibold"
+               href="email:trungk18@gmail.com">trungk18@gmail.com</a></p>
+        <a href="https://trungk18.com/"
+           target="_blank">
+            <j-button className="btn-primary">Visit My Blog</j-button>
+        </a>
+    </div>
+</ng-template>
