@@ -27,11 +27,11 @@ I have been working with Angular for about four years. I built cool stuff at [Zy
 
 This is a showcase application I've built in my spare time to experiment the new library that I wanted to try before: `Akita`, `TailwindCSS`, `ng-zorro`.
 
-There are many Angular examples on the web but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
+There are many Angular examples on the web but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to **Angular developers of all skill levels** while still being _relatively_ easy to understand.
 
 ---
 
-This piece of work is part of our technical series [angular-vietnam/100-days-of-angular][100days] which aims at enabling everyone, after 100 days of learning Angular with us, to **self-build their application with the similar scale**. Our desire is to advocate and grow the Angular developer community in Vietnam.
+This piece of work is also part of our technical series [angular-vietnam/100-days-of-angular][100days] which aims at enabling everyone, after 100 days of learning Angular with us, to **self-build their application with the similar scale**. Our desire is to advocate and grow the Angular developer community in Vietnam.
 
 [zyllem]: https://www.zyllem.com/
 
@@ -84,7 +84,10 @@ While working with this application, I have the opportunity to revisit some of t
 - Scrollable layout with Flexbox
 - Deploy Angular application to Netlify
 
-I will take two weeks break to continue working with the [typescript-data-structures][typescript-dsa] repo.
+I will take two weeks break to:
+
+- Fix bugs and UI enhancements for Angular Jira clone.
+- Continue working with the [typescript-data-structures][typescript-dsa] repo.
 
 [typescript-dsa]: https://github.com/trungk18/typescript-data-structures
 
@@ -132,7 +135,7 @@ It is a side project that I only spent time outside of the office hours to work 
 
 According to waka time report, I have spent about 45 hours working on this project. Which is equivalent to watch the [whole Stranger Things series twice][stranger].
 
-I enjoyed working on this project. The interactive kanban board took me sometimes, it is challenging but exciting at the same time.
+I really enjoyed working on this project. The interactive kanban board took me sometimes, it is challenging but exciting at the same time.
 
 [stranger]: [https://www.bingeclock.com/s/stranger-things/]
 
