@@ -92,6 +92,7 @@ I will take two weeks break to continue working with the [typescript-data-struct
 
 > July 10 - 25, 2020
 
+- [ ] Refactor the mono repo to use Nx Workspace
 - [ ] GraphQL API and store data on the actual database
 - [ ] Authentication
 - [ ] Websocket realtime update
