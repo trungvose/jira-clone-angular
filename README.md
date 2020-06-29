@@ -45,7 +45,7 @@ This piece of work is also part of our technical series [angular-vietnam/100-day
 - UI modules:
   - [TailwindCSS][tailwind]
   - Angular CDK [drag and drop][cdkdrag]
-  - [ng-zorro][ng-zorro] UI component: `tooltip`, `dropdown`, `select`, `icon`
+  - [ng-zorro][ng-zorro] UI component: `tooltip`, `modal`, `select`, `icon` and more.
   - [ngx-quill][quill]
 - [Netlify][netlify]
 - [Heroku][heroku]

@@ -11,14 +11,20 @@ $light-blue: rgb(28, 99, 206);
 .item {
   @apply relative w-full flex items-center justify-center;
   min-height: 42px;
-  
+
   .user-profile-photo {
     width: 26px;
   }
 }
+
 .itemIcon {
   @apply w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 select-none transition-colors duration-100 cursor-pointer;
 }
+
 .itemIcon:hover {
   background: $light-blue;
+}
+
+.about-popover {
+  max-width: 270px;
 }
