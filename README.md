@@ -128,7 +128,7 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 
 ## Time spending
 
-It is a side project that I only spent time outside of the working hours to working on. One day, my team and I were fire fighting on PROD until 11 PM. After taking a shower, I continue with Angular Jira clone for another two hours...
+It is a side project that I only spent time outside of the office hours to work on. One day, my team and I were fire fighting on PROD until 11 PM. After taking a shower, I continue with Angular Jira clone for another two hours...
 
 According to waka time report, I have spent about 45 hours working on this project. Which is equivalent to watch the [whole Stranger Things series twice][stranger].
 
