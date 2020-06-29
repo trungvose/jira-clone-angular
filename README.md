@@ -27,11 +27,11 @@ I have been working with Angular for about four years. I built cool stuff at [Zy
 
 This is a showcase application I've built in my spare time to experiment the new library that I wanted to try before: `Akita`, `TailwindCSS`, `ng-zorro`.
 
-There are many Angular examples on the web but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to Angular developers of all skill levels while still being _relatively_ easy to understand.
+There are many Angular examples on the web but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to **Angular developers of all skill levels** while still being _relatively_ easy to understand.
 
 ---
 
-This piece of work is part of our technical series [angular-vietnam/100-days-of-angular][100days] which aims at enabling everyone, after 100 days of learning Angular with us, to **self-build their application with the similar scale**. Our desire is to advocate and grow the Angular developer community in Vietnam.
+This piece of work is also part of our technical series [angular-vietnam/100-days-of-angular][100days] which aims at enabling everyone, after 100 days of learning Angular with us, to **self-build their application with the similar scale**. Our desire is to advocate and grow the Angular developer community in Vietnam.
 
 [zyllem]: https://www.zyllem.com/
 
@@ -84,7 +84,10 @@ While working with this application, I have the opportunity to revisit some of t
 - Scrollable layout with Flexbox
 - Deploy Angular application to Netlify
 
-I will take two weeks break to continue working with the [typescript-data-structures][typescript-dsa] repo.
+I will take two weeks break to:
+
+- Fix bugs and UI enhancements for Angular Jira clone.
+- Continue working with the [typescript-data-structures][typescript-dsa] repo.
 
 [typescript-dsa]: https://github.com/trungk18/typescript-data-structures
 
@@ -92,6 +95,7 @@ I will take two weeks break to continue working with the [typescript-data-struct
 
 > July 10 - 25, 2020
 
+- [ ] Refactor the mono repo to use Nx Workspace
 - [ ] GraphQL API and store data on the actual database
 - [ ] Authentication
 - [ ] Websocket realtime update
@@ -99,11 +103,11 @@ I will take two weeks break to continue working with the [typescript-data-struct
 
 ## Tutorial
 
-When I look at the application, it is huge. When the task is huge, you don't know where and how to start working with them. I started to break the big task into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need is to follow the plan. That's is my approach.
+When I look at the application, it is huge. When the task is huge, you usually don't know where and how to start working with them. I started to break the big task into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need is to follow the plan. That's is my approach.
 
 I learned a lot of stuff. I know you might also have a curiosity about the process of building the same scale app as well. That's why I am writing a tutorial series on how I built Angular Jira clone from scratch. I hope you guys will learn something from that too :)
 
-Please bear with me for a little longer. Because with almost 50 hours coding, to write every single step is impossible. But hopefully through the tutorial, you will get the idea and can start building your idea very soon.
+I will try to be as detailed as possible. Hopefully through the tutorial, you will get the idea and will start working on your own application soon. Please bear with me.
 
 Its series will also be published in Vietnamese as part of our [angular-vietnam/100-days-of-angular][100days].
 
@@ -127,11 +131,11 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 
 ## Time spending
 
-I built it as the side project so It usually took longer than expected. One day, my team and I were fire fighting on PROD until 11 PM. After taking a shower, I continue with Angular Jira clone for another two hours...
+It is a side project that I only spent time outside of the office hours to work on. One day, my team and I were fire fighting on PROD until 11 PM. After taking a shower, I continue with Angular Jira clone for another two hours...
 
 According to waka time report, I have spent about 45 hours working on this project. Which is equivalent to watch the [whole Stranger Things series twice][stranger].
 
-I enjoyed working on this project. The interactive kanban board took me sometimes, it is challenging but exciting at the same time.
+I really enjoyed working on this project. The interactive kanban board took me sometimes, it is challenging but exciting at the same time.
 
 [stranger]: [https://www.bingeclock.com/s/stranger-things/]
 
@@ -147,7 +151,7 @@ I built a very simple NestJS API to send a fixed data structure to the client. A
 
 ### Proper authentication system 🔐
 
-I am currently sending a fixed email and a random password to the server to get the current user back. Phase 2 will also bring a proper authentication system.
+I am currently sending the same email and a random password to the server without any check to get the current user back. Phase 2 will also bring a proper authentication system.
 
 ### Accessibility ♿
 
@@ -157,14 +161,18 @@ Not all components have properly defined [aria attributes](https://developer.moz
 
 - `git clone https://github.com/trungk18/jira-clone-angular.git`
 - `cd jira-clone-angular`
-- `npm run install-dependencies`
 - `npm run start:back` for the API
+- The API server should run on `http://localhost:3000`
 - `npm run start:front` for angular web application
-- App should now be running on `http://localhost:4200/`
+- The app should run on `http://localhost:4200/`
 
 ### Unit/Integration tests 🧪
 
 I skipped writing test for this project. I might do it for the proper backend GraphQL API.
+
+## Compatibility
+
+It was being tested on IE 11, Chrome and Firefox. For Safari, there are some minor alignment issues.
 
 ## Author: Trung Vo ✍️
 
@@ -180,7 +188,9 @@ If you'd like to contribute, please fork the repository and make changes as you'
 
 ## Credits
 
-Inspired by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][datlyfe]
+Inspired by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][datlyfe].
+
+I reused part of the HTML and CSS code from these projects.
 
 ## License
 
