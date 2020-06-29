@@ -34,6 +34,18 @@
     },
     "api-interfaces": {
       "tags": []
+    },
+    "api-config": {
+      "tags": []
+    },
+    "api-types": {
+      "tags": []
+    },
+    "api-caching": {
+      "tags": []
+    },
+    "api-common": {
+      "tags": []
     }
   }
 }
