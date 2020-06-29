@@ -100,11 +100,11 @@ I will take two weeks break to continue working with the [typescript-data-struct
 
 ## Tutorial
 
-When I look at the application, it is huge. When the task is huge, you don't know where and how to start working with them. I started to break the big task into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need is to follow the plan. That's is my approach.
+When I look at the application, it is huge. When the task is huge, you usually don't know where and how to start working with them. I started to break the big task into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need is to follow the plan. That's is my approach.
 
 I learned a lot of stuff. I know you might also have a curiosity about the process of building the same scale app as well. That's why I am writing a tutorial series on how I built Angular Jira clone from scratch. I hope you guys will learn something from that too :)
 
-Because with almost 45 hours coding, to write every single step is impossible. But I will try to be as detail as possible. Hopefully through the tutorial, you will get the idea and can start building your idea very soon. Please bear with me.
+I will try to be as detailed as possible. Hopefully through the tutorial, you will get the idea and will start working on your own application soon. Please bear with me.
 
 Its series will also be published in Vietnamese as part of our [angular-vietnam/100-days-of-angular][100days].
 
