@@ -19,10 +19,10 @@ export class ProjectGuard implements CanActivate {
   }
 
   getFromStoreOrApi(): Observable<ProjectState> {
-    return combineLatest([this._projectQuery.all$, this._projectQuery.isLoading$]).pipe(      
-      map(([state, loading]) => {       
+    return combineLatest([this._projectQuery.all$, this._projectQuery.isLoading$]).pipe(
+      map(([state, loading]) => {
         if (!loading) {
-          this._projectService.getProject().subscribe();
+          this._projectService.getProject();
         }
         return state;
       }),

@@ -24,9 +24,9 @@ export class ProjectService {
     this._store.setLoading(isLoading);
   }
 
-  getProject(): Subscription {
+  getProject() {
     this.setLoading(true);
-    return this._http
+    this._http
       .get<JProject>(`${this.baseUrl}/project`)
       .pipe(
         map((project) => {
