@@ -1,6 +1,6 @@
 {
   "name": "jira-clone-angular",
-  "version": "1.0.0.alpha1",
+  "version": "1.0.0",
   "description": "A simplified Jira clone built with Angular 9 and Akita",
   "scripts": {
     "install-dependencies": "npm run install-dependencies-front && npm run install-dependencies-back",
