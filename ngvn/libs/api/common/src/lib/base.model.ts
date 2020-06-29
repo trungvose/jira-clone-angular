@@ -43,7 +43,7 @@ export class BaseModel {
   }
 }
 
-export abstract class BaseVm {
+export abstract class BaseDto {
   @ApiPropertyOptional({ type: String, format: 'date-time' })
   @AutoMap()
   createdAt?: Date;

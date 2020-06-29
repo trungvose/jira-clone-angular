@@ -285,6 +285,121 @@
           }
         }
       }
+    },
+    "api-user": {
+      "root": "libs/api/user",
+      "sourceRoot": "libs/api/user/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/api/user/tsconfig.lib.json", "libs/api/user/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/api/user/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/user/jest.config.js",
+            "tsConfig": "libs/api/user/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-dtos": {
+      "root": "libs/api/dtos",
+      "sourceRoot": "libs/api/dtos/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/api/dtos/tsconfig.lib.json", "libs/api/dtos/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/api/dtos/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/dtos/jest.config.js",
+            "tsConfig": "libs/api/dtos/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-mappings": {
+      "root": "libs/api/mappings",
+      "sourceRoot": "libs/api/mappings/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/api/mappings/tsconfig.lib.json", "libs/api/mappings/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/api/mappings/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/mappings/jest.config.js",
+            "tsConfig": "libs/api/mappings/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-role": {
+      "root": "libs/api/role",
+      "sourceRoot": "libs/api/role/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/api/role/tsconfig.lib.json", "libs/api/role/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/api/role/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/role/jest.config.js",
+            "tsConfig": "libs/api/role/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-permission": {
+      "root": "libs/api/permission",
+      "sourceRoot": "libs/api/permission/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/api/permission/tsconfig.lib.json", "libs/api/permission/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/api/permission/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/permission/jest.config.js",
+            "tsConfig": "libs/api/permission/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

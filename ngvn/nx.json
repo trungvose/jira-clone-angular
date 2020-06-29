@@ -46,6 +46,21 @@
     },
     "api-common": {
       "tags": []
+    },
+    "api-user": {
+      "tags": []
+    },
+    "api-dtos": {
+      "tags": []
+    },
+    "api-mappings": {
+      "tags": []
+    },
+    "api-role": {
+      "tags": []
+    },
+    "api-permission": {
+      "tags": []
     }
   }
 }

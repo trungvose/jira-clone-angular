@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
@@ -20,7 +21,12 @@
       "@ngvn/api/config": ["libs/api/config/src/index.ts"],
       "@ngvn/api/types": ["libs/api/types/src/index.ts"],
       "@ngvn/api/caching": ["libs/api/caching/src/index.ts"],
-      "@ngvn/api/common": ["libs/api/common/src/index.ts"]
+      "@ngvn/api/common": ["libs/api/common/src/index.ts"],
+      "@ngvn/api/user": ["libs/api/user/src/index.ts"],
+      "@ngvn/api/dtos": ["libs/api/dtos/src/index.ts"],
+      "@ngvn/api/mappings": ["libs/api/mappings/src/index.ts"],
+      "@ngvn/api/role": ["libs/api/role/src/index.ts"],
+      "@ngvn/api/permission": ["libs/api/permission/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
