@@ -103,7 +103,7 @@ When I look at the application, it is huge. When the task is huge, you don't kno
 
 I learned a lot of stuff. I know you might also have a curiosity about the process of building the same scale app as well. That's why I am writing a tutorial series on how I built Angular Jira clone from scratch. I hope you guys will learn something from that too :)
 
-Please bear with me for a little longer. Because with almost 50 hours coding, to write every single step is impossible. But hopefully through the tutorial, you will get the idea and can start building your idea very soon.
+Because with almost 45 hours coding, to write every single step is impossible. But I will try to be as detail as possible. Hopefully through the tutorial, you will get the idea and can start building your idea very soon. Please bear with me.
 
 Its series will also be published in Vietnamese as part of our [angular-vietnam/100-days-of-angular][100days].
 
@@ -127,7 +127,7 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 
 ## Time spending
 
-I built it as the side project so It usually took longer than expected. One day, my team and I were fire fighting on PROD until 11 PM. After taking a shower, I continue with Angular Jira clone for another two hours...
+It is a side project that I only spent time outside of the working hours to working on. One day, my team and I were fire fighting on PROD until 11 PM. After taking a shower, I continue with Angular Jira clone for another two hours...
 
 According to waka time report, I have spent about 45 hours working on this project. Which is equivalent to watch the [whole Stranger Things series twice][stranger].
 
@@ -147,7 +147,7 @@ I built a very simple NestJS API to send a fixed data structure to the client. A
 
 ### Proper authentication system 🔐
 
-I am currently sending a fixed email and a random password to the server to get the current user back. Phase 2 will also bring a proper authentication system.
+I am currently sending the same email and a random password to the server without any check to get the current user back. Phase 2 will also bring a proper authentication system.
 
 ### Accessibility ♿
 
@@ -157,14 +157,18 @@ Not all components have properly defined [aria attributes](https://developer.moz
 
 - `git clone https://github.com/trungk18/jira-clone-angular.git`
 - `cd jira-clone-angular`
-- `npm run install-dependencies`
 - `npm run start:back` for the API
+- The API server should run on `http://localhost:3000`
 - `npm run start:front` for angular web application
-- App should now be running on `http://localhost:4200/`
+- The app should run on `http://localhost:4200/`
 
 ### Unit/Integration tests 🧪
 
 I skipped writing test for this project. I might do it for the proper backend GraphQL API.
+
+## Compatibility
+
+It was being tested on IE 11, Chrome and Firefox. For Safari, there are some minor alignment issues.
 
 ## Author: Trung Vo ✍️
 
@@ -180,7 +184,9 @@ If you'd like to contribute, please fork the repository and make changes as you'
 
 ## Credits
 
-Inspired by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][datlyfe]
+Inspired by [oldboyxx/jira_clone][oldboyxx] and [Datlyfe/jira_clone][datlyfe].
+
+I reused part of the HTML and CSS code from these projects.
 
 ## License
 
