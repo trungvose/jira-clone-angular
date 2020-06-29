@@ -26,8 +26,6 @@ export class User extends BaseModel {
   password: string;
   @prop({ default: uuid() })
   refreshTokenId: string;
-  @prop({ default: null })
-  verify: Date;
   @prop({ ref: Role, autopopulate: true, default: null })
   @AutoMap(() => Role)
   role: Ref<Role>;
