@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { arrayRemove, arrayUpsert } from '@datorama/akita';
+import { arrayRemove, arrayUpsert, setLoading } from '@datorama/akita';
 import { JComment } from '@trungk18/interface/comment';
 import { JIssue } from '@trungk18/interface/issue';
 import { JProject } from '@trungk18/interface/project';
-import { of, Subscription } from 'rxjs';
-import { catchError, finalize, map } from 'rxjs/operators';
+import { DateUtil } from '@trungk18/project/utils/date';
+import { of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProjectStore } from './project.store';
-import { DateUtil } from '@trungk18/project/utils/date';
 
 @Injectable({
   providedIn: 'root'
@@ -25,20 +25,17 @@ export class ProjectService {
   }
 
   getProject() {
-    this.setLoading(true);
     this._http
       .get<JProject>(`${this.baseUrl}/project`)
       .pipe(
-        map((project) => {
+        setLoading(this._store),
+        tap((project) => {
           this._store.update((state) => {
             return {
               ...state,
               ...project
             };
           });
-        }),
-        finalize(() => {
-          this.setLoading(false);
         }),
         catchError((error) => {
           this._store.setError(error);
