@@ -1,5 +1,5 @@
 import { BaseModel, useMongoosePlugin } from '@ngvn/api/common';
-import { Role } from '@ngvn/api/role';
+import { Permission } from '@ngvn/api/permission';
 import { prop, Ref } from '@typegoose/typegoose';
 import { AutoMap } from 'nestjsx-automapper';
 import { v4 as uuid } from 'uuid';
@@ -26,7 +26,7 @@ export class User extends BaseModel {
   password: string;
   @prop({ default: uuid() })
   refreshTokenId: string;
-  @prop({ ref: Role, autopopulate: true, default: null })
-  @AutoMap(() => Role)
-  role: Ref<Role>;
+  @prop({ ref: () => Permission, autopopulate: true, default: [] })
+  @AutoMap(() => Permission)
+  permissions: Ref<Permission>[];
 }

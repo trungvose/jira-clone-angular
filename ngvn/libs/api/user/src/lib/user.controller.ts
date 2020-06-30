@@ -3,7 +3,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ApiErrors, ApiOperationId, CurrentUser } from '@ngvn/api/common';
 import { AuthUserDto, UserInformationDto } from '@ngvn/api/dtos';
-import { PermissionGuard, PermissionNames, Privilege } from '@ngvn/api/permission';
+import { PermissionGuard } from '@ngvn/api/permission';
+import { PermissionNames, Privilege } from '@ngvn/shared/permission';
 import { UserService } from './user.service';
 import { User } from './user.model';
 

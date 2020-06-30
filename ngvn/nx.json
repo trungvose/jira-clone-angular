@@ -56,9 +56,6 @@
     "api-mappings": {
       "tags": []
     },
-    "api-role": {
-      "tags": []
-    },
     "api-permission": {
       "tags": []
     },
@@ -72,6 +69,9 @@
       "tags": []
     },
     "background-user-job": {
+      "tags": []
+    },
+    "shared-permission": {
       "tags": []
     }
   }

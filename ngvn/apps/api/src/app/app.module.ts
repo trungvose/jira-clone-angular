@@ -4,7 +4,6 @@ import { ApiAuthModule } from '@ngvn/api/auth';
 import { ApiCachingModule } from '@ngvn/api/caching';
 import { ApiConfigModule, dbConfiguration } from '@ngvn/api/config';
 import '@ngvn/api/mappings';
-import { ApiRoleModule } from '@ngvn/api/role';
 import { ApiSecurityModule } from '@ngvn/api/security';
 import { DbConfig } from '@ngvn/api/types';
 import { ApiUserModule } from '@ngvn/api/user';
@@ -31,7 +30,6 @@ import { AutomapperModule } from 'nestjsx-automapper';
     ApiCachingModule,
     ApiAuthModule,
     ApiUserModule,
-    ApiRoleModule,
     ApiSecurityModule,
     BackgroundUserJobModule,
   ],

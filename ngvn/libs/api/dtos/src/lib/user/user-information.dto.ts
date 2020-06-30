@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseDto } from '@ngvn/api/common';
 import { AutoMap } from 'nestjsx-automapper';
+import { PermissionDto } from '../auth';
 
 export class UserInformationDto extends BaseDto {
   @ApiProperty()
@@ -15,7 +16,6 @@ export class UserInformationDto extends BaseDto {
   @ApiProperty()
   @AutoMap()
   fullName: string;
-  @ApiProperty({ type: Object, additionalProperties: { type: 'integer' } })
-  @AutoMap()
-  permissions: { [key: string]: number };
+  @ApiProperty({ type: PermissionDto, isArray: true, default: [] })
+  permissions: PermissionDto[];
 }

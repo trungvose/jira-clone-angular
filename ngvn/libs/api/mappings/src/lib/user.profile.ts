@@ -1,33 +1,55 @@
-import { AuthUserDto, RoleDto, UserDto, UserInformationDto } from '@ngvn/api/dtos';
+import { AuthUserDto, PermissionDto, UserInformationDto } from '@ngvn/api/dtos';
 import { Permission } from '@ngvn/api/permission';
-import { Role } from '@ngvn/api/role';
 import { User } from '@ngvn/api/user';
-import { Profile, ProfileBase, AutoMapper, mapWith, mapFrom } from 'nestjsx-automapper';
+import { PermissionType } from '@ngvn/shared/permission';
+import { AutoMapper, ignore, mapFrom, mapWith, Profile, ProfileBase } from 'nestjsx-automapper';
 
 @Profile()
 export class UserProfile extends ProfileBase {
-  constructor(mapper: AutoMapper) {
+  constructor(private mapper: AutoMapper) {
     super();
-    mapper.createMap(User, UserDto).reverseMap();
-    mapper.createMap(User, AuthUserDto).forMember(
-      (d) => d.role,
-      mapWith(RoleDto, (s) => s.role),
-    );
+    mapper
+      .createMap(User, AuthUserDto)
+      .forMember((d) => d.permissions, ignore())
+      .afterMap(this.userPermissionsAfterMap);
     mapper
       .createMap(User, UserInformationDto)
       .forMember(
         (d) => d.fullName,
         mapFrom((s) => s.firstName + ' ' + s.lastName),
       )
-      .forMember((d) => d.permissions, mapFrom(this.permissionsMap.bind(this)));
+      .forMember((d) => d.permissions, ignore())
+      .afterMap(this.userPermissionsAfterMap);
   }
 
-  private permissionsMap(source: User): { [key: string]: number } {
-    return (source.role as Role).permissions.reduce(this.permissionReducer, {});
+  private userPermissionsAfterMap(source: User, destination: UserInformationDto | AuthUserDto): void {
+    destination.permissions = [];
+    (source.permissions as Permission[])
+      .filter((p) => p.type === PermissionType.Team)
+      .reduce(this.permissionReducer('team'), destination.permissions);
+    (source.permissions as Permission[])
+      .filter((p) => p.type === PermissionType.Project)
+      .reduce(this.permissionReducer('project'), destination.permissions);
   }
 
-  private permissionReducer(entity: { [key: string]: number }, permission: Permission): typeof entity {
-    entity[permission.group] = permission.score;
-    return entity;
+  private permissionReducer(field: 'team' | 'project') {
+    const dtoField = field + 's';
+    const idField = field + 'Id';
+    return <T extends Permission>(acc: PermissionDto[], cur: T) => {
+      const dto = this.mapper.map(cur, PermissionDto, Permission, {
+        afterMap: (_, destination) => (destination[dtoField] = []),
+      });
+      const found = acc.find(
+        (x) =>
+          x.name === cur.permissionName && x.score === cur.privilege && x[dtoField]?.includes(cur[idField].toString()),
+      );
+      if (found) {
+        found[dtoField].push(cur[idField].toString());
+      } else {
+        dto[dtoField] = [cur[idField].toString()];
+        acc.push(dto);
+      }
+      return acc;
+    };
   }
 }

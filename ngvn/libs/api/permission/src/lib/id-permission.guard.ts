@@ -5,12 +5,14 @@ import { PermissionNames, Privilege } from '@ngvn/shared/permission';
 import { getAuthUser } from './utils/get-auth-user.util';
 import { hasPrivilege } from './utils/has-privilege.util';
 
-export const PermissionGuard: (name: PermissionNames, privilege: Privilege) => CanActivate = memoize(
-  createPermissionGuard,
+export const IdPermissionGuard: (name: PermissionNames, privilege: Privilege, id: string) => CanActivate = memoize(
+  createIdPermissionGuard,
 );
 
-function createPermissionGuard(name: PermissionNames, privilege: Privilege): Constructor<CanActivate> {
-  class MixinPermissionGuard implements CanActivate {
+function createIdPermissionGuard(name: PermissionNames, privilege: Privilege, id: string): Constructor<CanActivate> {
+  const field = name.split('.')[0] + 's';
+
+  class MixinIdPermissionGuard implements CanActivate {
     canActivate(context: ExecutionContext): boolean {
       const currentUser = getAuthUser(context);
       const hasPermission = () => {
@@ -18,12 +20,12 @@ function createPermissionGuard(name: PermissionNames, privilege: Privilege): Con
           return false;
         }
 
-        return currentUser.permissions.some(hasPrivilege(name, privilege));
+        return currentUser.permissions.some((p) => hasPrivilege(name, privilege)(p) && p[field].includes(id));
       };
 
       return currentUser && hasPermission();
     }
   }
 
-  return mixin(MixinPermissionGuard);
+  return mixin(MixinIdPermissionGuard);
 }
