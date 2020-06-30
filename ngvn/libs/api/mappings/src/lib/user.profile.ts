@@ -2,7 +2,7 @@ import { AuthUserDto, PermissionDto, UserInformationDto } from '@ngvn/api/dtos';
 import { Permission } from '@ngvn/api/permission';
 import { User } from '@ngvn/api/user';
 import { PermissionType } from '@ngvn/shared/permission';
-import { AutoMapper, ignore, mapFrom, mapWith, Profile, ProfileBase } from 'nestjsx-automapper';
+import { AutoMapper, ignore, mapFrom, Profile, ProfileBase } from 'nestjsx-automapper';
 
 @Profile()
 export class UserProfile extends ProfileBase {
@@ -23,11 +23,14 @@ export class UserProfile extends ProfileBase {
   }
 
   private userPermissionsAfterMap(source: User, destination: UserInformationDto | AuthUserDto): void {
-    destination.permissions = [];
-    (source.permissions as Permission[])
+    const sourcePermissions = source.permissions as Permission[];
+    destination.permissions = sourcePermissions
+      .filter((sp) => sp.type === PermissionType.System)
+      .map((p) => this.mapper.map(p, PermissionDto, Permission));
+    sourcePermissions
       .filter((p) => p.type === PermissionType.Team)
       .reduce(this.permissionReducer('team'), destination.permissions);
-    (source.permissions as Permission[])
+    sourcePermissions
       .filter((p) => p.type === PermissionType.Project)
       .reduce(this.permissionReducer('project'), destination.permissions);
   }

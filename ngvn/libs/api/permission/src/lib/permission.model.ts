@@ -21,7 +21,7 @@ export class Permission extends BaseModel {
   })
   @AutoMap()
   privilege: number;
-  @prop({ required: true, index: true, enum: PermissionType })
+  @prop({ required: true, index: true, enum: PermissionType, default: PermissionType.System })
   @AutoMap()
   type: PermissionType;
 }
