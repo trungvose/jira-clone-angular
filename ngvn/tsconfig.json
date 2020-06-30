@@ -26,7 +26,11 @@
       "@ngvn/api/dtos": ["libs/api/dtos/src/index.ts"],
       "@ngvn/api/mappings": ["libs/api/mappings/src/index.ts"],
       "@ngvn/api/role": ["libs/api/role/src/index.ts"],
-      "@ngvn/api/permission": ["libs/api/permission/src/index.ts"]
+      "@ngvn/api/permission": ["libs/api/permission/src/index.ts"],
+      "@ngvn/api/auth": ["libs/api/auth/src/index.ts"],
+      "@ngvn/api/security": ["libs/api/security/src/index.ts"],
+      "@ngvn/background/common": ["libs/background/common/src/index.ts"],
+      "@ngvn/background/user-job": ["libs/background/user-job/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

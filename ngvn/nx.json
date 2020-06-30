@@ -61,6 +61,18 @@
     },
     "api-permission": {
       "tags": []
+    },
+    "api-auth": {
+      "tags": []
+    },
+    "api-security": {
+      "tags": []
+    },
+    "background-common": {
+      "tags": []
+    },
+    "background-user-job": {
+      "tags": []
     }
   }
 }
