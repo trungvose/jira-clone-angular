@@ -106,6 +106,7 @@
     "eslint": "7.3.1",
     "jest": "26.1.0",
     "jest-preset-angular": "8.2.1",
+    "migrate-mongo": "7.2.1",
     "prettier": "2.0.5",
     "ts-jest": "26.1.1",
     "ts-node": "8.10.2",
