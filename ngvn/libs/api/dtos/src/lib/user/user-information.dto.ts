@@ -1,21 +1,22 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { BaseDto } from '@ngvn/api/common';
 import { AutoMap } from 'nestjsx-automapper';
 import { PermissionDto } from '../auth';
 
+@ObjectType()
 export class UserInformationDto extends BaseDto {
-  @ApiProperty()
+  @Field()
   @AutoMap()
   email: string;
-  @ApiProperty()
+  @Field()
   @AutoMap()
   firstName: string;
-  @ApiProperty()
+  @Field()
   @AutoMap()
   lastName: string;
-  @ApiProperty()
+  @Field()
   @AutoMap()
   fullName: string;
-  @ApiProperty({ type: PermissionDto, isArray: true, default: [] })
+  @Field(() => [PermissionDto])
   permissions: PermissionDto[];
 }

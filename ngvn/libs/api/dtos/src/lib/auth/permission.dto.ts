@@ -1,19 +1,20 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { PermissionType } from '@ngvn/shared/permission';
 import { AutoMap } from 'nestjsx-automapper';
 
+@ObjectType()
 export class PermissionDto {
-  @ApiProperty()
+  @Field()
   @AutoMap()
-  name: string;
-  @ApiProperty()
+  readonly name: string;
+  @Field(() => Int)
   @AutoMap()
-  score: number;
-  @ApiProperty({ enumName: 'PermissionType', enum: PermissionType })
+  readonly score: number;
+  @Field(() => PermissionType)
   @AutoMap()
-  type: PermissionType;
-  @ApiProperty({ type: String, default: [] })
+  readonly type: PermissionType;
+  @Field(() => [String])
   teams: string[];
-  @ApiProperty({ type: String, default: [] })
+  @Field(() => [String])
   projects: string[];
 }

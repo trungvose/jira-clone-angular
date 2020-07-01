@@ -11,7 +11,7 @@ export class UserProfile extends ProfileBase {
     mapper
       .createMap(User, AuthUserDto)
       .forMember((d) => d.permissions, ignore())
-      .afterMap(this.userPermissionsAfterMap);
+      .afterMap(this.userPermissionsAfterMap.bind(this));
     mapper
       .createMap(User, UserInformationDto)
       .forMember(
@@ -19,7 +19,7 @@ export class UserProfile extends ProfileBase {
         mapFrom((s) => s.firstName + ' ' + s.lastName),
       )
       .forMember((d) => d.permissions, ignore())
-      .afterMap(this.userPermissionsAfterMap);
+      .afterMap(this.userPermissionsAfterMap.bind(this));
   }
 
   private userPermissionsAfterMap(source: User, destination: UserInformationDto | AuthUserDto): void {

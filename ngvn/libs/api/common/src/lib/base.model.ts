@@ -1,5 +1,5 @@
+import { Field, ObjectType } from '@nestjs/graphql';
 import { ModelDefinition } from '@nestjs/mongoose';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { buildSchema, modelOptions, prop, Severity } from '@typegoose/typegoose';
 import { Schema } from 'mongoose';
 import { AutoMap } from 'nestjsx-automapper';
@@ -43,17 +43,21 @@ export class BaseModel {
   }
 }
 
+@ObjectType({ isAbstract: true })
 export abstract class BaseDto {
-  @ApiPropertyOptional({ type: String, format: 'date-time' })
+  @Field()
   @AutoMap()
   createdAt?: Date;
-  @ApiPropertyOptional({ type: String, format: 'date-time' })
+
+  @Field()
   @AutoMap()
   updatedAt?: Date;
-  @ApiPropertyOptional()
+
+  @Field({ nullable: true })
   @AutoMap()
   id?: string;
-  @ApiProperty()
+
+  @Field()
   @AutoMap()
   isActive: boolean;
 }

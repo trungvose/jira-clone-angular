@@ -1,12 +1,13 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { Field, ObjectType } from '@nestjs/graphql';
 import addMilliseconds from 'date-fns/addMilliseconds';
 import parse from 'date-fns/parse';
 import ms from 'ms';
 
+@ObjectType()
 export class TokenResultDto {
-  @ApiProperty()
+  @Field()
   token: string;
-  @ApiProperty({ type: String, format: 'date-time' })
+  @Field()
   expiry: Date;
 
   computeExpiry(jwtExpired: string) {

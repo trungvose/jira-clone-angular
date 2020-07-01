@@ -4,6 +4,6 @@ import { PermissionDto } from './permission.dto';
 
 export class AuthUserDto extends BaseDto {
   @AutoMap()
-  email: string;
+  readonly email: string;
   permissions: PermissionDto[];
 }

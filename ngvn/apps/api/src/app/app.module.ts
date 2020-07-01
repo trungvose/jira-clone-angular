@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ApiAuthModule } from '@ngvn/api/auth';
 import { ApiCachingModule } from '@ngvn/api/caching';
 import { ApiConfigModule, dbConfiguration } from '@ngvn/api/config';
 import '@ngvn/api/mappings';
+import { ApiPermissionModule } from '@ngvn/api/permission';
 import { ApiSecurityModule } from '@ngvn/api/security';
 import { DbConfig } from '@ngvn/api/types';
 import { ApiUserModule } from '@ngvn/api/user';
@@ -26,10 +28,23 @@ import { AutomapperModule } from 'nestjsx-automapper';
       }),
     }),
     AutomapperModule.withMapper(),
+    GraphQLModule.forRootAsync({
+      useFactory: () => {
+        console.log(__dirname);
+        return {
+          autoSchemaFile: 'schema.gql',
+          context: ({ req, res }) => ({ req, res }),
+          debug: true,
+          playground: true,
+          include: [ApiSecurityModule, ApiUserModule],
+        };
+      },
+    }),
     ApiConfigModule,
     ApiCachingModule,
     ApiAuthModule,
     ApiUserModule,
+    ApiPermissionModule,
     ApiSecurityModule,
     BackgroundUserJobModule,
   ],

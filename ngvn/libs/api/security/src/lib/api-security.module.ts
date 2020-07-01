@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ApiAuthModule } from '@ngvn/api/auth';
 import { ApiUserModule } from '@ngvn/api/user';
-import { SecurityController } from './security.controller';
+import { SecurityResolver } from './security.resolver';
 import { SecurityService } from './security.service';
 
 @Module({
   imports: [ApiAuthModule, ApiUserModule],
-  controllers: [SecurityController],
-  providers: [SecurityService],
+  providers: [SecurityService, SecurityResolver],
 })
-export class ApiSecurityModule {}
+export class ApiSecurityModule {
+}

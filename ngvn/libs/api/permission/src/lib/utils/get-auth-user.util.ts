@@ -1,7 +1,7 @@
 import { ExecutionContext } from '@nestjs/common';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthUserDto } from '@ngvn/api/dtos';
-import { Request } from 'express';
 
 export function getAuthUser(context: ExecutionContext): AuthUserDto {
-  return (context.switchToHttp().getRequest<Request>() as any).user as AuthUserDto;
+  return GqlExecutionContext.create(context).getContext().req.user as AuthUserDto;
 }

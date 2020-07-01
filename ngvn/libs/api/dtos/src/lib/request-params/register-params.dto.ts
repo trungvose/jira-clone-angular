@@ -1,7 +1,10 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ArgsType, Field } from '@nestjs/graphql';
 import { LoginParamsDto } from './login-params.dto';
 
+@ArgsType()
 export class RegisterParamsDto extends LoginParamsDto {
-  @ApiProperty() firstName: string;
-  @ApiProperty() lastName: string;
+  @Field()
+  firstName: string;
+  @Field()
+  lastName: string;
 }

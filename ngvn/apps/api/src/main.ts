@@ -5,7 +5,6 @@
 
 import { HttpStatus, Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from '@ngvn/api/common';
 import { appConfiguration, arenaConfiguration, redisConfiguration } from '@ngvn/api/config';
 import { AppConfig, ArenaConfig, RedisConfig } from '@ngvn/api/types';
@@ -43,28 +42,9 @@ async function bootstrap() {
     },
     arenaConfig,
   );
-  const arenaEndpoint = `/${globalPrefix}/arena`;
+  const arenaEndpoint = `/${ globalPrefix }/arena`;
   app.use(arenaEndpoint, arena);
-  Logger.log(`Arena: ${appConfig.domain}${arenaEndpoint}`, 'NestApplication');
-
-  const swaggerDocOptions = new DocumentBuilder()
-    .setTitle('Jira Clone API')
-    .setDescription('API documentation for Jira Clone')
-    .setVersion('1.0.0')
-    .addServer(`${appConfig.domain}/${globalPrefix}`, 'Development API')
-    .addBearerAuth()
-    .addCookieAuth('rtok')
-    .build();
-
-  const swaggerDoc = SwaggerModule.createDocument(app, swaggerDocOptions);
-  SwaggerModule.setup('api/docs', app, swaggerDoc, {
-    swaggerOptions: {
-      docExpansion: 'none',
-      filter: true,
-      showRequestDuration: true,
-    },
-  });
-  Logger.log(`Swagger Docs enabled: ${appConfig.domain}/${globalPrefix}/docs`, 'NestApplication');
+  Logger.log(`Arena: ${ appConfig.domain }${ arenaEndpoint }`, 'NestApplication');
 
   app.use('/robots.txt', (_, res) => {
     res.send('User-Agent: *\n' + 'Disallow: /');
