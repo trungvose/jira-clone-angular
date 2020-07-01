@@ -1,7 +1,8 @@
-import { HttpStatus } from '@nestjs/common';
-import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { UseGuards } from '@nestjs/common';
+import { Args, Context, Query, Mutation, Resolver } from '@nestjs/graphql';
+import { Cookie, CurrentUser, GqlAuthGuard } from '@ngvn/api/common';
 import { InjectAppConfig } from '@ngvn/api/config';
-import { LoginParamsDto, RegisterParamsDto, TokenResultDto } from '@ngvn/api/dtos';
+import { AuthUserDto, LoginParamsDto, RegisterParamsDto, TokenResultDto } from '@ngvn/api/dtos';
 import { AppConfig } from '@ngvn/api/types';
 import { Response } from 'express';
 import { SecurityService } from './security.service';
@@ -11,7 +12,16 @@ export class SecurityResolver {
   constructor(
     private readonly securityService: SecurityService,
     @InjectAppConfig() private readonly appConfig: AppConfig,
-  ) {
+  ) {}
+
+  @Query((returns) => TokenResultDto)
+  async refreshToken(@Cookie('rtok') refreshToken: string, @Context('res') res: Response): Promise<TokenResultDto> {
+    const [tokenResult, newToken] = await this.securityService.refresh(refreshToken);
+    res.cookie('rtok', newToken, {
+      httpOnly: true,
+      secure: this.appConfig.env !== 'development',
+    });
+    return tokenResult;
   }
 
   @Mutation((returns) => Boolean, { nullable: true })
@@ -22,11 +32,17 @@ export class SecurityResolver {
   @Mutation((returns) => TokenResultDto)
   async login(@Args() loginParams: LoginParamsDto, @Context('res') res: Response): Promise<TokenResultDto> {
     const [tokenResult, refreshToken] = await this.securityService.login(loginParams);
-    res
-      .cookie('rtok', refreshToken, {
-        httpOnly: true,
-        secure: this.appConfig.env !== 'development',
-      });
+    res.cookie('rtok', refreshToken, {
+      httpOnly: true,
+      secure: this.appConfig.env !== 'development',
+    });
     return tokenResult;
+  }
+
+  @Mutation((returns) => Boolean, { nullable: true })
+  @UseGuards(GqlAuthGuard)
+  async logout(@CurrentUser() { id }: AuthUserDto, @Context('res') res: Response): Promise<void> {
+    await this.securityService.revoke(id);
+    res.clearCookie('rtok');
   }
 }

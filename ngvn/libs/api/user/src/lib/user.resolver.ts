@@ -12,7 +12,7 @@ export class UserResolver {
   }
 
   @Query((returns) => UserInformationDto)
-  @UseGuards(GqlAuthGuard)
+  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.UserManage, Privilege.Read))
   async me(@CurrentUser() currentUser: AuthUserDto): Promise<UserInformationDto> {
     return await this.userService.getUserInformation(currentUser.id);
   }
