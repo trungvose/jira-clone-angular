@@ -6,7 +6,7 @@ import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
 import { combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap, debounceTime } from 'rxjs/operators';
+import { map, switchMap, debounceTime, startWith } from 'rxjs/operators';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { IssueModalComponent } from '../../issues/issue-modal/issue-modal.component';
 
@@ -32,7 +32,7 @@ export class SearchDrawerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let search$ = this.searchControl.valueChanges.pipe(debounceTime(50));
+    let search$ = this.searchControl.valueChanges.pipe(debounceTime(50), startWith(this.searchControl.value));
     this.recentIssues$ = this._projectQuery.issues$.pipe(map((issues) => issues.slice(0, 5)));
     this.results$ = combineLatest([search$, this._projectQuery.issues$]).pipe(
       untilDestroyed(this),
