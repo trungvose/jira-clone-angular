@@ -111,23 +111,12 @@ I will try to be as detailed as possible. Hopefully through the tutorial, you wi
 
 Its series will also be published in Vietnamese as part of our [angular-vietnam/100-days-of-angular][100days].
 
-| Part |                                                | Status      |
-| ---- | ---------------------------------------------- | ----------- |
-| 01   | Setup and configure project with CLI           | In Progress |
-| 02   | [Configure TailwindCSS][part2]                 | Done        |
-| 03   | Configure SVG definition and using custom icon |             |
-| 04   | Google Analytics and Angular                   |             |
-| 05   | Flexbox scrollable layout                      |             |
-| 06   | Layout and left navigation                     |             |
-| 07   | Akita                                          |             |
-| 08   | Deploy to Netlify                              |             |
-| 09   | Drag and drop                                  |             |
-| 10   | Content loader                                 |             |
-| 11   | Quill Editor                                   |             |
-| 12   | Build an inline editable text box              |             |
+| Part | Description                                                                     | Status |
+| ---- | ------------------------------------------------------------------------------- | ------ |
+| 01   | [Create a new repository and set up a new Angular application with CLI][part01] | Done   |
 
+[part01]: https://trungk18.com/experience/angular-jira-clone-tutorial-01-planning-and-set-up
 [todo-list]: https://www.notion.so/trungk18/Tasks-636be5c5c0dd4d8cab30808e4e41facc
-[part2]: https://trungk18.com/experience/configure-tailwind-css-with-angular/
 
 ## Time spending
 
