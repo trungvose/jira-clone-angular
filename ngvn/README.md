@@ -67,6 +67,73 @@ This folder houses all related `libs` to be used for `apps` (either by a single 
 
 This folder is to house migration scripts for the project's database. [migrate-mongo](https://www.npmjs.com/package/migrate-mongo) is the npm package used to power the migrations.
 
+## Environment Variables
+
+The project does use **Environment Variables** provided from `process.env`, however, we don't use `.env` files as we think it is not robust enough. Plus, we would have to parse the environment variable
+as a whole.
+
+There are 5 (as of the moment) main configurations whose values can be provided by `process.env`:
+
+#### AppConfiguration
+
+Main application configuration like `host`, `port`, and `env` etc.
+
+| var name        | type     | default                 | description                                                                                                                                                              |
+| --------------- | -------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `APP_HOST`      | `string` | `localhost`             | The host of the application less the protocol                                                                                                                            |
+| `APP_PORT`      | `number` | `8080`                  | The port of the application                                                                                                                                              |
+| `APP_DOMAIN`    | `string` | `http://localhost:8080` | Full domain of the application                                                                                                                                           |
+| `NODE_ENV`      | `string` | `development`           | The environment that the application is running on. Most of the time, the cloud platform that the application is deployed will set `NODE_ENV` to `production` by default |
+| `CLIENT_DOMAIN` | `string` | `http://localhost:4200` | The domain of the frontend application. This is used to setup `CORS` for Cookie Authentication as well as email related (upcoming if needed) operations                  |
+
+#### ArenaConfiguration
+
+The `api` uses `bull-arena` as a dashboard for the **Bull Queues** defined in the application. It is a nice interface to interact with the **Queues** such as: view jobs, retry failed jobs, manually queue new job etc.
+
+| var name               | type      | default     | description                             |
+| ---------------------- | --------- | ----------- | --------------------------------------- |
+| `ARENA_DISABLE_LISTEN` | `boolean` | `false`     | Whether to turn on `bull-arena` or not  |
+| `ARENA_HOST`           | `string`  | `localhost` | The host that `bull-arena` will run on. |
+| `ARENA_PORT`           | `number`  | `8080`      | The port that `bull-arena` will run on. |
+
+#### AuthConfiguration
+
+This configuration will determine how `nestjs/passport` and `nestjs/jwt` behaves.
+
+| var name              | type     | default              | description                                                                           |
+| --------------------- | -------- | -------------------- | ------------------------------------------------------------------------------------- |
+| `JWT_SECRET`          | `string` | `superSecret!`       | The secret (for `accessToken`) that `jsonwebtoken` will use to sign the payload with. |
+| `JWT_EXPIRED`         | `string` | `15m`                | The expiration of `accessToken`                                                       |
+| `REFRESH_JWT_SECRET`  | `string` | `superSecretSecret!` | The secret (for `refreshToken`) that `jsonwebtoken` will use to sign the payload with |
+| `REFRESH_JWT_EXPIRED` | `string` | `7d`                 | The expiration of `refreshToken`                                                      |
+| `JWT_SALT`            | `number` | `12`                 | Salt value for `bcrypt`                                                               |
+
+#### DbConfiguration
+
+**MongoDB** configuration
+
+| var name               | type      | default                      | description                                                                          |
+| ---------------------- | --------- | ---------------------------- | ------------------------------------------------------------------------------------ |
+| MONGO_URI              | `string`  | `mongodb://localhost:27017/` | The URI that **MongoDB** will run on                                                 |
+| MONGO_DB_NAME          | `string`  | `jira-clone-local`           | The name of the database                                                             |
+| MONGO_RETRY_ATTEMPTS   | `number`  | `5`                          | The number of times `@nestjs/mongoose` will try to connect to the database if failed |
+| MONGO_RETRY_DELAY      | `number`  | `1000`                       | The delay between retries                                                            |
+| MONGO_FIND_AND_MODIFY  | `boolean` | `false`                      | `useFindAndModify` option                                                            |
+| MONGO_NEW_URL_PARSER   | `boolean` | `true`                       | `useNewUrlParser` option                                                             |
+| MONGO_CREATE_INDEX     | `boolean` | `true`                       | `useCreateIndex` option                                                              |
+| MONGO_UNIFIED_TOPOLOGY | `boolean` | `true`                       | `useUnifiedTopology` option                                                          |
+
+#### RedisConfiguration
+
+**Redis** configuration that will power `bull-arena`, `nestjs/bull`, and `CachingService`
+
+| var name            | type      | default     | description                                  |
+| ------------------- | --------- | ----------- | -------------------------------------------- |
+| REDIS_CACHE_ENABLED | `boolean` | `true`      | Whether **Redis** should be enabled          |
+| REDIS_HOST          | `string`  | `localhost` | The host that **Redis** will run on          |
+| REDIS_PORT          | `number`  | `6379`      | The port that **Redis** will run on          |
+| REDIS_TTL           | `number`  | `86400`     | Time-to-live configuration. Default to 1 day |
+
 ## Tech Stack
 
 - [Nx](https://nx.dev)
