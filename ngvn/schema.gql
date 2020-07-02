@@ -6,8 +6,8 @@ type PermissionDto {
   name: String!
   score: Int!
   type: PermissionType!
-  teams: [String!]!
-  projects: [String!]!
+  teams: [String!]
+  projects: [String!]
 }
 
 enum PermissionType {
@@ -40,9 +40,11 @@ type UserInformationDto {
 
 type Query {
   me: UserInformationDto!
+  refreshToken: TokenResultDto!
 }
 
 type Mutation {
   register(email: String!, password: String!, firstName: String!, lastName: String!): Boolean
   login(email: String!, password: String!): TokenResultDto!
+  logout: Boolean
 }

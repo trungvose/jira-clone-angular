@@ -1,7 +1,6 @@
 import { BaseModel, useMongoosePlugin } from '@ngvn/api/common';
-import { User } from '@ngvn/api/user';
 import { PermissionType, Privilege } from '@ngvn/shared/permission';
-import { modelOptions, prop, Ref } from '@typegoose/typegoose';
+import { modelOptions, prop } from '@typegoose/typegoose';
 import { AutoMap } from 'nestjsx-automapper';
 
 @useMongoosePlugin()

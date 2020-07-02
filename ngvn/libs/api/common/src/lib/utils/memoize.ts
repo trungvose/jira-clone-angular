@@ -3,11 +3,11 @@ const defaultKey = 'default';
 export function memoize(fn: Function) {
   const cache = {};
   return (...args) => {
-    const n = args[0] || defaultKey;
+    const n = args.reduce((key, arg) => key.concat('|', arg)) || defaultKey;
     if (n in cache) {
       return cache[n];
     } else {
-      const result = fn(n === defaultKey ? undefined : n);
+      const result = n === defaultKey ? fn() : fn(...args);
       cache[n] = result;
       return result;
     }

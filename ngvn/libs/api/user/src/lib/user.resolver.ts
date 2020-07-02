@@ -8,11 +8,10 @@ import { UserService } from './user.service';
 
 @Resolver()
 export class UserResolver {
-  constructor(private readonly userService: UserService) {
-  }
+  constructor(private readonly userService: UserService) {}
 
   @Query((returns) => UserInformationDto)
-  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.UserManage, Privilege.Read))
+  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.UserSelf, Privilege.Read))
   async me(@CurrentUser() currentUser: AuthUserDto): Promise<UserInformationDto> {
     return await this.userService.getUserInformation(currentUser.id);
   }

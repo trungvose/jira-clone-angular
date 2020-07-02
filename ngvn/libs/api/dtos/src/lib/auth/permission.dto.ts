@@ -13,8 +13,8 @@ export class PermissionDto {
   @Field(() => PermissionType)
   @AutoMap()
   readonly type: PermissionType;
-  @Field(() => [String])
+  @Field(() => [String], { nullable: true })
   teams: string[];
-  @Field(() => [String])
+  @Field(() => [String], { nullable: true })
   projects: string[];
 }
