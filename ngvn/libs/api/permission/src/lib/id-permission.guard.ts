@@ -20,10 +20,12 @@ function createIdPermissionGuard(name: PermissionNames, privilege: Privilege, id
           return false;
         }
 
-        return currentUser.permissions.some((p) => hasPrivilege(name, privilege)(p) && p[field].includes(id));
+        return currentUser.permissions.some(
+          (p) => hasPrivilege(name, privilege)(p) && p[field].some((oid) => oid.toString() === id),
+        );
       };
 
-      return currentUser && hasPermission();
+      return currentUser && (currentUser.isSystemAdmin || hasPermission());
     }
   }
 

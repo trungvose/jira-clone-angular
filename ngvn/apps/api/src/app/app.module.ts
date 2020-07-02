@@ -3,50 +3,35 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ApiAuthModule } from '@ngvn/api/auth';
 import { ApiCachingModule } from '@ngvn/api/caching';
-import { ApiConfigModule, dbConfiguration } from '@ngvn/api/config';
+import { ApiConfigModule, appConfiguration, dbConfiguration } from '@ngvn/api/config';
 import '@ngvn/api/mappings';
-import { ApiPermissionModule } from '@ngvn/api/permission';
-import { ApiSecurityModule } from '@ngvn/api/security';
-import { DbConfig } from '@ngvn/api/types';
-import { ApiUserModule } from '@ngvn/api/user';
-import { BackgroundUserJobModule } from '@ngvn/background/user-job';
+import { AppConfig, DbConfig } from '@ngvn/api/types';
 import { AutomapperModule } from 'nestjsx-automapper';
+import { ApiModule, apiModules } from './api.module';
+import { BackgroundModule } from './background.module';
 
 @Module({
   imports: [
     MongooseModule.forRootAsync({
       inject: [dbConfiguration.KEY],
-      useFactory: (dbConfig: DbConfig) => ({
-        uri: dbConfig.uri,
-        dbName: dbConfig.dbName,
-        retryAttempts: 5,
-        retryDelay: 1000,
-        useFindAndModify: false,
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true,
+      useFactory: (dbConfig: DbConfig) => dbConfig,
+    }),
+    GraphQLModule.forRootAsync({
+      inject: [appConfiguration.KEY],
+      useFactory: (appConfig: AppConfig) => ({
+        autoSchemaFile: 'schema.gql',
+        context: ({ req, res }) => ({ req, res }),
+        debug: appConfig.env === 'development',
+        playground: appConfig.env === 'development',
+        include: [...apiModules],
       }),
     }),
     AutomapperModule.withMapper(),
-    GraphQLModule.forRootAsync({
-      useFactory: () => {
-        console.log(__dirname);
-        return {
-          autoSchemaFile: 'schema.gql',
-          context: ({ req, res }) => ({ req, res }),
-          debug: true,
-          playground: true,
-          include: [ApiSecurityModule, ApiUserModule],
-        };
-      },
-    }),
     ApiConfigModule,
     ApiCachingModule,
     ApiAuthModule,
-    ApiUserModule,
-    ApiPermissionModule,
-    ApiSecurityModule,
-    BackgroundUserJobModule,
+    ApiModule,
+    BackgroundModule,
   ],
 })
 export class AppModule {}

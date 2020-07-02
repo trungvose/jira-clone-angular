@@ -21,7 +21,7 @@ function createPermissionGuard(name: PermissionNames, privilege: Privilege): Con
         return currentUser.permissions.some(hasPrivilege(name, privilege));
       };
 
-      return currentUser && hasPermission();
+      return currentUser && (currentUser.isSystemAdmin || hasPermission());
     }
   }
 

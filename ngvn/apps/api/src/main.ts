@@ -23,7 +23,6 @@ async function bootstrap() {
   const appConfig = app.get<AppConfig>(appConfiguration.KEY);
   app.enableCors({ credentials: true, origin: appConfig.clientDomain });
 
-  const globalPrefix = 'api';
   const redisConfig = app.get<RedisConfig>(redisConfiguration.KEY);
   const arenaConfig = app.get<ArenaConfig>(arenaConfiguration.KEY);
 
@@ -42,9 +41,9 @@ async function bootstrap() {
     },
     arenaConfig,
   );
-  const arenaEndpoint = `/${ globalPrefix }/arena`;
+  const arenaEndpoint = `/api/arena`;
   app.use(arenaEndpoint, arena);
-  Logger.log(`Arena: ${ appConfig.domain }${ arenaEndpoint }`, 'NestApplication');
+  Logger.log(`Arena: ${appConfig.domain}${arenaEndpoint}`, 'NestApplication');
 
   app.use('/robots.txt', (_, res) => {
     res.send('User-Agent: *\n' + 'Disallow: /');
@@ -53,11 +52,13 @@ async function bootstrap() {
     res.sendStatus(HttpStatus.NO_CONTENT).end();
   });
 
-  app.setGlobalPrefix(globalPrefix);
   app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(appConfig.port, () => {
-    Logger.log('Listening at ' + appConfig.domain + '/' + globalPrefix, 'NestApplication');
+    Logger.log('Listening at ' + appConfig.domain + '/', 'NestApplication');
+    if (appConfig.env === 'development') {
+      Logger.log('GraphQL Playground at ' + appConfig.domain + '/graphql', 'NestApplication');
+    }
   });
 }
 

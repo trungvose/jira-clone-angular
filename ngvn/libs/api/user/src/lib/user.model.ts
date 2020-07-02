@@ -24,6 +24,9 @@ export class User extends BaseModel {
   lastName: string;
   @prop({ required: true, minlength: 6 })
   password: string;
+  @prop({ default: false })
+  @AutoMap()
+  isSystemAdmin: boolean;
   @prop({ default: uuid() })
   refreshTokenId: string;
   @prop({ ref: () => Permission, autopopulate: true, default: [] })
