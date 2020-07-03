@@ -8,12 +8,14 @@ type PermissionDto {
   type: PermissionType!
   teams: [String!]
   projects: [String!]
+  projectIssues: [String!]
 }
 
 enum PermissionType {
   System
   Team
   Project
+  ProjectIssue
 }
 
 type TokenResultDto {

@@ -4,9 +4,8 @@ import { InjectAuthConfig } from '@ngvn/api/config';
 import { AuthUserDto, TokenResultDto } from '@ngvn/api/dtos';
 import { AuthConfig } from '@ngvn/api/types';
 import { User, UserService } from '@ngvn/api/user';
-import { genSalt, hash } from 'bcrypt';
 import { sign, verify } from 'jsonwebtoken';
-import { InjectMapper, AutoMapper } from 'nestjsx-automapper';
+import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 import { JwtPayload } from './jwt-payload';
 
 @Injectable()
@@ -17,15 +16,6 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
   ) {}
-
-  async hashPassword(data: string): Promise<string> {
-    try {
-      const salt = await genSalt(this.authConfig.salt);
-      return await hash(data, salt);
-    } catch (e) {
-      throw new InternalServerErrorException(`Error: ${e}`);
-    }
-  }
 
   async createAccessToken(email: string): Promise<TokenResultDto> {
     const tokenResult = new TokenResultDto();

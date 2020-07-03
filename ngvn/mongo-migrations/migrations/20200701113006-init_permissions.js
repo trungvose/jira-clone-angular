@@ -10,7 +10,13 @@ module.exports = {
     const permissionNames = ['user.self', 'user.manage'];
     for (const permission of permissionNames) {
       for (const privilege of [1, 3, 7, 15]) {
-        await permissionsCollection.insertOne({ permissionName: permission, privilege, type: 'System' });
+        await permissionsCollection.insertOne({
+          permissionName: permission,
+          privilege,
+          type: 'System',
+          __t: 'System',
+          __v: 0,
+        });
       }
     }
 

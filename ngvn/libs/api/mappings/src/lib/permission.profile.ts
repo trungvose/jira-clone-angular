@@ -18,6 +18,7 @@ export class PermissionProfile extends ProfileBase {
       )
       .forMember((d) => d.teams, ignore())
       .forMember((d) => d.projects, ignore())
+      .forMember((d) => d.projectIssues, ignore())
       .reverseMap();
   }
 }

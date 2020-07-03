@@ -19,6 +19,7 @@ module.exports = {
       permissions: [],
       createdAt: new Date(),
       updatedAt: new Date(),
+      __v: 0,
     };
     const salt = await genSalt(10);
     user.password = await hash(systemAdminPassword, salt);

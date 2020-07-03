@@ -7,7 +7,9 @@ import { ProjectRepository } from './project.repository';
 import { ProjectService } from './project.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([Project.featureConfig, ProjectIssue.featureConfig])],
+  imports: [
+    MongooseModule.forFeature([Project.featureConfig, { ...ProjectIssue.featureConfig, collection: 'project-issues' }]),
+  ],
   providers: [ProjectRepository, ProjectIssueRepository, ProjectService, ProjectIssueService],
   exports: [ProjectService, ProjectIssueService],
 })

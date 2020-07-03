@@ -27,15 +27,19 @@ export class UserProfile extends ProfileBase {
     destination.permissions = sourcePermissions
       .filter((sp) => sp.type === PermissionType.System)
       .map((p) => this.mapper.map(p, PermissionDto, Permission));
+
     sourcePermissions
       .filter((p) => p.type === PermissionType.Team)
       .reduce(this.permissionReducer('team'), destination.permissions);
     sourcePermissions
       .filter((p) => p.type === PermissionType.Project)
       .reduce(this.permissionReducer('project'), destination.permissions);
+    sourcePermissions
+      .filter((p) => p.type === PermissionType.ProjectIssue)
+      .reduce(this.permissionReducer('projectIssue'), destination.permissions);
   }
 
-  private permissionReducer(field: 'team' | 'project') {
+  private permissionReducer(field: 'team' | 'project' | 'projectIssue') {
     const dtoField = field + 's';
     const idField = field + 'Id';
     return <T extends Permission>(acc: PermissionDto[], cur: T) => {

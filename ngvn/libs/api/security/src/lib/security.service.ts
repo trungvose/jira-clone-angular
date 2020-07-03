@@ -21,8 +21,8 @@ export class SecurityService {
       throw new BadRequestException(email, 'Email already exists');
     }
 
-    const newUser = this.userService.createModel({ email, firstName, lastName });
-    newUser.password = await this.authService.hashPassword(password);
+    const newUser = this.userService.createModel({ email, firstName, lastName, password });
+    // newUser.password = await this.authService.hashPassword(password);
     await this.userQueue.add(UserJob.AddUser, newUser);
   }
 

@@ -17,4 +17,6 @@ export class PermissionDto {
   teams: string[];
   @Field(() => [String], { nullable: true })
   projects: string[];
+  @Field(() => [String], { nullable: true })
+  projectIssues: string[];
 }

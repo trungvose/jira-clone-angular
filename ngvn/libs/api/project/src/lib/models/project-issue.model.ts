@@ -17,7 +17,13 @@ export class ProjectIssue extends BaseModel {
   title: string;
   @prop({ default: '' })
   @AutoMap()
-  description?: string;
+  bodyMarkdown: string;
+  @prop({ default: '' })
+  @AutoMap()
+  outputHtml: string;
+  @prop({ default: '' })
+  @AutoMap()
+  summary: string;
   @prop({ required: true, type: String, enum: ProjectIssueType })
   @AutoMap()
   type: ProjectIssueType;

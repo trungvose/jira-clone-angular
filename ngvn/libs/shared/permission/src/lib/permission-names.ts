@@ -3,4 +3,5 @@ export enum PermissionNames {
   UserManage = 'user.manage',
   TeamManage = 'team.manage',
   ProjectManage = 'project.manage',
+  ProjectIssueManage = 'projectIssue.manage',
 }
