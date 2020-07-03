@@ -113,8 +113,10 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 
 | Part | Description                                                                     | Status |
 | ---- | ------------------------------------------------------------------------------- | ------ |
+| 00   | [Prerequisites][part00]                                                         | Done   |
 | 01   | [Create a new repository and set up a new Angular application with CLI][part01] | Done   |
 
+[part00]: https://trungk18.com/experience/angular-jira-clone-tutorial-00-prerequisites
 [part01]: https://trungk18.com/experience/angular-jira-clone-tutorial-01-planning-and-set-up
 [todo-list]: https://www.notion.so/trungk18/Tasks-636be5c5c0dd4d8cab30808e4e41facc
 
@@ -125,8 +127,6 @@ It is a side project that I only spent time outside of the office hours to work 
 According to waka time report, I have spent about 45 hours working on this project. Which is equivalent to watch the [whole Stranger Things series twice][stranger].
 
 I really enjoyed working on this project. The interactive kanban board took me sometimes, it is challenging but exciting at the same time.
-
-[stranger]: [https://www.bingeclock.com/s/stranger-things/]
 
 ![Jira clone built with Angular 9 and Akita - Time spending][time]
 
@@ -195,3 +195,4 @@ Feel free to use my code on your project. It would be great if you put a referen
 [issues]: https://github.com/trungk18/jira-clone-angular/issues/new
 [pull]: https://github.com/trungk18/jira-clone-angular/compare
 [100days]: https://github.com/angular-vietnam/100-days-of-angular
+[stranger]: https://www.bingeclock.com/s/stranger-things/
