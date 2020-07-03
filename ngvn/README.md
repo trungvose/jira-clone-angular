@@ -29,6 +29,10 @@ You would also need **NodeJS** installed.
 2. `cd mongo-migrations`
 3. `npx migrate-mongo up`
 
+#### GraphQL Playground
+
+Make sure to set `request.credentials` to `"include"` for **Cookie Authentication**.
+
 ## File Structure
 
 Since the project is created by **Nx**, the file structure closely follows **Nx** structure.
