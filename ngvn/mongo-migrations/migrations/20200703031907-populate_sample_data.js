@@ -385,6 +385,7 @@ module.exports = {
           lastName: user.name.split(' ')[1] || '',
           email: user.name.toLowerCase().replace(/\s/, '_').concat('@mailinator.com'),
           password,
+          avatarUrl: user.avatarUrl,
           isActive: true,
           isSystemAdmin: false,
           refreshTokenId: v4(),
