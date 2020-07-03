@@ -9,6 +9,11 @@ This project needs **MongoDB** and **Redis** running locally. One quick way of d
 - MongoDB Port: 27017
 - Redis Port: 6379
 
+```bash
+$ docker run -d -p 27017-27019:27017-27019 --name mongodb mongo:4.2
+$ docker run -d -p 6379:6379 --name redis -d redis
+```
+
 You would also need **NodeJS** installed.
 
 ## Local Development
