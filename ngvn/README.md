@@ -27,7 +27,7 @@ You would also need **NodeJS** installed.
 
 1. Make sure to run the application once to have the collections created with the correct Schema + indexes
 2. `cd mongo-migrations`
-3. `npx migrate-mongo up`
+3. `MIGRATE_SYSTEM_ADMIN_PASSWORD='your_system_admin_password' npx migrate-mongo up`
 
 #### GraphQL Playground
 
