@@ -1,22 +1,9 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { BaseDto } from '@ngvn/api/common';
-import { AutoMap } from 'nestjsx-automapper';
 import { PermissionDto } from '../auth';
+import { UserDto } from './user.dto';
 
 @ObjectType()
-export class UserInformationDto extends BaseDto {
-  @Field()
-  @AutoMap()
-  email: string;
-  @Field()
-  @AutoMap()
-  firstName: string;
-  @Field()
-  @AutoMap()
-  lastName: string;
-  @Field()
-  @AutoMap()
-  fullName: string;
+export class UserInformationDto extends UserDto {
   @Field(() => [PermissionDto])
   permissions: PermissionDto[];
 }

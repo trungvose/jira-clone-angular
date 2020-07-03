@@ -1,4 +1,4 @@
-import { AuthUserDto, PermissionDto, UserInformationDto } from '@ngvn/api/dtos';
+import { AuthUserDto, PermissionDto, UserDto, UserInformationDto } from '@ngvn/api/dtos';
 import { Permission } from '@ngvn/api/permission';
 import { User } from '@ngvn/api/user';
 import { PermissionType } from '@ngvn/shared/permission';
@@ -12,12 +12,12 @@ export class UserProfile extends ProfileBase {
       .createMap(User, AuthUserDto)
       .forMember((d) => d.permissions, ignore())
       .afterMap(this.userPermissionsAfterMap.bind(this));
+    mapper.createMap(User, UserDto).forMember(
+      (d) => d.fullName,
+      mapFrom((s) => s.firstName + ' ' + s.lastName),
+    );
     mapper
-      .createMap(User, UserInformationDto)
-      .forMember(
-        (d) => d.fullName,
-        mapFrom((s) => s.firstName + ' ' + s.lastName),
-      )
+      .createMap(User, UserInformationDto, { includeBase: [User, UserDto] })
       .forMember((d) => d.permissions, ignore())
       .afterMap(this.userPermissionsAfterMap.bind(this));
   }

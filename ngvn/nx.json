@@ -76,6 +76,12 @@
     },
     "api-team": {
       "tags": []
+    },
+    "api-project": {
+      "tags": []
+    },
+    "shared-project": {
+      "tags": []
     }
   }
 }

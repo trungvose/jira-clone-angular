@@ -29,6 +29,9 @@ export class User extends BaseModel {
   isSystemAdmin: boolean;
   @prop({ default: uuid() })
   refreshTokenId: string;
+  @prop()
+  @AutoMap()
+  avatarUrl: string;
   @prop({ ref: () => Permission, autopopulate: true, default: [] })
   @AutoMap(() => Permission)
   permissions: Ref<Permission>[];

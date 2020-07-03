@@ -31,7 +31,9 @@
       "@ngvn/background/common": ["libs/background/common/src/index.ts"],
       "@ngvn/background/user-job": ["libs/background/user-job/src/index.ts"],
       "@ngvn/shared/permission": ["libs/shared/permission/src/index.ts"],
-      "@ngvn/api/team": ["libs/api/team/src/index.ts"]
+      "@ngvn/api/team": ["libs/api/team/src/index.ts"],
+      "@ngvn/api/project": ["libs/api/project/src/index.ts"],
+      "@ngvn/shared/project": ["libs/shared/project/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

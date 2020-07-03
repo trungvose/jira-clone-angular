@@ -35,6 +35,7 @@ type UserInformationDto {
   firstName: String!
   lastName: String!
   fullName: String!
+  avatarUrl: String
   permissions: [PermissionDto!]!
 }
 
