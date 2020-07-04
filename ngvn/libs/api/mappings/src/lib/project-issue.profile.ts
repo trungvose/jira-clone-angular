@@ -8,9 +8,17 @@ import {
   TimelineTagDto,
   UserDto,
 } from '@ngvn/api/dtos';
-import { ProjectIssue, TimelineAssign, TimelineComment, TimelineMention, TimelineTag } from '@ngvn/api/project';
+import {
+  ProjectIssue,
+  ProjectIssueTag,
+  TimelineAssign,
+  TimelineComment,
+  TimelineMention,
+  TimelineTag,
+} from '@ngvn/api/project';
+import { User } from '@ngvn/api/user';
 import { ProjectTimelineType } from '@ngvn/shared/project';
-import { AutoMapper, ignore, mapWith, Profile, ProfileBase } from 'nestjsx-automapper';
+import { AutoMapper, ignore, mapWith, Profile, ProfileBase, mapFrom } from 'nestjsx-automapper';
 
 @Profile()
 export class ProjectIssueProfile extends ProfileBase {
@@ -19,15 +27,35 @@ export class ProjectIssueProfile extends ProfileBase {
     mapper
       .createMap(ProjectIssue, ProjectIssueDto)
       .forMember(
-        (d) => d.tags,
-        mapWith(ProjectIssueTagDto, (s) => s.tags),
+        (d) => d.name,
+        mapFrom((s) => `${s.type.toUpperCase()} - ${s.ordinalPosition}`),
       )
       .forMember(
-        (d) => d.participants,
-        mapWith(UserDto, (s) => s.participants),
+        (d) => d.tags,
+        mapWith(
+          ProjectIssueTagDto,
+          (s) => s.tags,
+          () => ProjectIssueTag,
+        ),
+      )
+      .forMember(
+        (d) => d.main,
+        mapWith(
+          UserDto,
+          (s) => s.assignee || s.reporter,
+          () => User,
+        ),
       );
     mapper
       .createMap(ProjectIssue, ProjectIssueDetailDto, { includeBase: [ProjectIssue, ProjectIssueDto] })
+      .forMember(
+        (d) => d.participants,
+        mapWith(
+          UserDto,
+          (s) => s.participants,
+          () => User,
+        ),
+      )
       .forMember((d) => d.timelines, ignore())
       .afterMap((source, destination) => {
         destination.timelines = [];
@@ -53,7 +81,6 @@ export class ProjectIssueProfile extends ProfileBase {
           }
           destination.timelines.push(mapper.map(timeline, destination, source));
         }
-        console.log('afterMap', destination);
       });
   }
 }

@@ -5,6 +5,7 @@ import { AutoMap } from 'nestjsx-automapper';
 import { TeamDto } from '../team';
 import { UserDto } from '../user';
 import { ProjectIssueDto } from './project-issue.dto';
+import { ProjectLaneDto } from './project-lane.dto';
 
 @ObjectType()
 export class ProjectDto extends BaseDto {
@@ -23,10 +24,10 @@ export class ProjectDto extends BaseDto {
   @Field((returns) => [UserDto])
   @AutoMap(() => UserDto)
   users: UserDto[];
-  @Field((returns) => [ProjectIssueDto])
-  @AutoMap(() => ProjectIssueDto)
-  issues: ProjectIssueDto[];
   @Field((returns) => [TeamDto])
   @AutoMap(() => TeamDto)
   teams: TeamDto[];
+  @Field((returns) => [ProjectLaneDto], { nullable: 'items' })
+  @AutoMap(() => ProjectLaneDto)
+  lanes: ProjectLaneDto[];
 }

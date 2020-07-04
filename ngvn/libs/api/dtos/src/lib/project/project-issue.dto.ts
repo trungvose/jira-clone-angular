@@ -9,10 +9,10 @@ import { ProjectIssueTagDto } from './project-issue-tag.dto';
 export class ProjectIssueDto extends BaseDto {
   @Field()
   @AutoMap()
-  title: string;
+  name: string;
   @Field()
   @AutoMap()
-  outputHtml: string;
+  title: string;
   @Field()
   @AutoMap()
   summary: string;
@@ -28,7 +28,7 @@ export class ProjectIssueDto extends BaseDto {
   @Field((returns) => [ProjectIssueTagDto], { nullable: 'items' })
   @AutoMap(() => ProjectIssueTagDto)
   tags: ProjectIssueTagDto[];
-  @Field((returns) => [UserDto])
+  @Field((returns) => UserDto)
   @AutoMap(() => UserDto)
-  participants: UserDto[];
+  main: UserDto;
 }

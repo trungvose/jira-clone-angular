@@ -5,6 +5,7 @@ import { ProjectCategory } from '@ngvn/shared/project';
 import { prop, Ref } from '@typegoose/typegoose';
 import { AutoMap } from 'nestjsx-automapper';
 import { ProjectIssue } from './project-issue.model';
+import { ProjectLane } from './project-lane.model';
 
 @useMongoosePlugin()
 export class Project extends BaseModel {
@@ -20,6 +21,9 @@ export class Project extends BaseModel {
   @prop({ required: true, enum: ProjectCategory, type: String })
   @AutoMap()
   category: ProjectCategory;
+  @prop({ type: () => ProjectLane, default: [] })
+  @AutoMap(() => ProjectLane)
+  lanes: ProjectLane[];
   @prop({ autopopulate: true, ref: () => User, default: [] })
   @AutoMap(() => User)
   users: Ref<User>[];

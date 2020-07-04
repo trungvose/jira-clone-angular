@@ -1,6 +1,8 @@
-import { ProjectDto, ProjectIssueDto, TeamDto, UserDto } from '@ngvn/api/dtos';
-import { Project } from '@ngvn/api/project';
-import { Profile, ProfileBase, AutoMapper, mapWith } from 'nestjsx-automapper';
+import { ProjectDto, ProjectLaneDto, TeamDto, UserDto } from '@ngvn/api/dtos';
+import { Project, ProjectLane } from '@ngvn/api/project';
+import { Team } from '@ngvn/api/team';
+import { User } from '@ngvn/api/user';
+import { AutoMapper, mapWith, Profile, ProfileBase } from 'nestjsx-automapper';
 
 @Profile()
 export class ProjectProfile extends ProfileBase {
@@ -10,15 +12,27 @@ export class ProjectProfile extends ProfileBase {
       .createMap(Project, ProjectDto)
       .forMember(
         (d) => d.users,
-        mapWith(UserDto, (s) => s.users),
+        mapWith(
+          UserDto,
+          (s) => s.users,
+          () => User,
+        ),
       )
       .forMember(
         (d) => d.teams,
-        mapWith(TeamDto, (s) => s.teams),
+        mapWith(
+          TeamDto,
+          (s) => s.teams,
+          () => Team,
+        ),
       )
       .forMember(
-        (d) => d.issues,
-        mapWith(ProjectIssueDto, (s) => s.issues),
+        (d) => d.lanes,
+        mapWith(
+          ProjectLaneDto,
+          (s) => s.lanes,
+          () => ProjectLane,
+        ),
       );
   }
 }

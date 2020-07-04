@@ -5,7 +5,7 @@ import { TimelineDto } from './timeline.dto';
 
 @ObjectType()
 export class TimelineAssignDto extends TimelineDto {
-  @Field((returns) => [UserDto])
+  @Field((returns) => UserDto)
   @AutoMap(() => UserDto)
-  assignees: UserDto[];
+  assignee: UserDto;
 }

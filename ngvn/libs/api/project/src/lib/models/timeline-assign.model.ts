@@ -6,7 +6,7 @@ import { Timeline } from './timeline.model';
 
 export class TimelineAssign extends Timeline {
   type = ProjectTimelineType.Assign;
-  @prop({ ref: () => User, autopopulate: true, default: [] })
+  @prop({ ref: () => User, autopopulate: true, required: true })
   @AutoMap(() => User)
-  assignees: Ref<User>[];
+  assignee: Ref<User>;
 }

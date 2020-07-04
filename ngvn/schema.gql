@@ -83,14 +83,14 @@ type ProjectIssueDto {
   updatedAt: DateTime!
   id: ID
   isActive: Boolean!
+  name: String!
   title: String!
-  outputHtml: String!
   summary: String!
   type: ProjectIssueType!
   status: ProjectIssueStatus!
   priority: ProjectIssuePriority!
   tags: [ProjectIssueTagDto]!
-  participants: [UserDto!]!
+  main: UserDto!
 }
 
 enum ProjectIssueType {
@@ -114,6 +114,15 @@ enum ProjectIssuePriority {
   Highest
 }
 
+type ProjectLaneDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  title: String!
+  issues: [ProjectIssueDto]!
+}
+
 type ProjectDto {
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -124,17 +133,87 @@ type ProjectDto {
   description: String
   category: ProjectCategory!
   users: [UserDto!]!
-  issues: [ProjectIssueDto!]!
   teams: [TeamDto!]!
+  lanes: [ProjectLaneDto]!
 }
 
 enum ProjectCategory {
   Software
 }
 
+type ProjectIssueDetailDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  name: String!
+  title: String!
+  summary: String!
+  type: ProjectIssueType!
+  status: ProjectIssueStatus!
+  priority: ProjectIssuePriority!
+  tags: [ProjectIssueTagDto]!
+  main: UserDto!
+  outputHtml: String!
+  timelines: [TimelineDto]!
+  reporter: UserDto!
+  assignee: UserDto
+  participants: [UserDto]!
+}
+
+union TimelineDto = TimelineAssignDto | TimelineCommentDto | TimelineTagDto | TimelineMentionDto
+
+type TimelineAssignDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  type: ProjectTimelineType!
+  actor: UserDto!
+  assignee: UserDto!
+}
+
+enum ProjectTimelineType {
+  Comment
+  Assign
+  Mention
+  Tag
+}
+
+type TimelineCommentDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  type: ProjectTimelineType!
+  actor: UserDto!
+  outputHtml: String!
+}
+
+type TimelineTagDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  type: ProjectTimelineType!
+  actor: UserDto!
+  tags: [ProjectIssueTagDto!]!
+}
+
+type TimelineMentionDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  type: ProjectTimelineType!
+  actor: UserDto!
+  issues: [ProjectIssueDto!]!
+}
+
 type Query {
   me: UserInformationDto!
-  findBySlug(slug: String!): ProjectDto!
+  findIssueById(id: String!): ProjectIssueDetailDto!
+  findProjectBySlug(slug: String!): ProjectDto!
   refreshToken: TokenResultDto!
 }
 

@@ -25,6 +25,9 @@ export class ProjectIssue extends BaseModel {
   @prop({ default: '' })
   @AutoMap()
   summary: string;
+  @prop({ required: true })
+  @AutoMap()
+  ordinalPosition: string;
   @prop({ required: true, type: String, enum: ProjectIssueType })
   @AutoMap()
   type: ProjectIssueType;
@@ -43,9 +46,9 @@ export class ProjectIssue extends BaseModel {
   @prop({ required: true, autopopulate: true, ref: () => User })
   @AutoMap(() => User)
   reporter: Ref<User>;
-  @prop({ autopopulate: true, ref: () => User, default: [] })
+  @prop({ autopopulate: true, ref: () => User, default: null })
   @AutoMap(() => User)
-  assignees: Ref<User>[];
+  assignee: Ref<User>;
   @prop({ autopopulate: true, ref: () => User, default: [] })
   @AutoMap(() => User)
   participants: Ref<User>[];

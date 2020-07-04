@@ -1,5 +1,5 @@
 import { AuthUserDto, PermissionDto, UserDto, UserInformationDto } from '@ngvn/api/dtos';
-import { Permission } from '@ngvn/api/permission';
+import { Permission, ProjectPermission } from '@ngvn/api/permission';
 import { User } from '@ngvn/api/user';
 import { PermissionType } from '@ngvn/shared/permission';
 import { AutoMapper, ignore, mapFrom, Profile, ProfileBase } from 'nestjsx-automapper';
@@ -46,11 +46,18 @@ export class UserProfile extends ProfileBase {
       const dto = this.mapper.map(cur, PermissionDto, Permission, {
         afterMap: (_, destination) => (destination[dtoField] = []),
       });
+
       const found = acc.find((x) => x.name === cur.permissionName && x.score === cur.privilege);
+      const result = [cur[idField].toString()];
+      if (field === 'project') {
+        const projectPermission = cur as ProjectPermission;
+        projectPermission.projectSlug && result.push(projectPermission.projectSlug);
+      }
+
       if (found) {
-        found[dtoField].push(cur[idField].toString());
+        found[dtoField].push(...result);
       } else {
-        dto[dtoField] = [cur[idField].toString()];
+        dto[dtoField] = [...result];
         acc.push(dto);
       }
       return acc;

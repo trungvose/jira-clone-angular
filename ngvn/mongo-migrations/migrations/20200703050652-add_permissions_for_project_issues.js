@@ -53,7 +53,6 @@ module.exports = {
     for (const userId of project.users) {
       const user = await usersCollection.findOne({ _id: userId });
       const firstPermission = user.permissions[0];
-      console.log(firstPermission);
       await usersCollection.updateOne({ _id: user.id }, { $set: { permissions: [firstPermission] } });
     }
 

@@ -8,5 +8,8 @@ export class ProjectPermission extends Permission {
   type = PermissionType.Project;
   @prop({ type: Schema.Types.ObjectId })
   @AutoMap(() => Schema.Types.ObjectId)
-  projectId: Schema.Types.ObjectId;
+  projectId?: Schema.Types.ObjectId;
+  @prop()
+  @AutoMap()
+  projectSlug?: string;
 }

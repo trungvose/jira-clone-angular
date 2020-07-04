@@ -5,13 +5,21 @@ import { ProjectIssueRepository } from './project-issue.repository';
 import { ProjectIssueService } from './project-issue.service';
 import { ProjectRepository } from './project.repository';
 import { ProjectService } from './project.service';
+import { ProjectIssueResolver } from './resolvers/project-issue.resolver';
 import { ProjectResolver } from './resolvers/project.resolver';
 
 @Module({
   imports: [
     MongooseModule.forFeature([Project.featureConfig, { ...ProjectIssue.featureConfig, collection: 'project-issues' }]),
   ],
-  providers: [ProjectRepository, ProjectIssueRepository, ProjectService, ProjectIssueService, ProjectResolver],
+  providers: [
+    ProjectRepository,
+    ProjectIssueRepository,
+    ProjectService,
+    ProjectIssueService,
+    ProjectResolver,
+    ProjectIssueResolver,
+  ],
   exports: [ProjectService, ProjectIssueService],
 })
 export class ApiProjectModule {}

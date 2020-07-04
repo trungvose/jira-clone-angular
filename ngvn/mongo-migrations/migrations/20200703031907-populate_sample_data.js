@@ -141,7 +141,7 @@ I am currently using NestJS and storing data on a \`json\` file. I like the idea
     __v: 0,
   },
   {
-    title: 'Each issue has a single reporter but can have multiple assignees.',
+    title: 'Each issue has a single reporter but can have multiple assigneenull',
     bodyMarkdown: `
   Try assigning this issue to **Spider Man**. 🤣 🤣 🤣
 ----------------------------------------------------
