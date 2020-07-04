@@ -1,6 +1,6 @@
 # A simplified Jira clone built with Angular 9 and Akita
 
-> In response to numerous positive feedbacks, my friends [Chau Tran][chau], [Tiep Phan][tiep], and I have already started working on Phase 2. We will bring the GraphQL and Authentication to "live" soon.
+> In response to numerous positive feedbacks, I have already started working on Phase 2 together with my friends [Chau Tran][chau] and [Tiep Phan][tiep]. We will bring the GraphQL and Authentication to "live" soon.
 >
 > Thanks for your continuous support. Stay tuned! :muscle:
 
