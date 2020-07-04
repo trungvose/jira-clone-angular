@@ -8,5 +8,5 @@ export class TimelineAssign extends Timeline {
   type = ProjectTimelineType.Assign;
   @prop({ ref: () => User, autopopulate: true, default: [] })
   @AutoMap(() => User)
-  assignee: Ref<User>[];
+  assignees: Ref<User>[];
 }

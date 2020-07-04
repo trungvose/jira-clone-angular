@@ -14,6 +14,4 @@ export class Team extends BaseModel {
   @prop({ ref: () => User, autopopulate: true, default: [] })
   @AutoMap(() => User)
   members: Ref<User>[];
-  @prop({ default: [] })
-  projects: any;
 }

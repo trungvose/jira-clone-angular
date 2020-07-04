@@ -1,5 +1,3 @@
-import { registerEnumType } from '@nestjs/graphql';
-
 export enum ProjectIssuePriority {
   Lowest = 'Lowest',
   Low = 'Low',
@@ -7,5 +5,3 @@ export enum ProjectIssuePriority {
   High = 'High',
   Highest = 'Highest',
 }
-
-registerEnumType(ProjectIssuePriority, { name: 'ProjectIssuePriority' });

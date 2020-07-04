@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { ModelDefinition } from '@nestjs/mongoose';
 import { buildSchema, modelOptions, prop, Severity } from '@typegoose/typegoose';
 import { Schema } from 'mongoose';
@@ -53,7 +53,7 @@ export abstract class BaseDto {
   @AutoMap()
   updatedAt?: Date;
 
-  @Field({ nullable: true })
+  @Field((returns) => ID, { nullable: true })
   @AutoMap()
   id?: string;
 

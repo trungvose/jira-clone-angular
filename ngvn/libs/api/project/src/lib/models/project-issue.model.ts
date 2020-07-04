@@ -1,4 +1,5 @@
 import { BaseModel, useMongoosePlugin } from '@ngvn/api/common';
+import { TimelineDto } from '@ngvn/api/dtos';
 import { User } from '@ngvn/api/user';
 import { ProjectIssuePriority, ProjectIssueStatus, ProjectIssueType } from '@ngvn/shared/project';
 import { prop, Ref } from '@typegoose/typegoose';
@@ -37,7 +38,8 @@ export class ProjectIssue extends BaseModel {
   @AutoMap(() => ProjectIssueTag)
   tags: ProjectIssueTag[];
   @prop({ type: () => Timeline, discriminators: () => [TimelineAssign, TimelineComment, TimelineMention, TimelineTag] })
-  timelineItems: Timeline[];
+  @AutoMap(() => TimelineDto)
+  timelineItems: (TimelineAssign | TimelineComment | TimelineMention | TimelineTag)[];
   @prop({ required: true, autopopulate: true, ref: () => User })
   @AutoMap(() => User)
   reporter: Ref<User>;

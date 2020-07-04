@@ -1,22 +1,17 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { BaseDto } from '@ngvn/api/common';
 import { AutoMap } from 'nestjsx-automapper';
+import { UserDto } from '../user';
 
 @ObjectType()
-export class UserDto extends BaseDto {
+export class TeamDto extends BaseDto {
   @Field()
   @AutoMap()
-  email: string;
-  @Field()
-  @AutoMap()
-  firstName: string;
-  @Field()
-  @AutoMap()
-  lastName: string;
-  @Field()
-  @AutoMap()
-  fullName: string;
+  title: string;
   @Field({ nullable: true })
   @AutoMap()
-  avatarUrl: string;
+  description?: string;
+  @Field((returns) => [UserDto])
+  @AutoMap(() => UserDto)
+  members: UserDto[];
 }

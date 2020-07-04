@@ -46,10 +46,7 @@ export class UserProfile extends ProfileBase {
       const dto = this.mapper.map(cur, PermissionDto, Permission, {
         afterMap: (_, destination) => (destination[dtoField] = []),
       });
-      const found = acc.find(
-        (x) =>
-          x.name === cur.permissionName && x.score === cur.privilege && x[dtoField]?.includes(cur[idField].toString()),
-      );
+      const found = acc.find((x) => x.name === cur.permissionName && x.score === cur.privilege);
       if (found) {
         found[dtoField].push(cur[idField].toString());
       } else {

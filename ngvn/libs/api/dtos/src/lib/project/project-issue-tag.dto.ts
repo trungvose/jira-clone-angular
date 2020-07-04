@@ -3,20 +3,23 @@ import { BaseDto } from '@ngvn/api/common';
 import { AutoMap } from 'nestjsx-automapper';
 
 @ObjectType()
-export class UserDto extends BaseDto {
+export class ProjectIssueTagStyle {
   @Field()
   @AutoMap()
-  email: string;
+  color: string;
   @Field()
   @AutoMap()
-  firstName: string;
+  backgroundColor: string;
+}
+
+@ObjectType()
+export class ProjectIssueTagDto extends BaseDto {
   @Field()
   @AutoMap()
-  lastName: string;
-  @Field()
-  @AutoMap()
-  fullName: string;
+  text: string;
+  @Field((returns) => ProjectIssueTagStyle)
+  styles: ProjectIssueTagStyle;
   @Field({ nullable: true })
   @AutoMap()
-  avatarUrl: string;
+  description?: string;
 }

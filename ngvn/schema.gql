@@ -28,10 +28,22 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type UserDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  email: String!
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  avatarUrl: String
+}
+
 type UserInformationDto {
   createdAt: DateTime!
   updatedAt: DateTime!
-  id: String
+  id: ID
   isActive: Boolean!
   email: String!
   firstName: String!
@@ -41,8 +53,88 @@ type UserInformationDto {
   permissions: [PermissionDto!]!
 }
 
+type TeamDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  title: String!
+  description: String
+  members: [UserDto!]!
+}
+
+type ProjectIssueTagStyle {
+  color: String!
+  backgroundColor: String!
+}
+
+type ProjectIssueTagDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  text: String!
+  styles: ProjectIssueTagStyle!
+  description: String
+}
+
+type ProjectIssueDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  title: String!
+  outputHtml: String!
+  summary: String!
+  type: ProjectIssueType!
+  status: ProjectIssueStatus!
+  priority: ProjectIssuePriority!
+  tags: [ProjectIssueTagDto]!
+  participants: [UserDto!]!
+}
+
+enum ProjectIssueType {
+  Task
+  Story
+  Bug
+}
+
+enum ProjectIssueStatus {
+  Backlog
+  Selected
+  InProgress
+  Done
+}
+
+enum ProjectIssuePriority {
+  Lowest
+  Low
+  Medium
+  High
+  Highest
+}
+
+type ProjectDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  name: String!
+  slug: String!
+  description: String
+  category: ProjectCategory!
+  users: [UserDto!]!
+  issues: [ProjectIssueDto!]!
+  teams: [TeamDto!]!
+}
+
+enum ProjectCategory {
+  Software
+}
+
 type Query {
   me: UserInformationDto!
+  findBySlug(slug: String!): ProjectDto!
   refreshToken: TokenResultDto!
 }
 

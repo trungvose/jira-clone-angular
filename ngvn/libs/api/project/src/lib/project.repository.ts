@@ -9,4 +9,12 @@ export class ProjectRepository extends BaseRepository<Project> {
   constructor(@InjectModel(Project.modelName) private readonly projectModel: ModelType<Project>) {
     super(projectModel);
   }
+
+  async findBySlug(slug: string): Promise<Project> {
+    try {
+      return await this.findOne().where('slug').equals(slug).exec();
+    } catch (e) {
+      ProjectRepository.throwMongoError(e);
+    }
+  }
 }
