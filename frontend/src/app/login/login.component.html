@@ -1,0 +1,50 @@
+<div class="w-full h-full"
+     id="loginWrapper">
+  <div class="app-logo">
+    <h3 class="flex items-center justify-center">
+      <img class="jira-logo mr-3"
+           alt="Jira Logo"
+           src='/assets/svg/jira.svg'>
+      <span class="text-xl">Angular Jira Clone</span></h3>
+  </div>
+  <section class="form-wrapper">
+    <div class="text-center text-15 font-semibold mb-5">
+      Log in to your account
+    </div>
+    <form [formGroup]="loginForm">
+      <div class="form-group mb-4">
+        <input class="form-input"
+               type="email"
+               placeholder="Enter email"
+               formControlName="email"
+               jAutofocus />
+      </div>
+      <div class="form-group mb-4">
+        <input class="form-input"
+               type="password"
+               placeholder="Enter password"
+               formControlName="password" />
+      </div>
+      <div class="form-group mb-3">
+        <j-button className="btn-primary w-full"
+                  [disabled]="loginForm.invalid">
+          Login
+        </j-button>
+      </div>
+      <div class="text-center text-sm mt-1 mb-1">
+        OR
+      </div>
+      <div class="form-group mt-3">
+        <j-button className="btn-secondary w-full"
+                  icon="github">Continue with Github
+        </j-button>
+      </div>
+    </form>
+    <div class="section-separator">
+
+    </div>
+    <div class="additional-action">
+      <a class="text-blue-500 hover:underline">Sign up for an account</a>
+    </div>
+  </section>
+</div>

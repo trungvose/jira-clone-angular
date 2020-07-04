@@ -19,7 +19,6 @@ export class AppComponent implements AfterViewInit {
     private _projectService: ProjectService,
     private _googleAnalytics: GoogleAnalyticsService
   ) {
-    this._projectService.setLoading(true);
     if (environment.production) {
       this.handleGoogleAnalytics();
     }
