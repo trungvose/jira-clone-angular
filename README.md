@@ -1,6 +1,8 @@
 # A simplified Jira clone built with Angular 9 and Akita
 
-> Phase 2 will start off very soon with several promisingly exciting features: GraphQL, Authentication, and more.
+> In response to numerous positive feedbacks, my friends [Chau Tran][chau], [Tiep Phan][tiep], and I have already started working on Phase 2. We will bring the GraphQL and Authentication to "live" soon.
+>
+> Thanks for your continuous support. Stay tuned! :muscle:
 
 There have been a handful of cool Jira-cloned apps written in `React`/`VueJS`, which makes me wonder **Why not Angular**? And here you go.
 
@@ -59,6 +61,31 @@ This piece of work is also part of our technical series [angular-vietnam/100-day
 [quill]: https://github.com/KillerCodeMonkey/ngx-quill
 [netlify]: https://www.netlify.com/
 [heroku]: https://www.heroku.com/
+
+## High level design
+
+As requested by [@eric_cart][eric_cart], I draw a simple high-level design for the application.
+
+### Application architecture
+
+I have an AppModule that will import:
+
+![Jira clone built with Angular 9 and Akita - Application architecture][application-architecture]
+
+- Angular needed modules such as `BrowserModule` and any module that need to run `forRoot`.
+- The application core modules such as `AuthModule` that need to available on the whole platform.
+- And I also configured the router to [lazy load any modules][lazy-load] only when I needed. Otherwise, everything will be loaded when I start the application.
+  For instance, `LoginModule` when I open the URL at `/login` and `ProjectModule` when the URL is `/project`. Inside each modules, I could import whatever modules that are required. Such as I need the `JiraControlModule` for some custom UI components for the `ProjectModule`
+
+### Simple data interaction flow
+
+As I am using [Akita][akita] state management, I follow the Akita documentation for the data flow. I found it is simple to understand comparing with ngrx terms (`reducer`, `selector`, `effect`)
+
+![Jira clone built with Angular 9 and Akita - Simple data interaction flow][interaction-data-flow]
+
+I set up a [project state with initial data][project-store]. The main heavy lifting part I think is the [project service][project-service], it contains all the interacting with [project store][project-store]. Such as after fetching the project successfully, I update the store immediately inside the service itself. The last lego block was to expose the data through [project query][project-query]. Any components can start to inject [project query][project-query] and consume data from there.
+
+If you are using ngrx, you have to dispatch an action when you started fetching the project, and then there is an effect somewhere that was detached from your context need to handle the action, send a request to the API server. And finally, the effect will tell whether the data was successfully fetched or not. <u>There is nothing wrong with ngrx approach</u>, it is just too much concept and layer that you need to understand. To be honest, I used to afraid of integrating ngrx in my project because of the unnecessary complexity it would bring.
 
 ## Features and Roadmap
 
@@ -196,3 +223,12 @@ Feel free to use my code on your project. It would be great if you put a referen
 [pull]: https://github.com/trungk18/jira-clone-angular/compare
 [100days]: https://github.com/angular-vietnam/100-days-of-angular
 [stranger]: https://www.bingeclock.com/s/stranger-things/
+[eric_cart]: https://www.reddit.com/r/Angular2/comments/hj4kxd/angular_jira_clone_application_built_akita_and/fwu1tbm/
+[application-architecture]: frontend/src/assets/img/diagram/application-architecture.png
+[interaction-data-flow]: frontend/src/assets/img/diagram/interaction-data-flow.png
+[project-store]: frontend/src/app/project/state/project/project.store.ts
+[project-service]: frontend/src/app/project/state/project/project.service.ts
+[project-query]: frontend/src/app/project/state/project/project.query.ts
+[lazy-load]: https://angular.io/guide/lazy-loading-ngmodules
+[chau]: https://github.com/nartc
+[tiep]: https://github.com/tieppt
