@@ -7,8 +7,10 @@ export class AuthQuery extends Query<AuthState> {
   constructor(protected store: AuthStore) {
     super(store);
   }
+  get token(): string {
+    return this.getValue().token;
+  }
 
-  token$ = this.select('token');
   tokenExpiry$ = this.select('expiry');
   user$ = this.select('currentUser');
 
