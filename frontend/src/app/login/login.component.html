@@ -10,7 +10,8 @@
     <div class="text-center text-15 font-semibold mb-5">
       Log in to your account
     </div>
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm"
+          (ngSubmit)="submitForm()">
       <div class="form-group mb-4">
         <input class="form-input"
                type="email"

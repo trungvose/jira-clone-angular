@@ -8,6 +8,14 @@ export class AuthQuery extends Query<AuthState> {
     super(store);
   }
 
-  user$ = this.select();
-  userId$ = this.select('id');
+  token$ = this.select('token');
+  tokenExpiry$ = this.select('expiry');
+  user$ = this.select('currentUser');
+
+  userId$ = this.select((state) => {
+    if (state.currentUser) {
+      return state.currentUser.id;
+    }
+    return null;
+  });
 }

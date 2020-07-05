@@ -21,4 +21,6 @@ export class LoginComponent implements OnInit {
       password: ['', NoWhitespaceValidator()]
     });
   }
+  
+  submitForm() {}
 }

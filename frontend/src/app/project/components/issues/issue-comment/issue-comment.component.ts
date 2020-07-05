@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { JComment } from '@trungk18/interface/comment';
 import { JUser } from '@trungk18/interface/user';
-import { AuthQuery } from '@trungk18/project/auth/auth.query';
+import { AuthQuery } from '@trungk18/core/state/auth/auth.query';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 
 @Component({

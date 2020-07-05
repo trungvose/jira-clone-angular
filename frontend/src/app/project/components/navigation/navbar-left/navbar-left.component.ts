@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthQuery } from '@trungk18/project/auth/auth.query';
+import { AuthQuery } from '@trungk18/core/state/auth/auth.query';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { SearchDrawerComponent } from '../../search/search-drawer/search-drawer.component';
 import { NzModalService } from 'ng-zorro-antd/modal';
