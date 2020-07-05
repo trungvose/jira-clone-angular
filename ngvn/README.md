@@ -23,13 +23,13 @@ You would also need **NodeJS** installed.
 3. `npm run start:api` to run the API (written with [NestJS](https://nestjs.com))
 4. `npm run start:ng` to run the Angular application (Upcoming)
 
-#### Migrations
+### Migrations
 
 1. Make sure to run the application once to have the collections created with the correct Schema + indexes
 2. `cd mongo-migrations`
 3. `MIGRATE_SYSTEM_ADMIN_PASSWORD='your_system_admin_password' npx migrate-mongo up`
 
-#### GraphQL Playground
+### GraphQL Playground
 
 Make sure to set `request.credentials` to `"include"` for **Cookie Authentication**.
 
