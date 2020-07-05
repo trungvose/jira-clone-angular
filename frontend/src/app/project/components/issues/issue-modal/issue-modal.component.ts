@@ -28,7 +28,7 @@ export class IssueModalComponent implements OnInit {
 
   openIssuePage(issueId: string) {
     this.closeModal();
-    this._router.navigate(['project', 'issue', issueId]);
+    this._router.navigate(['projects', 'issue', issueId]);
   }
 
   deleteIssue({ issueId, deleteModalRef }: DeleteIssueModel) {

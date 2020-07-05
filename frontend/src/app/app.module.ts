@@ -13,7 +13,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { QuillModule } from 'ngx-quill'
 import { JiraControlModule } from './jira-control/jira-control.module';
-import { GraphQLModule } from './graphql.module';
+import { GraphQLModule } from './core/graphql/graphql.module';
 
 @NgModule({
   declarations: [AppComponent],

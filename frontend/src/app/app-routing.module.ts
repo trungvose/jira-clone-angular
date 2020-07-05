@@ -3,13 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'project',
+    path: 'projects',
     loadChildren: () => import('./project/project.module').then((m) => m.ProjectModule)
-  },
-  {
-    path: 'wip',
-    loadChildren: () =>
-      import('./work-in-progress/work-in-progress.module').then((m) => m.WorkInProgressModule)
   },
   { path: 'login', loadChildren: () => import('./login/login.module').then((m) => m.LoginModule) },
   {
@@ -18,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'project',
+    redirectTo: 'login',
     pathMatch: 'full'
   }
 ];

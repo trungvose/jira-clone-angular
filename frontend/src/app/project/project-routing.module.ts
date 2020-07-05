@@ -5,10 +5,11 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectComponent } from './project.component';
 import { ProjectConst } from './config/const';
 import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-detail.component';
+import { JiraConst } from '@trungk18/core/utils/jira.const';
 
 const routes: Routes = [
   {
-    path: '',
+    path: `${JiraConst.Slug}`,
     component: ProjectComponent,
     children: [
       {
