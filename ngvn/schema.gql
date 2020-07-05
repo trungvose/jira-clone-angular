@@ -63,6 +63,23 @@ type TeamDto {
   members: [UserDto!]!
 }
 
+type ProjectInformationDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  name: String!
+  slug: String!
+  description: String
+  category: ProjectCategory!
+  users: [UserDto!]!
+  teams: [TeamDto!]!
+}
+
+enum ProjectCategory {
+  Software
+}
+
 type ProjectIssueTagStyle {
   color: String!
   backgroundColor: String!
@@ -135,10 +152,6 @@ type ProjectDto {
   users: [UserDto!]!
   teams: [TeamDto!]!
   lanes: [ProjectLaneDto]!
-}
-
-enum ProjectCategory {
-  Software
 }
 
 type ProjectIssueDetailDto {
@@ -214,11 +227,12 @@ type Query {
   me: UserInformationDto!
   findIssueById(id: String!): ProjectIssueDetailDto!
   findProjectBySlug(slug: String!): ProjectDto!
+  findProjectsByUserId(userId: String!): [ProjectInformationDto!]!
   refreshToken: TokenResultDto!
 }
 
 type Mutation {
-  register(email: String!, password: String!, firstName: String!, lastName: String!): Boolean
+  register(email: String!, password: String!, fullName: String!): Boolean
   login(email: String!, password: String!): TokenResultDto!
   logout: Boolean
 }

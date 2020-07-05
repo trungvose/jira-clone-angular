@@ -15,14 +15,15 @@ export class SecurityService {
     @InjectQueue(userQueueName) private readonly userQueue: Queue,
   ) {}
 
-  async register({ email, firstName, lastName, password }: RegisterParamsDto): Promise<void> {
+  async register({ email, fullName, password }: RegisterParamsDto): Promise<void> {
     const user = await this.userService.findByEmail(email);
     if (user != null) {
       throw new BadRequestException(email, 'Email already exists');
     }
 
+    const [firstName, lastName] = this.parseFullName(fullName);
+
     const newUser = this.userService.createModel({ email, firstName, lastName, password });
-    // newUser.password = await this.authService.hashPassword(password);
     await this.userQueue.add(UserJob.AddUser, newUser);
   }
 
@@ -77,5 +78,15 @@ export class SecurityService {
       this.authService.createRefreshToken(user.id, user.refreshTokenId),
     ]);
     return [accessTokenResult, refreshToken];
+  }
+
+  private parseFullName(fullName: string) {
+    const parts = fullName.trim().split(' ');
+    if (parts.length === 1) {
+      return [fullName, ''];
+    }
+
+    const lastName = parts.pop();
+    return [parts.join(' '), lastName];
   }
 }

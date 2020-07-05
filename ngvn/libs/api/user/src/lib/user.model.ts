@@ -19,7 +19,17 @@ export class User extends BaseModel {
   @prop({ required: true, minlength: 1, maxlength: 100, index: true })
   @AutoMap()
   firstName: string;
-  @prop({ required: true, minlength: 1, maxlength: 100, index: true })
+  @prop({
+    required: function (this: User) {
+      if (this.lastName === '') {
+        return false;
+      }
+
+      return this.lastName == null;
+    },
+    maxlength: 100,
+    index: true,
+  })
   @AutoMap()
   lastName: string;
   @prop({ required: true, minlength: 6 })

@@ -1,8 +1,8 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from '@ngvn/api/common';
-import { ProjectDto } from '@ngvn/api/dtos';
-import { LookupPermissionGuard } from '@ngvn/api/permission';
+import { ProjectDto, ProjectInformationDto } from '@ngvn/api/dtos';
+import { LookupPermissionGuard, PermissionGuard } from '@ngvn/api/permission';
 import { PermissionNames, Privilege } from '@ngvn/shared/permission';
 import { ProjectService } from './project.service';
 
@@ -14,5 +14,11 @@ export class ProjectResolver {
   @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectManage, Privilege.Read, 'slug'))
   async findProjectBySlug(@Args('slug') slug: string): Promise<ProjectDto> {
     return await this.projectService.findBySlug(slug);
+  }
+
+  @Query((returns) => [ProjectInformationDto])
+  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.ProjectManage, Privilege.Read))
+  async findProjectsByUserId(@Args('userId') userId: string): Promise<ProjectInformationDto[]> {
+    return await this.projectService.findByUserId(userId);
   }
 }
