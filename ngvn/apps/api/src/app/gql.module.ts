@@ -25,7 +25,7 @@ registerEnumType(ProjectTimelineType, { name: 'ProjectTimelineType' });
     GraphQLModule.forRootAsync({
       inject: [appConfiguration.KEY],
       useFactory: (appConfig: AppConfig) => ({
-        autoSchemaFile: 'schema.gql',
+        autoSchemaFile: 'schema.graphql',
         context: ({ req, res }) => ({ req, res }),
         debug: appConfig.env === 'development',
         playground: appConfig.env === 'development',
