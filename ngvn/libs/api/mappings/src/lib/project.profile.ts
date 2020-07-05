@@ -1,4 +1,4 @@
-import { ProjectDto, ProjectLaneDto, TeamDto, UserDto } from '@ngvn/api/dtos';
+import { ProjectDto, ProjectInformationDto, ProjectLaneDto, TeamDto, UserDto } from '@ngvn/api/dtos';
 import { Project, ProjectLane } from '@ngvn/api/project';
 import { Team } from '@ngvn/api/team';
 import { User } from '@ngvn/api/user';
@@ -9,7 +9,7 @@ export class ProjectProfile extends ProfileBase {
   constructor(mapper: AutoMapper) {
     super();
     mapper
-      .createMap(Project, ProjectDto)
+      .createMap(Project, ProjectInformationDto)
       .forMember(
         (d) => d.users,
         mapWith(
@@ -25,14 +25,14 @@ export class ProjectProfile extends ProfileBase {
           (s) => s.teams,
           () => Team,
         ),
-      )
-      .forMember(
-        (d) => d.lanes,
-        mapWith(
-          ProjectLaneDto,
-          (s) => s.lanes,
-          () => ProjectLane,
-        ),
       );
+    mapper.createMap(Project, ProjectDto, { includeBase: [Project, ProjectInformationDto] }).forMember(
+      (d) => d.lanes,
+      mapWith(
+        ProjectLaneDto,
+        (s) => s.lanes,
+        () => ProjectLane,
+      ),
+    );
   }
 }

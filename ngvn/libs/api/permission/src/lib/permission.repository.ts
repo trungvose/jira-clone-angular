@@ -16,11 +16,9 @@ export class PermissionRepository extends BaseRepository<Permission> {
     name: PermissionNames,
     privilege: Privilege,
   ): Promise<T> {
-    return await this.findOne({ autopopulate: false })
-      .where('permissionName')
-      .equals(name)
-      .where('privilege')
-      .equals(privilege)
-      .exec() as DocumentType<T>;
+    return (await this.findOne({ autopopulate: false })
+      .where('permissionName', name)
+      .where('privilege', privilege)
+      .exec()) as DocumentType<T>;
   }
 }

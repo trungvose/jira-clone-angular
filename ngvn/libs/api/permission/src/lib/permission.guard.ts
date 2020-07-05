@@ -6,11 +6,17 @@ import { PermissionNames, Privilege } from '@ngvn/shared/permission';
 import { getAuthUser } from './utils/get-auth-user.util';
 import { hasPrivilege } from './utils/has-privilege.util';
 
-export const PermissionGuard: (name: PermissionNames, privilege: Privilege) => CanActivate = memoize(
-  createPermissionGuard,
-);
+export const PermissionGuard: (
+  name: PermissionNames,
+  privilege: Privilege,
+  checkSystemType?: boolean,
+) => CanActivate = memoize(createPermissionGuard);
 
-function createPermissionGuard(name: PermissionNames, privilege: Privilege): Constructor<CanActivate> {
+function createPermissionGuard(
+  name: PermissionNames,
+  privilege: Privilege,
+  checkSystemType: boolean = true,
+): Constructor<CanActivate> {
   class MixinPermissionGuard implements CanActivate {
     canActivate(context: ExecutionContext): boolean {
       const currentUser = getAuthUser(context);
@@ -19,7 +25,7 @@ function createPermissionGuard(name: PermissionNames, privilege: Privilege): Con
           return false;
         }
 
-        return currentUser.permissions.some(hasPrivilege(name, privilege));
+        return currentUser.permissions.some(hasPrivilege(name, privilege, checkSystemType));
       };
 
       return currentUser && (currentUser.isSystemAdmin || hasPermission());

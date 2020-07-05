@@ -17,4 +17,12 @@ export class ProjectRepository extends BaseRepository<Project> {
       ProjectRepository.throwMongoError(e);
     }
   }
+
+  async findByUser(userId: string): Promise<Project[]> {
+    try {
+      return await this.findAll().where('users').equals(userId).exec();
+    } catch (e) {
+      ProjectRepository.throwMongoError(e);
+    }
+  }
 }

@@ -15,7 +15,7 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
   }
 
   async findById(id: string): Promise<ProjectIssueDetailDto> {
-    const issue = await this.projectIssueRepository.findById(id);
+    const issue = await this.projectIssueRepository.findById(id).exec();
     return this.mapper.map(issue, ProjectIssueDetailDto, ProjectIssue);
   }
 }
