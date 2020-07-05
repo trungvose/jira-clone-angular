@@ -47,7 +47,8 @@ form {
     &.ng-touched,
     &.ng-touched:focus {
       background-color: #fff;
-      border-color: #ff4d4f;
+      border-color: rgb(222, 53, 11);
+      border-width: 2px;
       box-shadow: none;
     }
   }

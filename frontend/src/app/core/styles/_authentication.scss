@@ -1,0 +1,42 @@
+.authentication-container {
+    background-image: url(/assets/svg/jira-login-left-bg.svg),
+      url(/assets/svg/jira-login-right-bg.svg);
+    background-attachment: fixed, fixed;
+    background-size: 368px, 368px;
+    background-repeat: no-repeat, no-repeat;
+    background-position: left bottom, right bottom;
+  }
+  .app-logo {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding: 40px 0px;
+  
+    .jira-logo {
+      height: 40px;
+      position: relative;
+    }
+  }
+  
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+    box-sizing: border-box;
+    color: rgb(94, 108, 132);
+    margin: 0px auto 24px;
+    padding: 32px 40px;
+    background: rgb(255, 255, 255);
+    border-radius: 3px;
+  }
+  
+  .section-separator {
+    color: rgb(107, 119, 140);
+    padding-top: 16px;
+    margin-top: 32px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    border-top: 1px solid rgb(213, 216, 222);
+  }
+  

@@ -33,10 +33,10 @@ import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-d
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
+import { JiraCoreModule } from '@trungk18/core/core.module';
 
 @NgModule({
   declarations: [
-    AutofocusDirective,
     ...NavigationComponents,
     ...BoardPageComponents,
     ...IssueUtilComponents,
@@ -69,6 +69,7 @@ import { ProjectComponent } from './project.component';
     TextFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    JiraCoreModule,
     JiraControlModule,
     ContentLoaderModule,
     QuillModule
