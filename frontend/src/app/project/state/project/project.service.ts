@@ -1,22 +1,72 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { arrayRemove, arrayUpsert, setLoading } from '@datorama/akita';
+import { arrayRemove, arrayUpsert } from '@datorama/akita';
 import { JComment } from '@trungk18/interface/comment';
 import { JIssue } from '@trungk18/interface/issue';
 import { JProject } from '@trungk18/interface/project';
 import { DateUtil } from '@trungk18/project/utils/date';
-import { of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProjectStore } from './project.store';
+import gql from 'graphql-tag';
+import { Apollo } from 'apollo-angular';
+import { tap, finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { FetchResult } from 'apollo-link';
 
+const findProjectBySlugQuery = gql`
+  query FindProject($slug: String!) {
+    findProjectBySlug(slug: $slug) {
+      id
+      name
+      slug
+      description
+      category
+      users {
+        id
+        fullName
+        avatarUrl
+      }
+      lanes {
+        id
+        title
+        issues {
+          id
+          name
+          title
+          isActive
+          createdAt
+          updatedAt
+          type
+          status
+          priority
+          tags {
+            id
+            text
+            styles {
+              color
+              backgroundColor
+            }
+            description
+          }
+          main {
+            id
+            avatarUrl
+            fullName
+          }
+        }
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
   baseUrl: string;
 
-  constructor(private _http: HttpClient, private _store: ProjectStore) {
+  constructor(private _apollo: Apollo, private _store: ProjectStore) {
     this.baseUrl = environment.apiUrl;
   }
 
@@ -24,25 +74,33 @@ export class ProjectService {
     this._store.setLoading(isLoading);
   }
 
-  getProject() {
-    this._http
-      .get<JProject>(`${this.baseUrl}/project`)
+  getProject(slug: string): Observable<FetchResult> {
+    this.setLoading(true);
+    return this._apollo
+      .query({
+        query: findProjectBySlugQuery,
+        variables: {
+          slug
+        }
+      })
       .pipe(
-        setLoading(this._store),
-        tap((project) => {
+        tap((res) => {
+          //TODO: Remove that dirty test
+          //Anh Chau, why I need to force the type
+          let project = (<any>res.data).findProjectBySlug as JProject;
           this._store.update((state) => {
-            return {
+            let newState = {
               ...state,
-              ...project
-            };
+              ...(project as JProject)
+            }
+            console.log(newState)
+            return newState
           });
         }),
-        catchError((error) => {
-          this._store.setError(error);
-          return of(error);
+        finalize(() => {
+          this.setLoading(false);
         })
-      )
-      .subscribe();
+      );
   }
 
   updateProject(project: Partial<JProject>) {

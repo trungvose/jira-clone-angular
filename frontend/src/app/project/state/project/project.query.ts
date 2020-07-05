@@ -1,9 +1,9 @@
-import { ProjectState, ProjectStore } from './project.store';
 import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 import { IssueStatus, JIssue } from '@trungk18/interface/issue';
-import { filter, map, delay } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
+import { ProjectState, ProjectStore } from './project.store';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,16 +11,18 @@ export class ProjectQuery extends Query<ProjectState> {
   constructor(protected store: ProjectStore) {
     super(store);
   }
+  
   isLoading$ = this.selectLoading();
   all$ = this.select();
   issues$ = this.select('issues');
   users$ = this.select('users');
+  lanes$ = this.select('lanes');
 
   lastIssuePosition = (status: IssueStatus): number => {
     let raw = this.store.getValue();
-    let issuesByStatus = raw.issues.filter(x => x.status === status);
+    let issuesByStatus = raw.issues.filter((x) => x.status === status);
     return issuesByStatus.length;
-  }
+  };
 
   issueByStatusSorted$ = (status: IssueStatus): Observable<JIssue[]> => {
     return this.issues$.pipe(
@@ -33,13 +35,13 @@ export class ProjectQuery extends Query<ProjectState> {
     );
   };
 
-  issueById$(issueId: string){
+  issueById$(issueId: string) {
     return this.issues$.pipe(
       delay(500),
       map((issues) => {
-        let issue = issues.find(x => x.id === issueId);
+        let issue = issues.find((x) => x.id === issueId);
         return issue;
       })
-    )
+    );
   }
 }

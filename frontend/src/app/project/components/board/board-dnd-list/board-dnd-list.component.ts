@@ -8,6 +8,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { FilterQuery } from '@trungk18/project/state/filter/filter.query';
 import * as dateFns from 'date-fns';
 import { IssueUtil } from '@trungk18/project/utils/issue';
+import { JLane } from '@trungk18/interface/lane';
 
 @Component({
   selector: '[board-dnd-list]',
@@ -17,24 +18,25 @@ import { IssueUtil } from '@trungk18/project/utils/issue';
 })
 @UntilDestroy()
 export class BoardDndListComponent implements OnInit {
-  IssueStatusDisplay = IssueStatusDisplay;
-  @Input() status: IssueStatus;
+  @Input() lane: JLane;
   @Input() currentUserId: string;
-  @Input() issues$: Observable<JIssue[]>;
-  issues: JIssue[] = [];
+
+  filteredIssues: JIssue[] = [];
+
+  get issues(): JIssue[] {
+    return this.lane?.issues ?? [];
+  }
 
   get issuesCount(): number {
-    return this.issues.length;
+    return this.filteredIssues.length;
   }
 
   constructor(private _projectService: ProjectService, private _filterQuery: FilterQuery) {}
 
   ngOnInit(): void {
-    combineLatest([this.issues$, this._filterQuery.all$])
-      .pipe(untilDestroyed(this))
-      .subscribe(([issues, filter]) => {
-        this.issues = this.filterIssues(issues, filter);
-      });
+    this._filterQuery.all$.pipe(untilDestroyed(this)).subscribe((filter) => {
+      this.filteredIssues = this.filterIssues(this.issues, filter);
+    });
   }
 
   drop(event: CdkDragDrop<JIssue[]>) {
@@ -66,9 +68,7 @@ export class BoardDndListComponent implements OnInit {
   filterIssues(issues: JIssue[], filter: FilterState): JIssue[] {
     const { onlyMyIssue, ignoreResolved, searchTerm, userIds } = filter;
     return issues.filter((issue) => {
-      let isMatchTerm = searchTerm
-        ? IssueUtil.searchString(issue.title, searchTerm)
-        : true;
+      let isMatchTerm = searchTerm ? IssueUtil.searchString(issue.title, searchTerm) : true;
 
       let isIncludeUsers = userIds.length
         ? issue.userIds.some((userId) => userIds.includes(userId))

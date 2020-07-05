@@ -36,6 +36,10 @@ export class AuthService {
               ...state,
               ...data.login
             }));
+            //TODO Trung removed it, to test the headers for now
+            // https://www.apollographql.com/docs/angular/recipes/authentication/
+            //TODO anh Chau, need to see how to attach the headers from the authService
+            localStorage.setItem('token', data.login.token);
           }
         }),
         finalize(() => {

@@ -24,7 +24,9 @@ export class IssueCardComponent implements OnChanges {
 
   ngOnInit(): void {
     this._projectQuery.users$.pipe(untilDestroyed(this)).subscribe((users) => {
-      this.assignees = this.issue.userIds.map((userId) => users.find((x) => x.id === userId));
+      if (this.issue.userIds) {
+        this.assignees = this.issue.userIds.map((userId) => users.find((x) => x.id === userId));
+      }
     });
   }
 

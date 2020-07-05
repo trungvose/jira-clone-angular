@@ -1,5 +1,6 @@
 import { JIssue } from './issue';
 import { JUser } from './user';
+import { JLane } from './lane';
 
 export interface JProject {
   id: string;
@@ -10,6 +11,7 @@ export interface JProject {
   createdAt: string;
   updateAt: string;
   issues: JIssue[];
+  lanes: JLane[];
   users: JUser[];
 }
 

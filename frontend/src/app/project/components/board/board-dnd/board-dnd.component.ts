@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { IssueStatus } from '@trungk18/interface/issue';
-import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { AuthQuery } from '@trungk18/core/state/auth/auth.query';
+import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 @UntilDestroy()
 @Component({
   selector: 'board-dnd',
@@ -10,13 +9,6 @@ import { AuthQuery } from '@trungk18/core/state/auth/auth.query';
   styleUrls: ['./board-dnd.component.scss']
 })
 export class BoardDndComponent implements OnInit {
-  issueStatuses: IssueStatus[] = [
-    IssueStatus.BACKLOG,
-    IssueStatus.SELECTED,
-    IssueStatus.IN_PROGRESS,
-    IssueStatus.DONE
-  ];
-
   constructor(public projectQuery: ProjectQuery, public authQuery: AuthQuery) {}
 
   ngOnInit(): void {}

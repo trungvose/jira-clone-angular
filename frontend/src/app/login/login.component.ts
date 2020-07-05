@@ -6,12 +6,15 @@ import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.v
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { JiraRoutingConst } from '@trungk18/core/utils/jira-routing.const';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+@UntilDestroy()
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   constructor(
@@ -37,6 +40,7 @@ export class LoginComponent implements OnInit {
     this._authService
       .login(loginPayload)
       .pipe(
+        untilDestroyed(this),
         catchError((err) => {
           this._notification.error(
             'Login Failed',
@@ -46,7 +50,7 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this._router.navigate(['/project']);
+        this._router.navigate([`/${JiraRoutingConst.Projects}`, JiraRoutingConst.MockProjectSlug]);
       });
   }
 }
