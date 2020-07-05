@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login.component';
+import { SignUpRoutingModule } from './signup-routing.module';
+import { SignUpComponent } from './signup.component';
 import { JiraControlModule } from '@trungk18/jira-control/jira-control.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JiraCoreModule } from '@trungk18/core/core.module';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [SignUpComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SignUpRoutingModule,
     JiraCoreModule,
-    JiraControlModule,
-    LoginRoutingModule
+    JiraControlModule
   ]
 })
-export class LoginModule {}
+export class SignUpModule {}

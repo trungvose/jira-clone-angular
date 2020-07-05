@@ -1,0 +1,57 @@
+<div class="w-full h-full authentication-container">
+    <div class="app-logo">
+        <h3 class="flex items-center justify-center">
+            <img class="jira-logo mr-3"
+                 alt="Jira Logo"
+                 src='/assets/svg/jira.svg'>
+            <span class="text-xl">Angular Jira Clone</span></h3>
+    </div>
+    <section class="form-wrapper">
+        <div class="text-center text-15 font-semibold mb-5">
+            Sign up for your account
+        </div>
+        <form [formGroup]="signUpForm">
+            <div class="form-group mb-4">
+                <input class="form-input"
+                       type="email"
+                       placeholder="Enter email address"
+                       formControlName="email"
+                       jAutofocus />
+            </div>
+            <div class="form-group mb-4">
+                <input class="form-input"
+                       type="text"
+                       placeholder="Enter full name"
+                       formControlName="fullName" />
+            </div>
+            <div class="form-group mb-4">
+                <input class="form-input"
+                       type="password"
+                       placeholder="Enter password"
+                       formControlName="password" />
+            </div>
+            <div class="form-group mb-3">
+                <j-button className="btn-primary w-full"
+                          [disabled]="signUpForm.invalid">
+                    Sign up
+                </j-button>
+            </div>
+            <div class="text-center text-sm mt-1 mb-1">
+                OR
+            </div>
+            <div class="form-group mt-3">
+                <j-button className="btn-secondary w-full"
+                          icon="github">Continue with Github
+                </j-button>
+            </div>
+        </form>
+        <div class="section-separator">
+
+        </div>
+        <div class="additional-action text-center">
+            <a class="text-blue-500 hover:underline"
+               routerLink="/login">Already have an account? Log in
+            </a>
+        </div>
+    </section>
+</div>

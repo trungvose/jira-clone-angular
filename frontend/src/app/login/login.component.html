@@ -1,5 +1,4 @@
-<div class="w-full h-full"
-     id="loginWrapper">
+<div class="w-full h-full authentication-container">
   <div class="app-logo">
     <h3 class="flex items-center justify-center">
       <img class="jira-logo mr-3"
@@ -15,7 +14,7 @@
       <div class="form-group mb-4">
         <input class="form-input"
                type="email"
-               placeholder="Enter email"
+               placeholder="Enter email address"
                formControlName="email"
                jAutofocus />
       </div>
@@ -43,8 +42,9 @@
     <div class="section-separator">
 
     </div>
-    <div class="additional-action">
-      <a class="text-blue-500 hover:underline">Sign up for an account</a>
+    <div class="additional-action text-center">
+      <a class="text-blue-500 hover:underline"
+         routerLink="/signup">Sign up for an account</a>
     </div>
   </section>
 </div>
