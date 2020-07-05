@@ -1,7 +1,3 @@
-export class TokenResultApi {
-  token: string;
-  expiry: string;
-}
 
 export class LoginPayload {
   email: string;

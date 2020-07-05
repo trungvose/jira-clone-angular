@@ -6,6 +6,7 @@ import { LoginComponent } from './login.component';
 import { JiraControlModule } from '@trungk18/jira-control/jira-control.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JiraCoreModule } from '@trungk18/core/core.module';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -14,7 +15,8 @@ import { JiraCoreModule } from '@trungk18/core/core.module';
     ReactiveFormsModule,
     JiraCoreModule,
     JiraControlModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    NzNotificationModule
   ]
 })
 export class LoginModule {}
