@@ -4,7 +4,7 @@ import { GqlAuthGuard } from '@ngvn/api/common';
 import { ProjectDto } from '@ngvn/api/dtos';
 import { LookupPermissionGuard } from '@ngvn/api/permission';
 import { PermissionNames, Privilege } from '@ngvn/shared/permission';
-import { ProjectService } from '../project.service';
+import { ProjectService } from './project.service';
 
 @Resolver()
 export class ProjectResolver {

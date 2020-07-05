@@ -5,8 +5,8 @@ import { ProjectIssueRepository } from './project-issue.repository';
 import { ProjectIssueService } from './project-issue.service';
 import { ProjectRepository } from './project.repository';
 import { ProjectService } from './project.service';
-import { ProjectIssueResolver } from './resolvers/project-issue.resolver';
-import { ProjectResolver } from './resolvers/project.resolver';
+import { ProjectIssueResolver } from './project-issue.resolver';
+import { ProjectResolver } from './project.resolver';
 
 @Module({
   imports: [
