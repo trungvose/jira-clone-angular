@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, EmailValidator } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '@trungk18/core/state/auth/auth.service';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 
 @Component({
@@ -9,7 +10,7 @@ import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.v
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private _fb: FormBuilder) {}
+  constructor(private _fb: FormBuilder, private _authService: AuthService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -17,10 +18,13 @@ export class LoginComponent implements OnInit {
 
   initForm() {
     this.loginForm = this._fb.group({
-      email: ['', NoWhitespaceValidator(), EmailValidator],
+      email: ['', [NoWhitespaceValidator(), Validators.email]],
       password: ['', NoWhitespaceValidator()]
     });
   }
-  
-  submitForm() {}
+
+  submitForm() {
+    let loginPayload = this.loginForm.getRawValue();
+    this._authService.login(loginPayload);
+  }
 }

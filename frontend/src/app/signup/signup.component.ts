@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 
 @Component({
@@ -18,7 +18,7 @@ export class SignUpComponent implements OnInit {
 
   initForm() {
     this.signUpForm = this._fb.group({
-      email: ['', NoWhitespaceValidator()],
+      email: ['', [NoWhitespaceValidator(), Validators.email]],
       fullName: ['', NoWhitespaceValidator()],
       password: ['', NoWhitespaceValidator()]
     });
