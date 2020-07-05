@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CacheService } from '@ngvn/api/caching';
 import { BaseService } from '@ngvn/api/common';
-import { UserInformationDto } from '@ngvn/api/dtos';
+import { AuthUserDto, UserInformationDto } from '@ngvn/api/dtos';
 import { InjectMapper, AutoMapper } from 'nestjsx-automapper';
 import { User } from './user.model';
 import { UserRepository } from './user.repository';
@@ -24,9 +24,13 @@ export class UserService extends BaseService<User> {
     return await this.cacheService.get(`user_${id}`, () => this.userRepository.findById(id).exec());
   }
 
-  async getUserInformation(id: string): Promise<UserInformationDto> {
-    const user = await this.getUserById(id);
-    return this.mapper.map(user, UserInformationDto, User);
+  async getUserInformation(currentUser: AuthUserDto): Promise<UserInformationDto> {
+    const user = await this.getUserById(currentUser.id);
+    return this.mapper.map(user, UserInformationDto, User, {
+      afterMap: (_, destination) => {
+        destination.permissions = [...currentUser.permissions];
+      },
+    });
   }
 
   async updateRefreshTokenId(id: string) {

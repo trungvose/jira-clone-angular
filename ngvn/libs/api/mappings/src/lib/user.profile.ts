@@ -18,8 +18,7 @@ export class UserProfile extends ProfileBase {
     );
     mapper
       .createMap(User, UserInformationDto, { includeBase: [User, UserDto] })
-      .forMember((d) => d.permissions, ignore())
-      .afterMap(this.userPermissionsAfterMap.bind(this));
+      .forMember((d) => d.permissions, ignore());
   }
 
   private userPermissionsAfterMap(source: User, destination: UserInformationDto | AuthUserDto): void {

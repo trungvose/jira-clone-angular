@@ -15,7 +15,11 @@ export class UserJobConsumer {
       PermissionNames.UserSelf,
       Privilege.Read,
     );
-    job.data.permissions.push(selfPermission);
+    const projectCreatePermission = await this.permissionService.findByNameAndPrivilege(
+      PermissionNames.ProjectManage,
+      Privilege.Create,
+    );
+    job.data.permissions.push(selfPermission, projectCreatePermission);
     return await this.userService.create(job.data);
   }
 }
