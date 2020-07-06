@@ -232,6 +232,7 @@ type Query {
 }
 
 type Mutation {
+  reorderIssueInLane(projectId: String!, laneId: String!, issueId: String!, targetIndex: Int!, previousIndex: Int!): ProjectDto!
   register(email: String!, password: String!, fullName: String!): Boolean
   login(email: String!, password: String!): TokenResultDto!
   logout: Boolean

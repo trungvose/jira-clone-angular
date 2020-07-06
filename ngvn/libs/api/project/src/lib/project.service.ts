@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CacheService } from '@ngvn/api/caching';
 import { BaseService } from '@ngvn/api/common';
-import { ProjectDto, ProjectInformationDto } from '@ngvn/api/dtos';
+import { ProjectDto, ProjectInformationDto, ReorderIssueParamsDto } from '@ngvn/api/dtos';
 import { InjectMapper, AutoMapper } from 'nestjsx-automapper';
 import { Project } from './models';
 import { ProjectRepository } from './project.repository';
@@ -26,5 +26,48 @@ export class ProjectService extends BaseService<Project> {
       this.projectRepository.findByUser(userId),
     );
     return this.mapper.mapArray(projects, ProjectInformationDto, Project);
+  }
+
+  async reorderIssue({
+    issueId,
+    laneId,
+    previousIndex,
+    projectId,
+    targetIndex,
+  }: ReorderIssueParamsDto): Promise<ProjectDto> {
+    const project = await this.projectRepository.findById(projectId, { autopopulate: false }).exec();
+    if (project == null) {
+      throw new NotFoundException(projectId, 'No project found with id');
+    }
+
+    const lane = project.lanes.find((lane) => lane.id === laneId);
+    if (lane == null) {
+      throw new NotFoundException(laneId, 'No lane found with id');
+    }
+
+    if (!lane.issues.some((issueId) => issueId === issueId)) {
+      throw new NotFoundException(issueId, 'No issue found with id');
+    }
+
+    const result = await this.projectRepository.reorderIssue({
+      issueId,
+      laneId,
+      previousIndex,
+      projectId,
+      targetIndex,
+    });
+    return this.mapper.map(result, ProjectDto, Project);
+  }
+
+  async findLane(projectId: string, laneId: string) {
+    const project = await this.projectRepository.findById(projectId);
+    if (project == null) {
+      throw new NotFoundException(projectId, 'No project found with id');
+    }
+
+    const lane = project.lanes.find((lane) => lane.id === laneId);
+    if (lane == null) {
+      throw new NotFoundException(laneId, 'No lane found with id');
+    }
   }
 }

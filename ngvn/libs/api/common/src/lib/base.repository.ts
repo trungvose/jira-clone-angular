@@ -2,7 +2,15 @@ import { InternalServerErrorException } from '@nestjs/common';
 import { ModelType } from '@ngvn/api/types';
 import { DocumentType } from '@typegoose/typegoose';
 import { MongoError } from 'mongodb';
-import { CreateQuery, DocumentQuery, FilterQuery, Query, Types, UpdateQuery } from 'mongoose';
+import {
+  CreateQuery,
+  DocumentQuery,
+  FilterQuery,
+  Query,
+  QueryFindOneAndUpdateOptions,
+  Types,
+  UpdateQuery,
+} from 'mongoose';
 import { BaseModel } from './base.model';
 
 type QueryList<T extends BaseModel> = DocumentQuery<DocumentType<T>[], DocumentType<T>>;
@@ -88,9 +96,29 @@ export abstract class BaseRepository<T extends BaseModel> {
       .setOptions(this.getQueryOptions(options));
   }
 
-  updateBy(id: string, updateQuery: UpdateQuery<DocumentType<T>>, options?: QueryOptions): QueryItem<T> {
+  updateBy(
+    id: string,
+    updateQuery: UpdateQuery<DocumentType<T>>,
+    updateOptions?: QueryFindOneAndUpdateOptions,
+    options?: QueryOptions,
+  ): QueryItem<T> {
     return this.model
       .findByIdAndUpdate(BaseRepository.toObjectId(id), updateQuery, {
+        ...(updateOptions || {}),
+        new: true,
+      })
+      .setOptions(this.getQueryOptions(options));
+  }
+
+  updateByFilter(
+    filter: FilterQuery<DocumentType<T>> = {},
+    updateQuery: UpdateQuery<DocumentType<T>>,
+    updateOptions: QueryFindOneAndUpdateOptions = {},
+    options?: QueryOptions,
+  ): QueryItem<T> {
+    return this.model
+      .findOneAndUpdate(filter, updateQuery, {
+        ...updateOptions,
         new: true,
       })
       .setOptions(this.getQueryOptions(options));

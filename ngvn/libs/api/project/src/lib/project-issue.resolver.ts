@@ -15,4 +15,6 @@ export class ProjectIssueResolver {
   async findIssueById(@Args('id') id: string): Promise<ProjectIssueDetailDto> {
     return await this.projectIssueService.findById(id);
   }
+
+
 }

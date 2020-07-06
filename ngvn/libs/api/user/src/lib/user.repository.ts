@@ -21,7 +21,7 @@ export class UserRepository extends BaseRepository<User> {
 
   async updateRefreshTokenId(id: string) {
     try {
-      await this.updateBy(id, { $set: { refreshTokenId: uuid() } }, { lean: false, autopopulate: false }).exec();
+      await this.updateBy(id, { $set: { refreshTokenId: uuid() } }, {}, { lean: false, autopopulate: false }).exec();
     } catch (e) {
       UserRepository.throwMongoError(e);
     }
