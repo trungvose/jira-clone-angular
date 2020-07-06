@@ -6,7 +6,13 @@ module.exports = {
     const projects = await projectsCollection.find({}).toArray();
 
     for (const project of projects) {
-      await projectsCollection.updateOne({ _id: project._id }, { $set: { 'lanes.$[]._id': Types.ObjectId() } });
+      const lanesIdUpdate = project.lanes
+        .map((_, index) => `lanes.${index}._id`)
+        .reduce((acc, cur) => {
+          acc[cur] = Types.ObjectId();
+          return acc;
+        }, {});
+      await projectsCollection.updateOne({ _id: project._id }, { $set: lanesIdUpdate });
     }
   },
 

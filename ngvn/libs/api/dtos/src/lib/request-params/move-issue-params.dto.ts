@@ -5,13 +5,11 @@ export class MoveIssueParamsDto {
   @Field()
   projectId: string;
   @Field()
-  issueId: string;
-  @Field()
   targetLaneId: string;
   @Field()
   previousLaneId: string;
-  @Field(() => Int)
-  targetIndex: number;
-  @Field(() => Int)
-  previousIndex: number;
+  @Field(() => [String])
+  targetIssues: string[];
+  @Field(() => [String])
+  previousIssues: string[];
 }

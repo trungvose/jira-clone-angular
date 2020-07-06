@@ -1,7 +1,7 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from '@ngvn/api/common';
-import { ProjectDto, ProjectInformationDto, ReorderIssueParamsDto } from '@ngvn/api/dtos';
+import { MoveIssueParamsDto, ProjectDto, ProjectInformationDto, ReorderIssueParamsDto } from '@ngvn/api/dtos';
 import { LookupPermissionGuard, PermissionGuard } from '@ngvn/api/permission';
 import { PermissionNames, Privilege } from '@ngvn/shared/permission';
 import { ProjectService } from './project.service';
@@ -26,5 +26,11 @@ export class ProjectResolver {
   @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectManage, Privilege.Update, 'projectId'))
   async reorderIssueInLane(@Args() reorderDto: ReorderIssueParamsDto): Promise<ProjectDto> {
     return await this.projectService.reorderIssue(reorderDto);
+  }
+
+  @Mutation((returns) => ProjectDto)
+  @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectManage, Privilege.Update, 'projectId'))
+  async moveIssueBetweenLanes(@Args() moveDto: MoveIssueParamsDto): Promise<ProjectDto> {
+    return await this.projectService.moveIssue(moveDto);
   }
 }

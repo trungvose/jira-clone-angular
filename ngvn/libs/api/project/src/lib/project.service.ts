@@ -1,8 +1,11 @@
+import { InjectQueue } from '@nestjs/bull';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CacheService } from '@ngvn/api/caching';
 import { BaseService } from '@ngvn/api/common';
-import { ProjectDto, ProjectInformationDto, ReorderIssueParamsDto } from '@ngvn/api/dtos';
-import { InjectMapper, AutoMapper } from 'nestjsx-automapper';
+import { MoveIssueParamsDto, ProjectDto, ProjectInformationDto, ReorderIssueParamsDto } from '@ngvn/api/dtos';
+import { ProjectIssueJob, projectIssueQueueName } from '@ngvn/background/common';
+import { Queue } from 'bull';
+import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 import { Project } from './models';
 import { ProjectRepository } from './project.repository';
 
@@ -12,6 +15,7 @@ export class ProjectService extends BaseService<Project> {
     private readonly projectRepository: ProjectRepository,
     private readonly cacheService: CacheService,
     @InjectMapper() private readonly mapper: AutoMapper,
+    @InjectQueue(projectIssueQueueName) private readonly projectIssueQueue: Queue,
   ) {
     super(projectRepository);
   }
@@ -44,6 +48,40 @@ export class ProjectService extends BaseService<Project> {
       projectId,
       issues,
     });
+    return this.mapper.map(result, ProjectDto, Project);
+  }
+
+  async moveIssue({
+    projectId,
+    targetLaneId,
+    targetIssues,
+    previousLaneId,
+    previousIssues,
+  }: MoveIssueParamsDto): Promise<ProjectDto> {
+    const project = await this.projectRepository.findById(projectId, { autopopulate: false }).exec();
+    if (project == null) {
+      throw new NotFoundException(projectId, 'No project found with id');
+    }
+
+    if (!project.lanes.some((lane) => lane.id === targetLaneId)) {
+      throw new NotFoundException(targetLaneId, 'No target lane found with id');
+    }
+
+    if (!project.lanes.some((lane) => lane.id === previousLaneId)) {
+      throw new NotFoundException(previousLaneId, 'No previous lane found with id');
+    }
+
+    const result = await this.projectRepository.moveIssue({
+      targetLaneId,
+      projectId,
+      previousIssues,
+      previousLaneId,
+      targetIssues,
+    });
+    await this.projectIssueQueue.add(
+      ProjectIssueJob.BulkUpdateStatus,
+      result.lanes.find((lane) => lane.id === targetLaneId),
+    );
     return this.mapper.map(result, ProjectDto, Project);
   }
 

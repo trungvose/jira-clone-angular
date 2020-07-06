@@ -99,7 +99,7 @@ export abstract class BaseRepository<T extends BaseModel> {
   updateBy(
     id: string,
     updateQuery: UpdateQuery<DocumentType<T>>,
-    updateOptions?: QueryFindOneAndUpdateOptions,
+    updateOptions?: QueryFindOneAndUpdateOptions & { multi?: boolean },
     options?: QueryOptions,
   ): QueryItem<T> {
     return this.model

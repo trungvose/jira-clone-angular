@@ -21,8 +21,8 @@ import { GqlModule } from './gql.module';
     ApiConfigModule,
     ApiCachingModule,
     ApiAuthModule,
-    ApiModule,
     BackgroundModule,
+    ApiModule,
   ],
 })
 export class AppModule {}

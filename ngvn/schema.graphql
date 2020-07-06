@@ -225,14 +225,15 @@ type TimelineMentionDto {
 
 type Query {
   me: UserInformationDto!
-  findIssueById(id: String!): ProjectIssueDetailDto!
   findProjectBySlug(slug: String!): ProjectDto!
   findProjectsByUserId(userId: String!): [ProjectInformationDto!]!
+  findIssueById(id: String!): ProjectIssueDetailDto!
   refreshToken: TokenResultDto!
 }
 
 type Mutation {
-  reorderIssueInLane(projectId: String!, laneId: String!, issueId: String!, targetIndex: Int!, previousIndex: Int!): ProjectDto!
+  reorderIssueInLane(projectId: String!, laneId: String!, issues: [String!]!): ProjectDto!
+  moveIssueBetweenLanes(projectId: String!, targetLaneId: String!, previousLaneId: String!, targetIssues: [String!]!, previousIssues: [String!]!): ProjectDto!
   register(email: String!, password: String!, fullName: String!): Boolean
   login(email: String!, password: String!): TokenResultDto!
   logout: Boolean
