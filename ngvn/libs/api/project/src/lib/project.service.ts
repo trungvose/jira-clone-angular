@@ -28,13 +28,7 @@ export class ProjectService extends BaseService<Project> {
     return this.mapper.mapArray(projects, ProjectInformationDto, Project);
   }
 
-  async reorderIssue({
-    issueId,
-    laneId,
-    previousIndex,
-    projectId,
-    targetIndex,
-  }: ReorderIssueParamsDto): Promise<ProjectDto> {
+  async reorderIssue({ laneId, projectId, issues }: ReorderIssueParamsDto): Promise<ProjectDto> {
     const project = await this.projectRepository.findById(projectId, { autopopulate: false }).exec();
     if (project == null) {
       throw new NotFoundException(projectId, 'No project found with id');
@@ -45,16 +39,10 @@ export class ProjectService extends BaseService<Project> {
       throw new NotFoundException(laneId, 'No lane found with id');
     }
 
-    if (!lane.issues.some((issueId) => issueId === issueId)) {
-      throw new NotFoundException(issueId, 'No issue found with id');
-    }
-
     const result = await this.projectRepository.reorderIssue({
-      issueId,
       laneId,
-      previousIndex,
       projectId,
-      targetIndex,
+      issues,
     });
     return this.mapper.map(result, ProjectDto, Project);
   }

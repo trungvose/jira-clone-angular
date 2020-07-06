@@ -6,10 +6,6 @@ export class ReorderIssueParamsDto {
   projectId: string;
   @Field()
   laneId: string;
-  @Field()
-  issueId: string;
-  @Field(() => Int)
-  targetIndex: number;
-  @Field(() => Int)
-  previousIndex: number;
+  @Field(() => [String])
+  issues: string[];
 }

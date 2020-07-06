@@ -27,36 +27,16 @@ export class ProjectRepository extends BaseRepository<Project> {
     }
   }
 
-  async reorderIssue({
-    projectId,
-    laneId,
-    issueId,
-    previousIndex,
-    targetIndex,
-  }: ReorderIssueParamsDto): Promise<Project> {
+  async reorderIssue({ projectId, laneId, issues }: ReorderIssueParamsDto): Promise<Project> {
     try {
-      await this.updateByFilter(
-        {
-          _id: ProjectRepository.toObjectId(projectId),
-          lanes: { $elemMatch: { _id: ProjectRepository.toObjectId(laneId) } },
-        },
-        {
-          $unset: {
-            [`lanes.$.issues.${previousIndex}`]: '',
-          },
-        },
-        {},
-        { autopopulate: false },
-      ).exec();
-
       return await this.updateByFilter(
         {
           _id: ProjectRepository.toObjectId(projectId),
           lanes: { $elemMatch: { _id: ProjectRepository.toObjectId(laneId) } },
         },
         {
-          $push: {
-            'lanes.$.issues': { $each: [ProjectRepository.toObjectId(issueId)], $position: targetIndex },
+          $set: {
+            'lanes.$.issues': issues.map(ProjectRepository.toObjectId),
           },
         },
       ).exec();
