@@ -38,6 +38,7 @@ export const IssuePriorityColors = {
 export interface JIssue {
   id: string;
   title: string;
+  name: string;
   type: IssueType;
   status: IssueStatus;
   priority: IssuePriority;

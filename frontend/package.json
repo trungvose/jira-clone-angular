@@ -7,7 +7,8 @@
     "build": "ng build --prod=true --sourceMap=true",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "gql-codegen": "graphql-codegen --config grapql.yml"
   },
   "private": true,
   "dependencies": {
@@ -47,6 +48,7 @@
     "@angular/compiler-cli": "~9.1.11",
     "@datorama/akita-ng-router-store": "^5.0.0",
     "@datorama/akita-ngdevtools": "^4.0.0",
+    "@graphql-codegen/cli": "1.16.3",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
@@ -65,6 +67,10 @@
     "tailwindcss": "^1.4.6",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "@graphql-codegen/typescript": "1.16.3",
+    "@graphql-codegen/typescript-operations": "1.16.3",
+    "@graphql-codegen/typescript-apollo-angular": "1.16.3",
+    "@graphql-codegen/introspection": "1.16.3"
   }
 }

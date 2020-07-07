@@ -1,40 +1,28 @@
 import { Injectable } from '@angular/core';
-import { LoginPayload } from '@trungk18/interface/authentication/login-payload';
-import { TokenResultApi } from '@trungk18/interface/authentication/token-result';
-import { Apollo } from 'apollo-angular';
-import { FetchResult } from 'apollo-link';
-import gql from 'graphql-tag';
+import { LoginGQL, TokenResultDto } from '@trungk18/core/graphql/service/graphql';
+import { LoginPayload } from '@trungk18/interface/payload/login';
 import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize, map, tap } from 'rxjs/operators';
 import { AuthStore } from './auth.store';
-const loginMutation = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      expiry
-    }
-  }
-`;
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private _store: AuthStore, private _apollo: Apollo) {}
+  constructor(private _store: AuthStore, private _loginGql: LoginGQL) {}
 
-  login({ email, password }: LoginPayload): Observable<FetchResult> {
+  login({ email, password }: LoginPayload): Observable<TokenResultDto> {
     this._store.setLoading(true);
-    return this._apollo
+    return this._loginGql
       .mutate({
-        mutation: loginMutation,
-        variables: {
-          email,
-          password
-        }
+        email,
+        password
       })
       .pipe(
-        tap(({ data }: { data: TokenResultApi }) => {
-          if (data) {
+        map(({ data }) => data.login),
+        tap((tokenResult) => {
+          if (tokenResult) {
             this._store.update((state) => ({
               ...state,
-              ...data.login
+              ...tokenResult
             }));
           }
         }),
