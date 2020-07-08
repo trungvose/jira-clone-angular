@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { JIssue } from '@trungk18/interface/issue';
+import { Component, Input, OnInit } from '@angular/core';
+import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 
 @Component({
@@ -8,8 +8,8 @@ import { IssueUtil } from '@trungk18/project/utils/issue';
   styleUrls: ['./issue-result.component.scss']
 })
 export class IssueResultComponent implements OnInit {
-  @Input() issue: JIssue;
-  
+  @Input() issue: ProjectIssueDto;
+
   get issueTypeIcon() {
     return IssueUtil.getIssueTypeIcon(this.issue?.type);
   }

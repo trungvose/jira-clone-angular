@@ -6,7 +6,7 @@
     <div class="pl-10"
          *ngIf="comment">
         <div class="inline-block mr-3 mb-2 text-textDark font-medium">
-            {{ comment.user.name}}
+            {{ comment.user.fullName}}
         </div>
         <div *ngIf="!createMode"
              class="inline-block pb-2 text-textDark text-sm">

@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { JIssue } from '@trungk18/interface/issue';
 import { FormControl } from '@angular/forms';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-description',
@@ -11,7 +11,7 @@ import { ProjectService } from '@trungk18/project/state/project/project.service'
   encapsulation: ViewEncapsulation.None
 })
 export class IssueDescriptionComponent implements OnChanges {
-  @Input() issue: JIssue;
+  @Input() issue: ProjectIssueDto;
   descriptionControl: FormControl;
   editorOptions = quillConfiguration;
   isEditing: boolean;
@@ -22,7 +22,7 @@ export class IssueDescriptionComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     let issueChange = changes.issue;
     if (issueChange.currentValue !== issueChange.previousValue) {
-      this.descriptionControl = new FormControl(this.issue.description);
+      this.descriptionControl = new FormControl(this.issue.summary);
     }
   }
 
@@ -37,13 +37,13 @@ export class IssueDescriptionComponent implements OnChanges {
   save() {
     this._projectService.updateIssue({
       ...this.issue,
-      description: this.descriptionControl.value
+      summary: this.descriptionControl.value
     });
     this.setEditMode(false);
   }
 
   cancel() {
-    this.descriptionControl.patchValue(this.issue.description);
+    this.descriptionControl.patchValue(this.issue.summary);
     this.setEditMode(false);
   }
 

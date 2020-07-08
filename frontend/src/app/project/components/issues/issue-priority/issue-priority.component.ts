@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { JIssue, IssuePriority } from '@trungk18/interface/issue';
 import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { ProjectConst } from '@trungk18/project/config/const';
+import { ProjectIssuePriority, ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-priority',
@@ -11,7 +11,7 @@ import { ProjectConst } from '@trungk18/project/config/const';
   styleUrls: ['./issue-priority.component.scss']
 })
 export class IssuePriorityComponent implements OnInit, OnChanges {
-  selectedPriority: IssuePriority;
+  selectedPriority: ProjectIssuePriority;
 
   get selectedPriorityIcon() {
     return IssueUtil.getIssuePriorityIcon(this.selectedPriority);
@@ -19,7 +19,7 @@ export class IssuePriorityComponent implements OnInit, OnChanges {
 
   priorities: IssuePriorityIcon[];
 
-  @Input() issue: JIssue;
+  @Input() issue: ProjectIssueDto;
 
   constructor(private _projectService: ProjectService) {}
 
@@ -31,11 +31,11 @@ export class IssuePriorityComponent implements OnInit, OnChanges {
     this.selectedPriority = this.issue?.priority;
   }
 
-  isPrioritySelected(priority: IssuePriority) {
+  isPrioritySelected(priority: ProjectIssuePriority) {
     return priority === this.selectedPriority;
   }
 
-  updateIssue(priority: IssuePriority) {
+  updateIssue(priority: ProjectIssuePriority) {
     this.selectedPriority = priority;
     this._projectService.updateIssue({
       ...this.issue,

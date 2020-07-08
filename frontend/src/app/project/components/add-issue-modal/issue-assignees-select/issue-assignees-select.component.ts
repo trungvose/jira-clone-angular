@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
-import { JUser } from '@trungk18/interface/user';
 import { FormControl } from '@angular/forms';
+import { UserDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-assignees-select',
@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
 })
 export class IssueAssigneesSelectComponent implements OnInit {
   @Input() control: FormControl;
-  @Input() users: JUser[];
+  @Input() users: UserDto[];
 
   constructor(private cdr: ChangeDetectorRef) {}
 

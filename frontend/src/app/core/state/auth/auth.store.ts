@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { JUser } from '@trungk18/interface/user';
 import { Store, StoreConfig } from '@datorama/akita';
+import { UserDto } from '@trungk18/core/graphql/service/graphql';
 
 export interface AuthState {
   token: string;
   expiry: string;
-  currentUser: JUser;
+  currentUser: UserDto;
 }
 
 export function createInitialAuthState(): AuthState {
   return {
-    currentUser: {} as JUser,
+    currentUser: {} as UserDto,
     token: null,
     expiry: null
   };

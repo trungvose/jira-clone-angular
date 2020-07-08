@@ -1,8 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { JIssue } from '@trungk18/interface/issue';
-import { JUser } from '@trungk18/interface/user';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { ProjectIssueDto, UserDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-reporter',
@@ -11,9 +10,9 @@ import { ProjectService } from '@trungk18/project/state/project/project.service'
 })
 @UntilDestroy()
 export class IssueReporterComponent implements OnInit, OnChanges {
-  @Input() issue: JIssue;
-  @Input() users: JUser[];
-  reporter: JUser;
+  @Input() issue: ProjectIssueDto;
+  @Input() users: UserDto[];
+  reporter: UserDto;
 
   constructor(private _projectService: ProjectService) {}
 
@@ -22,18 +21,22 @@ export class IssueReporterComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     let issueChange = changes.issue;
     if (this.users && issueChange.currentValue !== issueChange.previousValue) {
-      this.reporter = this.users.find((x) => x.id === this.issue.reporterId);
+      //TODO Check reporter with anh Chau
+      // this.reporter = this.users.find((x) => x.id === this.issue.repo);
     }
   }
 
-  isUserSelected(user: JUser) {
-    return user.id === this.issue.reporterId;
+  isUserSelected(user: UserDto) {
+    return false;
+    //TODO Check reporter with anh Chau
+    // return user.id === this.issue.reporterId;
   }
 
-  updateIssue(user: JUser) {
-    this._projectService.updateIssue({
-      ...this.issue,
-      reporterId: user.id
-    });
+  updateIssue(user: UserDto) {
+    //TODO Check reporter with anh Chau
+    // this._projectService.updateIssue({
+    //   ...this.issue,
+    //   reporterId: user.id
+    // });
   }
 }

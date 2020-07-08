@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { JProject } from '@trungk18/interface/project';
 import { SideBarLink } from '@trungk18/interface/ui-model/nav-link';
 import { SideBarLinks } from '@trungk18/project/config/sidebar';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
+import { ProjectDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
     return this.expanded ? 240 : 15;
   }
 
-  project: JProject;
+  project: ProjectDto;
   sideBarLinks: SideBarLink[];
 
   constructor(private _projectQuery: ProjectQuery) {

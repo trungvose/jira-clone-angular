@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IssueStatus, IssueStatusDisplay, JIssue } from '@trungk18/interface/issue';
+import { IssueStatusDisplay } from '@trungk18/interface/ui-model/colors';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
+import { ProjectIssueStatus, ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-status',
@@ -9,14 +10,14 @@ import { ProjectQuery } from '@trungk18/project/state/project/project.query';
   styleUrls: ['./issue-status.component.scss']
 })
 export class IssueStatusComponent implements OnInit {
-  @Input() issue: JIssue;
+  @Input() issue: ProjectIssueDto;
   IssueStatusDisplay = IssueStatusDisplay;
 
   variants = {
-    [IssueStatus.BACKLOG]: 'btn-secondary',
-    [IssueStatus.SELECTED]: 'btn-secondary',
-    [IssueStatus.IN_PROGRESS]: 'btn-primary',
-    [IssueStatus.DONE]: 'btn-success'
+    [ProjectIssueStatus.Backlog]: 'btn-secondary',
+    [ProjectIssueStatus.Selected]: 'btn-secondary',
+    [ProjectIssueStatus.InProgress]: 'btn-primary',
+    [ProjectIssueStatus.Done]: 'btn-success'
   };
 
   issueStatuses: IssueStatusValueTitle[];
@@ -25,31 +26,30 @@ export class IssueStatusComponent implements OnInit {
 
   ngOnInit(): void {
     this.issueStatuses = [
-      new IssueStatusValueTitle(IssueStatus.BACKLOG),
-      new IssueStatusValueTitle(IssueStatus.SELECTED),
-      new IssueStatusValueTitle(IssueStatus.IN_PROGRESS),
-      new IssueStatusValueTitle(IssueStatus.DONE)
+      new IssueStatusValueTitle(ProjectIssueStatus.Backlog),
+      new IssueStatusValueTitle(ProjectIssueStatus.Selected),
+      new IssueStatusValueTitle(ProjectIssueStatus.InProgress),
+      new IssueStatusValueTitle(ProjectIssueStatus.Done)
     ];
   }
 
-  updateIssue(status: IssueStatus) {
-    let newPosition = this._projectQuery.lastIssuePosition(status);
+  updateIssue(status: ProjectIssueStatus) {
+    //TODO Update index and send GQL
     this._projectService.updateIssue({
       ...this.issue,
-      status,
-      listPosition: newPosition + 1
+      status
     });
   }
 
-  isStatusSelected(status: IssueStatus) {
+  isStatusSelected(status: ProjectIssueStatus) {
     return this.issue.status === status;
   }
 }
 
 class IssueStatusValueTitle {
-  value: IssueStatus;
+  value: ProjectIssueStatus;
   label: string;
-  constructor(issueStatus: IssueStatus) {
+  constructor(issueStatus: ProjectIssueStatus) {
     this.value = issueStatus;
     this.label = IssueStatusDisplay[issueStatus];
   }

@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IssueType, JIssue, IssueStatus, IssuePriority } from '@trungk18/interface/issue';
-import { quillConfiguration } from '@trungk18/project/config/editor';
-import { NzModalRef } from 'ng-zorro-antd/modal';
-import { ProjectService } from '@trungk18/project/state/project/project.service';
-import { IssueUtil } from '@trungk18/project/utils/issue';
-import { ProjectQuery } from '@trungk18/project/state/project/project.query';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
-import { JUser } from '@trungk18/interface/user';
-import { tap } from 'rxjs/operators';
-import { until } from 'protractor';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
+import { quillConfiguration } from '@trungk18/project/config/editor';
+import { ProjectQuery } from '@trungk18/project/state/project/project.query';
+import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { DateUtil } from '@trungk18/project/utils/date';
+import { IssueUtil } from '@trungk18/project/utils/issue';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import {
+  ProjectIssueType,
+  ProjectIssuePriority,
+  ProjectIssueDto,
+  ProjectIssueStatus,
+  UserDto
+} from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'add-issue-modal',
@@ -21,8 +25,8 @@ import { DateUtil } from '@trungk18/project/utils/date';
 })
 @UntilDestroy()
 export class AddIssueModalComponent implements OnInit {
-  reporterUsers$: Observable<JUser[]>;
-  assignees$: Observable<JUser[]>;
+  reporterUsers$: Observable<UserDto[]>;
+  assignees$: Observable<UserDto[]>;
   issueForm: FormGroup;
   editorOptions = quillConfiguration;
 
@@ -54,8 +58,8 @@ export class AddIssueModalComponent implements OnInit {
 
   initForm() {
     this.issueForm = this._fb.group({
-      type: [IssueType.TASK],
-      priority: [IssuePriority.MEDIUM],
+      type: [ProjectIssueType.Task],
+      priority: [ProjectIssuePriority.Medium],
       title: ['', NoWhitespaceValidator()],
       description: [''],
       reporterId: [''],
@@ -68,10 +72,10 @@ export class AddIssueModalComponent implements OnInit {
       return;
     }
     let now = DateUtil.getNow();
-    let issue: JIssue = {
+    let issue: ProjectIssueDto = {
       ...this.issueForm.getRawValue(),
       id: IssueUtil.getRandomId(),
-      status: IssueStatus.BACKLOG,
+      status: ProjectIssueStatus.Backlog,
       createdAt: now,
       updatedAt: now
     };

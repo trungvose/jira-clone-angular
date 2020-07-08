@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectConst } from '@trungk18/project/config/const';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
-import { JProject } from '@trungk18/interface/project';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
-import { JIssue } from '@trungk18/interface/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-model';
+import { ProjectDto, ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'full-issue-detail',
@@ -16,8 +15,8 @@ import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-mode
 })
 @UntilDestroy()
 export class FullIssueDetailComponent implements OnInit {
-  project: JProject;
-  issueById$: Observable<JIssue>;
+  project: ProjectDto;
+  issueById$: Observable<ProjectIssueDto>;
   issueId: string;
   get breadcrumbs(): string[] {
     return [ProjectConst.Projects, this.project?.name, 'Issues', this.issueId];
@@ -46,7 +45,7 @@ export class FullIssueDetailComponent implements OnInit {
     this.issueById$ = this._projectQuery.issueById$(this.issueId);
   }
 
-  deleteIssue({issueId, deleteModalRef}: DeleteIssueModel) {
+  deleteIssue({ issueId, deleteModalRef }: DeleteIssueModel) {
     this._projectService.deleteIssue(issueId);
     deleteModalRef.close();
     this.backHome();
