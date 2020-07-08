@@ -28,6 +28,7 @@ function createLookupPermissionGuard(
       }
 
       const currentUser = getAuthUser(context);
+
       const hasPermission = () => {
         if (currentUser.permissions == null || !currentUser.permissions.length) {
           return false;

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { BaseService } from '@ngvn/api/common';
 import { ProjectIssueDetailDto } from '@ngvn/api/dtos';
 import { ProjectIssueStatus } from '@ngvn/shared/project';
@@ -18,6 +18,9 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
 
   async findById(id: string): Promise<ProjectIssueDetailDto> {
     const issue = await this.projectIssueRepository.findById(id).exec();
+    if (issue == null) {
+      throw new NotFoundException(id, 'No issue found with id');
+    }
     return this.mapper.map(issue, ProjectIssueDetailDto, ProjectIssue);
   }
 

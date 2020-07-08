@@ -13,6 +13,12 @@ export class HttpExceptionFilter implements GqlExceptionFilter<HttpException> {
       errorResponse['message'] = errorResponse['message'] || 'Unauthorized';
     }
 
+    if (statusCode === HttpStatus.FORBIDDEN) {
+      errorResponse['message'] = errorResponse['message'].concat(
+        ': The resource is not accessible or is no longer exist.',
+      );
+    }
+
     throw new GraphQLError(errorResponse['message'], undefined, undefined, undefined, undefined, exception, {
       code: HttpStatus[statusCode],
       exception: { stacktrace: [stackTrace] },
