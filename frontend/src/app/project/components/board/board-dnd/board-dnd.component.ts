@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { AuthQuery } from '@trungk18/core/state/auth/auth.query';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
+import { AuthQuery } from '@trungk18/core/auth/auth.query';
 @UntilDestroy()
 @Component({
   selector: 'board-dnd',
