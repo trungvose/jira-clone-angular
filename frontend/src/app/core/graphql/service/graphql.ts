@@ -360,6 +360,21 @@ export type LoginMutation = (
   ) }
 );
 
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = (
+  { __typename?: 'Query' }
+  & { me: (
+    { __typename?: 'UserInformationDto' }
+    & Pick<UserInformationDto, 'id' | 'email' | 'fullName' | 'firstName' | 'lastName' | 'isActive' | 'avatarUrl' | 'createdAt' | 'updatedAt'>
+    & { permissions: Array<(
+      { __typename?: 'PermissionDto' }
+      & Pick<PermissionDto, 'name' | 'type' | 'score' | 'teams' | 'projects' | 'projectIssues'>
+    )> }
+  ) }
+);
+
 export type RefreshTokenQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -440,6 +455,37 @@ export const LoginDocument = gql`
   })
   export class LoginGQL extends Apollo.Mutation<LoginMutation, LoginMutationVariables> {
     document = LoginDocument;
+    
+  }
+export const MeDocument = gql`
+    query Me {
+  me {
+    id
+    email
+    fullName
+    firstName
+    lastName
+    isActive
+    avatarUrl
+    permissions {
+      name
+      type
+      score
+      teams
+      projects
+      projectIssues
+    }
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
+    document = MeDocument;
     
   }
 export const RefreshTokenDocument = gql`
