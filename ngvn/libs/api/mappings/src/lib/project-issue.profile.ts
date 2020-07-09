@@ -1,4 +1,5 @@
 import {
+  CreateIssueParamsDto,
   ProjectIssueDetailDto,
   ProjectIssueDto,
   ProjectIssueTagDto,
@@ -18,11 +19,13 @@ import {
 } from '@ngvn/api/project';
 import { User } from '@ngvn/api/user';
 import { ProjectTimelineType } from '@ngvn/shared/project';
-import { AutoMapper, ignore, mapWith, Profile, ProfileBase, mapFrom } from 'nestjsx-automapper';
+import { Types } from 'mongoose';
+import { AutoMapper, ignore, mapWith, Profile, ProfileBase, mapFrom, preCondition } from 'nestjsx-automapper';
+import { ignoreBaseProperties } from './utils/ignore-base-properties.util';
 
 @Profile()
 export class ProjectIssueProfile extends ProfileBase {
-  constructor(mapper: AutoMapper) {
+  constructor(private mapper: AutoMapper) {
     super();
     mapper
       .createMap(ProjectIssue, ProjectIssueDto)
@@ -57,30 +60,48 @@ export class ProjectIssueProfile extends ProfileBase {
         ),
       )
       .forMember((d) => d.timelines, ignore())
-      .afterMap((source, destination) => {
-        destination.timelines = [];
-        for (const timeline of source.timelineItems) {
-          let destination, source;
-          switch (timeline.type) {
-            case ProjectTimelineType.Comment:
-              destination = TimelineCommentDto;
-              source = TimelineComment;
-              break;
-            case ProjectTimelineType.Assign:
-              destination = TimelineAssignDto;
-              source = TimelineAssign;
-              break;
-            case ProjectTimelineType.Mention:
-              destination = TimelineMentionDto;
-              source = TimelineMention;
-              break;
-            case ProjectTimelineType.Tag:
-              destination = TimelineTagDto;
-              source = TimelineTag;
-              break;
-          }
-          destination.timelines.push(mapper.map(timeline, destination, source));
-        }
-      });
+      .afterMap(this.timelineItemsAfterMap.bind(this));
+
+    ignoreBaseProperties(
+      mapper
+        .createMap(CreateIssueParamsDto, ProjectIssue)
+        .forMember((d) => d.reporter, ignore())
+        .forMember((d) => d.ordinalPosition, ignore())
+        .forMember((d) => d.timelineItems, ignore())
+        .forMember(
+          (d) => d.assignee,
+          preCondition((s) => s.assigneeId != null),
+          mapFrom((s) => Types.ObjectId(s.assigneeId)),
+        )
+        .forMember((d) => d.outputHtml, ignore())
+        .forMember((d) => d.participants, ignore())
+        .forMember((d) => d.status, ignore()),
+    );
+  }
+
+  private timelineItemsAfterMap(source: ProjectIssue, destination: ProjectIssueDetailDto) {
+    destination.timelines = [];
+    for (const timeline of source.timelineItems) {
+      let destination, source;
+      switch (timeline.type) {
+        case ProjectTimelineType.Comment:
+          destination = TimelineCommentDto;
+          source = TimelineComment;
+          break;
+        case ProjectTimelineType.Assign:
+          destination = TimelineAssignDto;
+          source = TimelineAssign;
+          break;
+        case ProjectTimelineType.Mention:
+          destination = TimelineMentionDto;
+          source = TimelineMention;
+          break;
+        case ProjectTimelineType.Tag:
+          destination = TimelineTagDto;
+          source = TimelineTag;
+          break;
+      }
+      destination.timelines.push(this.mapper.map(timeline, destination, source));
+    }
   }
 }
