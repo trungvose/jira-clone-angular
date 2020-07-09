@@ -49,6 +49,7 @@ export class ProjectIssueProfile extends ProfileBase {
           () => User,
         ),
       );
+
     mapper
       .createMap(ProjectIssue, ProjectIssueDetailDto, { includeBase: [ProjectIssue, ProjectIssueDto] })
       .forMember(
