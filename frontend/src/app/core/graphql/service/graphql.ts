@@ -14,6 +14,9 @@ export type Scalars = {
   DateTime: any;
 };
 
+
+
+
 export type Mutation = {
   __typename?: 'Mutation';
   reorderIssueInLane: ProjectDto;
@@ -23,11 +26,13 @@ export type Mutation = {
   logout?: Maybe<Scalars['Boolean']>;
 };
 
+
 export type MutationReorderIssueInLaneArgs = {
   projectId: Scalars['String'];
   laneId: Scalars['String'];
   issues: Array<Scalars['String']>;
 };
+
 
 export type MutationMoveIssueBetweenLanesArgs = {
   projectId: Scalars['String'];
@@ -37,11 +42,13 @@ export type MutationMoveIssueBetweenLanesArgs = {
   previousIssues: Array<Scalars['String']>;
 };
 
+
 export type MutationRegisterArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
   fullName: Scalars['String'];
 };
+
 
 export type MutationLoginArgs = {
   email: Scalars['String'];
@@ -199,13 +206,16 @@ export type Query = {
   refreshToken: TokenResultDto;
 };
 
+
 export type QueryFindProjectBySlugArgs = {
   slug: Scalars['String'];
 };
 
+
 export type QueryFindProjectsByUserIdArgs = {
   userId: Scalars['String'];
 };
+
 
 export type QueryFindIssueByIdArgs = {
   id: Scalars['String'];
@@ -244,11 +254,7 @@ export type TimelineCommentDto = {
   outputHtml: Scalars['String'];
 };
 
-export type TimelineDto =
-  | TimelineAssignDto
-  | TimelineCommentDto
-  | TimelineTagDto
-  | TimelineMentionDto;
+export type TimelineDto = TimelineAssignDto | TimelineCommentDto | TimelineTagDto | TimelineMentionDto;
 
 export type TimelineMentionDto = {
   __typename?: 'TimelineMentionDto';
@@ -309,133 +315,192 @@ export type FindProjectBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
-export type FindProjectBySlugQuery = { __typename?: 'Query' } & {
-  findProjectBySlug: { __typename?: 'ProjectDto' } & Pick<
-    ProjectDto,
-    'id' | 'name' | 'slug' | 'description' | 'category' | 'createdAt' | 'updatedAt'
-  > & {
-      users: Array<{ __typename?: 'UserDto' } & Pick<UserDto, 'id' | 'fullName' | 'avatarUrl'>>;
-      lanes: Array<
-        Maybe<
-          { __typename?: 'ProjectLaneDto' } & Pick<ProjectLaneDto, 'id' | 'title'> & {
-              issues: Array<
-                Maybe<
-                  { __typename?: 'ProjectIssueDto' } & Pick<
-                    ProjectIssueDto,
-                    | 'id'
-                    | 'name'
-                    | 'title'
-                    | 'isActive'
-                    | 'createdAt'
-                    | 'updatedAt'
-                    | 'type'
-                    | 'status'
-                    | 'priority'
-                  > & {
-                      tags: Array<
-                        Maybe<
-                          { __typename?: 'ProjectIssueTagDto' } & Pick<
-                            ProjectIssueTagDto,
-                            'id' | 'text' | 'description'
-                          > & {
-                              styles: { __typename?: 'ProjectIssueTagStyle' } & Pick<
-                                ProjectIssueTagStyle,
-                                'color' | 'backgroundColor'
-                              >;
-                            }
-                        >
-                      >;
-                      main: { __typename?: 'UserDto' } & Pick<
-                        UserDto,
-                        'id' | 'avatarUrl' | 'fullName'
-                      >;
-                    }
-                >
-              >;
-            }
-        >
-      >;
-    };
-};
+
+export type FindProjectBySlugQuery = (
+  { __typename?: 'Query' }
+  & { findProjectBySlug: (
+    { __typename?: 'ProjectDto' }
+    & Pick<ProjectDto, 'id' | 'name' | 'slug' | 'description' | 'category' | 'createdAt' | 'updatedAt'>
+    & { users: Array<(
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'id' | 'fullName' | 'avatarUrl'>
+    )>, lanes: Array<Maybe<(
+      { __typename?: 'ProjectLaneDto' }
+      & Pick<ProjectLaneDto, 'id' | 'title'>
+      & { issues: Array<Maybe<(
+        { __typename?: 'ProjectIssueDto' }
+        & Pick<ProjectIssueDto, 'id' | 'name' | 'title' | 'isActive' | 'createdAt' | 'updatedAt' | 'type' | 'status' | 'priority'>
+        & { tags: Array<Maybe<(
+          { __typename?: 'ProjectIssueTagDto' }
+          & Pick<ProjectIssueTagDto, 'id' | 'text' | 'description'>
+          & { styles: (
+            { __typename?: 'ProjectIssueTagStyle' }
+            & Pick<ProjectIssueTagStyle, 'color' | 'backgroundColor'>
+          ) }
+        )>>, main: (
+          { __typename?: 'UserDto' }
+          & Pick<UserDto, 'id' | 'avatarUrl' | 'fullName'>
+        ) }
+      )>> }
+    )>> }
+  ) }
+);
 
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
 }>;
 
-export type LoginMutation = { __typename?: 'Mutation' } & {
-  login: { __typename?: 'TokenResultDto' } & Pick<TokenResultDto, 'token' | 'expiry'>;
-};
+
+export type LoginMutation = (
+  { __typename?: 'Mutation' }
+  & { login: (
+    { __typename?: 'TokenResultDto' }
+    & Pick<TokenResultDto, 'token' | 'expiry'>
+  ) }
+);
+
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = (
+  { __typename?: 'Query' }
+  & { me: (
+    { __typename?: 'UserInformationDto' }
+    & Pick<UserInformationDto, 'id' | 'email' | 'fullName' | 'firstName' | 'lastName' | 'isActive' | 'avatarUrl' | 'createdAt' | 'updatedAt'>
+    & { permissions: Array<(
+      { __typename?: 'PermissionDto' }
+      & Pick<PermissionDto, 'name' | 'type' | 'score' | 'teams' | 'projects' | 'projectIssues'>
+    )> }
+  ) }
+);
+
+export type RefreshTokenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RefreshTokenQuery = (
+  { __typename?: 'Query' }
+  & { refreshToken: (
+    { __typename?: 'TokenResultDto' }
+    & Pick<TokenResultDto, 'expiry' | 'token'>
+  ) }
+);
 
 export const FindProjectBySlugDocument = gql`
-  query FindProjectBySlug($slug: String!) {
-    findProjectBySlug(slug: $slug) {
+    query FindProjectBySlug($slug: String!) {
+  findProjectBySlug(slug: $slug) {
+    id
+    name
+    slug
+    description
+    category
+    users {
       id
-      name
-      slug
-      description
-      category
-      users {
+      fullName
+      avatarUrl
+    }
+    lanes {
+      id
+      title
+      issues {
         id
-        fullName
-        avatarUrl
-      }
-      lanes {
-        id
+        name
         title
-        issues {
+        isActive
+        createdAt
+        updatedAt
+        type
+        status
+        priority
+        tags {
           id
-          name
-          title
-          isActive
-          createdAt
-          updatedAt
-          type
-          status
-          priority
-          tags {
-            id
-            text
-            styles {
-              color
-              backgroundColor
-            }
-            description
+          text
+          styles {
+            color
+            backgroundColor
           }
-          main {
-            id
-            avatarUrl
-            fullName
-          }
+          description
+        }
+        main {
+          id
+          avatarUrl
+          fullName
         }
       }
-      createdAt
-      updatedAt
     }
+    createdAt
+    updatedAt
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class FindProjectBySlugGQL extends Apollo.Query<
-  FindProjectBySlugQuery,
-  FindProjectBySlugQueryVariables
-> {
-  document = FindProjectBySlugDocument;
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FindProjectBySlugGQL extends Apollo.Query<FindProjectBySlugQuery, FindProjectBySlugQueryVariables> {
+    document = FindProjectBySlugDocument;
+    
+  }
 export const LoginDocument = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      expiry
-    }
+    mutation Login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    token
+    expiry
   }
-`;
-
-@Injectable({
-  providedIn: 'root'
-})
-export class LoginGQL extends Apollo.Mutation<LoginMutation, LoginMutationVariables> {
-  document = LoginDocument;
 }
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class LoginGQL extends Apollo.Mutation<LoginMutation, LoginMutationVariables> {
+    document = LoginDocument;
+    
+  }
+export const MeDocument = gql`
+    query Me {
+  me {
+    id
+    email
+    fullName
+    firstName
+    lastName
+    isActive
+    avatarUrl
+    permissions {
+      name
+      type
+      score
+      teams
+      projects
+      projectIssues
+    }
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MeGQL extends Apollo.Query<MeQuery, MeQueryVariables> {
+    document = MeDocument;
+    
+  }
+export const RefreshTokenDocument = gql`
+    query RefreshToken {
+  refreshToken {
+    expiry
+    token
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RefreshTokenGQL extends Apollo.Query<RefreshTokenQuery, RefreshTokenQueryVariables> {
+    document = RefreshTokenDocument;
+    
+  }

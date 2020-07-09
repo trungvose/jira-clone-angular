@@ -1,0 +1,6 @@
+query RefreshToken {
+  refreshToken {
+    expiry
+    token
+  }
+}

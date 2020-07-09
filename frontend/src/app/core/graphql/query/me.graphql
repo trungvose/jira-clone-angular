@@ -1,0 +1,21 @@
+query Me {
+  me {
+    id
+    email
+    fullName
+    firstName
+    lastName
+    isActive    
+    avatarUrl
+    permissions {
+      name
+      type
+      score
+      teams
+      projects
+      projectIssues
+    }
+    createdAt
+    updatedAt
+  }
+}
