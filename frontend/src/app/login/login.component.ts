@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '@trungk18/core/state/auth/auth.service';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { JiraRoutingConst } from '@trungk18/core/utils/jira-routing.const';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { AuthService } from '@trungk18/core/auth/auth.service';
 
 @Component({
   selector: 'app-login',

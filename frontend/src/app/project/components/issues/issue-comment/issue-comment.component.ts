@@ -2,9 +2,9 @@ import { Component, Input, OnInit, HostListener, ElementRef, ViewChild } from '@
 import { FormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { JComment } from '@trungk18/interface/comment';
-import { AuthQuery } from '@trungk18/core/state/auth/auth.query';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { UserDto } from '@trungk18/core/graphql/service/graphql';
+import { AuthQuery } from '@trungk18/core/auth/auth.query';
 
 @Component({
   selector: 'issue-comment',
