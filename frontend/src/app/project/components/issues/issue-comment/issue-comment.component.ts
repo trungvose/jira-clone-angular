@@ -1,10 +1,10 @@
-import { Component, Input, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AuthQuery } from '@trungk18/core/auth/auth.query';
+import { UserInformationDto } from '@trungk18/core/graphql/service/graphql';
 import { JComment } from '@trungk18/interface/comment';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
-import { UserDto } from '@trungk18/core/graphql/service/graphql';
-import { AuthQuery } from '@trungk18/core/auth/auth.query';
 
 @Component({
   selector: 'issue-comment',
@@ -18,7 +18,7 @@ export class IssueCommentComponent implements OnInit {
   @Input() createMode: boolean;
   @ViewChild('commentBoxRef') commentBoxRef: ElementRef;
   commentControl: FormControl;
-  user: UserDto;
+  user: UserInformationDto;
   isEditing: boolean;
 
   constructor(private _authQuery: AuthQuery, private projectService: ProjectService) {}
@@ -39,7 +39,7 @@ export class IssueCommentComponent implements OnInit {
     this._authQuery.user$.pipe(untilDestroyed(this)).subscribe((user) => {
       this.user = user;
       if (this.createMode) {
-        this.comment = new JComment(this.issueId, this.user);
+        //this.comment = new JComment(this.issueId, this.user);
       }
     });
   }

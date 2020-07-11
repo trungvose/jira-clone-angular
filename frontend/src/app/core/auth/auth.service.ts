@@ -7,8 +7,8 @@ import {
   UserInformationDto
 } from '@trungk18/core/graphql/service/graphql';
 import { LoginPayload } from '@trungk18/interface/payload/login';
-import { Observable, of } from 'rxjs';
-import { catchError, finalize, map, tap } from 'rxjs/operators';
+import { Observable, of, throwError, pipe, EMPTY } from 'rxjs';
+import { catchError, finalize, map, tap, switchMap } from 'rxjs/operators';
 import { AuthStore } from './auth.store';
 
 @Injectable({ providedIn: 'root' })
@@ -20,7 +20,7 @@ export class AuthService {
     private _meGQL: MeGQL
   ) {}
 
-  login({ email, password }: LoginPayload): Observable<TokenResultDto> {
+  login({ email, password }: LoginPayload): Observable<UserInformationDto> {
     this._store.setLoading(true);
     return this._loginGql
       .mutate({
@@ -36,11 +36,45 @@ export class AuthService {
         }),
         finalize(() => {
           this._store.setLoading(false);
-        })
+        }),
+        this.handleTokenMe()
       );
   }
 
-  private refreshToken() {
+  retrieveTokenOnPageLoad(): Observable<UserInformationDto> {
+    return this._refreshToken().pipe(
+      catchError((err) => {
+        this._store.update({
+          expiry: null,
+          token: ''
+        });
+        return of(null);
+      }),
+      this.handleTokenMe()
+    );
+  }
+
+  private handleTokenMe = () => {
+    return pipe<Observable<TokenResultDto>, Observable<UserInformationDto>>(
+      switchMap((tokenResult) => {
+        return this._me().pipe(
+          tap((user) => {
+            this._store.update({
+              currentUser: user
+            });
+          }),
+          catchError((err) => {
+            this._store.update({
+              currentUser: null
+            });
+            return EMPTY;
+          })
+        );
+      })
+    );
+  };
+
+  private _refreshToken(): Observable<TokenResultDto> {
     this._store.setLoading(true);
     return this._refreshTokenGQL.fetch().pipe(
       map(({ data }) => data?.refreshToken),
@@ -63,7 +97,7 @@ export class AuthService {
     );
   }
 
-  private me(): Observable<UserInformationDto> {
+  private _me(): Observable<UserInformationDto> {
     return this._meGQL.fetch().pipe(map(({ data }) => data?.me));
   }
 }

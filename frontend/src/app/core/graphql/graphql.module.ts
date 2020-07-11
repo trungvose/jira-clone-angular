@@ -1,28 +1,14 @@
 import { NgModule } from '@angular/core';
 import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
-import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { environment } from 'src/environments/environment';
-import { setContext } from 'apollo-link-context';
-import { ApolloLink } from 'apollo-link';
 import { ApolloClientOptions } from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
+import { environment } from 'src/environments/environment';
 import { AuthQuery } from '../auth/auth.query';
 
 export function createApollo(httpLink: HttpLink, authQuery: AuthQuery): ApolloClientOptions<any> {
-  const auth = setContext((operation, context) => {
-    let excludesOperations = ['Login'];
-    if (excludesOperations.includes(operation.operationName)) {
-      return {};
-    }
-    let headerWithToken = {
-      headers: {
-        Authorization: `Bearer ${authQuery.token}`
-      }
-    };
-    return headerWithToken;
-  });
-
-  const link = ApolloLink.from([auth, httpLink.create({ uri: environment.apiUrl })]);
+  const link = httpLink.create({ uri: environment.apiUrl });
   return {
     link,
     cache: new InMemoryCache()
@@ -39,5 +25,4 @@ export function createApollo(httpLink: HttpLink, authQuery: AuthQuery): ApolloCl
     }
   ]
 })
-export class GraphQLModule {
-}
+export class GraphQLModule {}

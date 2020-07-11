@@ -11,6 +11,11 @@ export class AuthQuery extends Query<AuthState> {
     return this.getValue().token;
   }
 
+  get tokenExpiry(): string {
+    return this.getValue().token;
+  }
+
+  token$ = this.select('token');
   tokenExpiry$ = this.select('expiry');
   user$ = this.select('currentUser');
 
