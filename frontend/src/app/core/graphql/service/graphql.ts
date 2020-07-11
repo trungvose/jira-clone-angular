@@ -360,6 +360,14 @@ export type LoginMutation = (
   ) }
 );
 
+export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LogoutMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'logout'>
+);
+
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -455,6 +463,19 @@ export const LoginDocument = gql`
   })
   export class LoginGQL extends Apollo.Mutation<LoginMutation, LoginMutationVariables> {
     document = LoginDocument;
+    
+  }
+export const LogoutDocument = gql`
+    mutation Logout {
+  logout
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class LogoutGQL extends Apollo.Mutation<LogoutMutation, LogoutMutationVariables> {
+    document = LogoutDocument;
     
   }
 export const MeDocument = gql`
