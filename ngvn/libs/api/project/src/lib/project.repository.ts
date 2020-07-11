@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { BaseRepository } from '@ngvn/api/common';
 import { MoveIssueParamsDto, ReorderIssueParamsDto } from '@ngvn/api/dtos';
 import { ModelType } from '@ngvn/api/types';
-import { Project, ProjectLane } from './models';
+import { Project } from './models';
 
 @Injectable()
 export class ProjectRepository extends BaseRepository<Project> {
