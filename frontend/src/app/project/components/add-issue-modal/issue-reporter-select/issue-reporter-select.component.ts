@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { JUser } from '@trungk18/interface/user';
+import { UserDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-reporter-select',
@@ -9,7 +9,7 @@ import { JUser } from '@trungk18/interface/user';
 })
 export class IssueReporterSelectComponent implements OnInit {
   @Input() control: FormControl;
-  @Input() users: JUser[];
+  @Input() users: UserDto[];
 
   constructor() {}
 

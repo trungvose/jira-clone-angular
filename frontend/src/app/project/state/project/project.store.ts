@@ -1,13 +1,13 @@
-import { JProject } from '@trungk18/interface/project';
 import { Store, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
+import { ProjectDto } from '@trungk18/core/graphql/service/graphql';
 
-export interface ProjectState extends JProject {}
+export interface ProjectState extends ProjectDto {}
 
 function createInitialState(): ProjectState {
   return {
-    issues: [],
-    users: []
+    users: [],
+    lanes: []
   } as ProjectState;
 }
 

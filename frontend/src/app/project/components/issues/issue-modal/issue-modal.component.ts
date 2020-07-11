@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { JIssue } from '@trungk18/interface/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { Observable } from 'rxjs';
 import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-model';
+import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-modal',
@@ -12,7 +12,7 @@ import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-mode
   styleUrls: ['./issue-modal.component.scss']
 })
 export class IssueModalComponent implements OnInit {
-  @Input() issue$: Observable<JIssue>;
+  @Input() issue$: Observable<ProjectIssueDto>;
 
   constructor(
     private _modal: NzModalRef,
@@ -28,7 +28,7 @@ export class IssueModalComponent implements OnInit {
 
   openIssuePage(issueId: string) {
     this.closeModal();
-    this._router.navigate(['project', 'issue', issueId]);
+    this._router.navigate(['projects', 'issue', issueId]);
   }
 
   deleteIssue({ issueId, deleteModalRef }: DeleteIssueModel) {

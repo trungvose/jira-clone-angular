@@ -1,12 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { arrayRemove, arrayUpsert, setLoading } from '@datorama/akita';
+import { arrayRemove, arrayUpsert } from '@datorama/akita';
+import { FindProjectBySlugGQL, ProjectDto, ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 import { JComment } from '@trungk18/interface/comment';
-import { JIssue } from '@trungk18/interface/issue';
-import { JProject } from '@trungk18/interface/project';
 import { DateUtil } from '@trungk18/project/utils/date';
-import { of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { FetchResult } from 'apollo-link';
+import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProjectStore } from './project.store';
 
@@ -16,7 +15,7 @@ import { ProjectStore } from './project.store';
 export class ProjectService {
   baseUrl: string;
 
-  constructor(private _http: HttpClient, private _store: ProjectStore) {
+  constructor(private _store: ProjectStore, private _findProjectBySlug: FindProjectBySlugGQL) {
     this.baseUrl = environment.apiUrl;
   }
 
@@ -24,66 +23,69 @@ export class ProjectService {
     this._store.setLoading(isLoading);
   }
 
-  getProject() {
-    this._http
-      .get<JProject>(`${this.baseUrl}/project`)
+  getProject(slug: string): Observable<FetchResult> {
+    this.setLoading(true);
+    return this._findProjectBySlug
+      .fetch({
+        slug
+      })
       .pipe(
-        setLoading(this._store),
-        tap((project) => {
+        tap((res) => {
+          let project: any = res.data.findProjectBySlug;
           this._store.update((state) => {
-            return {
+            let newState = {
               ...state,
               ...project
             };
+            console.log(newState);
+            return newState;
           });
         }),
-        catchError((error) => {
-          this._store.setError(error);
-          return of(error);
+        finalize(() => {
+          this.setLoading(false);
         })
-      )
-      .subscribe();
+      );
   }
 
-  updateProject(project: Partial<JProject>) {
+  updateProject(project: Partial<ProjectDto>) {
     this._store.update((state) => ({
       ...state,
       ...project
     }));
   }
 
-  updateIssue(issue: JIssue) {
-    issue.updatedAt = DateUtil.getNow();
-    this._store.update((state) => {
-      let issues = arrayUpsert(state.issues, issue.id, issue);
-      return {
-        ...state,
-        issues
-      };
-    });
+  updateIssue(issue: ProjectIssueDto) {
+    // issue.updatedAt = DateUtil.getNow();
+    // this._store.update((state) => {
+    //   let issues = arrayUpsert(state.issues, issue.id, issue);
+    //   return {
+    //     ...state,
+    //     issues
+    //   };
+    // });
   }
 
   deleteIssue(issueId: string) {
-    this._store.update((state) => {
-      let issues = arrayRemove(state.issues, issueId);
-      return {
-        ...state,
-        issues
-      };
-    });
+    // this._store.update((state) => {
+    //   let issues = arrayRemove(state.issues, issueId);
+    //   return {
+    //     ...state,
+    //     issues
+    //   };
+    // });
   }
 
   updateIssueComment(issueId: string, comment: JComment) {
-    let allIssues = this._store.getValue().issues;
-    let issue = allIssues.find((x) => x.id === issueId);
-    if (!issue) {
-      return;
-    }
+    // let allIssues = this._store.getValue().issues;
+    // let issue = allIssues.find((x) => x.id === issueId);
+    // if (!issue) {
+    //   return;
+    // }
 
-    let comments = arrayUpsert(issue.comments ?? [], comment.id, comment);
-    this.updateIssue({
-      ...issue,
-      comments
-    });
+    // let comments = arrayUpsert(issue.comments ?? [], comment.id, comment);
+    // this.updateIssue({
+    //   ...issue,
+    //   comments
+    // });
   }
 }

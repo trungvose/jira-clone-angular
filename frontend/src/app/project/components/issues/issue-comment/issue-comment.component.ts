@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AuthQuery } from '@trungk18/core/auth/auth.query';
+import { UserInformationDto } from '@trungk18/core/graphql/service/graphql';
 import { JComment } from '@trungk18/interface/comment';
-import { JUser } from '@trungk18/interface/user';
-import { AuthQuery } from '@trungk18/project/auth/auth.query';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class IssueCommentComponent implements OnInit {
   @Input() createMode: boolean;
   @ViewChild('commentBoxRef') commentBoxRef: ElementRef;
   commentControl: FormControl;
-  user: JUser;
+  user: UserInformationDto;
   isEditing: boolean;
 
   constructor(private _authQuery: AuthQuery, private projectService: ProjectService) {}
@@ -28,7 +28,7 @@ export class IssueCommentComponent implements OnInit {
     if (!this.createMode || this.isEditing) {
       return;
     }
-    if (event.key == 'M') {
+  if (event.key == 'M') {
       this.commentBoxRef.nativeElement.focus();
       this.isEditing = true;
     }
@@ -39,7 +39,7 @@ export class IssueCommentComponent implements OnInit {
     this._authQuery.user$.pipe(untilDestroyed(this)).subscribe((user) => {
       this.user = user;
       if (this.createMode) {
-        this.comment = new JComment(this.issueId, this.user);
+        //this.comment = new JComment(this.issueId, this.user);
       }
     });
   }

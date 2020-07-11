@@ -1,12 +1,11 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { JIssue } from '@trungk18/interface/issue';
 import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
-import { JUser } from '@trungk18/interface/user';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { IssueModalComponent } from '../issue-modal/issue-modal.component';
+import { ProjectIssueDto, UserDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-card',
@@ -15,18 +14,13 @@ import { IssueModalComponent } from '../issue-modal/issue-modal.component';
 })
 @UntilDestroy()
 export class IssueCardComponent implements OnChanges {
-  @Input() issue: JIssue;
-  assignees: JUser[];
+  @Input() issue: ProjectIssueDto;
   issueTypeIcon: string;
   priorityIcon: IssuePriorityIcon;
 
-  constructor(private _projectQuery: ProjectQuery, private _modalService: NzModalService) {}
+  constructor(private _modalService: NzModalService, private _projectQuery: ProjectQuery) {}
 
-  ngOnInit(): void {
-    this._projectQuery.users$.pipe(untilDestroyed(this)).subscribe((users) => {
-      this.assignees = this.issue.userIds.map((userId) => users.find((x) => x.id === userId));
-    });
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     let issueChange = changes.issue;

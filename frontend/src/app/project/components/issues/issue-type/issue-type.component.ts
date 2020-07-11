@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { IssueType, JIssue } from '@trungk18/interface/issue';
 import { IssueTypeWithIcon } from '@trungk18/interface/issue-type-icon';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { ProjectConst } from '@trungk18/project/config/const';
+import { ProjectIssueDto, ProjectIssueType } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-type',
@@ -11,7 +11,7 @@ import { ProjectConst } from '@trungk18/project/config/const';
   styleUrls: ['./issue-type.component.scss']
 })
 export class IssueTypeComponent implements OnInit, OnChanges {
-  @Input() issue: JIssue;
+  @Input() issue: ProjectIssueDto;
 
   get selectedIssueTypeIcon(): string {
     return IssueUtil.getIssueTypeIcon(this.issue.type);
@@ -27,14 +27,14 @@ export class IssueTypeComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {}
 
-  updateIssue(issueType: IssueType) {
+  updateIssue(issueType: ProjectIssueType) {
     this._projectService.updateIssue({
       ...this.issue,
       type: issueType
     });
   }
 
-  isTypeSelected(type: IssueType) {
+  isTypeSelected(type: ProjectIssueType) {
     return this.issue.type === type;
   }
 }

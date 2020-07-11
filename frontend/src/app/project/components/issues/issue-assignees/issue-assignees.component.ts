@@ -1,8 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { JIssue } from '@trungk18/interface/issue';
-import { JUser } from '@trungk18/interface/user';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { ProjectIssueDto, UserDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-assignees',
@@ -11,39 +10,32 @@ import { ProjectService } from '@trungk18/project/state/project/project.service'
 })
 @UntilDestroy()
 export class IssueAssigneesComponent implements OnInit, OnChanges {
-  @Input() issue: JIssue;
-  @Input() users: JUser[];
-  assignees: JUser[];
+  @Input() issue: ProjectIssueDto;
+  @Input() users: UserDto[];
 
   constructor(private _projectService: ProjectService) {}
 
-  ngOnInit(): void {
-    this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
-  }
+  ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    let issueChange = changes.issue;
-    if (this.users && issueChange.currentValue !== issueChange.previousValue) {
-      this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
-    }
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 
-  removeUser(userId: string) {
-    let newUserIds = this.issue.userIds.filter((x) => x !== userId);
+  removeUser() {
     this._projectService.updateIssue({
       ...this.issue,
-      userIds: newUserIds
+      main: null
     });
   }
 
-  addUserToIssue(user: JUser) {
+  replaceUser(user: UserDto) {
     this._projectService.updateIssue({
       ...this.issue,
-      userIds: [...this.issue.userIds, user.id]
-    })
+      main: {
+        ...user
+      }
+    });
   }
 
-  isUserSelected(user: JUser): boolean {
-    return this.issue.userIds.includes(user.id);
+  isUserSelected(user: UserDto): boolean {
+    return this.issue.main?.id === user.id;
   }
 }

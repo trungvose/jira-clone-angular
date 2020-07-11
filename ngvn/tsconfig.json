@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ngvn/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@ngvn/api/config": ["libs/api/config/src/index.ts"],
+      "@ngvn/api/types": ["libs/api/types/src/index.ts"],
+      "@ngvn/api/caching": ["libs/api/caching/src/index.ts"],
+      "@ngvn/api/common": ["libs/api/common/src/index.ts"],
+      "@ngvn/api/user": ["libs/api/user/src/index.ts"],
+      "@ngvn/api/dtos": ["libs/api/dtos/src/index.ts"],
+      "@ngvn/api/mappings": ["libs/api/mappings/src/index.ts"],
+      "@ngvn/api/permission": ["libs/api/permission/src/index.ts"],
+      "@ngvn/api/auth": ["libs/api/auth/src/index.ts"],
+      "@ngvn/api/security": ["libs/api/security/src/index.ts"],
+      "@ngvn/background/common": ["libs/background/common/src/index.ts"],
+      "@ngvn/background/user-job": ["libs/background/user-job/src/index.ts"],
+      "@ngvn/shared/permission": ["libs/shared/permission/src/index.ts"],
+      "@ngvn/api/team": ["libs/api/team/src/index.ts"],
+      "@ngvn/api/project": ["libs/api/project/src/index.ts"],
+      "@ngvn/shared/project": ["libs/shared/project/src/index.ts"],
+      "@ngvn/background/project-issue-job": ["libs/background/project-issue-job/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

@@ -1,22 +1,22 @@
+import { ProjectIssuePriority, ProjectIssueType } from '@trungk18/core/graphql/service/graphql';
 import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
-import { IssuePriority, IssueType } from '@trungk18/interface/issue';
-import { IssueUtil } from '../utils/issue';
 import { IssueTypeWithIcon } from '@trungk18/interface/issue-type-icon';
+import { IssueUtil } from '../utils/issue';
 
 export class ProjectConst {
   static readonly IssueId = 'issueId';
   static readonly Projects = 'Projects';
   static PrioritiesWithIcon: IssuePriorityIcon[] = [
-    IssueUtil.getIssuePriorityIcon(IssuePriority.LOWEST),
-    IssueUtil.getIssuePriorityIcon(IssuePriority.LOW),
-    IssueUtil.getIssuePriorityIcon(IssuePriority.MEDIUM),
-    IssueUtil.getIssuePriorityIcon(IssuePriority.HIGH),
-    IssueUtil.getIssuePriorityIcon(IssuePriority.HIGHEST)
+    IssueUtil.getIssuePriorityIcon(ProjectIssuePriority.Lowest),
+    IssueUtil.getIssuePriorityIcon(ProjectIssuePriority.Low),
+    IssueUtil.getIssuePriorityIcon(ProjectIssuePriority.Medium),
+    IssueUtil.getIssuePriorityIcon(ProjectIssuePriority.High),
+    IssueUtil.getIssuePriorityIcon(ProjectIssuePriority.Highest)
   ];
 
   static IssueTypesWithIcon: IssueTypeWithIcon[] = [
-    new IssueTypeWithIcon(IssueType.BUG),
-    new IssueTypeWithIcon(IssueType.STORY),
-    new IssueTypeWithIcon(IssueType.TASK)
+    new IssueTypeWithIcon(ProjectIssueType.Bug),
+    new IssueTypeWithIcon(ProjectIssueType.Story),
+    new IssueTypeWithIcon(ProjectIssueType.Task)
   ];
 }

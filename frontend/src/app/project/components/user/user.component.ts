@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { JUser } from '@trungk18/interface/user';
+import { UserDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'j-user',
@@ -7,7 +7,7 @@ import { JUser } from '@trungk18/interface/user';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  @Input() user: JUser;
+  @Input() user: UserDto;
 
   constructor() {}
 

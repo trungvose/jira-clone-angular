@@ -1,7 +1,7 @@
-import { JUser } from './user';
+import { UserDto } from '@trungk18/core/graphql/service/graphql';
 
 export class JComment {
-  constructor(issueId: string, user: JUser) {
+  constructor(issueId: string, user: UserDto) {
     let now = new Date();
     this.id = `${now.getTime()}`;
     this.issueId = issueId;
@@ -17,5 +17,5 @@ export class JComment {
   issueId: string;
   userId: string;
   //mapped to display by userId
-  user: JUser;
+  user: UserDto;
 }

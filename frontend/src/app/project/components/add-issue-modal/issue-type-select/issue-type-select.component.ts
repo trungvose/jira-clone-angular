@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IssueType } from '@trungk18/interface/issue';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { IssueTypeWithIcon } from '@trungk18/interface/issue-type-icon';
 import { FormControl } from '@angular/forms';
 import { ProjectConst } from '@trungk18/project/config/const';
+import { ProjectIssueType } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-type-select',
@@ -21,7 +21,7 @@ export class IssueTypeSelectComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getIssueTypeIcon(issueType: IssueType) {
+  getIssueTypeIcon(issueType: ProjectIssueType) {
     return IssueUtil.getIssueTypeIcon(issueType);
   }
 }

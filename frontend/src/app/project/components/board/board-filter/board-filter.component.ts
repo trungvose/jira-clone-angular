@@ -5,7 +5,7 @@ import { FilterQuery } from '@trungk18/project/state/filter/filter.query';
 import { FilterService } from '@trungk18/project/state/filter/filter.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
-import { JUser } from '@trungk18/interface/user';
+import { UserDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'board-filter',
@@ -14,7 +14,7 @@ import { JUser } from '@trungk18/interface/user';
 })
 @UntilDestroy()
 export class BoardFilterComponent implements OnInit {
-  searchControl: FormControl = new FormControl("");
+  searchControl: FormControl = new FormControl('');
   userIds: string[];
 
   constructor(
@@ -37,7 +37,7 @@ export class BoardFilterComponent implements OnInit {
     });
   }
 
-  isUserSelected(user: JUser) {
+  isUserSelected(user: UserDto) {
     return this.userIds.includes(user.id);
   }
 
@@ -49,7 +49,7 @@ export class BoardFilterComponent implements OnInit {
     this.filterService.toggleOnlyMyIssue();
   }
 
-  userChanged(user: JUser) {
+  userChanged(user: UserDto) {
     this.filterService.toggleUserId(user.id);
   }
 

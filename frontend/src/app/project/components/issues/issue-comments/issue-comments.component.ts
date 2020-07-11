@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { JIssue } from '@trungk18/interface/issue';
+import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
+import { JComment } from '@trungk18/interface/comment';
 
 @Component({
   selector: 'issue-comments',
@@ -7,9 +8,13 @@ import { JIssue } from '@trungk18/interface/issue';
   styleUrls: ['./issue-comments.component.scss']
 })
 export class IssueCommentsComponent implements OnInit {
-  @Input() issue: JIssue;
+  comments: JComment[];
+  @Input() issue: ProjectIssueDto;
 
-  constructor() {}
+  constructor() {
+    //TODO fetch comment
+    this.comments = []
+  }
 
   ngOnInit(): void {}
 }

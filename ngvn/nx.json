@@ -1,0 +1,100 @@
+{
+  "npmScope": "ngvn",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "accessToken": "Njk5MjNmMzAtMWUwNi00YWYzLTk0MjUtMmRmOWY2Njk3OTYwfHJlYWQtd3JpdGU=",
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "e2e"
+        ],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "projects": {
+    "jira-clone": {
+      "tags": []
+    },
+    "jira-clone-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "jira-clone"
+      ]
+    },
+    "api": {
+      "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
+    },
+    "api-config": {
+      "tags": []
+    },
+    "api-types": {
+      "tags": []
+    },
+    "api-caching": {
+      "tags": []
+    },
+    "api-common": {
+      "tags": []
+    },
+    "api-user": {
+      "tags": []
+    },
+    "api-dtos": {
+      "tags": []
+    },
+    "api-mappings": {
+      "tags": []
+    },
+    "api-permission": {
+      "tags": []
+    },
+    "api-auth": {
+      "tags": []
+    },
+    "api-security": {
+      "tags": []
+    },
+    "background-common": {
+      "tags": []
+    },
+    "background-user-job": {
+      "tags": []
+    },
+    "shared-permission": {
+      "tags": []
+    },
+    "api-team": {
+      "tags": []
+    },
+    "api-project": {
+      "tags": []
+    },
+    "shared-project": {
+      "tags": []
+    },
+    "background-project-issue-job": {
+      "tags": []
+    }
+  }
+}
