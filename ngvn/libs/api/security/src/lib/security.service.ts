@@ -13,7 +13,8 @@ export class SecurityService {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     @InjectQueue(userQueueName) private readonly userQueue: Queue,
-  ) {}
+  ) {
+  }
 
   async register({ email, fullName, password }: RegisterParamsDto): Promise<void> {
     const user = await this.userService.findByEmail(email);
@@ -62,14 +63,21 @@ export class SecurityService {
     return await this.getTokens(user);
   }
 
-  async revoke(userId: string): Promise<void> {
-    const user = await this.userService.getUserById(userId);
-
-    if (user == null) {
-      throw new NotFoundException(userId, 'User not found');
+  async revoke(refreshToken: string): Promise<void> {
+    if (refreshToken == null) {
+      throw new UnauthorizedException(refreshToken, 'No refresh token');
     }
 
-    await this.userService.updateRefreshTokenId(userId);
+    const { id } = await this.authService.verifyRefreshToken(refreshToken).catch((e) => {
+      throw new UnauthorizedException(e, 'Error verifying refresh token');
+    });
+
+    const user = await this.userService.getUserById(id);
+    if (user == null) {
+      throw new UnauthorizedException(id, 'User not found');
+    }
+
+    await this.userService.updateRefreshTokenId(id);
   }
 
   private async getTokens(user: User): Promise<[TokenResultDto, string]> {

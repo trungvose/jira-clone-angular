@@ -40,9 +40,8 @@ export class SecurityResolver {
   }
 
   @Mutation((returns) => Boolean, { nullable: true })
-  @UseGuards(GqlAuthGuard)
-  async logout(@CurrentUser() { id }: AuthUserDto, @Context('res') res: Response): Promise<void> {
-    await this.securityService.revoke(id);
+  async logout(@Cookie('rtok') refreshToken: string, @Context('res') res: Response): Promise<void> {
+    await this.securityService.revoke(refreshToken);
     res.clearCookie('rtok');
   }
 }
