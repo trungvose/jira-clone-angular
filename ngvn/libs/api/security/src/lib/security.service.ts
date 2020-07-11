@@ -6,6 +6,7 @@ import { User, UserService } from '@ngvn/api/user';
 import { UserJob, userQueueName } from '@ngvn/background/common';
 import { compare } from 'bcrypt';
 import { Queue } from 'bull';
+import { Response } from 'express';
 
 @Injectable()
 export class SecurityService {
@@ -13,8 +14,7 @@ export class SecurityService {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     @InjectQueue(userQueueName) private readonly userQueue: Queue,
-  ) {
-  }
+  ) {}
 
   async register({ email, fullName, password }: RegisterParamsDto): Promise<void> {
     const user = await this.userService.findByEmail(email);
@@ -63,17 +63,20 @@ export class SecurityService {
     return await this.getTokens(user);
   }
 
-  async revoke(refreshToken: string): Promise<void> {
+  async revoke(refreshToken: string, res: Response): Promise<void> {
     if (refreshToken == null) {
+      res.clearCookie('rtok');
       throw new UnauthorizedException(refreshToken, 'No refresh token');
     }
 
     const { id } = await this.authService.verifyRefreshToken(refreshToken).catch((e) => {
+      res.clearCookie('rtok');
       throw new UnauthorizedException(e, 'Error verifying refresh token');
     });
 
     const user = await this.userService.getUserById(id);
     if (user == null) {
+      res.clearCookie('rtok');
       throw new UnauthorizedException(id, 'User not found');
     }
 

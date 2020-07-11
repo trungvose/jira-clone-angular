@@ -12,7 +12,8 @@ export class SecurityResolver {
   constructor(
     private readonly securityService: SecurityService,
     @InjectAppConfig() private readonly appConfig: AppConfig,
-  ) {}
+  ) {
+  }
 
   @Query((returns) => TokenResultDto)
   async refreshToken(@Cookie('rtok') refreshToken: string, @Context('res') res: Response): Promise<TokenResultDto> {
@@ -41,7 +42,7 @@ export class SecurityResolver {
 
   @Mutation((returns) => Boolean, { nullable: true })
   async logout(@Cookie('rtok') refreshToken: string, @Context('res') res: Response): Promise<void> {
-    await this.securityService.revoke(refreshToken);
+    await this.securityService.revoke(refreshToken, res);
     res.clearCookie('rtok');
   }
 }
