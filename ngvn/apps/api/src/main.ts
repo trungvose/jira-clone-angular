@@ -21,7 +21,8 @@ const Arena = require('bull-arena');
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const appConfig = app.get<AppConfig>(appConfiguration.KEY);
-  app.enableCors({ credentials: true, origin: appConfig.clientDomain });
+  // console.log(appConfig.clientDomain);
+  // app.enableCors({ credentials: true, origin: appConfig.clientDomain });
 
   const redisConfig = app.get<RedisConfig>(redisConfiguration.KEY);
   const arenaConfig = app.get<ArenaConfig>(arenaConfiguration.KEY);
