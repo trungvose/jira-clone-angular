@@ -8,6 +8,37 @@ There have been a handful of cool Jira-cloned apps written in `React`/`VueJS`, w
 
 This is not only a simplified Jira clone built with Angular 9, but also an example of a **modern**, **real-world** Angular codebase.
 
+<details>
+  <summary>Table Of Content</summary>
+  <p>
+
+- [A simplified Jira clone built with Angular 9 and Akita](#a-simplified-jira-clone-built-with-angular-9-and-akita)
+  - [Working application](#working-application)
+  - [Who is it for 🤷‍♀️](#who-is-it-for-️)
+  - [Tech stack](#tech-stack)
+  - [High level design](#high-level-design)
+    - [Application architecture](#application-architecture)
+    - [Simple data interaction flow](#simple-data-interaction-flow)
+  - [Features and Roadmap](#features-and-roadmap)
+    - [Phase 1 - Angular application and simple Nest API](#phase-1---angular-application-and-simple-nest-api)
+    - [Phase 2](#phase-2)
+  - [Tutorial](#tutorial)
+  - [Time spending](#time-spending)
+  - [What's currently missing?](#whats-currently-missing)
+    - [Proper backend API](#proper-backend-api)
+    - [Proper authentication system 🔐](#proper-authentication-system-)
+    - [Accessibility ♿](#accessibility-)
+  - [Setting up development environment 🛠](#setting-up-development-environment-)
+    - [Unit/Integration tests 🧪](#unitintegration-tests-)
+  - [Compatibility](#compatibility)
+  - [Author: Trung Vo ✍️](#author-trung-vo-️)
+  - [Contributing](#contributing)
+  - [Credits](#credits)
+  - [License](#license)
+
+  </p>
+</details>
+
 ## Working application
 
 Check out the **live demo** -> https://jira.trungk18.com
