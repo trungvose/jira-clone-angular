@@ -1,8 +1,3 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import { HttpStatus, Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { HttpExceptionFilter } from '@ngvn/api/common';
@@ -20,10 +15,8 @@ const Arena = require('bull-arena');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const appConfig = app.get<AppConfig>(appConfiguration.KEY);
-  // console.log(appConfig.clientDomain);
-  // app.enableCors({ credentials: true, origin: appConfig.clientDomain });
 
+  const appConfig = app.get<AppConfig>(appConfiguration.KEY);
   const redisConfig = app.get<RedisConfig>(redisConfiguration.KEY);
   const arenaConfig = app.get<ArenaConfig>(arenaConfiguration.KEY);
 
