@@ -30,6 +30,10 @@ registerEnumType(ProjectTimelineType, { name: 'ProjectTimelineType' });
         debug: appConfig.env === 'development',
         playground: appConfig.env === 'development',
         include: [...apiModules],
+        cors: {
+          credentials: true,
+          origin: appConfig.clientDomain,
+        },
       }),
     }),
   ],

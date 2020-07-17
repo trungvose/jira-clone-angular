@@ -1,6 +1,23 @@
 # Jira Clone with Nx
 
-This project is generated with [Nx](https://nx.dev)
+This is the WIP branch for Phase 2 of Angular Jira Clone, by using Nx Workspace.
+
+## Phase 1 - Curren Working application
+
+Check out the **live demo** -> https://jira.trungk18.com
+
+![Jira clone built with Angular 9 and Akita][demo]
+
+[demo]: https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-angular-demo-trungk18.gif
+
+If you like my work, feel free to:
+
+- [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)][tweet] about Angular Jira clone
+- :star: this repository. And we will be happy together :)
+
+Thanks a bunch for stopping by and supporting me!
+
+[tweet]: https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Ftrungk18%2Fjira-clone-angular&text=Awesome%20Jira%20clone%20app%20built%20with%20Angular%209%20and%20Akita&hashtags=angular,akita,typescript
 
 ## Environment Setup
 
