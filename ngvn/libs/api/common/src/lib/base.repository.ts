@@ -36,7 +36,7 @@ export abstract class BaseRepository<T extends BaseModel> {
     throw new InternalServerErrorException(err, err.errmsg);
   }
 
-  protected static toObjectId(id: string): Types.ObjectId {
+  public static toObjectId(id: string): Types.ObjectId {
     try {
       return Types.ObjectId(id);
     } catch (e) {

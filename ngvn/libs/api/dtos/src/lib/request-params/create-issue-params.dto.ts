@@ -21,7 +21,6 @@ export class CreateTagParamsDto {
 @ArgsType()
 export class CreateIssueParamsDto {
   @Field()
-  @AutoMap()
   projectId: string;
   @Field()
   @AutoMap()

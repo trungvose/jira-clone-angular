@@ -20,6 +20,10 @@ export class ProjectIssueRepository extends BaseRepository<ProjectIssue> {
     }
   }
 
+  async createIssue(issue: ProjectIssue): Promise<ProjectIssue> {
+    return await this.create(issue);
+  }
+
   // TODO: update by all Conditions. Right now, this method only updates by status and only Operand.Eq
   async bulkUpdateByLaneCondition(issues: Types.ObjectId[], laneCondition: ProjectLaneCondition): Promise<void> {
     try {
