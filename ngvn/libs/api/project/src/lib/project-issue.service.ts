@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { BaseService } from '@ngvn/api/common';
-import { AuthUserDto, CreateIssueParamsDto, ProjectIssueDetailDto } from '@ngvn/api/dtos';
+import { AuthUserDto, CreateIssueParamsDto, ProjectIssueDetailDto, ProjectIssueDto } from '@ngvn/api/dtos';
 import { ProjectIssueStatus } from '@ngvn/shared/project';
 import { Types } from 'mongoose';
 import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
@@ -26,7 +26,7 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
     return this.mapper.map(issue, ProjectIssueDetailDto, ProjectIssue);
   }
 
-  async createIssue(createIssueDto: CreateIssueParamsDto, currentUser: AuthUserDto) {
+  async createIssue(createIssueDto: CreateIssueParamsDto, currentUser: AuthUserDto): Promise<ProjectIssueDto> {
     const { projectId, ...dto } = createIssueDto;
     const isProjectExist = await this.projectService.isProjectExistById(projectId);
     if (!isProjectExist) {
@@ -41,7 +41,7 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
     newIssue.outputHtml = '';
     newIssue.ordinalPosition = ((await this.projectService.findIssuesCountById(projectId)) + 1).toString();
     const result = await this.create(newIssue);
-    // TODO(team): Decide on what to do after adding a new issue
+    return this.mapper.map(result, ProjectIssueDto, ProjectIssue);
   }
 
   async bulkUpdateByLaneCondition(issues: Types.ObjectId[], laneCondition: ProjectLaneCondition): Promise<void> {
