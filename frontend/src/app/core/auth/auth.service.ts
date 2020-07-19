@@ -8,7 +8,7 @@ import {
   LogoutGQL
 } from '@trungk18/core/graphql/service/graphql';
 import { LoginPayload } from '@trungk18/interface/payload/login';
-import { EMPTY, Observable, of, pipe, Subscription, timer } from 'rxjs';
+import { EMPTY, Observable, of, pipe, Subscription, throwError, timer } from 'rxjs';
 import { catchError, finalize, map, switchMap, tap } from 'rxjs/operators';
 import { AuthStore, createInitialAuthState } from './auth.store';
 import { differenceInMilliseconds, subMinutes } from 'date-fns';
@@ -56,7 +56,7 @@ export class AuthService {
           expiry: null,
           token: null
         });
-        return of(null);
+        return throwError(err);
       }),
       this._handleTokenMe()
     );
