@@ -84,6 +84,9 @@ export class AuthService {
   private _handleTokenMe = () => {
     return pipe<Observable<TokenResultDto>, Observable<UserInformationDto>>(
       switchMap((tokenResult) => {
+        this._store.update({
+          ...tokenResult
+        })
         this._setupRefreshTimer(tokenResult);
         return this._me().pipe(
           tap((user) => {

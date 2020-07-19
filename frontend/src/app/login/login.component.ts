@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this._router.navigate([`/${JiraRoutingConst.Projects}`, JiraRoutingConst.MockProjectSlug]);
+        this._router.navigate([`/${JiraRoutingConst.Projects}`]);
       });
   }
 }
