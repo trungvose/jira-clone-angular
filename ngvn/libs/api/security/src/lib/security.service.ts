@@ -1,5 +1,5 @@
 import { InjectQueue } from '@nestjs/bull';
-import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '@ngvn/api/auth';
 import { LoginParamsDto, RegisterParamsDto, TokenResultDto } from '@ngvn/api/dtos';
 import { User, UserService } from '@ngvn/api/user';
@@ -14,7 +14,8 @@ export class SecurityService {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     @InjectQueue(userQueueName) private readonly userQueue: Queue,
-  ) {}
+  ) {
+  }
 
   async register({ email, fullName, password }: RegisterParamsDto): Promise<void> {
     const user = await this.userService.findByEmail(email);
@@ -66,7 +67,8 @@ export class SecurityService {
   async revoke(refreshToken: string, res: Response): Promise<void> {
     if (refreshToken == null) {
       res.clearCookie('rtok');
-      throw new UnauthorizedException(refreshToken, 'No refresh token');
+      Logger.log('authenticatedGuard runs logout', 'SecurityService');
+      return;
     }
 
     const { id } = await this.authService.verifyRefreshToken(refreshToken).catch((e) => {

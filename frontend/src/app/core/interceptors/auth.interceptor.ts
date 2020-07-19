@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
           return next.handle(req);
         }
         const cloneReq = req.clone({
-          headers: req.headers.set('Authentication', `Bearer ${token}`)
+          headers: req.headers.set('Authorization', `Bearer ${token}`)
         });
         return defer(() => {
           let isExpired = isAfter(new Date(), new Date(expiredDate));

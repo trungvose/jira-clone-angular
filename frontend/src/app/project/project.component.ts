@@ -24,13 +24,13 @@ export class ProjectComponent implements OnInit {
   }
 
   private getProjectBySlug() {
-    let slug = this._route.snapshot.paramMap.get(JiraRoutingConst.Slug);
-    if (!slug) {
-      //TODO: Redirect to the project list
-      this._router.navigate([`/${JiraRoutingConst.Login}`]);
-      return;
-    }
-    this._projectService.getProject(slug).subscribe();
+    //TODO Slug
+    // let slug = this._route.snapshot.paramMap.get(JiraRoutingConst.Slug);
+    // if (!slug) {
+    //   this._router.navigate([`/${JiraRoutingConst.Login}`]);
+    //   return;
+    // }
+    this._projectService.getProject(JiraRoutingConst.MockProjectSlug).subscribe();
   }
 
   handleResize() {

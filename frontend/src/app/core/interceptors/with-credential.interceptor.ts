@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class WithCredentialInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let queryName = req.body.operationName;
-    let includedOperations = ['Login', 'Logout', 'RefreshToken'];
+    let includedOperations = ['Login', 'Logout', 'RefreshToken', 'Me'];
     if (includedOperations.includes(queryName)) {
       const clonedReq = req.clone({
         withCredentials: true
