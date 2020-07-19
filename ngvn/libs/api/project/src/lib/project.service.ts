@@ -20,6 +20,10 @@ export class ProjectService extends BaseService<Project> {
     super(projectRepository);
   }
 
+  async isProjectExistById(id: string): Promise<boolean> {
+    return await this.projectRepository.exists({ _id: id });
+  }
+
   async findBySlug(slug: string): Promise<ProjectDto> {
     const project = await this.projectRepository.findBySlug(slug);
     return this.mapper.map(project, ProjectDto, Project);
@@ -30,6 +34,13 @@ export class ProjectService extends BaseService<Project> {
       this.projectRepository.findByUser(userId),
     );
     return this.mapper.mapArray(projects, ProjectInformationDto, Project);
+  }
+
+  async findIssuesCountById(id: string): Promise<number> {
+    return await this.projectRepository
+      .findById(id, { autopopulate: false })
+      .map((project) => project.issues.length)
+      .exec();
   }
 
   async reorderIssue({ laneId, projectId, issues }: ReorderIssueParamsDto): Promise<ProjectDto> {

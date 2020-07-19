@@ -20,7 +20,16 @@ import {
 import { User } from '@ngvn/api/user';
 import { ProjectTimelineType } from '@ngvn/shared/project';
 import { Types } from 'mongoose';
-import { AutoMapper, ignore, mapWith, Profile, ProfileBase, mapFrom, preCondition } from 'nestjsx-automapper';
+import {
+  AutoMapper,
+  ignore,
+  mapWith,
+  Profile,
+  ProfileBase,
+  mapFrom,
+  preCondition,
+  fromValue,
+} from 'nestjsx-automapper';
 import { ignoreBaseProperties } from './utils/ignore-base-properties.util';
 
 @Profile()
@@ -75,7 +84,7 @@ export class ProjectIssueProfile extends ProfileBase {
           mapFrom((s) => Types.ObjectId(s.assigneeId)),
         )
         .forMember((d) => d.outputHtml, ignore())
-        .forMember((d) => d.participants, ignore())
+        .forMember((d) => d.participants, fromValue([]))
         .forMember((d) => d.status, ignore()),
     );
   }
