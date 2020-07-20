@@ -7,6 +7,8 @@ import { DocumentType, getDiscriminatorModelForClass } from '@typegoose/typegoos
 import { Types } from 'mongoose';
 import { Permission } from './permission.model';
 import { ProjectIssuePermission } from './project-issue-permission.model';
+import { ProjectPermission } from './project-permission.model';
+import { TeamPermission } from './team-permission.model';
 
 @Injectable()
 export class PermissionRepository extends BaseRepository<Permission> {
@@ -15,13 +17,6 @@ export class PermissionRepository extends BaseRepository<Permission> {
     ProjectIssuePermission,
     PermissionType.ProjectIssue,
   );
-  // private readonly ProjectModel = getDiscriminatorModelForClass(
-  //   this.permissionModel,
-  //   ProjectPermission,
-  //   PermissionType.Project,
-  // );
-  // private readonly TeamModel = getDiscriminatorModelForClass(this.permissionModel, TeamPermission,
-  // PermissionType.Team);
 
   constructor(@InjectModel(Permission.modelName) private readonly permissionModel: ModelType<Permission>) {
     super(permissionModel);

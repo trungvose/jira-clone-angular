@@ -47,12 +47,12 @@ export class ProjectRepository extends BaseRepository<Project> {
   }
 
   async moveIssue({
-    projectId,
-    previousLaneId,
-    previousIssues,
-    targetLaneId,
-    targetIssues,
-  }: MoveIssueParamsDto): Promise<Project> {
+                    projectId,
+                    previousLaneId,
+                    previousIssues,
+                    targetLaneId,
+                    targetIssues,
+                  }: MoveIssueParamsDto): Promise<Project> {
     try {
       await this.updateBy(
         projectId,

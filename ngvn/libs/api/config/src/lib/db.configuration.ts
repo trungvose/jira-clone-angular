@@ -10,6 +10,7 @@ export const dbConfiguration = registerAs('db', () => ({
   useNewUrlParser: Boolean(process.env.MONGO_NEW_URL_PARSER) || true,
   useCreateIndex: Boolean(process.env.MONGO_CREATE_INDEX) || true,
   useUnifiedTopology: Boolean(process.env.MONGO_UNIFIED_TOPOLOGY) || true,
+  applyPluginsToDiscriminators: true,
 }));
 
 export const InjectDbConfig = () => Inject(dbConfiguration.KEY);

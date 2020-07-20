@@ -27,7 +27,7 @@ export class ProjectService extends BaseService<Project> {
   }
 
   async findOwnerAndUsers(id: string): Promise<[string, string[]]> {
-    const project = await this.projectRepository.findById(id).exec();
+    const project = await this.projectRepository.findById(id, { autopopulate: false }).exec();
     if (project == null) {
       throw new NotFoundException(id, 'Project not found');
     }

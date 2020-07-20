@@ -1,7 +1,7 @@
-import { InjectQueue, Processor } from '@nestjs/bull';
+import { InjectQueue, Process, Processor } from '@nestjs/bull';
 import { PermissionService } from '@ngvn/api/permission';
 import { ProjectService } from '@ngvn/api/project';
-import { permissionQueueName, UserJob, userQueueName } from '@ngvn/background/common';
+import { PermissionJob, permissionQueueName, UserJob, userQueueName } from '@ngvn/background/common';
 import { Job, Queue } from 'bull';
 
 @Processor(permissionQueueName)
@@ -12,6 +12,7 @@ export class PermissionJobConsumer {
     @InjectQueue(userQueueName) private readonly userQueue: Queue,
   ) {}
 
+  @Process(PermissionJob.CreateProjectIssuePermission)
   async createProjectIssuePermission(job: Job<{ issueId: string; projectId: string }>) {
     const { issueId, projectId } = job.data;
     const [ownerId, userIds] = await this.projectService.findOwnerAndUsers(projectId);
