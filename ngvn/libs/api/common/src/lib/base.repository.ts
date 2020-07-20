@@ -92,19 +92,19 @@ export abstract class BaseRepository<T extends BaseModel> {
 
   update(item: T, options?: QueryOptions): QueryItem<T> {
     return this.model
-      .findByIdAndUpdate(BaseRepository.toObjectId(item.id), { $set: item } as any, { new: true })
+      .findByIdAndUpdate(BaseRepository.toObjectId(item.id), { $set: item } as any, { omitUndefined: true, new: true })
       .setOptions(this.getQueryOptions(options));
   }
 
   updateBy(
     id: string,
     updateQuery: UpdateQuery<DocumentType<T>>,
-    updateOptions?: QueryFindOneAndUpdateOptions & { multi?: boolean },
+    updateOptions: QueryFindOneAndUpdateOptions & { multi?: boolean } = {},
     options?: QueryOptions,
   ): QueryItem<T> {
     return this.model
       .findByIdAndUpdate(BaseRepository.toObjectId(id), updateQuery, {
-        ...(updateOptions || {}),
+        ...Object.assign({ omitUndefined: true }, updateOptions),
         new: true,
       })
       .setOptions(this.getQueryOptions(options));
@@ -118,7 +118,7 @@ export abstract class BaseRepository<T extends BaseModel> {
   ): QueryItem<T> {
     return this.model
       .findOneAndUpdate(filter, updateQuery, {
-        ...updateOptions,
+        ...Object.assign({ omitUndefined: true }, updateOptions),
         new: true,
       })
       .setOptions(this.getQueryOptions(options));

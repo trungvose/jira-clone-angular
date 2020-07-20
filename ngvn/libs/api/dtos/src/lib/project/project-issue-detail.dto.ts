@@ -20,5 +20,5 @@ export class ProjectIssueDetailDto extends ProjectIssueDto {
   assignee: UserDto;
   @Field((returns) => [UserDto], { nullable: 'items' })
   @AutoMap(() => UserDto)
-  participants: UserDto;
+  participants: UserDto[];
 }

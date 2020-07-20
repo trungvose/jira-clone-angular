@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { BaseDto } from '@ngvn/api/common';
 import { AutoMap } from 'nestjsx-automapper';
 

@@ -1,7 +1,18 @@
+import { InjectQueue } from '@nestjs/bull';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { BaseService } from '@ngvn/api/common';
-import { AuthUserDto, CreateIssueParamsDto, ProjectIssueDetailDto, ProjectIssueDto } from '@ngvn/api/dtos';
+import { MarkdownService } from '@ngvn/api/common-providers';
+import {
+  AuthUserDto,
+  CreateIssueParamsDto,
+  ProjectIssueDetailDto,
+  ProjectIssueDto,
+  UpdateIssueDetailDto,
+  UpdateIssueParamsDto,
+} from '@ngvn/api/dtos';
+import { ProjectJob, projectQueueName } from '@ngvn/background/common';
 import { ProjectIssueStatus } from '@ngvn/shared/project';
+import { Queue } from 'bull';
 import { Types } from 'mongoose';
 import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 import { ProjectIssue, ProjectLaneCondition } from './models';
@@ -14,6 +25,8 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
     private readonly projectIssueRepository: ProjectIssueRepository,
     @InjectMapper() private readonly mapper: AutoMapper,
     private readonly projectService: ProjectService,
+    private readonly markdownService: MarkdownService,
+    @InjectQueue(projectQueueName) private readonly projectQueue: Queue,
   ) {
     super(projectIssueRepository);
   }
@@ -37,19 +50,51 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
 
     newIssue.reporter = this.toObjectId(currentUser.id);
     newIssue.participants.push(newIssue.reporter);
-    // TODO(Chau): Generate HTML from bodyMarkdown
-    newIssue.outputHtml = '';
     newIssue.ordinalPosition = ((await this.projectService.findIssuesCountById(projectId)) + 1).toString();
     const result = await this.create(newIssue);
+
+    await this.projectQueue.add(ProjectJob.UpdateLanesWithIssue, {
+      projectId,
+      issueId: result.id,
+      statuses: [ProjectIssueStatus.Backlog],
+    });
+
     return this.mapper.map(result, ProjectIssueDto, ProjectIssue);
+  }
+
+  async updateIssue({ projectId, issue }: UpdateIssueParamsDto): Promise<ProjectIssueDetailDto> {
+    const projectIssue = await this.projectIssueRepository.findById(issue.id).exec();
+
+    if (projectIssue == null) {
+      throw new NotFoundException(issue.id, 'Project Issue not found');
+    }
+
+    const mapped = this.mapper.map(issue, ProjectIssue, UpdateIssueDetailDto);
+    const isStatusChanged = projectIssue.status !== mapped.status;
+    const result = await this.projectIssueRepository.update(Object.assign(projectIssue, mapped)).exec();
+
+    if (isStatusChanged) {
+      await this.projectQueue.add(ProjectJob.UpdateLanesWithIssue, {
+        projectId,
+        issueId: result.id,
+        statuses: [result.status, projectIssue.status],
+      });
+    }
+
+    return this.mapper.map(result, ProjectIssueDetailDto, ProjectIssue);
+  }
+
+  async updateMarkdown(id: string, markdown: string): Promise<ProjectIssueDetailDto> {
+    const exist = await this.projectIssueRepository.exists({ id });
+    if (!exist) {
+      throw new NotFoundException(id, 'Project issue not found');
+    }
+
+    const result = await this.updateBy(id, { $set: { outputHtml: this.markdownService.generateHtml(markdown) } });
+    return this.mapper.map(result, ProjectIssueDetailDto, ProjectIssue);
   }
 
   async bulkUpdateByLaneCondition(issues: Types.ObjectId[], laneCondition: ProjectLaneCondition): Promise<void> {
     await this.projectIssueRepository.bulkUpdateByLaneCondition(issues, laneCondition);
-  }
-
-  async updateStatus(id: string, status: ProjectIssueStatus): Promise<ProjectIssueDetailDto> {
-    const issue = await this.projectIssueRepository.updateStatus(id, status);
-    return this.mapper.map(issue, ProjectIssueDetailDto, ProjectIssue);
   }
 }
