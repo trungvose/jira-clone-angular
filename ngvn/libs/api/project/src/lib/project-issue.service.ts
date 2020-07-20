@@ -10,7 +10,7 @@ import {
   UpdateIssueDetailDto,
   UpdateIssueParamsDto,
 } from '@ngvn/api/dtos';
-import { ProjectJob, projectQueueName } from '@ngvn/background/common';
+import { PermissionJob, permissionQueueName, ProjectJob, projectQueueName } from '@ngvn/background/common';
 import { ProjectIssueStatus } from '@ngvn/shared/project';
 import { Queue } from 'bull';
 import { Types } from 'mongoose';
@@ -27,6 +27,7 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
     private readonly projectService: ProjectService,
     private readonly markdownService: MarkdownService,
     @InjectQueue(projectQueueName) private readonly projectQueue: Queue,
+    @InjectQueue(permissionQueueName) private readonly permissionQueue: Queue,
   ) {
     super(projectIssueRepository);
   }
@@ -50,7 +51,8 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
 
     newIssue.reporter = this.toObjectId(currentUser.id);
     newIssue.participants.push(newIssue.reporter);
-    newIssue.ordinalPosition = ((await this.projectService.findIssuesCountById(projectId)) + 1).toString();
+    const currentIssueCount = await this.projectService.findIssuesCountById(projectId);
+    newIssue.ordinalPosition = currentIssueCount + 1;
     const result = await this.create(newIssue);
 
     await this.projectQueue.add(ProjectJob.UpdateLanesWithIssue, {
@@ -58,8 +60,8 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
       issueId: result.id,
       statuses: [ProjectIssueStatus.Backlog],
     });
-
-    return this.mapper.map(result, ProjectIssueDto, ProjectIssue);
+    await this.permissionQueue.add(PermissionJob.CreateProjectIssuePermission, { issueId: result.id, projectId });
+    return this.mapper.map(result.toJSON(), ProjectIssueDto, ProjectIssue);
   }
 
   async updateIssue({ projectId, issue }: UpdateIssueParamsDto): Promise<ProjectIssueDetailDto> {

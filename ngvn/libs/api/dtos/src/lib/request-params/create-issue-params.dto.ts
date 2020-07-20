@@ -34,9 +34,9 @@ export class CreateIssueParamsDto {
   @Field(() => ProjectIssueType)
   @AutoMap()
   type: ProjectIssueType;
-  @Field(() => CreateUpdateTagParamsDto, { nullable: true })
+  @Field(() => [CreateUpdateTagParamsDto], { nullable: true })
   @AutoMap(() => CreateUpdateTagParamsDto)
-  tags?: CreateUpdateTagParamsDto;
+  tags?: CreateUpdateTagParamsDto[];
   @Field(() => ProjectIssuePriority, { nullable: true })
   @AutoMap()
   priority?: ProjectIssuePriority;

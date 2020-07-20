@@ -25,6 +25,15 @@ export class ProjectService extends BaseService<Project> {
     return await this.projectRepository.exists({ _id: id });
   }
 
+  async findOwnerAndUsers(id: string): Promise<[string, string[]]> {
+    const project = await this.projectRepository.findById(id).exec();
+    if (project == null) {
+      throw new NotFoundException(id, 'Project not found');
+    }
+
+    return [project.owner.toString(), project.users.map((u) => u.toString())];
+  }
+
   async findBySlug(slug: string): Promise<ProjectDto> {
     const project = await this.projectRepository.findBySlug(slug);
     return this.mapper.map(project, ProjectDto, Project);
@@ -39,7 +48,7 @@ export class ProjectService extends BaseService<Project> {
 
   async findIssuesCountById(id: string): Promise<number> {
     return await this.projectRepository
-      .findById(id, { autopopulate: false })
+      .findById(id, { autopopulate: false, lean: false })
       .map((project) => project.issues.length)
       .exec();
   }

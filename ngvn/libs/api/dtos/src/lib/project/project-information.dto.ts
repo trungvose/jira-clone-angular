@@ -21,6 +21,9 @@ export class ProjectInformationDto extends BaseDto {
   category: ProjectCategory;
   @Field((returns) => [UserDto])
   @AutoMap(() => UserDto)
+  owner: UserDto;
+  @Field((returns) => [UserDto])
+  @AutoMap(() => UserDto)
   users: UserDto[];
   @Field((returns) => [TeamDto])
   @AutoMap(() => TeamDto)

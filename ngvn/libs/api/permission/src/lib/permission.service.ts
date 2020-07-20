@@ -13,4 +13,10 @@ export class PermissionService extends BaseService<Permission> {
   async findByNameAndPrivilege(name: PermissionNames, privilege: Privilege): Promise<Permission> {
     return await this.permissionRepository.findByNameAndPrivilege(name, privilege);
   }
+
+  async createProjectIssuePermission(issueId: string): Promise<string[]> {
+    return await this.permissionRepository
+      .createProjectIssuePermission(issueId)
+      .then((permissions) => permissions.map((p) => p.id));
+  }
 }

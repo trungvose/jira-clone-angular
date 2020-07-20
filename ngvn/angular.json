@@ -641,6 +641,32 @@
           }
         }
       }
+    },
+    "background-permission-job": {
+      "root": "libs/background/permission-job",
+      "sourceRoot": "libs/background/permission-job/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/background/permission-job/tsconfig.lib.json",
+              "libs/background/permission-job/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/background/permission-job/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/background/permission-job/jest.config.js",
+            "tsConfig": "libs/background/permission-job/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

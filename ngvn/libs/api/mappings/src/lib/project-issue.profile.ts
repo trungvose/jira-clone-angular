@@ -93,7 +93,7 @@ export class ProjectIssueProfile extends ProfileBase {
 
     ignoreBaseProperties(
       mapper
-        .createMap(CreateIssueParamsDto, ProjectIssue)
+        .createMap(CreateIssueParamsDto, ProjectIssue, { useUndefined: true })
         .forMember((d) => d.reporter, ignore())
         .forMember((d) => d.ordinalPosition, ignore())
         .forMember((d) => d.timelineItems, ignore())
