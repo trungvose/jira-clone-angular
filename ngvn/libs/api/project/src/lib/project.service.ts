@@ -6,6 +6,7 @@ import { MoveIssueParamsDto, ProjectDto, ProjectInformationDto, ReorderIssuePara
 import { ProjectIssueJob, projectIssueQueueName } from '@ngvn/background/common';
 import { ProjectIssueStatus } from '@ngvn/shared/project';
 import { Queue } from 'bull';
+import { Types } from 'mongoose';
 import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 import { Project } from './models';
 import { ProjectRepository } from './project.repository';
@@ -73,7 +74,7 @@ export class ProjectService extends BaseService<Project> {
       throw new NotFoundException(toStatus, 'No lane found');
     }
 
-    targetLane.issues.push(this.toObjectId(issueId));
+    targetLane.issues.push(Types.ObjectId(issueId));
     if (fromStatus == null) {
       const fromLane = project.lanes.find((lane) =>
         lane.conditions.some((c) => c.issueField === 'status' && c.value === fromStatus),

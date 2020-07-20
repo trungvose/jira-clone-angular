@@ -4,6 +4,7 @@ import { BaseRepository } from '@ngvn/api/common';
 import { ModelType } from '@ngvn/api/types';
 import { PermissionNames, PermissionType, Privilege } from '@ngvn/shared/permission';
 import { DocumentType, getDiscriminatorModelForClass } from '@typegoose/typegoose';
+import { Types } from 'mongoose';
 import { Permission } from './permission.model';
 import { ProjectIssuePermission } from './project-issue-permission.model';
 
@@ -41,13 +42,13 @@ export class PermissionRepository extends BaseRepository<Permission> {
       permissionName: PermissionNames.ProjectIssueManage,
       privilege: 15,
       type: PermissionType.ProjectIssue,
-      projectIssueId: PermissionRepository.toObjectId(issueId),
+      projectIssueId: Types.ObjectId(issueId),
     });
     const userPermission = new this.ProjectIssueModel({
       permissionName: PermissionNames.ProjectIssueManage,
       privilege: 7,
       type: PermissionType.ProjectIssue,
-      projectIssueId: PermissionRepository.toObjectId(issueId),
+      projectIssueId: Types.ObjectId(issueId),
     });
     return await Promise.all([
       this.ProjectIssueModel.create(ownerPermission),

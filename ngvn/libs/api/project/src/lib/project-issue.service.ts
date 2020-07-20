@@ -49,10 +49,9 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
 
     const newIssue = this.createModel(this.mapper.map(dto, ProjectIssue, CreateIssueParamsDto));
 
-    newIssue.reporter = this.toObjectId(currentUser.id);
+    newIssue.reporter = Types.ObjectId(currentUser.id);
     newIssue.participants.push(newIssue.reporter);
-    const currentIssueCount = await this.projectService.findIssuesCountById(projectId);
-    newIssue.ordinalPosition = currentIssueCount + 1;
+    newIssue.ordinalPosition = (await this.projectService.findIssuesCountById(projectId)) + 1;
     const result = await this.create(newIssue);
 
     await this.projectQueue.add(ProjectJob.UpdateLanesWithIssue, {
