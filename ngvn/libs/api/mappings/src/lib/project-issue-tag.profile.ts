@@ -17,6 +17,6 @@ export class ProjectIssueTagProfile extends ProfileBase {
       }),
     );
 
-    ignoreBaseProperties(mapper.createMap(CreateUpdateTagParamsDto, ProjectIssueTag, { useUndefined: true }));
+    ignoreBaseProperties(mapper.createMap(CreateUpdateTagParamsDto, ProjectIssueTag));
   }
 }
