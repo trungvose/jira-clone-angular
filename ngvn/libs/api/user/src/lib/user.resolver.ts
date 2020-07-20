@@ -11,7 +11,7 @@ export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Query((returns) => UserInformationDto)
-  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.UserSelf, Privilege.Read))
+  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.UserSelf, Privilege.Read, true))
   async me(@CurrentUser() currentUser: AuthUserDto): Promise<UserInformationDto> {
     return await this.userService.getUserInformation(currentUser);
   }

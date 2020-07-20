@@ -19,7 +19,7 @@ export class ProjectInformationDto extends BaseDto {
   @Field((returns) => ProjectCategory)
   @AutoMap()
   category: ProjectCategory;
-  @Field((returns) => [UserDto])
+  @Field((returns) => UserDto)
   @AutoMap(() => UserDto)
   owner: UserDto;
   @Field((returns) => [UserDto])

@@ -17,7 +17,7 @@ export class ProjectResolver {
   }
 
   @Query((returns) => [ProjectInformationDto])
-  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.ProjectManage, Privilege.Read, false))
+  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.ProjectManage, Privilege.Read))
   async findProjectsByUserId(@Args('userId') userId: string): Promise<ProjectInformationDto[]> {
     return await this.projectService.findByUserId(userId);
   }

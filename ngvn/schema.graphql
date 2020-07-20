@@ -72,7 +72,7 @@ type ProjectInformationDto {
   slug: String!
   description: String
   category: ProjectCategory!
-  owner: [UserDto!]!
+  owner: UserDto!
   users: [UserDto!]!
   teams: [TeamDto!]!
 }
@@ -150,7 +150,7 @@ type ProjectDto {
   slug: String!
   description: String
   category: ProjectCategory!
-  owner: [UserDto!]!
+  owner: UserDto!
   users: [UserDto!]!
   teams: [TeamDto!]!
   lanes: [ProjectLaneDto]!

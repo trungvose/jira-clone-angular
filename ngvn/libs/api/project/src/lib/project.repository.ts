@@ -22,7 +22,9 @@ export class ProjectRepository extends BaseRepository<Project> {
 
   async findByUser(userId: string): Promise<Project[]> {
     try {
-      return await this.findAll().where('users').equals(userId).exec();
+      return await this.findAll()
+        .or([{ users: Types.ObjectId(userId) }, { owner: Types.ObjectId(userId) }])
+        .exec();
     } catch (e) {
       ProjectRepository.throwMongoError(e);
     }
@@ -47,12 +49,12 @@ export class ProjectRepository extends BaseRepository<Project> {
   }
 
   async moveIssue({
-                    projectId,
-                    previousLaneId,
-                    previousIssues,
-                    targetLaneId,
-                    targetIssues,
-                  }: MoveIssueParamsDto): Promise<Project> {
+    projectId,
+    previousLaneId,
+    previousIssues,
+    targetLaneId,
+    targetIssues,
+  }: MoveIssueParamsDto): Promise<Project> {
     try {
       await this.updateBy(
         projectId,
