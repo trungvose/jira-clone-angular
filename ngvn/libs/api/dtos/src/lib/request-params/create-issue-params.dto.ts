@@ -3,7 +3,7 @@ import { ProjectIssuePriority, ProjectIssueType } from '@ngvn/shared/project';
 import { AutoMap } from 'nestjsx-automapper';
 
 @InputType()
-export class CreateTagParamsDto {
+export class CreateUpdateTagParamsDto {
   @Field()
   @AutoMap()
   text: string;
@@ -34,9 +34,9 @@ export class CreateIssueParamsDto {
   @Field(() => ProjectIssueType)
   @AutoMap()
   type: ProjectIssueType;
-  @Field(() => CreateTagParamsDto, { nullable: true })
-  @AutoMap(() => CreateTagParamsDto)
-  tags?: CreateTagParamsDto;
+  @Field(() => CreateUpdateTagParamsDto, { nullable: true })
+  @AutoMap(() => CreateUpdateTagParamsDto)
+  tags?: CreateUpdateTagParamsDto;
   @Field(() => ProjectIssuePriority, { nullable: true })
   @AutoMap()
   priority?: ProjectIssuePriority;

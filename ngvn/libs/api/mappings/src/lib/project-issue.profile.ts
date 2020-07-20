@@ -1,5 +1,6 @@
 import {
   CreateIssueParamsDto,
+  CreateUpdateTagParamsDto,
   ProjectIssueDetailDto,
   ProjectIssueDto,
   ProjectIssueTagDto,
@@ -7,6 +8,7 @@ import {
   TimelineCommentDto,
   TimelineMentionDto,
   TimelineTagDto,
+  UpdateIssueDetailDto,
   UserDto,
 } from '@ngvn/api/dtos';
 import {
@@ -73,20 +75,11 @@ export class ProjectIssueProfile extends ProfileBase {
       .afterMap(this.timelineItemsAfterMap.bind(this));
 
     mapper
-      .createMap(ProjectIssueDetailDto, ProjectIssue)
+      .createMap(UpdateIssueDetailDto, ProjectIssue, { useUndefined: true })
       .forMember((d) => d.ordinalPosition, ignore())
-      .forMember(
-        (d) => d.participants,
-        mapFrom((s) => s.participants.map((p) => Types.ObjectId(p.id))),
-      )
-      .forMember(
-        (d) => d.reporter,
-        mapFrom((s) => Types.ObjectId(s.reporter.id)),
-      )
-      .forMember(
-        (d) => d.assignee,
-        mapFrom((s) => Types.ObjectId(s.assignee.id)),
-      )
+      .forMember((d) => d.participants, ignore())
+      .forMember((d) => d.reporter, ignore())
+      .forMember((d) => d.assignee, ignore())
       .forMember((d) => d.timelineItems, ignore())
       .forMember((d) => d.bodyMarkdown, ignore())
       .forMember(
@@ -108,6 +101,14 @@ export class ProjectIssueProfile extends ProfileBase {
           (d) => d.assignee,
           preCondition((s) => s.assigneeId != null),
           mapFrom((s) => Types.ObjectId(s.assigneeId)),
+        )
+        .forMember(
+          (d) => d.tags,
+          mapWith(
+            ProjectIssueTag,
+            (s) => s.tags,
+            () => CreateUpdateTagParamsDto,
+          ),
         )
         .forMember((d) => d.outputHtml, ignore())
         .forMember((d) => d.participants, fromValue([]))

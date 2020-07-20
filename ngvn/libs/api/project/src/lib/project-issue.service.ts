@@ -7,6 +7,7 @@ import {
   CreateIssueParamsDto,
   ProjectIssueDetailDto,
   ProjectIssueDto,
+  UpdateIssueDetailDto,
   UpdateIssueParamsDto,
 } from '@ngvn/api/dtos';
 import { ProjectJob, projectQueueName } from '@ngvn/background/common';
@@ -68,9 +69,9 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
       throw new NotFoundException(issue.id, 'Project Issue not found');
     }
 
-    const mapped = this.mapper.map(issue, ProjectIssue, ProjectIssueDetailDto);
-    const isStatusChanged = projectIssue.status !== issue.status;
-    const result = await this.projectIssueRepository.update(mapped).exec();
+    const mapped = this.mapper.map(issue, ProjectIssue, UpdateIssueDetailDto);
+    const isStatusChanged = projectIssue.status !== mapped.status;
+    const result = await this.projectIssueRepository.update(Object.assign(projectIssue, mapped)).exec();
 
     if (isStatusChanged) {
       await this.projectQueue.add(ProjectJob.UpdateLanesWithIssue, {

@@ -1,6 +1,7 @@
-import { ProjectIssueTagDto, ProjectIssueTagStyle } from '@ngvn/api/dtos';
+import { CreateUpdateTagParamsDto, ProjectIssueTagDto, ProjectIssueTagStyle } from '@ngvn/api/dtos';
 import { ProjectIssueTag } from '@ngvn/api/project';
 import { Profile, ProfileBase, AutoMapper, mapFrom } from 'nestjsx-automapper';
+import { ignoreBaseProperties } from './utils/ignore-base-properties.util';
 
 @Profile()
 export class ProjectIssueTagProfile extends ProfileBase {
@@ -15,5 +16,7 @@ export class ProjectIssueTagProfile extends ProfileBase {
         return styles;
       }),
     );
+
+    ignoreBaseProperties(mapper.createMap(CreateUpdateTagParamsDto, ProjectIssueTag));
   }
 }

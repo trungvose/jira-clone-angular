@@ -31,11 +31,11 @@ export class ProjectIssueResolver {
     return await this.projectIssueService.createIssue(createIssueDto, currentUser);
   }
 
-  // @Mutation(() => ProjectIssueDetailDto)
-  // @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectIssueManage, Privilege.Update, 'issue.id'))
-  // async updateIssue(@Args() updateIssueDto: UpdateIssueParamsDto): Promise<ProjectIssueDetailDto> {
-  //   return await this.projectIssueService.updateIssue(updateIssueDto);
-  // }
+  @Mutation(() => ProjectIssueDetailDto)
+  @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectIssueManage, Privilege.Update, 'issue.id'))
+  async updateIssue(@Args() updateIssueDto: UpdateIssueParamsDto): Promise<ProjectIssueDetailDto> {
+    return await this.projectIssueService.updateIssue(updateIssueDto);
+  }
 
   @Mutation(() => ProjectIssueDetailDto)
   @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectIssueManage, Privilege.Update, 'id'))
