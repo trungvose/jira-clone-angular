@@ -87,7 +87,6 @@ export class AddIssueModalComponent implements OnInit {
         priority,
         bodyMarkdown: description,
         assigneeId: reporterId,
-        tags: null,
         summary: title,
         projectId: ''
       })

@@ -16,7 +16,7 @@ export type Scalars = {
 
 
 
-export type CreateTagParamsDto = {
+export type CreateUpdateTagParamsDto = {
   text: Scalars['String'];
   description?: Maybe<Scalars['String']>;
   textColor?: Maybe<Scalars['String']>;
@@ -29,6 +29,8 @@ export type Mutation = {
   reorderIssueInLane: ProjectDto;
   moveIssueBetweenLanes: ProjectDto;
   createIssue: ProjectIssueDto;
+  updateIssue: ProjectIssueDetailDto;
+  updateMarkdown: ProjectIssueDetailDto;
   register?: Maybe<Scalars['Boolean']>;
   login: TokenResultDto;
   logout?: Maybe<Scalars['Boolean']>;
@@ -57,9 +59,21 @@ export type MutationCreateIssueArgs = {
   bodyMarkdown: Scalars['String'];
   summary: Scalars['String'];
   type: ProjectIssueType;
-  tags?: Maybe<CreateTagParamsDto>;
+  tags?: Maybe<CreateUpdateTagParamsDto>;
   priority?: Maybe<ProjectIssuePriority>;
   assigneeId?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateIssueArgs = {
+  projectId: Scalars['String'];
+  issue: UpdateIssueDetailDto;
+};
+
+
+export type MutationUpdateMarkdownArgs = {
+  markdown: Scalars['String'];
+  id: Scalars['String'];
 };
 
 
@@ -304,6 +318,20 @@ export type TokenResultDto = {
   expiry: Scalars['DateTime'];
 };
 
+export type UpdateIssueDetailDto = {
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  id?: Maybe<Scalars['ID']>;
+  isActive: Scalars['Boolean'];
+  name: Scalars['String'];
+  title: Scalars['String'];
+  summary: Scalars['String'];
+  type: ProjectIssueType;
+  status: ProjectIssueStatus;
+  priority: ProjectIssuePriority;
+  tags: Array<Maybe<CreateUpdateTagParamsDto>>;
+};
+
 export type UserDto = {
   __typename?: 'UserDto';
   createdAt: Scalars['DateTime'];
@@ -337,7 +365,7 @@ export type CreateIssueMutationVariables = Exact<{
   bodyMarkdown: Scalars['String'];
   summary: Scalars['String'];
   type: ProjectIssueType;
-  tags?: Maybe<CreateTagParamsDto>;
+  tags?: Maybe<CreateUpdateTagParamsDto>;
   priority?: Maybe<ProjectIssuePriority>;
   assigneeId?: Maybe<Scalars['String']>;
 }>;
@@ -446,7 +474,7 @@ export type RefreshTokenQuery = (
 );
 
 export const CreateIssueDocument = gql`
-    mutation CreateIssue($projectId: String!, $title: String!, $bodyMarkdown: String!, $summary: String!, $type: ProjectIssueType!, $tags: CreateTagParamsDto, $priority: ProjectIssuePriority, $assigneeId: String) {
+    mutation CreateIssue($projectId: String!, $title: String!, $bodyMarkdown: String!, $summary: String!, $type: ProjectIssueType!, $tags: CreateUpdateTagParamsDto, $priority: ProjectIssuePriority, $assigneeId: String) {
   createIssue(projectId: $projectId, title: $title, bodyMarkdown: $bodyMarkdown, summary: $summary, type: $type, tags: $tags, priority: $priority, assigneeId: $assigneeId) {
     id
     name
