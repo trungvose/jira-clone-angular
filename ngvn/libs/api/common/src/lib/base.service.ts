@@ -1,6 +1,6 @@
 import { BaseModel } from '@ngvn/api/common';
 import { DocumentType } from '@typegoose/typegoose';
-import { CreateQuery, Types } from 'mongoose';
+import { CreateQuery, Types, UpdateQuery } from 'mongoose';
 import { BaseRepository } from './base.repository';
 
 export abstract class BaseService<TModel extends BaseModel> {
@@ -16,6 +16,10 @@ export abstract class BaseService<TModel extends BaseModel> {
 
   async create(item: CreateQuery<TModel>): Promise<DocumentType<TModel>> {
     return await this.repository.create(item);
+  }
+
+  async updateBy(id: string, updateQuery: UpdateQuery<DocumentType<TModel>>): Promise<DocumentType<TModel>> {
+    return await this.repository.updateBy(id, updateQuery).exec();
   }
 
   protected toObjectId(id: string): Types.ObjectId {

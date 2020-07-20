@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ApiAuthModule } from '@ngvn/api/auth';
 import { ApiCachingModule } from '@ngvn/api/caching';
+import { ApiCommonProvidersModule } from '@ngvn/api/common-providers';
 import { ApiConfigModule, dbConfiguration } from '@ngvn/api/config';
 import '@ngvn/api/mappings';
 import { DbConfig } from '@ngvn/api/types';
@@ -17,6 +18,7 @@ import { GqlModule } from './gql.module';
       useFactory: (dbConfig: DbConfig) => dbConfig,
     }),
     GqlModule,
+    ApiCommonProvidersModule,
     AutomapperModule.withMapper(),
     ApiConfigModule,
     ApiCachingModule,

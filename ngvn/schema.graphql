@@ -53,33 +53,6 @@ type UserInformationDto {
   permissions: [PermissionDto!]!
 }
 
-type TeamDto {
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  id: ID
-  isActive: Boolean!
-  title: String!
-  description: String
-  members: [UserDto!]!
-}
-
-type ProjectInformationDto {
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  id: ID
-  isActive: Boolean!
-  name: String!
-  slug: String!
-  description: String
-  category: ProjectCategory!
-  users: [UserDto!]!
-  teams: [TeamDto!]!
-}
-
-enum ProjectCategory {
-  Software
-}
-
 type ProjectIssueTagStyle {
   color: String!
   backgroundColor: String!
@@ -129,29 +102,6 @@ enum ProjectIssuePriority {
   Medium
   High
   Highest
-}
-
-type ProjectLaneDto {
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  id: ID
-  isActive: Boolean!
-  title: String!
-  issues: [ProjectIssueDto]!
-}
-
-type ProjectDto {
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  id: ID
-  isActive: Boolean!
-  name: String!
-  slug: String!
-  description: String
-  category: ProjectCategory!
-  users: [UserDto!]!
-  teams: [TeamDto!]!
-  lanes: [ProjectLaneDto]!
 }
 
 type ProjectIssueDetailDto {
@@ -223,6 +173,56 @@ type TimelineMentionDto {
   issues: [ProjectIssueDto!]!
 }
 
+type TeamDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  title: String!
+  description: String
+  members: [UserDto!]!
+}
+
+type ProjectInformationDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  name: String!
+  slug: String!
+  description: String
+  category: ProjectCategory!
+  users: [UserDto!]!
+  teams: [TeamDto!]!
+}
+
+enum ProjectCategory {
+  Software
+}
+
+type ProjectLaneDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  title: String!
+  issues: [ProjectIssueDto]!
+}
+
+type ProjectDto {
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  id: ID
+  isActive: Boolean!
+  name: String!
+  slug: String!
+  description: String
+  category: ProjectCategory!
+  users: [UserDto!]!
+  teams: [TeamDto!]!
+  lanes: [ProjectLaneDto]!
+}
+
 type Query {
   me: UserInformationDto!
   findProjectBySlug(slug: String!): ProjectDto!
@@ -235,6 +235,7 @@ type Mutation {
   reorderIssueInLane(projectId: String!, laneId: String!, issues: [String!]!): ProjectDto!
   moveIssueBetweenLanes(projectId: String!, targetLaneId: String!, previousLaneId: String!, targetIssues: [String!]!, previousIssues: [String!]!): ProjectDto!
   createIssue(projectId: String!, title: String!, bodyMarkdown: String!, summary: String!, type: ProjectIssueType!, tags: CreateTagParamsDto, priority: ProjectIssuePriority, assigneeId: String): ProjectIssueDto!
+  updateMarkdown(markdown: String!, id: String!): ProjectIssueDetailDto!
   register(email: String!, password: String!, fullName: String!): Boolean
   login(email: String!, password: String!): TokenResultDto!
   logout: Boolean

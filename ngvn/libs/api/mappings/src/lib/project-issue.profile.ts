@@ -72,6 +72,32 @@ export class ProjectIssueProfile extends ProfileBase {
       .forMember((d) => d.timelines, ignore())
       .afterMap(this.timelineItemsAfterMap.bind(this));
 
+    mapper
+      .createMap(ProjectIssueDetailDto, ProjectIssue)
+      .forMember((d) => d.ordinalPosition, ignore())
+      .forMember(
+        (d) => d.participants,
+        mapFrom((s) => s.participants.map((p) => Types.ObjectId(p.id))),
+      )
+      .forMember(
+        (d) => d.reporter,
+        mapFrom((s) => Types.ObjectId(s.reporter.id)),
+      )
+      .forMember(
+        (d) => d.assignee,
+        mapFrom((s) => Types.ObjectId(s.assignee.id)),
+      )
+      .forMember((d) => d.timelineItems, ignore())
+      .forMember((d) => d.bodyMarkdown, ignore())
+      .forMember(
+        (d) => d.tags,
+        mapWith(
+          ProjectIssueTag,
+          (s) => s.tags,
+          () => ProjectIssueTagDto,
+        ),
+      );
+
     ignoreBaseProperties(
       mapper
         .createMap(CreateIssueParamsDto, ProjectIssue)

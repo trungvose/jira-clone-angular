@@ -19,5 +19,6 @@ export const queueProviderFactory = (name: string) => (redisConfig: RedisConfig)
 
 export const userQueueName = 'userQueue';
 export const projectIssueQueueName = 'projectIssueQueue';
+export const projectQueueName = 'projectQueue';
 
-export const queueNames = [userQueueName, projectIssueQueueName];
+export const queueNames = [userQueueName, projectIssueQueueName, projectQueueName];
