@@ -1,0 +1,45 @@
+mutation CreateIssue(
+  $projectId: String!
+  $title: String!
+  $bodyMarkdown: String!
+  $summary: String!
+  $type: ProjectIssueType!
+  $tags: CreateTagParamsDto
+  $priority: ProjectIssuePriority
+  $assigneeId: String
+) {
+  createIssue(
+    projectId: $projectId
+    title: $title
+    bodyMarkdown: $bodyMarkdown
+    summary: $summary
+    type: $type
+    tags: $tags
+    priority: $priority
+    assigneeId: $assigneeId
+  ) {
+    id
+    name
+    title
+    isActive
+    createdAt
+    updatedAt
+    type
+    status
+    priority
+    tags {
+      id
+      text
+      styles {
+        color
+        backgroundColor
+      }
+      description
+    }
+    main {
+      id
+      avatarUrl
+      fullName
+    }
+  }
+}

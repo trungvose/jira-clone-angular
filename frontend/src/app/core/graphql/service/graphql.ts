@@ -16,11 +16,19 @@ export type Scalars = {
 
 
 
+export type CreateTagParamsDto = {
+  text: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  textColor?: Maybe<Scalars['String']>;
+  backgroundColor?: Maybe<Scalars['String']>;
+};
+
 
 export type Mutation = {
   __typename?: 'Mutation';
   reorderIssueInLane: ProjectDto;
   moveIssueBetweenLanes: ProjectDto;
+  createIssue: ProjectIssueDto;
   register?: Maybe<Scalars['Boolean']>;
   login: TokenResultDto;
   logout?: Maybe<Scalars['Boolean']>;
@@ -40,6 +48,18 @@ export type MutationMoveIssueBetweenLanesArgs = {
   previousLaneId: Scalars['String'];
   targetIssues: Array<Scalars['String']>;
   previousIssues: Array<Scalars['String']>;
+};
+
+
+export type MutationCreateIssueArgs = {
+  projectId: Scalars['String'];
+  title: Scalars['String'];
+  bodyMarkdown: Scalars['String'];
+  summary: Scalars['String'];
+  type: ProjectIssueType;
+  tags?: Maybe<CreateTagParamsDto>;
+  priority?: Maybe<ProjectIssuePriority>;
+  assigneeId?: Maybe<Scalars['String']>;
 };
 
 
@@ -311,6 +331,37 @@ export type UserInformationDto = {
   permissions: Array<PermissionDto>;
 };
 
+export type CreateIssueMutationVariables = Exact<{
+  projectId: Scalars['String'];
+  title: Scalars['String'];
+  bodyMarkdown: Scalars['String'];
+  summary: Scalars['String'];
+  type: ProjectIssueType;
+  tags?: Maybe<CreateTagParamsDto>;
+  priority?: Maybe<ProjectIssuePriority>;
+  assigneeId?: Maybe<Scalars['String']>;
+}>;
+
+
+export type CreateIssueMutation = (
+  { __typename?: 'Mutation' }
+  & { createIssue: (
+    { __typename?: 'ProjectIssueDto' }
+    & Pick<ProjectIssueDto, 'id' | 'name' | 'title' | 'isActive' | 'createdAt' | 'updatedAt' | 'type' | 'status' | 'priority'>
+    & { tags: Array<Maybe<(
+      { __typename?: 'ProjectIssueTagDto' }
+      & Pick<ProjectIssueTagDto, 'id' | 'text' | 'description'>
+      & { styles: (
+        { __typename?: 'ProjectIssueTagStyle' }
+        & Pick<ProjectIssueTagStyle, 'color' | 'backgroundColor'>
+      ) }
+    )>>, main: (
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'id' | 'avatarUrl' | 'fullName'>
+    ) }
+  ) }
+);
+
 export type FindProjectBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
@@ -394,6 +445,43 @@ export type RefreshTokenQuery = (
   ) }
 );
 
+export const CreateIssueDocument = gql`
+    mutation CreateIssue($projectId: String!, $title: String!, $bodyMarkdown: String!, $summary: String!, $type: ProjectIssueType!, $tags: CreateTagParamsDto, $priority: ProjectIssuePriority, $assigneeId: String) {
+  createIssue(projectId: $projectId, title: $title, bodyMarkdown: $bodyMarkdown, summary: $summary, type: $type, tags: $tags, priority: $priority, assigneeId: $assigneeId) {
+    id
+    name
+    title
+    isActive
+    createdAt
+    updatedAt
+    type
+    status
+    priority
+    tags {
+      id
+      text
+      styles {
+        color
+        backgroundColor
+      }
+      description
+    }
+    main {
+      id
+      avatarUrl
+      fullName
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateIssueGQL extends Apollo.Mutation<CreateIssueMutation, CreateIssueMutationVariables> {
+    document = CreateIssueDocument;
+    
+  }
 export const FindProjectBySlugDocument = gql`
     query FindProjectBySlug($slug: String!) {
   findProjectBySlug(slug: $slug) {

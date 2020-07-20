@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
-import { arrayRemove, arrayUpsert } from '@datorama/akita';
-import { FindProjectBySlugGQL, ProjectDto, ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
+import {
+  CreateIssueGQL,
+  CreateIssueMutationVariables,
+  FindProjectBySlugGQL,
+  ProjectDto,
+  ProjectIssueDto
+} from '@trungk18/core/graphql/service/graphql';
 import { JComment } from '@trungk18/interface/comment';
-import { DateUtil } from '@trungk18/project/utils/date';
 import { FetchResult } from 'apollo-link';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
@@ -15,7 +19,11 @@ import { ProjectStore } from './project.store';
 export class ProjectService {
   baseUrl: string;
 
-  constructor(private _store: ProjectStore, private _findProjectBySlug: FindProjectBySlugGQL) {
+  constructor(
+    private _store: ProjectStore,
+    private _findProjectBySlug: FindProjectBySlugGQL,
+    private _createIssue: CreateIssueGQL
+  ) {
     this.baseUrl = environment.apiUrl;
   }
 
@@ -54,6 +62,18 @@ export class ProjectService {
     }));
   }
 
+  createIssue(issueInput: CreateIssueMutationVariables) {
+    let input: CreateIssueMutationVariables = {
+      ...issueInput,
+      projectId: this._store.getValue().id
+    };
+    return this._createIssue.mutate(input).pipe(
+      tap(({ data }) => {
+        this._store.update({});
+      })
+    );
+  }
+
   updateIssue(issue: ProjectIssueDto) {
     // issue.updatedAt = DateUtil.getNow();
     // this._store.update((state) => {
@@ -81,7 +101,6 @@ export class ProjectService {
     // if (!issue) {
     //   return;
     // }
-
     // let comments = arrayUpsert(issue.comments ?? [], comment.id, comment);
     // this.updateIssue({
     //   ...issue,
