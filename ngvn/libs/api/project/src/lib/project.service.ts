@@ -59,7 +59,7 @@ export class ProjectService extends BaseService<Project> {
     issueId: string,
     ...statuses: ProjectIssueStatus[]
   ): Promise<ProjectDto> {
-    const project = await this.projectRepository.findById(projectId).exec();
+    const project = await this.projectRepository.findById(projectId, { autopopulate: false }).exec();
 
     if (project == null) {
       throw new NotFoundException(projectId, 'Project not found');
@@ -75,7 +75,7 @@ export class ProjectService extends BaseService<Project> {
     }
 
     targetLane.issues.push(Types.ObjectId(issueId));
-    if (fromStatus == null) {
+    if (fromStatus != null) {
       const fromLane = project.lanes.find((lane) =>
         lane.conditions.some((c) => c.issueField === 'status' && c.value === fromStatus),
       );
