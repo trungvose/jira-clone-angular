@@ -169,6 +169,7 @@ type ProjectIssueDetailDto {
   priority: ProjectIssuePriority!
   tags: [ProjectIssueTagDto]!
   main: UserDto!
+  bodyMarkdown: String!
   outputHtml: String!
   timelines: [TimelineDto]!
   reporter: UserDto!

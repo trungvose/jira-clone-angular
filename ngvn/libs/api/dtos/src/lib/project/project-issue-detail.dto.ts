@@ -8,6 +8,9 @@ import { TimelineDto, TimelineUnionDto } from './timeline';
 export class ProjectIssueDetailDto extends ProjectIssueDto {
   @Field()
   @AutoMap()
+  bodyMarkdown: string;
+  @Field()
+  @AutoMap()
   outputHtml: string;
   @Field((returns) => [TimelineUnionDto], { nullable: 'items' })
   @AutoMap(() => TimelineDto)
