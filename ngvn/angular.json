@@ -667,6 +667,83 @@
           }
         }
       }
+    },
+    "firebase-functions": {
+      "root": "apps/firebase-functions",
+      "sourceRoot": "apps/firebase-functions/src",
+      "projectType": "application",
+      "prefix": "firebase-functions",
+      "schematics": {},
+      "architect": {
+        "build-functions": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/firebase-functions",
+            "main": "apps/firebase-functions/src/main.ts",
+            "tsConfig": "apps/firebase-functions/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/firebase-functions/src/environments/environment.ts",
+                  "with": "apps/firebase-functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "build": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "nx run firebase-functions:build-functions --prod"
+              },
+              {
+                "command": "node tools/scripts/build-cloud-functions-package-file.js"
+              }
+            ],
+            "parallel": false
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase emulators:start --only functions --inspect-functions"
+          }
+        },
+        "shell": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase functions:shell --inspect-functions"
+          }
+        },
+        "deploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase deploy"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/firebase-functions/tsconfig.app.json", "apps/firebase-functions/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/firebase-functions/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/firebase-functions/jest.config.js",
+            "tsConfig": "apps/firebase-functions/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

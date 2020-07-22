@@ -12,15 +12,11 @@ export class UserJobConsumer {
 
   @Process(UserJob.AddUser)
   async addUser(job: Job<User>) {
-    const selfPermission = await this.permissionService.findByNameAndPrivilege(
-      PermissionNames.UserSelf,
-      Privilege.Read,
-    );
-    const projectCreatePermission = await this.permissionService.findByNameAndPrivilege(
-      PermissionNames.ProjectManage,
-      Privilege.Create,
-    );
-    job.data.permissions.push(selfPermission, projectCreatePermission);
+    const permissions = await Promise.all([
+      this.permissionService.findByNameAndPrivilege(PermissionNames.UserSelf, Privilege.Read),
+      this.permissionService.findByNameAndPrivilege(PermissionNames.ProjectManage, Privilege.Create),
+    ]);
+    job.data.permissions.push(...permissions);
     return await this.userService.create(job.data);
   }
 

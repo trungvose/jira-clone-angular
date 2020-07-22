@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "source": "dist/apps/firebase-functions"
+  },
+  "emulators": {
+    "functions": {
+      "port": 8081
+    },
+    "ui": {
+      "enabled": true
+    }
+  }
+}
