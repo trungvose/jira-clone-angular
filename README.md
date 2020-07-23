@@ -37,8 +37,8 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
   - [Credits](#credits)
   - [License](#license)
 
-    </p>
-  </details>
+  </p>
+</details>
 
 ## Working application
 
