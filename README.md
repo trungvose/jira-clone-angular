@@ -1,6 +1,8 @@
 # A simplified Jira clone built with Angular 9 and Akita
 
-> In response to numerous positive feedbacks, I have already started working on Phase 2 together with my friends [Chau Tran][chau] and [Tiep Phan][tiep]. We will bring the GraphQL and Authentication to "live" soon.
+> Phase two will not be completed as planned for 25 July. Both [Chau Tran][chau] and I was too busy with some other commitments.
+>
+> You can check the latest Tetris game that I built with Angular and Akita in the meantime ➡ [tetris.trungk18.com](https://tetris.trungk18.com/) 🎮
 >
 > Thanks for your continuous support. Stay tuned! :muscle:
 
@@ -13,6 +15,7 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
   <p>
 
 - [A simplified Jira clone built with Angular 9 and Akita](#a-simplified-jira-clone-built-with-angular-9-and-akita)
+
   - [Working application](#working-application)
   - [Who is it for 🤷‍♀️](#who-is-it-for-️)
   - [Tech stack](#tech-stack)
@@ -36,8 +39,8 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
   - [Credits](#credits)
   - [License](#license)
 
-  </p>
-</details>
+    </p>
+  </details>
 
 ## Working application
 
@@ -151,7 +154,7 @@ I will take two weeks break to:
 
 ### Phase 2
 
-> July 10 - 25, 2020
+> August 2020
 
 - [ ] Refactor the mono repo to use Nx Workspace
 - [ ] GraphQL API and store data on the actual database

@@ -98,7 +98,7 @@ export const Project = {
       description:
         '<h3>I will set up a GraphQL endpoint as soon as possible</h3><p>I am currently using NestJS and storing data on a <code>json</code> file. I like the idea behind GraphQL, it is the good chance to learn more about that technology.</p>',
       type: 'Story',
-      status: 'Backlog',
+      status: 'InProgress',
       priority: 'Medium',
       listPosition: 1,
       createdAt: '2020-06-12T14:40:01.262Z',
