@@ -1,9 +1,8 @@
 # A simplified Jira clone built with Angular 9 and Akita
 
 > Phase two will not be completed as planned for 25 July. Both [Chau Tran][chau] and I was too busy with some other commitments.
->
 > You can check the latest Tetris game that I built with Angular and Akita in the meantime ➡ [tetris.trungk18.com](https://tetris.trungk18.com/) 🎮
->
+>  
 > Thanks for your continuous support. Stay tuned! :muscle:
 
 There have been a handful of cool Jira-cloned apps written in `React`/`VueJS`, which makes me wonder **Why not Angular**? And here you go.
@@ -15,7 +14,6 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
   <p>
 
 - [A simplified Jira clone built with Angular 9 and Akita](#a-simplified-jira-clone-built-with-angular-9-and-akita)
-
   - [Working application](#working-application)
   - [Who is it for 🤷‍♀️](#who-is-it-for-️)
   - [Tech stack](#tech-stack)
