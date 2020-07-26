@@ -4,7 +4,6 @@ import { Config } from './config';
 export async function initDb(mongoConfig: Config['mongo']) {
   await mongoose
     .connect(mongoConfig.uri, {
-      dbName: mongoConfig.databaseName,
       useCreateIndex: true,
       useFindAndModify: false,
       useNewUrlParser: true,

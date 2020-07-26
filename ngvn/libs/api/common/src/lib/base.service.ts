@@ -19,6 +19,6 @@ export abstract class BaseService<TModel extends BaseModel> {
   }
 
   async updateBy(id: string, updateQuery: UpdateQuery<DocumentType<TModel>>): Promise<DocumentType<TModel>> {
-    return await this.repository.updateBy(id, updateQuery).exec();
+    return await this.repository.updateById(id, updateQuery).exec();
   }
 }

@@ -82,26 +82,6 @@ export abstract class BaseRepository<T extends BaseModel> {
     return this.model.findByIdAndDelete(Types.ObjectId(id)).setOptions(this.getQueryOptions(options));
   }
 
-  update(item: T, options?: QueryOptions): QueryItem<T> {
-    return this.model
-      .findByIdAndUpdate(Types.ObjectId(item.id), { $set: item } as any, { omitUndefined: true, new: true })
-      .setOptions(this.getQueryOptions(options));
-  }
-
-  updateBy(
-    id: string,
-    updateQuery: UpdateQuery<DocumentType<T>>,
-    updateOptions: QueryFindOneAndUpdateOptions & { multi?: boolean } = {},
-    options?: QueryOptions,
-  ): QueryItem<T> {
-    return this.model
-      .findByIdAndUpdate(Types.ObjectId(id), updateQuery, {
-        ...Object.assign({ omitUndefined: true }, updateOptions),
-        new: true,
-      })
-      .setOptions(this.getQueryOptions(options));
-  }
-
   updateByFilter(
     filter: FilterQuery<DocumentType<T>> = {},
     updateQuery: UpdateQuery<DocumentType<T>>,
@@ -114,6 +94,19 @@ export abstract class BaseRepository<T extends BaseModel> {
         new: true,
       })
       .setOptions(this.getQueryOptions(options));
+  }
+
+  update(item: T, options?: QueryOptions): QueryItem<T> {
+    return this.updateByFilter({ _id: Types.ObjectId(item.id) as any }, { $set: item } as any, {}, options);
+  }
+
+  updateById(
+    id: string,
+    updateQuery: UpdateQuery<DocumentType<T>>,
+    updateOptions: QueryFindOneAndUpdateOptions & { multi?: boolean } = {},
+    options?: QueryOptions,
+  ): QueryItem<T> {
+    return this.updateByFilter({ _id: Types.ObjectId(id) as any }, updateQuery, updateOptions, options);
   }
 
   count(filter: FilterQuery<DocumentType<T>> = {}): Query<number> {

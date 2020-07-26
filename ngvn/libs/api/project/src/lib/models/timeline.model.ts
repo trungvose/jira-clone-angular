@@ -1,6 +1,6 @@
 import { BaseModel, useMongoosePlugin } from '@ngvn/api/common';
-import { User } from '@ngvn/api/user';
 import { ProjectTimelineType } from '@ngvn/shared/project';
+import { User } from '@ngvn/shared/user';
 import { modelOptions, prop, Ref } from '@typegoose/typegoose';
 
 @useMongoosePlugin()

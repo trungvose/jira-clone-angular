@@ -1,8 +1,9 @@
 import { Process, Processor } from '@nestjs/bull';
 import { PermissionService } from '@ngvn/api/permission';
-import { User, UserService } from '@ngvn/api/user';
+import { UserService } from '@ngvn/api/user';
 import { UserJob, userQueueName } from '@ngvn/background/common';
 import { PermissionNames, Privilege } from '@ngvn/shared/permission';
+import { User } from '@ngvn/shared/user';
 import { Job } from 'bull';
 import { Types } from 'mongoose';
 

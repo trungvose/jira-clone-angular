@@ -1,5 +1,5 @@
-import { User } from '@ngvn/api/user';
 import { ProjectTimelineType } from '@ngvn/shared/project';
+import { User } from '@ngvn/shared/user';
 import { prop, Ref } from '@typegoose/typegoose';
 import { AutoMap } from 'nestjsx-automapper';
 import { Timeline } from './timeline.model';

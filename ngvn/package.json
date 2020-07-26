@@ -32,9 +32,11 @@
     "build:functions:watch": "nx run firebase-functions:build-functions --watch",
     "build:functions:prod": "nx build firebase-functions",
     "prepare:functions:env": "firebase functions:config:unset env && firebase functions:config:set env=\"$(cat functions.env.json)\"",
-    "deploy:functions": "npm run build:functions:prod && npm run prepare:functions:env && nx deploy firebase-functions"
+    "prepare:functions:env:prod": "firebase functions:config:unset env && firebase functions:config:set env=\"$(cat functions.env.prod.json)\"",
+    "deploy:functions": "npm run build:functions:prod && npm run prepare:functions:env && nx deploy firebase-functions",
+    "deploy:functions:prod": "npm run build:functions:prod && npm run prepare:functions:env:prod && nx deploy firebase-functions"
   },
-  "main": "dist/apps/firebase-functions/main.js",
+  "main": "dist/apps/functions/main.js",
   "engines": {
     "node": "12"
   },
@@ -78,7 +80,7 @@
     "graphql": "15.3.0",
     "graphql-tools": "6.0.15",
     "helmet": "3.23.3",
-    "highlight.js": "10.1.1",
+    "highlight.js": "10.1.2",
     "isomorphic-dompurify": "0.5.0",
     "marked": "1.1.1",
     "mongoose": "5.9.25",
@@ -112,11 +114,11 @@
     "@types/bull": "3.14.0",
     "@types/bull-arena": "2.6.0",
     "@types/cache-manager": "2.10.3",
-    "@types/jest": "26.0.5",
+    "@types/jest": "26.0.7",
     "@types/marked": "1.1.0",
     "@types/mongoose": "5.7.32",
     "@types/ms": "0.7.31",
-    "@types/node": "14.0.24",
+    "@types/node": "14.0.26",
     "@types/passport-jwt": "3.0.3",
     "@types/uuid": "8.0.0",
     "codelyzer": "6.0.0",

@@ -37,7 +37,9 @@
       "@ngvn/background/project-issue-job": ["libs/background/project-issue-job/src/index.ts"],
       "@ngvn/api/common-providers": ["libs/api/common-providers/src/index.ts"],
       "@ngvn/background/project-job": ["libs/background/project-job/src/index.ts"],
-      "@ngvn/background/permission-job": ["libs/background/permission-job/src/index.ts"]
+      "@ngvn/background/permission-job": ["libs/background/permission-job/src/index.ts"],
+      "@ngvn/shared/user": ["libs/shared/user/src/index.ts"],
+      "@ngvn/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

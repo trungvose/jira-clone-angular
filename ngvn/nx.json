@@ -18,12 +18,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "accessToken": "Njk5MjNmMzAtMWUwNi00YWYzLTk0MjUtMmRmOWY2Njk3OTYwfHJlYWQtd3JpdGU=",
-        "cacheableOperations": [
-          "build",
-          "test",
-          "lint",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "test", "lint", "e2e"],
         "canTrackAnalytics": false,
         "showUsageWarnings": true
       }
@@ -35,9 +30,7 @@
     },
     "jira-clone-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "jira-clone"
-      ]
+      "implicitDependencies": ["jira-clone"]
     },
     "api": {
       "tags": []
@@ -106,6 +99,12 @@
       "tags": []
     },
     "firebase-functions": {
+      "tags": []
+    },
+    "shared-user": {
+      "tags": []
+    },
+    "shared-utils": {
       "tags": []
     }
   }

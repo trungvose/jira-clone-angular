@@ -1,7 +1,7 @@
 import { BaseModel, useMongoosePlugin } from '@ngvn/api/common';
 import { Team } from '@ngvn/api/team';
-import { User } from '@ngvn/api/user';
 import { ProjectCategory } from '@ngvn/shared/project';
+import { User } from '@ngvn/shared/user';
 import { prop, Ref } from '@typegoose/typegoose';
 import { AutoMap } from 'nestjsx-automapper';
 import { ProjectIssue } from './project-issue.model';

@@ -1,5 +1,5 @@
 import { BaseModel, useMongoosePlugin } from '@ngvn/api/common';
-import { User } from '@ngvn/api/user';
+import { User } from '@ngvn/shared/user';
 import { prop, Ref } from '@typegoose/typegoose';
 import { AutoMap } from 'nestjsx-automapper';
 

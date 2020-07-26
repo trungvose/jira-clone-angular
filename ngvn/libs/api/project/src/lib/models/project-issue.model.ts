@@ -1,7 +1,7 @@
 import { BaseModel, useMongoosePlugin } from '@ngvn/api/common';
 import { TimelineDto } from '@ngvn/api/dtos';
-import { User } from '@ngvn/api/user';
 import { ProjectIssuePriority, ProjectIssueStatus, ProjectIssueType } from '@ngvn/shared/project';
+import { User } from '@ngvn/shared/user';
 import { prop, Ref } from '@typegoose/typegoose';
 import { AutoMap } from 'nestjsx-automapper';
 import { ProjectIssueTag } from './project-issue-tag.model';

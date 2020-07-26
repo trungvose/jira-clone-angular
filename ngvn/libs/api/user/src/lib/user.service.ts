@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CacheService } from '@ngvn/api/caching';
 import { BaseService } from '@ngvn/api/common';
 import { AuthUserDto, UserInformationDto } from '@ngvn/api/dtos';
-import { InjectMapper, AutoMapper } from 'nestjsx-automapper';
-import { User } from './user.model';
+import { User } from '@ngvn/shared/user';
+import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 import { UserRepository } from './user.repository';
 
 @Injectable()

@@ -19,18 +19,18 @@ import {
   TimelineMention,
   TimelineTag,
 } from '@ngvn/api/project';
-import { User } from '@ngvn/api/user';
 import { ProjectTimelineType } from '@ngvn/shared/project';
+import { User } from '@ngvn/shared/user';
 import { Types } from 'mongoose';
 import {
   AutoMapper,
+  fromValue,
   ignore,
+  mapFrom,
   mapWith,
+  preCondition,
   Profile,
   ProfileBase,
-  mapFrom,
-  preCondition,
-  fromValue,
 } from 'nestjsx-automapper';
 import { ignoreBaseProperties } from './utils/ignore-base-properties.util';
 
