@@ -16,6 +16,7 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
 - [A simplified Jira clone built with Angular 9 and Akita](#a-simplified-jira-clone-built-with-angular-9-and-akita)
 
   - [Working application](#working-application)
+  - [Support](#support)
   - [Who is it for 🤷‍♀️](#who-is-it-for-️)
   - [Tech stack](#tech-stack)
   - [High level design](#high-level-design)
@@ -38,8 +39,8 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
   - [Credits](#credits)
   - [License](#license)
 
-  </p>
-</details>
+    </p>
+  </details>
 
 ## Working application
 
@@ -47,10 +48,13 @@ Check out the **live demo** -> https://jira.trungk18.com
 
 ![Jira clone built with Angular 9 and Akita][demo]
 
+## Support
+
 If you like my work, feel free to:
 
+- ⭐ this repository. And we will be happy together :)
 - [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)][tweet] about Angular Jira clone
-- :star: this repository. And we will be happy together :)
+- <a title="Thanks for your support!" href="https://www.buymeacoffee.com/tuantrungvo" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="max-width: 120px;" ></a>
 
 Thanks a bunch for stopping by and supporting me!
 
