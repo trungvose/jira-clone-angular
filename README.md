@@ -2,7 +2,7 @@
 
 > Phase two will not be completed as planned for 25 July. Both [Chau Tran][chau] and I was too busy with some other commitments.
 > You can check the latest Tetris game that I built with Angular and Akita in the meantime ➡ [tetris.trungk18.com](https://tetris.trungk18.com/) 🎮
->  
+>
 > Thanks for your continuous support. Stay tuned! :muscle:
 
 There have been a handful of cool Jira-cloned apps written in `React`/`VueJS`, which makes me wonder **Why not Angular**? And here you go.
@@ -14,6 +14,7 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
   <p>
 
 - [A simplified Jira clone built with Angular 9 and Akita](#a-simplified-jira-clone-built-with-angular-9-and-akita)
+
   - [Working application](#working-application)
   - [Who is it for 🤷‍♀️](#who-is-it-for-️)
   - [Tech stack](#tech-stack)
@@ -209,10 +210,39 @@ Not all components have properly defined [aria attributes](https://developer.moz
 
 - `git clone https://github.com/trungk18/jira-clone-angular.git`
 - `cd jira-clone-angular`
-- `npm run start:back` for the API
-- The API server should run on `http://localhost:3000`
 - `npm run start:front` for angular web application
 - The app should run on `http://localhost:4200/`
+
+> Update August 02, 2020: I changed the the API to use two simple JSON files for project and user. The API on heroku will go to sleep after sometimes idle. Therefore, if you open the webpage after a while without anyone using before, it will be very slow for the first load.
+
+If you still want to use the API, you should follow those steps:
+
+- `npm run start:back` for the API
+- The API server should run on `http://localhost:3000`
+- Open `environment.ts` and `environment.prod.ts` and uncomment the actual URL.
+- Open `auth.service.ts`, change
+
+```ts
+this._http.get<JUser>(`${this.baseUrl}/auth.json`);
+```
+
+to
+
+```ts
+this._http.post<JUser>(`${this.baseUrl}/auth`, { email, password });
+```
+
+- Open `project.service.ts` and change
+
+```ts
+this._http.get<JProject>(`${this.baseUrl}/project.json`);
+```
+
+to
+
+```ts
+this._http.get<JProject>(`${this.baseUrl}/project`);
+```
 
 ### Unit/Integration tests 🧪
 
