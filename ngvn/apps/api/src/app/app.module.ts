@@ -19,7 +19,7 @@ import { GqlModule } from './gql.module';
     }),
     GqlModule,
     ApiCommonProvidersModule,
-    AutomapperModule.withMapper(),
+    AutomapperModule.withMapper({ useUndefined: true }),
     ApiConfigModule,
     ApiCachingModule,
     ApiAuthModule,

@@ -23,7 +23,7 @@ export class ProjectIssueResolver {
   }
 
   @Mutation(() => ProjectIssueDto)
-  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.ProjectIssueManage, Privilege.Create))
+  @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.ProjectIssueManage, Privilege.Create, true))
   async createIssue(
     @Args() createIssueDto: CreateIssueParamsDto,
     @CurrentUser() currentUser: AuthUserDto,

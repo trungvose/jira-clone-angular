@@ -27,7 +27,7 @@ export class ProjectIssue extends BaseModel {
   summary: string;
   @prop({ required: true })
   @AutoMap()
-  ordinalPosition: string;
+  ordinalPosition: number;
   @prop({ required: true, type: String, enum: ProjectIssueType })
   @AutoMap()
   type: ProjectIssueType;

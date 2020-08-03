@@ -72,6 +72,7 @@ type ProjectInformationDto {
   slug: String!
   description: String
   category: ProjectCategory!
+  owner: UserDto!
   users: [UserDto!]!
   teams: [TeamDto!]!
 }
@@ -149,6 +150,7 @@ type ProjectDto {
   slug: String!
   description: String
   category: ProjectCategory!
+  owner: UserDto!
   users: [UserDto!]!
   teams: [TeamDto!]!
   lanes: [ProjectLaneDto]!
@@ -167,6 +169,7 @@ type ProjectIssueDetailDto {
   priority: ProjectIssuePriority!
   tags: [ProjectIssueTagDto]!
   main: UserDto!
+  bodyMarkdown: String!
   outputHtml: String!
   timelines: [TimelineDto]!
   reporter: UserDto!
@@ -234,7 +237,7 @@ type Query {
 type Mutation {
   reorderIssueInLane(projectId: String!, laneId: String!, issues: [String!]!): ProjectDto!
   moveIssueBetweenLanes(projectId: String!, targetLaneId: String!, previousLaneId: String!, targetIssues: [String!]!, previousIssues: [String!]!): ProjectDto!
-  createIssue(projectId: String!, title: String!, bodyMarkdown: String!, summary: String!, type: ProjectIssueType!, tags: CreateUpdateTagParamsDto, priority: ProjectIssuePriority, assigneeId: String): ProjectIssueDto!
+  createIssue(projectId: String!, title: String!, bodyMarkdown: String!, summary: String!, type: ProjectIssueType!, tags: [CreateUpdateTagParamsDto!], priority: ProjectIssuePriority, assigneeId: String): ProjectIssueDto!
   updateIssue(projectId: String!, issue: UpdateIssueDetailDto!): ProjectIssueDetailDto!
   updateMarkdown(markdown: String!, id: String!): ProjectIssueDetailDto!
   register(email: String!, password: String!, fullName: String!): Boolean

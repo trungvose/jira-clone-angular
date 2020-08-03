@@ -4,6 +4,7 @@ import { HttpExceptionFilter } from '@ngvn/api/common';
 import { appConfiguration, arenaConfiguration, redisConfiguration } from '@ngvn/api/config';
 import { AppConfig, ArenaConfig, RedisConfig } from '@ngvn/api/types';
 import { queueNames } from '@ngvn/background/common';
+import mongoose from 'mongoose';
 
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
@@ -19,6 +20,8 @@ async function bootstrap() {
   const appConfig = app.get<AppConfig>(appConfiguration.KEY);
   const redisConfig = app.get<RedisConfig>(redisConfiguration.KEY);
   const arenaConfig = app.get<ArenaConfig>(arenaConfiguration.KEY);
+
+  mongoose.set('debug', true);
 
   app.use(compression());
   app.use(helmet());

@@ -12,14 +12,6 @@ export class ProjectIssueRepository extends BaseRepository<ProjectIssue> {
     super(projectIssueModel);
   }
 
-  async updateStatus(id: string, status: ProjectIssueStatus): Promise<ProjectIssue> {
-    try {
-      return await this.updateBy(id, { $set: { status } }).exec();
-    } catch (e) {
-      ProjectIssueRepository.toObjectId(e);
-    }
-  }
-
   async createIssue(issue: ProjectIssue): Promise<ProjectIssue> {
     return await this.create(issue);
   }
@@ -40,7 +32,7 @@ export class ProjectIssueRepository extends BaseRepository<ProjectIssue> {
         .ne('status', laneCondition.value)
         .exec();
     } catch (e) {
-      ProjectIssueRepository.toObjectId(e);
+      // TODO(chau): Handle error
     }
   }
 }

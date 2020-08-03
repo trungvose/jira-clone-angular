@@ -14,7 +14,7 @@ export const PermissionGuard: (
 function createPermissionGuard(
   name: PermissionNames,
   privilege: Privilege,
-  checkSystemType: boolean = true,
+  checkSystemType: boolean = false,
 ): Constructor<CanActivate> {
   class MixinPermissionGuard implements CanActivate {
     canActivate(context: ExecutionContext): boolean {

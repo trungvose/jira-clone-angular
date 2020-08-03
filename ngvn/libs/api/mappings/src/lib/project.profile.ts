@@ -11,6 +11,14 @@ export class ProjectProfile extends ProfileBase {
     mapper
       .createMap(Project, ProjectInformationDto)
       .forMember(
+        (d) => d.owner,
+        mapWith(
+          UserDto,
+          (s) => s.owner,
+          () => User,
+        ),
+      )
+      .forMember(
         (d) => d.users,
         mapWith(
           UserDto,

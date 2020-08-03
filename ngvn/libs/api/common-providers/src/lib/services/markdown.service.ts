@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import marked, { Renderer } from 'marked';
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 
 @Injectable()
 export class MarkdownService {

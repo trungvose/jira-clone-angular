@@ -94,6 +94,9 @@
     },
     "background-project-job": {
       "tags": []
+    },
+    "background-permission-job": {
+      "tags": []
     }
   }
 }

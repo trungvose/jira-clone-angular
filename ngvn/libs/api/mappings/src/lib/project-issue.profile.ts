@@ -75,7 +75,7 @@ export class ProjectIssueProfile extends ProfileBase {
       .afterMap(this.timelineItemsAfterMap.bind(this));
 
     mapper
-      .createMap(UpdateIssueDetailDto, ProjectIssue, { useUndefined: true })
+      .createMap(UpdateIssueDetailDto, ProjectIssue)
       .forMember((d) => d.ordinalPosition, ignore())
       .forMember((d) => d.participants, ignore())
       .forMember((d) => d.reporter, ignore())
