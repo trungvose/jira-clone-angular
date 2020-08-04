@@ -17,7 +17,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ngvn/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@ngvn/api/config": ["libs/api/config/src/index.ts"],
       "@ngvn/api/types": ["libs/api/types/src/index.ts"],
       "@ngvn/api/caching": ["libs/api/caching/src/index.ts"],

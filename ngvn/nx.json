@@ -9,9 +9,9 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
-    "tsconfig.json": "*",
     "tslint.json": "*",
-    "nx.json": "*"
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -33,9 +33,6 @@
       "implicitDependencies": ["jira-clone"]
     },
     "api": {
-      "tags": []
-    },
-    "api-interfaces": {
       "tags": []
     },
     "api-config": {

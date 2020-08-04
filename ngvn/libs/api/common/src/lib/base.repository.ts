@@ -13,8 +13,8 @@ import {
 } from 'mongoose';
 import { BaseModel } from './base.model';
 
-type QueryList<T extends BaseModel> = DocumentQuery<DocumentType<T>[], DocumentType<T>>;
-type QueryItem<T extends BaseModel> = DocumentQuery<DocumentType<T>, DocumentType<T>>;
+type QueryList<T extends BaseModel> = DocumentQuery<T[], DocumentType<T>>;
+type QueryItem<T extends BaseModel> = DocumentQuery<T, DocumentType<T>>;
 
 interface QueryOptions {
   lean?: boolean;
@@ -96,7 +96,7 @@ export abstract class BaseRepository<T extends BaseModel> {
       .setOptions(this.getQueryOptions(options));
   }
 
-  update(item: T, options?: QueryOptions): QueryItem<T> {
+   update(item: T, options?: QueryOptions): QueryItem<T> {
     return this.updateByFilter({ _id: Types.ObjectId(item.id) as any }, { $set: item } as any, {}, options);
   }
 
