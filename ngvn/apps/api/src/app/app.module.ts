@@ -7,6 +7,7 @@ import { ApiConfigModule, dbConfiguration, InjectArenaConfig, InjectRedisConfig 
 import '@ngvn/api/mappings';
 import { ArenaConfig, DbConfig, RedisConfig } from '@ngvn/api/types';
 import { queueNames } from '@ngvn/background/common';
+import Bull from 'bull';
 import { AutomapperModule } from 'nestjsx-automapper';
 import { ApiModule } from './api.module';
 import { BackgroundModule } from './background.module';
@@ -33,6 +34,7 @@ const Arena = require('bull-arena');
 export class AppModule implements NestModule {
   private readonly arena = Arena(
     {
+      Bull,
       queues: queueNames.map((queueName) => ({
         name: queueName,
         hostId: queueName,
