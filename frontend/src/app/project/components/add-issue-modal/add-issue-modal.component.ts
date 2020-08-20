@@ -79,9 +79,20 @@ export class AddIssueModalComponent implements OnInit {
       createdAt: now,
       updatedAt: now
     };
-
-    this._projectService.updateIssue(issue);
-    this.closeModal();
+    let { title, type, priority, description, reporterId } = this.issueForm.getRawValue();
+    this._projectService
+      .createIssue({
+        title,
+        type,
+        priority,
+        bodyMarkdown: description,
+        assigneeId: reporterId,
+        summary: title,
+        projectId: ''
+      })
+      .subscribe(() => {
+        this.closeModal();
+      });
   }
 
   cancel() {

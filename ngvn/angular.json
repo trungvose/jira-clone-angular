@@ -592,6 +592,81 @@
           }
         }
       }
+    },
+    "api-common-providers": {
+      "root": "libs/api/common-providers",
+      "sourceRoot": "libs/api/common-providers/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/api/common-providers/tsconfig.lib.json", "libs/api/common-providers/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!libs/api/common-providers/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api/common-providers/jest.config.js",
+            "tsConfig": "libs/api/common-providers/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "background-project-job": {
+      "root": "libs/background/project-job",
+      "sourceRoot": "libs/background/project-job/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/background/project-job/tsconfig.lib.json",
+              "libs/background/project-job/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/background/project-job/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/background/project-job/jest.config.js",
+            "tsConfig": "libs/background/project-job/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "background-permission-job": {
+      "root": "libs/background/permission-job",
+      "sourceRoot": "libs/background/permission-job/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/background/permission-job/tsconfig.lib.json",
+              "libs/background/permission-job/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/background/permission-job/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/background/permission-job/jest.config.js",
+            "tsConfig": "libs/background/permission-job/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

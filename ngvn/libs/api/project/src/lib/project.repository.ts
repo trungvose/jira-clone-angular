@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { BaseRepository } from '@ngvn/api/common';
 import { MoveIssueParamsDto, ReorderIssueParamsDto } from '@ngvn/api/dtos';
 import { ModelType } from '@ngvn/api/types';
+import { Types } from 'mongoose';
 import { Project } from './models';
 
 @Injectable()
@@ -21,7 +22,9 @@ export class ProjectRepository extends BaseRepository<Project> {
 
   async findByUser(userId: string): Promise<Project[]> {
     try {
-      return await this.findAll().where('users').equals(userId).exec();
+      return await this.findAll()
+        .or([{ users: Types.ObjectId(userId) }, { owner: Types.ObjectId(userId) }])
+        .exec();
     } catch (e) {
       ProjectRepository.throwMongoError(e);
     }
@@ -31,12 +34,12 @@ export class ProjectRepository extends BaseRepository<Project> {
     try {
       return await this.updateByFilter(
         {
-          _id: ProjectRepository.toObjectId(projectId),
-          lanes: { $elemMatch: { _id: ProjectRepository.toObjectId(laneId) } },
+          _id: Types.ObjectId(projectId),
+          lanes: { $elemMatch: { _id: Types.ObjectId(laneId) } },
         },
         {
           $set: {
-            'lanes.$.issues': issues.map(ProjectRepository.toObjectId),
+            'lanes.$.issues': issues.map(Types.ObjectId),
           },
         },
       ).exec();
@@ -57,11 +60,11 @@ export class ProjectRepository extends BaseRepository<Project> {
         projectId,
         {
           $set: {
-            'lanes.$[previous].issues': previousIssues.map(ProjectRepository.toObjectId),
+            'lanes.$[previous].issues': previousIssues.map(Types.ObjectId),
           },
         },
         {
-          arrayFilters: [{ 'previous._id': ProjectRepository.toObjectId(previousLaneId) }],
+          arrayFilters: [{ 'previous._id': Types.ObjectId(previousLaneId) }],
         },
         { autopopulate: false },
       ).exec();
@@ -69,12 +72,12 @@ export class ProjectRepository extends BaseRepository<Project> {
         projectId,
         {
           $set: {
-            'lanes.$[target].issues': targetIssues.map(ProjectRepository.toObjectId),
+            'lanes.$[target].issues': targetIssues.map(Types.ObjectId),
           },
         },
         {
           multi: true,
-          arrayFilters: [{ 'target._id': ProjectRepository.toObjectId(targetLaneId) }],
+          arrayFilters: [{ 'target._id': Types.ObjectId(targetLaneId) }],
         },
       ).exec();
     } catch (e) {

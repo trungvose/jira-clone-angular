@@ -4,7 +4,9 @@ import { CacheService } from '@ngvn/api/caching';
 import { BaseService } from '@ngvn/api/common';
 import { MoveIssueParamsDto, ProjectDto, ProjectInformationDto, ReorderIssueParamsDto } from '@ngvn/api/dtos';
 import { ProjectIssueJob, projectIssueQueueName } from '@ngvn/background/common';
+import { ProjectIssueStatus } from '@ngvn/shared/project';
 import { Queue } from 'bull';
+import { Types } from 'mongoose';
 import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 import { Project } from './models';
 import { ProjectRepository } from './project.repository';
@@ -24,6 +26,15 @@ export class ProjectService extends BaseService<Project> {
     return await this.projectRepository.exists({ _id: id });
   }
 
+  async findOwnerAndUsers(id: string): Promise<[string, string[]]> {
+    const project = await this.projectRepository.findById(id, { autopopulate: false }).exec();
+    if (project == null) {
+      throw new NotFoundException(id, 'Project not found');
+    }
+
+    return [project.owner.toString(), project.users.map((u) => u.toString())];
+  }
+
   async findBySlug(slug: string): Promise<ProjectDto> {
     const project = await this.projectRepository.findBySlug(slug);
     return this.mapper.map(project, ProjectDto, Project);
@@ -38,9 +49,56 @@ export class ProjectService extends BaseService<Project> {
 
   async findIssuesCountById(id: string): Promise<number> {
     return await this.projectRepository
-      .findById(id, { autopopulate: false })
+      .findById(id, { autopopulate: false, lean: false })
       .map((project) => project.issues.length)
       .exec();
+  }
+
+  async updateLanesWithIssue(
+    projectId: string,
+    issueId: string,
+    ...statuses: ProjectIssueStatus[]
+  ): Promise<ProjectDto> {
+    const project = await this.projectRepository.findById(projectId, { autopopulate: false }).exec();
+
+    if (project == null) {
+      throw new NotFoundException(projectId, 'Project not found');
+    }
+
+    const [toStatus, fromStatus] = statuses;
+    const targetLane = project.lanes.find((lane) =>
+      lane.conditions.some((c) => c.issueField === 'status' && c.value === toStatus),
+    );
+
+    if (targetLane == null) {
+      throw new NotFoundException(toStatus, 'No lane found');
+    }
+
+    targetLane.issues.push(Types.ObjectId(issueId));
+    if (fromStatus != null) {
+      const fromLane = project.lanes.find((lane) =>
+        lane.conditions.some((c) => c.issueField === 'status' && c.value === fromStatus),
+      );
+      if (fromLane == null) {
+        throw new NotFoundException(fromStatus, 'No lane found');
+      }
+      fromLane.issues = fromLane.issues.filter((issue) => issue.toString() !== issueId);
+      const result = await this.projectRepository.moveIssue({
+        projectId,
+        targetLaneId: targetLane.id,
+        targetIssues: targetLane.issues.map((issue) => issue.toString()),
+        previousLaneId: fromLane.id,
+        previousIssues: fromLane.issues.map((issue) => issue.toString()),
+      });
+      return this.mapper.map(result, ProjectDto, Project);
+    }
+
+    const result = await this.projectRepository.reorderIssue({
+      projectId,
+      laneId: targetLane.id,
+      issues: targetLane.issues.map((issue) => issue.toString()),
+    });
+    return this.mapper.map(result, ProjectDto, Project);
   }
 
   async reorderIssue({ laneId, projectId, issues }: ReorderIssueParamsDto): Promise<ProjectDto> {
@@ -94,17 +152,5 @@ export class ProjectService extends BaseService<Project> {
       result.lanes.find((lane) => lane.id === targetLaneId),
     );
     return this.mapper.map(result, ProjectDto, Project);
-  }
-
-  async findLane(projectId: string, laneId: string) {
-    const project = await this.projectRepository.findById(projectId);
-    if (project == null) {
-      throw new NotFoundException(projectId, 'No project found with id');
-    }
-
-    const lane = project.lanes.find((lane) => lane.id === laneId);
-    if (lane == null) {
-      throw new NotFoundException(laneId, 'No lane found with id');
-    }
   }
 }

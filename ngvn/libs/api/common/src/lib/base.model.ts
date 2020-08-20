@@ -1,6 +1,6 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
 import { ModelDefinition } from '@nestjs/mongoose';
-import { buildSchema, modelOptions, prop, Severity } from '@typegoose/typegoose';
+import { buildSchema, getName, modelOptions, prop, Severity } from '@typegoose/typegoose';
 import { Schema } from 'mongoose';
 import { AutoMap } from 'nestjsx-automapper';
 
@@ -35,7 +35,7 @@ export class BaseModel {
   }
 
   static get modelName(): string {
-    return this.name;
+    return getName(this);
   }
 
   static get featureConfig(): ModelDefinition {
@@ -44,6 +44,7 @@ export class BaseModel {
 }
 
 @ObjectType({ isAbstract: true })
+@InputType({ isAbstract: true })
 export abstract class BaseDto {
   @Field()
   @AutoMap()

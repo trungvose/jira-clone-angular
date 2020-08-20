@@ -8,6 +8,9 @@ import { TimelineDto, TimelineUnionDto } from './timeline';
 export class ProjectIssueDetailDto extends ProjectIssueDto {
   @Field()
   @AutoMap()
+  bodyMarkdown: string;
+  @Field()
+  @AutoMap()
   outputHtml: string;
   @Field((returns) => [TimelineUnionDto], { nullable: 'items' })
   @AutoMap(() => TimelineDto)
@@ -20,5 +23,5 @@ export class ProjectIssueDetailDto extends ProjectIssueDto {
   assignee: UserDto;
   @Field((returns) => [UserDto], { nullable: 'items' })
   @AutoMap(() => UserDto)
-  participants: UserDto;
+  participants: UserDto[];
 }

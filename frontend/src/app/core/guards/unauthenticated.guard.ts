@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthQuery } from '../auth/auth.query';
 import { JiraRoutingConst } from '../utils/jira-routing.const';
 

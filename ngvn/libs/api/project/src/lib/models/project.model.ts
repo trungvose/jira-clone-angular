@@ -24,6 +24,9 @@ export class Project extends BaseModel {
   @prop({ type: () => ProjectLane, default: [] })
   @AutoMap(() => ProjectLane)
   lanes: ProjectLane[];
+  @prop({ required: true, autopopulate: true, ref: () => User })
+  @AutoMap(() => User)
+  owner: Ref<User>;
   @prop({ autopopulate: true, ref: () => User, default: [] })
   @AutoMap(() => User)
   users: Ref<User>[];

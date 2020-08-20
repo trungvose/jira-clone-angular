@@ -36,14 +36,6 @@ export abstract class BaseRepository<T extends BaseModel> {
     throw new InternalServerErrorException(err, err.errmsg);
   }
 
-  public static toObjectId(id: string): Types.ObjectId {
-    try {
-      return Types.ObjectId(id);
-    } catch (e) {
-      this.throwMongoError(e);
-    }
-  }
-
   protected getQueryOptions(options?: QueryOptions) {
     const mergedOptions = {
       ...BaseRepository.defaultOptions,
@@ -71,7 +63,7 @@ export abstract class BaseRepository<T extends BaseModel> {
   }
 
   findById(id: string, options?: QueryOptions): QueryItem<T> {
-    return this.model.findById(BaseRepository.toObjectId(id)).setOptions(this.getQueryOptions(options));
+    return this.model.findById(Types.ObjectId(id)).setOptions(this.getQueryOptions(options));
   }
 
   async create(item: CreateQuery<T>): Promise<DocumentType<T>> {
@@ -87,24 +79,24 @@ export abstract class BaseRepository<T extends BaseModel> {
   }
 
   deleteById(id: string, options?: QueryOptions): QueryItem<T> {
-    return this.model.findByIdAndDelete(BaseRepository.toObjectId(id)).setOptions(this.getQueryOptions(options));
+    return this.model.findByIdAndDelete(Types.ObjectId(id)).setOptions(this.getQueryOptions(options));
   }
 
   update(item: T, options?: QueryOptions): QueryItem<T> {
     return this.model
-      .findByIdAndUpdate(BaseRepository.toObjectId(item.id), { $set: item } as any, { new: true })
+      .findByIdAndUpdate(Types.ObjectId(item.id), { $set: item } as any, { omitUndefined: true, new: true })
       .setOptions(this.getQueryOptions(options));
   }
 
   updateBy(
     id: string,
     updateQuery: UpdateQuery<DocumentType<T>>,
-    updateOptions?: QueryFindOneAndUpdateOptions & { multi?: boolean },
+    updateOptions: QueryFindOneAndUpdateOptions & { multi?: boolean } = {},
     options?: QueryOptions,
   ): QueryItem<T> {
     return this.model
-      .findByIdAndUpdate(BaseRepository.toObjectId(id), updateQuery, {
-        ...(updateOptions || {}),
+      .findByIdAndUpdate(Types.ObjectId(id), updateQuery, {
+        ...Object.assign({ omitUndefined: true }, updateOptions),
         new: true,
       })
       .setOptions(this.getQueryOptions(options));
@@ -118,7 +110,7 @@ export abstract class BaseRepository<T extends BaseModel> {
   ): QueryItem<T> {
     return this.model
       .findOneAndUpdate(filter, updateQuery, {
-        ...updateOptions,
+        ...Object.assign({ omitUndefined: true }, updateOptions),
         new: true,
       })
       .setOptions(this.getQueryOptions(options));
