@@ -57,9 +57,10 @@
         <div class="flex-auto"></div>
         <div class="item"
              *ngIf="authQuery.user$ | async as user">
-            <div nz-tooltip
-                 [nzTooltipTitle]="user.name"
-                 nzTooltipPlacement="right"
+            <div nz-popover
+                 nzPopoverPlacement='rightBottom'
+                 [nzPopoverContent]="userActionPopoverTmpl"
+                 nzPopoverTrigger="click"
                  class="itemIcon">
                 <j-avatar class="flex"
                           [avatarUrl]="user.avatarUrl"
@@ -67,6 +68,7 @@
                 </j-avatar>
             </div>
         </div>
+
         <div class="item">
             <a nz-popover
                nzPopoverPlacement="rightBottom"
@@ -86,6 +88,11 @@
         </div>
     </div>
 </aside>
+
+<ng-template #userActionPopoverTmpl>
+    <j-button (click)="logout()"
+              className="btn-primary">Logout</j-button>
+</ng-template>
 
 <ng-template #aboutPopoverTmpl>
     <div class="about-popover">
