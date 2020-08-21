@@ -14,11 +14,11 @@ export abstract class BaseService<TModel extends BaseModel> {
     return this.repository.createModel(doc);
   }
 
-  async create(item: CreateQuery<TModel>): Promise<DocumentType<TModel>> {
+  async create(item: CreateQuery<TModel>): Promise<TModel> {
     return await this.repository.create(item);
   }
 
-  async updateBy(id: string, updateQuery: UpdateQuery<DocumentType<TModel>>): Promise<DocumentType<TModel>> {
-    return await this.repository.updateBy(id, updateQuery).exec();
+  async updateBy(id: string, updateQuery: UpdateQuery<DocumentType<TModel>>): Promise<TModel> {
+    return await this.repository.updateById(id, updateQuery).exec();
   }
 }

@@ -54,13 +54,15 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
     newIssue.ordinalPosition = (await this.projectService.findIssuesCountById(projectId)) + 1;
     const result = await this.create(newIssue);
 
-    await this.projectQueue.add(ProjectJob.UpdateLanesWithIssue, {
-      projectId,
-      issueId: result.id,
-      statuses: [ProjectIssueStatus.Backlog],
-    });
-    await this.permissionQueue.add(PermissionJob.CreateProjectIssuePermission, { issueId: result.id, projectId });
-    return this.mapper.map(result.toJSON(), ProjectIssueDto, ProjectIssue);
+    await Promise.all([
+      this.projectQueue.add(ProjectJob.UpdateLanesWithIssue, {
+        projectId,
+        issueId: result.id,
+        statuses: [ProjectIssueStatus.Backlog],
+      }),
+      this.permissionQueue.add(PermissionJob.CreateProjectIssuePermission, { issueId: result.id, projectId }),
+    ]);
+    return this.mapper.map(result, ProjectIssueDto, ProjectIssue);
   }
 
   async updateIssue({ projectId, issue }: UpdateIssueParamsDto): Promise<ProjectIssueDetailDto> {

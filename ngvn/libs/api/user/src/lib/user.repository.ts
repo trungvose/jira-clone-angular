@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { BaseRepository } from '@ngvn/api/common';
 import { ModelType } from '@ngvn/api/types';
+import { User } from '@ngvn/shared/user';
 import { v4 as uuid } from 'uuid';
-import { User } from './user.model';
 
 @Injectable()
 export class UserRepository extends BaseRepository<User> {
@@ -21,7 +21,7 @@ export class UserRepository extends BaseRepository<User> {
 
   async updateRefreshTokenId(id: string) {
     try {
-      await this.updateBy(id, { $set: { refreshTokenId: uuid() } }, {}, { lean: false, autopopulate: false }).exec();
+      await this.updateById(id, { $set: { refreshTokenId: uuid() } }, {}, { lean: false, autopopulate: false }).exec();
     } catch (e) {
       UserRepository.throwMongoError(e);
     }

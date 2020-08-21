@@ -45,4 +45,10 @@ export class User extends BaseModel {
   @prop({ ref: () => Permission, autopopulate: true, default: [] })
   @AutoMap(() => Permission)
   permissions: Ref<Permission>[];
+  @prop()
+  provider?: string;
+  @prop()
+  providerUid?: string;
+  @prop()
+  oauthId?: string;
 }

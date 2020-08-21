@@ -3,12 +3,11 @@ import { NestFactory } from '@nestjs/core';
 import { HttpExceptionFilter } from '@ngvn/api/common';
 import { appConfiguration, arenaConfiguration, redisConfiguration } from '@ngvn/api/config';
 import { AppConfig, ArenaConfig, RedisConfig } from '@ngvn/api/types';
-import { queueNames } from '@ngvn/background/common';
-import mongoose from 'mongoose';
 
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
+import mongoose from 'mongoose';
 
 import { AppModule } from './app/app.module';
 
@@ -27,20 +26,20 @@ async function bootstrap() {
   app.use(helmet());
   app.use(cookieParser());
 
-  const arena = new Arena(
-    {
-      queues: queueNames.map((queueName) => ({
-        name: queueName,
-        hostId: queueName,
-        redis: { host: redisConfig.host, port: redisConfig.port },
-        type: 'bull',
-      })),
-    },
-    arenaConfig,
-  );
-  const arenaEndpoint = `/api/arena`;
-  app.use(arenaEndpoint, arena);
-  Logger.log(`Arena: ${appConfig.domain}${arenaEndpoint}`, 'NestApplication');
+  // const arena = new Arena(
+  //   {
+  //     queues: queueNames.map((queueName) => ({
+  //       name: queueName,
+  //       hostId: queueName,
+  //       redis: { host: redisConfig.host, port: redisConfig.port },
+  //       type: 'bull',
+  //     })),
+  //   },
+  //   arenaConfig,
+  // );
+  // const arenaEndpoint = `/api/arena`;
+  // app.use(arenaEndpoint, (req, res, next) => arena(req, res, next));
+  // Logger.log(`Arena: ${appConfig.domain}${arenaEndpoint}`, 'NestApplication');
 
   app.use('/robots.txt', (_, res) => {
     res.send('User-Agent: *\n' + 'Disallow: /');

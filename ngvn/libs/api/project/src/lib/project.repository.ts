@@ -56,7 +56,7 @@ export class ProjectRepository extends BaseRepository<Project> {
     targetIssues,
   }: MoveIssueParamsDto): Promise<Project> {
     try {
-      await this.updateBy(
+      await this.updateById(
         projectId,
         {
           $set: {
@@ -68,7 +68,7 @@ export class ProjectRepository extends BaseRepository<Project> {
         },
         { autopopulate: false },
       ).exec();
-      return await this.updateBy(
+      return await this.updateById(
         projectId,
         {
           $set: {

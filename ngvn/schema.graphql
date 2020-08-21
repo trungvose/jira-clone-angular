@@ -242,6 +242,7 @@ type Mutation {
   updateMarkdown(markdown: String!, id: String!): ProjectIssueDetailDto!
   register(email: String!, password: String!, fullName: String!): Boolean
   login(email: String!, password: String!): TokenResultDto!
+  loginOauth(email: String!, oauthId: String!, providerId: String!): TokenResultDto!
   logout: Boolean
 }
 

@@ -1,7 +1,7 @@
 import { AuthUserDto, PermissionDto, UserDto, UserInformationDto } from '@ngvn/api/dtos';
 import { Permission, ProjectPermission } from '@ngvn/api/permission';
-import { User } from '@ngvn/api/user';
 import { PermissionType } from '@ngvn/shared/permission';
+import { User } from '@ngvn/shared/user';
 import { AutoMapper, ignore, mapFrom, Profile, ProfileBase } from 'nestjsx-automapper';
 
 @Profile()

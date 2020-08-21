@@ -17,7 +17,7 @@ import {
   TimelineMention,
   TimelineTag,
 } from '@ngvn/api/project';
-import { User } from '@ngvn/api/user';
+import { User } from '@ngvn/shared/user';
 import { AutoMapper, mapWith, Profile, ProfileBase } from 'nestjsx-automapper';
 
 @Profile()

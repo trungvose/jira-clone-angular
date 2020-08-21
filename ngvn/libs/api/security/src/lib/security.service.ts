@@ -1,9 +1,11 @@
 import { InjectQueue } from '@nestjs/bull';
 import { BadRequestException, Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '@ngvn/api/auth';
-import { LoginParamsDto, RegisterParamsDto, TokenResultDto } from '@ngvn/api/dtos';
-import { User, UserService } from '@ngvn/api/user';
+import { LoginOauthParamsDto, LoginParamsDto, RegisterParamsDto, TokenResultDto } from '@ngvn/api/dtos';
+import { UserService } from '@ngvn/api/user';
 import { UserJob, userQueueName } from '@ngvn/background/common';
+import { User } from '@ngvn/shared/user';
+import { parseFullName } from '@ngvn/shared/utils';
 import { compare } from 'bcrypt';
 import { Queue } from 'bull';
 import { Response } from 'express';
@@ -14,8 +16,7 @@ export class SecurityService {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     @InjectQueue(userQueueName) private readonly userQueue: Queue,
-  ) {
-  }
+  ) {}
 
   async register({ email, fullName, password }: RegisterParamsDto): Promise<void> {
     const user = await this.userService.findByEmail(email);
@@ -23,7 +24,7 @@ export class SecurityService {
       throw new BadRequestException(email, 'Email already exists');
     }
 
-    const [firstName, lastName] = this.parseFullName(fullName);
+    const [firstName, lastName] = parseFullName(fullName);
 
     const newUser = this.userService.createModel({ email, firstName, lastName, password });
     await this.userQueue.add(UserJob.AddUser, newUser);
@@ -35,12 +36,33 @@ export class SecurityService {
       throw new BadRequestException(email, 'Wrong credentials');
     }
 
+    if (user.oauthId != null) {
+      throw new BadRequestException(password, 'OAuth User');
+    }
+
     const isMatched = await compare(password, user.password);
     if (!isMatched) {
       throw new NotFoundException(password, 'Wrong credentials');
     }
 
     return await this.getTokens(user);
+  }
+
+  async loginOauth({ email, oauthId, providerId }: LoginOauthParamsDto): Promise<[TokenResultDto, string]> {
+    const user = await this.userService.findByEmail(email);
+    if (user == null) {
+      throw new BadRequestException(email, 'Wrong credentials');
+    }
+
+    if (user.oauthId == null) {
+      throw new BadRequestException(email, 'Invalid OAuth User');
+    }
+
+    if (user.oauthId === oauthId && user.providerUid === providerId) {
+      return await this.getTokens(user);
+    }
+
+    throw new BadRequestException(oauthId, 'OAuth ID does not match');
   }
 
   async refresh(refreshToken: string): Promise<[TokenResultDto, string]> {
@@ -91,15 +113,5 @@ export class SecurityService {
       this.authService.createRefreshToken(user.id, user.refreshTokenId),
     ]);
     return [accessTokenResult, refreshToken];
-  }
-
-  private parseFullName(fullName: string) {
-    const parts = fullName.trim().split(' ');
-    if (parts.length === 1) {
-      return [fullName, ''];
-    }
-
-    const lastName = parts.pop();
-    return [parts.join(' '), lastName];
   }
 }
