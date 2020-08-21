@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleAnalyticsService } from '@trungk18/core/services/google-analytics.service';
 
 @Component({
   selector: 'board',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
   breadcrumbs: string[] = ['Projects', 'Angular Jira Clone', 'Kanban Board'];
-  
-  constructor() {}
+
+  constructor(private _googleAnalytics: GoogleAnalyticsService) {}
 
   ngOnInit(): void {}
+
+  sendTwitterEventButton() {
+    this._googleAnalytics.sendEvent("Share Twitter", "button")
+  }
 }

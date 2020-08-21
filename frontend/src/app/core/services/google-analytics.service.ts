@@ -8,10 +8,9 @@ export class GoogleAnalyticsService {
   constructor() {
   }
 
-  public eventEmitter(
+  public sendEvent(
     eventName: string,
     eventCategory: string,
-    eventAction: string,
     eventLabel: string = null,
     eventValue: number = null
   ) {
@@ -19,10 +18,9 @@ export class GoogleAnalyticsService {
       return;
     }
     gtag('event', eventName, {
-      eventCategory: eventCategory,
-      eventLabel: eventLabel,
-      eventAction: eventAction,
-      eventValue: eventValue
+      'event_category': eventCategory,
+      'event_label': eventLabel,
+      'value': eventValue
     });
   }
 

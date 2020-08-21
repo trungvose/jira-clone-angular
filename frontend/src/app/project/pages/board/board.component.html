@@ -3,9 +3,24 @@
     <header class="mt-3 flex justify-between text-textDarkest">
         <div class="text-2xl font-medium">Kanban board</div>
         <div class="social-links">
-            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Ftrungk18%2Fjira-clone-angular&text=Awesome%20Jira%20clone%20app%20built%20with%20Angular%209%20and%20Akita&hashtags=angular,akita,typescript"
+            <a href="https://www.buymeacoffee.com/tuantrungvo"
                target="_blank"
-               rel="noreferrer noopener"
+               rel="noopener">
+                <j-button className="btn-secondary mr-2"> 🍺 Buy me a beer
+                </j-button>
+            </a>
+
+            <a href="https://tetris.trungk18.com/"
+               target="_blank"
+               rel="noopener">
+                <j-button className="btn-secondary mr-2"> 🎮 Angular Tetris
+                </j-button>
+            </a>
+
+            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Ftrungk18%2Fjira-clone-angular&text=Awesome%20Jira%20clone%20app%20built%20with%20Angular%209%20and%20Akita&hashtags=angular,akita,typescript"
+               (click)="sendTwitterEventButton()"
+               target="_blank"
+               rel="noopener"
                class="mr-2">
                 <j-button className="btn-secondary">
                     <div class="flex items-center">
@@ -18,9 +33,9 @@
             </a>
             <a href="https://github.com/trungk18/jira-clone-angular"
                target="_blank"
-               rel="noreferrer noopener">
+               rel="noopener">
                 <j-button className="btn-secondary"
-                          icon="github">Github Repo
+                          icon="github">Source Code
                 </j-button>
             </a>
         </div>
