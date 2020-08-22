@@ -1,0 +1,25 @@
+<div class="mt-6 mb-1 uppercase text-textMedium text-13 font-bold">
+    Status
+</div>
+<j-button nz-dropdown
+          nzTrigger="click"
+          [nzDropdownMenu]="menu"
+          [className]="variants[issue.status] + ' uppercase text-textMedium text-13'">
+    {{ IssueStatusDisplay[issue.status] }}
+</j-button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu
+        nzNoAnimation
+        class="mt-3">
+        <ng-container *ngFor="let option of issueStatuses">
+            <li nz-menu-item
+                *ngIf="!isStatusSelected(option.value)"
+                (click)="updateIssue(option.value)">
+                <div class="flex items-center">
+                    <span class="ml-3 font-semibold uppercase text-textMedium text-13">{{ option.label }}</span>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+</nz-dropdown-menu>

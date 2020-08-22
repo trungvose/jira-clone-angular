@@ -1,0 +1,50 @@
+.content-readonly {
+  position: relative;
+  min-height: 50px;
+  cursor: pointer;
+  
+  .icon-edit {
+    @apply font-normal;
+    display: none;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+  }
+
+  &:hover {
+    box-shadow: none;
+    border: none;
+    background-color: #f4f5f7;
+
+    .icon-edit {
+      display: block;
+    }
+  }
+
+  .ql-editor {
+    padding: 0 !important;
+    font-size: 15px;
+  }
+}
+
+.ql-editor {
+  height: auto !important;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-medium;
+    margin-bottom: 10px;
+  }
+  img,
+  video {
+    display: inline-block;
+  }
+
+  ul {
+    @apply pl-2;
+  }
+}

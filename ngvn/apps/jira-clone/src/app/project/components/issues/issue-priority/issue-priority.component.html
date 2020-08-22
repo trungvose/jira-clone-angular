@@ -1,0 +1,35 @@
+<div class="mt-6 mb-1 uppercase text-textMedium text-13 font-bold">
+    Priority
+</div>
+<j-button className="btn-secondary"
+          nz-dropdown
+          nzTrigger="click"
+          [nzDropdownMenu]="menu">
+    <div class="flex items-center">
+        <svg-icon [name]="selectedPriorityIcon.icon"
+                  [size]="20"
+                  [style.color]="selectedPriorityIcon.color">
+        </svg-icon>
+        <span class="ml-3 priority-label">{{ selectedPriorityIcon.value }}</span>
+    </div>
+</j-button>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul class="mt-3"
+        nz-menu
+        nzNoAnimation>
+        <ng-container *ngFor="let option of priorities">
+            <li nz-menu-item
+                *ngIf="!isPrioritySelected(option.value)"
+                (click)="updateIssue(option.value)">
+                <div class="flex items-center">
+                    <svg-icon [name]="option.icon"
+                              [size]="20"
+                              [style.color]="option.color">
+                    </svg-icon>
+                    <span class="ml-3 priority-label font-semibold uppercase text-textMedium text-13">{{ option.value }}</span>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+</nz-dropdown-menu>

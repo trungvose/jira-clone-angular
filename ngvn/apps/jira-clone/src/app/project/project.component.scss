@@ -1,0 +1,8 @@
+#content {
+  flex: 1;
+  min-width: 0;
+  z-index: 0;
+  overflow: auto;
+  will-change: padding-left;
+  transition: padding-left 300ms cubic-bezier(0.2, 0, 0, 1) 0s;
+}

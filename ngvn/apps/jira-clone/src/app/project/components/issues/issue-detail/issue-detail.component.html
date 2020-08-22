@@ -1,0 +1,64 @@
+<div *ngIf="issue; else loaderTmpl"
+     class="w-full h-full" [class.pl-4]="isShowCloseButton">
+    <div class="flex items-center pt-4 text-textDarkest">
+        <issue-type [issue]="issue"></issue-type>
+        <div class="flex-auto"></div>
+        <a target="_blank"
+           href="https://github.com/trungk18/jira-clone-angular/issues/new">
+            <j-button icon="feedback"
+                      className="btn-empty">
+                Give Feedback
+            </j-button>
+        </a>
+        <j-button icon="trash"
+                  [className]="'btn-empty'"
+                  (click)="openDeleteIssueModal()">
+        </j-button>
+        <j-button *ngIf="isShowCloseButton"
+                  icon="expand"
+                  (click)="openIssuePage()"
+                  [iconSize]="24"
+                  [className]="'btn-empty'">
+        </j-button>
+        <j-button *ngIf="isShowCloseButton"
+                  icon="times"
+                  [iconSize]="24"
+                  (click)="closeModal()"
+                  [className]="'btn-empty'">
+        </j-button>
+    </div>
+    <div class="flex w-full flex-wrap pb-16">
+        <div class="sm:w-full md:w-7/12 lg:w-4/6 pr-10">
+            <issue-title [issue]="issue"></issue-title>
+
+            <div class="pt-4 pb-2 text-15 font-medium">Description</div>
+            <issue-description [issue]="issue"></issue-description>
+
+            <div class="pt-4 pb-2 text-15 font-medium">Comments</div>
+            <issue-comments [issue]="issue"></issue-comments>
+        </div>
+        <div class="sm:w-full md:w-5/12 lg:w-2/6 pt-1">
+            <issue-status [issue]="issue"></issue-status>
+            <issue-reporter [issue]="issue"
+                            [users]="projectQuery.users$ | async">
+            </issue-reporter>
+            <issue-assignees [issue]="issue"
+                             [users]="projectQuery.users$ | async">
+            </issue-assignees>
+            <issue-priority [issue]="issue"></issue-priority>
+
+            <div class="mt-3 pt-3 leading-loose border-t border-borderLightest text-textMedium text-13">
+                <div>
+                    Created - {{ issue.createdAt | date:"medium" }}
+                </div>
+                <div>
+                    Updated - {{ issue.updatedAt | date:"medium" }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loaderTmpl>
+    <issue-loader></issue-loader>
+</ng-template>

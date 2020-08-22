@@ -1,0 +1,54 @@
+<div [style.width.px]="sidebarWidth"
+     class="sidebar">
+    <div class="sidebar-content">
+        <div class="flex py-6 px-1">
+            <j-avatar avatarUrl="https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_256/v1593097745/angular-vietnam-transparent_iwfwxa.png"
+                      [name]="'Project'"
+                      [rounded]="false"
+                      [size]="45"
+                      title="Angular Vietnam">
+            </j-avatar>
+            <div class="pl-2">
+                <div class="text-textDark text-15 font-medium">
+                    {{ project.name }}
+                </div>
+                <div class="text-textMedium text-13">
+                    {{ project.category }} Project
+                </div>
+            </div>
+        </div>
+
+        <div *ngFor="let link of sideBarLinks; let idx = index">
+            <a *ngIf="link.url"
+               :is="link.to ? 'router-link' : 'div'"
+               [routerLink]="link.url"
+               routerLinkActive="active"
+               tag="a"
+               class="link allowed">
+
+                <svg-icon class="mr-4"
+                          [name]="link.icon"
+                          [size]="24">
+                </svg-icon>
+
+                <div class="text-15 pt-px">{{ link.name }}</div>
+            </a>
+            <div *ngIf="!link.url"
+                 class="link not-allowed">
+
+                <svg-icon class="mr-4"
+                          [name]="link.icon"
+                          [size]="24">
+                </svg-icon>
+
+                <div class="text-15 pt-px">{{ link.name }}</div>
+                <div class="not-implemented">
+                    Not implemented
+                </div>
+            </div>
+
+            <div *ngIf="idx === 1"
+                 class="divider"></div>
+        </div>
+    </div>
+</div>

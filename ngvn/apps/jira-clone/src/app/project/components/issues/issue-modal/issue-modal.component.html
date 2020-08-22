@@ -1,0 +1,9 @@
+<div class="px-3">
+    <issue-detail [issue]="issue$ | async"
+                  [isShowFullScreenButton]="true"
+                  [isShowCloseButton]="true"
+                  (onClosed)="closeModal()"
+                  (onOpenIssue)="openIssuePage($event)"
+                  (onDelete)="deleteIssue($event)">
+    </issue-detail>
+</div>

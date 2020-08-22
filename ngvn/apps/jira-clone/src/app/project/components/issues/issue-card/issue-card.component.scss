@@ -1,0 +1,20 @@
+:host {
+  @apply flex flex-grow;
+  margin-bottom: 5px;
+}
+
+.issue-wrap {
+  touch-action: manipulation;
+  cursor: grab;
+  @apply flex flex-grow;
+}
+
+.issue {
+  @apply flex flex-grow flex-col rounded-sm bg-white transition-all duration-100 select-none;
+  padding: 10px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 2px 0px;
+}
+
+.issue:hover {
+  @apply bg-backgroundLight;
+}

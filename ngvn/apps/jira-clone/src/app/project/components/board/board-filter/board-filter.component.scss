@@ -1,0 +1,12 @@
+.lift-avatar {
+  @apply cursor-pointer -ml-1 flex rounded-full transition-transform duration-100;
+  
+  &.is-active {
+    box-shadow: 0 0 0 4px #1255b9;
+    z-index: 1;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}

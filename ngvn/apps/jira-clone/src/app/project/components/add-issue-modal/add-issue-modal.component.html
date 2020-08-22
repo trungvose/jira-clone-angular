@@ -1,0 +1,76 @@
+<div class="py-5 px-8">
+    <div class="flex items-center py-3 text-textDarkest">
+        <div class="text-xl">
+            Create issue
+        </div>
+        <div class="flex-auto"></div>
+        <j-button icon="times"
+                  [iconSize]="24"
+                  (click)="closeModal()"
+                  [className]="'btn-empty'">
+        </j-button>
+    </div>
+    <form class="issue-form"
+          [formGroup]="issueForm">
+        <div class="form-group">
+            <label class="label">
+                Issue type
+            </label>
+            <issue-type-select [control]="f?.type"></issue-type-select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="label">
+                Issue priority
+            </label>
+            <issue-priority-select [control]="f?.priority"></issue-priority-select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="label">
+                Short summary
+            </label>
+            <input class="form-input"
+                   formControlName="title"
+                   jAutofocus
+                   [timerDelay]="300" />
+        </div>
+        <div class="form-group mt-3">
+            <label class="label">
+                Description
+            </label>
+            <quill-editor class="content-editor"
+                          [styles]="{'min-height': '120px'}"
+                          [modules]="editorOptions"
+                          formControlName="description"
+                          [placeholder]="''">
+            </quill-editor>
+        </div>
+        <div class="form-group mt-3">
+            <label class="label">
+                Reporter
+            </label>
+            <issue-reporter-select [control]="f?.reporterId"
+                                   [users]="reporterUsers$ | async">
+            </issue-reporter-select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="label">
+                Assignees
+            </label>
+            <issue-assignees-select [control]="f.userIds"
+                                    [users]="assignees$ | async">
+            </issue-assignees-select>
+        </div>
+        <div class="form-group mt-5 form-action">
+            <j-button className="btn-primary mr-2"
+                      type="submit"
+                      [disabled]="issueForm?.invalid"
+                      (click)="submitForm()">
+                Create Issue
+            </j-button>
+            <j-button className="btn-empty"
+                      (click)="cancel()">
+                Cancel
+            </j-button>
+        </div>
+    </form>
+</div>

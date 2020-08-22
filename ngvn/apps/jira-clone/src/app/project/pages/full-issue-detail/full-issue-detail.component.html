@@ -1,0 +1,9 @@
+<div class="pr-6 py-8 pl-8 h-full w-full flex flex-col">
+    <breadcrumbs [items]="breadcrumbs"></breadcrumbs>
+    <issue-detail *ngIf="issueId"
+                  [issue]="issueById$ | async"
+                  [isShowCloseButton]="false"
+                  [isShowFullScreenButton]="false"
+                  (onDelete)="deleteIssue($event)">
+    </issue-detail>
+</div>
