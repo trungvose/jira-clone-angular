@@ -1,9 +1,0 @@
-<div class="flex container mt-7"
-     cdkDropListGroup>
-     <div class="board-dnd-list"
-          board-dnd-list
-          *ngFor="let lane of projectQuery.lanes$ | async"
-          [lane]="lane"
-          [currentUserId]="authQuery.userId$ | async">
-     </div>
-</div>
