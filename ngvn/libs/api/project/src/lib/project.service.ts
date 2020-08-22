@@ -41,7 +41,7 @@ export class ProjectService extends BaseService<Project> {
   }
 
   async findByUserId(userId: string): Promise<ProjectInformationDto[]> {
-    const projects = await this.cacheService.get(`projects_user_${userId}`, () =>
+    const projects = await this.cacheService.get(`projects_user_${ userId }`, () =>
       this.projectRepository.findByUser(userId),
     );
     return this.mapper.mapArray(projects, ProjectInformationDto, Project);
@@ -121,12 +121,12 @@ export class ProjectService extends BaseService<Project> {
   }
 
   async moveIssue({
-    projectId,
-    targetLaneId,
-    targetIssues,
-    previousLaneId,
-    previousIssues,
-  }: MoveIssueParamsDto): Promise<ProjectDto> {
+                    projectId,
+                    targetLaneId,
+                    targetIssues,
+                    previousLaneId,
+                    previousIssues,
+                  }: MoveIssueParamsDto): Promise<ProjectDto> {
     const project = await this.projectRepository.findById(projectId, { autopopulate: false }).exec();
     if (project == null) {
       throw new NotFoundException(projectId, 'No project found with id');

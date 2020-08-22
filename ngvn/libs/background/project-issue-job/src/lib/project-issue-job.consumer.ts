@@ -1,7 +1,8 @@
 import { Process, Processor } from '@nestjs/bull';
 import { MarkdownService } from '@ngvn/api/common-providers';
-import { ProjectIssueService, ProjectLane } from '@ngvn/api/project';
+import { ProjectIssueService, ProjectIssueTag, ProjectLane } from '@ngvn/api/project';
 import { ProjectIssueJob, projectIssueQueueName } from '@ngvn/background/common';
+import { ProjectTimelineType } from '@ngvn/shared/project';
 import { Job } from 'bull';
 import { Types } from 'mongoose';
 
@@ -10,7 +11,8 @@ export class ProjectIssueJobConsumer {
   constructor(
     private readonly projectIssueService: ProjectIssueService,
     private readonly markdownService: MarkdownService,
-  ) {}
+  ) {
+  }
 
   @Process(ProjectIssueJob.BulkUpdateStatus)
   async bulkUpdateStatuses(job: Job<ProjectLane>) {
@@ -22,6 +24,21 @@ export class ProjectIssueJobConsumer {
   async generateOutputHtml(job: Job<{ id: string; markdown: string }>) {
     await this.projectIssueService.updateBy(job.data.id, {
       $set: { outputHtml: this.markdownService.generateHtml(job.data.markdown) },
+    });
+  }
+
+  @Process(ProjectIssueJob.AddTimelineTag)
+  async addTimelineTag(job: Job<{ id: string, actorId: string, tag: ProjectIssueTag, action: string }>) {
+    await this.projectIssueService.updateBy(job.data.id, {
+      $push: {
+        timelineItems: {
+          type: ProjectTimelineType.Tag,
+          tags: [job.data.tag],
+          isActive: true,
+          actor: Types.ObjectId(job.data.actorId),
+          action: job.data.action,
+        },
+      },
     });
   }
 }

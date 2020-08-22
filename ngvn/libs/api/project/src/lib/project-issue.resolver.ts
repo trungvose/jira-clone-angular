@@ -4,8 +4,10 @@ import { CurrentUser, GqlAuthGuard } from '@ngvn/api/common';
 import {
   AuthUserDto,
   CreateIssueParamsDto,
+  CreateUpdateTagParamsDto,
   ProjectIssueDetailDto,
   ProjectIssueDto,
+  ProjectIssueTagDto,
   UpdateIssueParamsDto,
 } from '@ngvn/api/dtos';
 import { LookupPermissionGuard, PermissionGuard } from '@ngvn/api/permission';
@@ -14,7 +16,8 @@ import { ProjectIssueService } from './project-issue.service';
 
 @Resolver()
 export class ProjectIssueResolver {
-  constructor(private readonly projectIssueService: ProjectIssueService) {}
+  constructor(private readonly projectIssueService: ProjectIssueService) {
+  }
 
   @Query((returns) => ProjectIssueDetailDto)
   @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectIssueManage, Privilege.Read, 'id'))
@@ -41,5 +44,25 @@ export class ProjectIssueResolver {
   @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectIssueManage, Privilege.Update, 'id'))
   async updateMarkdown(@Args('id') id: string, @Args('markdown') markdown: string): Promise<ProjectIssueDetailDto> {
     return await this.projectIssueService.updateMarkdown(id, markdown);
+  }
+
+  @Mutation(() => ProjectIssueTagDto)
+  @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectIssueManage, Privilege.Update, 'id'))
+  async addTag(
+    @Args('id') id: string,
+    @Args('newTag') tagParams: CreateUpdateTagParamsDto,
+    @CurrentUser() currentUser: AuthUserDto,
+  ): Promise<ProjectIssueTagDto> {
+    return await this.projectIssueService.addTag(id, currentUser.id, tagParams);
+  }
+
+  @Mutation(() => ProjectIssueTagDto)
+  @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectIssueManage, Privilege.Update, 'id'))
+  async removeTag(
+    @Args('id') id: string,
+    @Args('tagId') tagId: string,
+    @CurrentUser() currentUser: AuthUserDto,
+  ): Promise<ProjectIssueTagDto> {
+    return await this.projectIssueService.removeTag(id, currentUser.id, tagId);
   }
 }
