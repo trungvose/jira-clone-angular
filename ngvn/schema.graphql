@@ -240,6 +240,8 @@ type Mutation {
   createIssue(projectId: String!, title: String!, bodyMarkdown: String!, summary: String!, type: ProjectIssueType!, tags: [CreateUpdateTagParamsDto!], priority: ProjectIssuePriority, assigneeId: String): ProjectIssueDto!
   updateIssue(projectId: String!, issue: UpdateIssueDetailDto!): ProjectIssueDetailDto!
   updateMarkdown(markdown: String!, id: String!): ProjectIssueDetailDto!
+  addTag(newTag: CreateUpdateTagParamsDto!, id: String!): ProjectIssueTagDto!
+  removeTag(tagId: String!, id: String!): ProjectIssueTagDto!
   register(email: String!, password: String!, fullName: String!): Boolean
   login(email: String!, password: String!): TokenResultDto!
   loginOauth(email: String!, oauthId: String!, providerId: String!): TokenResultDto!
@@ -264,5 +266,4 @@ input UpdateIssueDetailDto {
   type: ProjectIssueType!
   status: ProjectIssueStatus!
   priority: ProjectIssuePriority!
-  tags: [CreateUpdateTagParamsDto]!
 }

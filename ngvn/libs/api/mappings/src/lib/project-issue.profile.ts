@@ -42,7 +42,7 @@ export class ProjectIssueProfile extends ProfileBase {
       .createMap(ProjectIssue, ProjectIssueDto)
       .forMember(
         (d) => d.name,
-        mapFrom((s) => `${s.type.toUpperCase()} - ${s.ordinalPosition}`),
+        mapFrom((s) => `${ s.type.toUpperCase() } - ${ s.ordinalPosition }`),
       )
       .forMember(
         (d) => d.tags,
@@ -81,15 +81,7 @@ export class ProjectIssueProfile extends ProfileBase {
       .forMember((d) => d.reporter, ignore())
       .forMember((d) => d.assignee, ignore())
       .forMember((d) => d.timelineItems, ignore())
-      .forMember((d) => d.bodyMarkdown, ignore())
-      .forMember(
-        (d) => d.tags,
-        mapWith(
-          ProjectIssueTag,
-          (s) => s.tags,
-          () => ProjectIssueTagDto,
-        ),
-      );
+      .forMember((d) => d.bodyMarkdown, ignore());
 
     ignoreBaseProperties(
       mapper

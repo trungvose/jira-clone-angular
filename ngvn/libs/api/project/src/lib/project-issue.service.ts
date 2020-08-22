@@ -5,17 +5,26 @@ import { MarkdownService } from '@ngvn/api/common-providers';
 import {
   AuthUserDto,
   CreateIssueParamsDto,
+  CreateUpdateTagParamsDto,
   ProjectIssueDetailDto,
   ProjectIssueDto,
+  ProjectIssueTagDto,
   UpdateIssueDetailDto,
   UpdateIssueParamsDto,
 } from '@ngvn/api/dtos';
-import { PermissionJob, permissionQueueName, ProjectJob, projectQueueName } from '@ngvn/background/common';
+import {
+  PermissionJob,
+  permissionQueueName,
+  ProjectIssueJob,
+  projectIssueQueueName,
+  ProjectJob,
+  projectQueueName,
+} from '@ngvn/background/common';
 import { ProjectIssueStatus } from '@ngvn/shared/project';
 import { Queue } from 'bull';
 import { Types } from 'mongoose';
 import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
-import { ProjectIssue, ProjectLaneCondition } from './models';
+import { ProjectIssue, ProjectIssueTag, ProjectLaneCondition } from './models';
 import { ProjectIssueRepository } from './project-issue.repository';
 import { ProjectService } from './project.service';
 
@@ -28,6 +37,7 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
     private readonly markdownService: MarkdownService,
     @InjectQueue(projectQueueName) private readonly projectQueue: Queue,
     @InjectQueue(permissionQueueName) private readonly permissionQueue: Queue,
+    @InjectQueue(projectIssueQueueName) private readonly projectIssueQueue: Queue,
   ) {
     super(projectIssueRepository);
   }
@@ -95,6 +105,45 @@ export class ProjectIssueService extends BaseService<ProjectIssue> {
 
     const result = await this.updateBy(id, { $set: { outputHtml: this.markdownService.generateHtml(markdown) } });
     return this.mapper.map(result, ProjectIssueDetailDto, ProjectIssue);
+  }
+
+  async addTag(
+    issueId: string,
+    actorId: string,
+    createTagParams: CreateUpdateTagParamsDto,
+  ): Promise<ProjectIssueTagDto> {
+    const exist = await this.projectIssueRepository.exists({ id: issueId });
+    if (!exist) {
+      throw new NotFoundException(issueId, 'Project issue not found');
+    }
+
+    const newTag = this.mapper.map(createTagParams, ProjectIssueTag, CreateUpdateTagParamsDto);
+    const result = await this.updateBy(issueId, { $push: { tags: newTag } });
+    const lastAddedTag = result.tags.pop();
+    await this.projectIssueQueue.add(ProjectIssueJob.AddTimelineTag, {
+      id: issueId,
+      actorId,
+      tag: lastAddedTag,
+      action: 'add',
+    });
+    return this.mapper.map(lastAddedTag, ProjectIssueTagDto, ProjectIssueTag);
+  }
+
+  async removeTag(issueId: string, actorId: string, tagId: string): Promise<ProjectIssueTagDto> {
+    const exist = await this.projectIssueRepository.findById(issueId);
+    if (!exist) {
+      throw new NotFoundException(issueId, 'Project issue not found');
+    }
+
+    const tag = exist.tags.find(t => t.id == tagId);
+    await this.updateBy(issueId, { $pull: { tags: { $elemMatch: { _id: Types.ObjectId(tagId) } } as any } });
+    await this.projectIssueQueue.add(ProjectIssueJob.AddTimelineTag, {
+      id: issueId,
+      actorId,
+      tag,
+      action: 'remove',
+    });
+    return this.mapper.map(tag, ProjectIssueTagDto, ProjectIssueTag);
   }
 
   async bulkUpdateByLaneCondition(issues: Types.ObjectId[], laneCondition: ProjectLaneCondition): Promise<void> {

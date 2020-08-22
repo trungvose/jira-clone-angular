@@ -29,6 +29,7 @@ registerEnumType(ProjectTimelineType, { name: 'ProjectTimelineType' });
         context: ({ req, res }) => ({ req, res }),
         debug: appConfig.env === 'development',
         playground: appConfig.env === 'development',
+        introspection: appConfig.env === 'development',
         include: [...apiModules],
         cors: {
           credentials: true,
@@ -38,4 +39,5 @@ registerEnumType(ProjectTimelineType, { name: 'ProjectTimelineType' });
     }),
   ],
 })
-export class GqlModule {}
+export class GqlModule {
+}

@@ -8,27 +8,28 @@ import { ProjectService } from './project.service';
 
 @Resolver()
 export class ProjectResolver {
-  constructor(private readonly projectService: ProjectService) {}
+  constructor(private readonly projectService: ProjectService) {
+  }
 
-  @Query((returns) => ProjectDto)
+  @Query(() => ProjectDto)
   @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectManage, Privilege.Read, 'slug'))
   async findProjectBySlug(@Args('slug') slug: string): Promise<ProjectDto> {
     return await this.projectService.findBySlug(slug);
   }
 
-  @Query((returns) => [ProjectInformationDto])
+  @Query(() => [ProjectInformationDto])
   @UseGuards(GqlAuthGuard, PermissionGuard(PermissionNames.ProjectManage, Privilege.Read))
   async findProjectsByUserId(@Args('userId') userId: string): Promise<ProjectInformationDto[]> {
     return await this.projectService.findByUserId(userId);
   }
 
-  @Mutation((returns) => ProjectDto)
+  @Mutation(() => ProjectDto)
   @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectManage, Privilege.Update, 'projectId'))
   async reorderIssueInLane(@Args() reorderDto: ReorderIssueParamsDto): Promise<ProjectDto> {
     return await this.projectService.reorderIssue(reorderDto);
   }
 
-  @Mutation((returns) => ProjectDto)
+  @Mutation(() => ProjectDto)
   @UseGuards(GqlAuthGuard, LookupPermissionGuard(PermissionNames.ProjectManage, Privilege.Update, 'projectId'))
   async moveIssueBetweenLanes(@Args() moveDto: MoveIssueParamsDto): Promise<ProjectDto> {
     return await this.projectService.moveIssue(moveDto);
