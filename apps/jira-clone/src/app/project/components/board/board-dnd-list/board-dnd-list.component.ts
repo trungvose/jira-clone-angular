@@ -6,17 +6,13 @@ import { FilterState } from '@trungk18/project/state/filter/filter.store';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import * as dateFns from 'date-fns';
-import {
-  ProjectIssueDto,
-  ProjectIssueStatus,
-  ProjectLaneDto
-} from '@trungk18/core/graphql/service/graphql';
+import { ProjectIssueDto, ProjectIssueStatus, ProjectLaneDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: '[board-dnd-list]',
   templateUrl: './board-dnd-list.component.html',
   styleUrls: ['./board-dnd-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 @UntilDestroy()
 export class BoardDndListComponent implements OnInit {
@@ -45,15 +41,19 @@ export class BoardDndListComponent implements OnInit {
     let newIssue: ProjectIssueDto = { ...event.item.data };
     let newIssues = [...event.container.data];
     if (event.previousContainer === event.container) {
+      let hasMoved = event.previousIndex !== event.currentIndex;
+      if (!hasMoved) {
+        return;
+      }
       moveItemInArray(newIssues, event.previousIndex, event.currentIndex);
-      this.updateListPosition(newIssues);
+      this._projectService
+        .reorderIssues(
+          this.lane.id,
+          newIssues.map((issue) => issue.id),
+        )
+        .subscribe();
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        newIssues,
-        event.previousIndex,
-        event.currentIndex
-      );
+      transferArrayItem(event.previousContainer.data, newIssues, event.previousIndex, event.currentIndex);
       this.updateListPosition(newIssues);
       newIssue.status = event.container.id as ProjectIssueStatus;
       this._projectService.updateIssue(newIssue);

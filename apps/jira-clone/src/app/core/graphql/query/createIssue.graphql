@@ -4,7 +4,7 @@ mutation CreateIssue(
   $bodyMarkdown: String!
   $summary: String!
   $type: ProjectIssueType!
-  $tags: CreateUpdateTagParamsDto
+  $tags: [CreateUpdateTagParamsDto!]
   $priority: ProjectIssuePriority
   $assigneeId: String
 ) {

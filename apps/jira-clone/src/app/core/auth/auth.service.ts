@@ -5,13 +5,14 @@ import {
   RefreshTokenGQL,
   TokenResultDto,
   UserInformationDto,
-  LogoutGQL
+  LogoutGQL,
 } from '@trungk18/core/graphql/service/graphql';
 import { LoginPayload } from '@trungk18/interface/payload/login';
 import { EMPTY, Observable, of, pipe, Subscription, throwError, timer } from 'rxjs';
 import { catchError, finalize, map, switchMap, tap } from 'rxjs/operators';
 import { AuthStore, createInitialAuthState } from './auth.store';
 import { differenceInMilliseconds, subMinutes } from 'date-fns';
+import { setLoading } from '@datorama/akita';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -20,7 +21,7 @@ export class AuthService {
     private _loginGQL: LoginGQL,
     private _logoutGQL: LogoutGQL,
     private _refreshTokenGQL: RefreshTokenGQL,
-    private _meGQL: MeGQL
+    private _meGQL: MeGQL,
   ) {}
 
   private _jwtTimerSubscription: Subscription;
@@ -30,14 +31,14 @@ export class AuthService {
     return this._loginGQL
       .mutate({
         email,
-        password
+        password,
       })
       .pipe(
         map(({ data }) => data?.login),
         this._handleTokenMe(),
         finalize(() => {
           this._store.setLoading(false);
-        })
+        }),
       );
   }
 
@@ -45,7 +46,7 @@ export class AuthService {
     return this._logoutGQL.mutate().pipe(
       tap(() => {
         this._store.update(createInitialAuthState());
-      })
+      }),
     );
   }
 
@@ -54,30 +55,25 @@ export class AuthService {
       catchError((err) => {
         this._store.update({
           expiry: null,
-          token: null
+          token: null,
         });
         return throwError(err);
       }),
-      this._handleTokenMe()
+      this._handleTokenMe(),
     );
   }
 
   private _refreshToken(): Observable<TokenResultDto> {
-    this._store.setLoading(true);
     return this._refreshTokenGQL.fetch().pipe(
+      setLoading(this._store),
       map(({ data }) => data?.refreshToken),
-      this._handleTokenMe(),
-      catchError(() => {
+      catchError((err) => {
         this._store.update({
           expiry: null,
-          token: null
+          token: null,
         });
-        //TODO review later
-        return of(null);
+        return throwError(err);
       }),
-      finalize(() => {
-        this._store.setLoading(false);
-      })
     );
   }
 
@@ -85,23 +81,23 @@ export class AuthService {
     return pipe<Observable<TokenResultDto>, Observable<UserInformationDto>>(
       switchMap((tokenResult) => {
         this._store.update({
-          ...tokenResult
-        })
+          ...tokenResult,
+        });
         this._setupRefreshTimer(tokenResult);
         return this._me().pipe(
           tap((user) => {
             this._store.update({
-              currentUser: user
+              currentUser: user,
             });
           }),
           catchError((err) => {
             this._store.update({
-              currentUser: null
+              currentUser: null,
             });
             return EMPTY;
-          })
+          }),
         );
-      })
+      }),
     );
   };
 
@@ -111,10 +107,7 @@ export class AuthService {
 
   private _setupRefreshTimer(tokenResult: TokenResultDto) {
     let { expiry }: { expiry: string } = tokenResult;
-    const delayInMilliseconds = differenceInMilliseconds(
-      subMinutes(new Date(expiry), 1),
-      new Date()
-    );
+    const delayInMilliseconds = differenceInMilliseconds(subMinutes(new Date(expiry), 1), new Date());
     if (this._jwtTimerSubscription) {
       this._jwtTimerSubscription.unsubscribe();
     }

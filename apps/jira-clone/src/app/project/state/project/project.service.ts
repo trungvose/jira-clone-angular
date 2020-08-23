@@ -4,7 +4,9 @@ import {
   CreateIssueMutationVariables,
   FindProjectBySlugGQL,
   ProjectDto,
-  ProjectIssueDto
+  ProjectIssueDto,
+  ReorderIssuesGQL,
+  ProjectLaneDto,
 } from '@trungk18/core/graphql/service/graphql';
 import { JComment } from '@trungk18/interface/comment';
 import { FetchResult } from 'apollo-link';
@@ -12,17 +14,19 @@ import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { ProjectStore } from './project.store';
 import { environment } from 'apps/jira-clone/src/environments/environment';
+import { setLoading, arrayUpsert } from '@datorama/akita';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectService {
   baseUrl: string;
 
   constructor(
     private _store: ProjectStore,
-    private _findProjectBySlug: FindProjectBySlugGQL,
-    private _createIssue: CreateIssueGQL
+    private _findProjectBySlugGql: FindProjectBySlugGQL,
+    private _createIssueGql: CreateIssueGQL,
+    private reorderIssueGql: ReorderIssuesGQL,
   ) {
     this.baseUrl = environment.apiUrl;
   }
@@ -33,9 +37,9 @@ export class ProjectService {
 
   getProject(slug: string): Observable<FetchResult> {
     this.setLoading(true);
-    return this._findProjectBySlug
+    return this._findProjectBySlugGql
       .fetch({
-        slug
+        slug,
       })
       .pipe(
         tap((res) => {
@@ -43,7 +47,7 @@ export class ProjectService {
           this._store.update((state) => {
             let newState = {
               ...state,
-              ...project
+              ...project,
             };
             console.log(newState);
             return newState;
@@ -51,27 +55,42 @@ export class ProjectService {
         }),
         finalize(() => {
           this.setLoading(false);
-        })
+        }),
       );
   }
 
   updateProject(project: Partial<ProjectDto>) {
     this._store.update((state) => ({
       ...state,
-      ...project
+      ...project,
     }));
   }
 
   createIssue(issueInput: CreateIssueMutationVariables) {
     let input: CreateIssueMutationVariables = {
       ...issueInput,
-      projectId: this._store.getValue().id
+      projectId: this._store.getValue().id,
     };
-    return this._createIssue.mutate(input).pipe(
+    return this._createIssueGql.mutate(input).pipe(
       tap(({ data }) => {
         this._store.update({});
-      })
+      }),
     );
+  }
+
+  reorderIssues(laneId: string, issues: string[]) {
+    return this.reorderIssueGql
+      .mutate({
+        laneId,
+        projectId: this._store.getValue().id,
+        issues,
+      })
+      .pipe(
+        setLoading(this._store),
+        tap(({ data }) => {
+          this.updateProject(<any>data.reorderIssueInLane);
+        }),
+      );
   }
 
   updateIssue(issue: ProjectIssueDto) {
