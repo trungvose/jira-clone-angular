@@ -11,6 +11,10 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    //https://github.com/angular/angular-cli/issues/18040
+    {
+      "path": "../../tsconfig.base.json"
     }
   ]
 }

@@ -6,15 +6,10 @@ import { AuthQuery } from '../auth/auth.query';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticatedGuard implements CanActivate {
-  constructor(
-    private _authQuery: AuthQuery,
-    private _authService: AuthService,
-    private _router: Router
-  ) {
-  }
+  constructor(private _authQuery: AuthQuery, private _authService: AuthService, private _router: Router) {}
 
   canActivate(): Observable<boolean> {
     return this._authQuery.token$.pipe(
@@ -22,16 +17,26 @@ export class AuthenticatedGuard implements CanActivate {
         if (!token) {
           return this._authService.retrieveTokenOnPageLoad().pipe(
             mapTo(true),
-            catchError(err => {
+            catchError((err) => {
               // Do something with 401
-              return this._authService.logout().pipe(mapTo(false), tap(() => {
-                this._router.navigate(['/login']);
-              }));
-            })
+              return this._authService.logout().pipe(
+                mapTo(false),
+                tap(() => {
+                  this._router.navigate(['/login']);
+                }),
+                catchError(this.redirectToLogin.bind(this)),
+              );
+            }),
           );
         }
         return of(true);
-      })
+      }),
+      catchError(this.redirectToLogin.bind(this)),
     );
+  }
+
+  private redirectToLogin() {
+    this._router.navigate(['/login']);
+    return of(false);
   }
 }
