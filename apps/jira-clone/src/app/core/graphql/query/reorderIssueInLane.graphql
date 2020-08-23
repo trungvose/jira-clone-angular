@@ -1,0 +1,61 @@
+mutation ReorderIssues($projectId: String!, $laneId: String!, $issues: [String!]!) {
+  reorderIssueInLane(projectId: $projectId, laneId: $laneId, issues: $issues) {
+    id
+    name
+    slug
+    description
+    category
+    users {
+      id
+      avatarUrl
+      createdAt
+      updatedAt
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+    }
+    lanes {
+      id
+      title
+      isActive
+      issues {
+        id
+        name
+        summary
+        title
+        isActive
+        createdAt
+        updatedAt
+        type
+        status
+        priority
+        tags {
+          id
+          text
+          styles {
+            color
+            backgroundColor
+          }
+          description
+        }
+        main {
+          id
+          avatarUrl
+          createdAt
+          updatedAt
+          isActive
+          email
+          firstName
+          lastName
+          fullName
+        }
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}

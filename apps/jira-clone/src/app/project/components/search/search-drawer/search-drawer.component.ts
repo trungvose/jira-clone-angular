@@ -13,7 +13,7 @@ import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 @Component({
   selector: 'search-drawer',
   templateUrl: './search-drawer.component.html',
-  styleUrls: ['./search-drawer.component.scss']
+  styleUrls: ['./search-drawer.component.scss'],
 })
 @UntilDestroy()
 export class SearchDrawerComponent implements OnInit {
@@ -28,25 +28,22 @@ export class SearchDrawerComponent implements OnInit {
   constructor(
     private _projectQuery: ProjectQuery,
     private _drawer: NzDrawerRef,
-    private _modalService: NzModalService
+    private _modalService: NzModalService,
   ) {}
 
   ngOnInit(): void {
-    let search$ = this.searchControl.valueChanges.pipe(
-      debounceTime(50),
-      startWith(this.searchControl.value)
-    );
+    let search$ = this.searchControl.valueChanges.pipe(debounceTime(50), startWith(this.searchControl.value));
     this.recentIssues$ = this._projectQuery.issues$.pipe(map((issues) => issues.slice(0, 5)));
     this.results$ = combineLatest([search$, this._projectQuery.issues$]).pipe(
       untilDestroyed(this),
       switchMap(([term, issues]) => {
         let matchIssues = issues.filter((issue) => {
           let foundInTitle = IssueUtil.searchString(issue.title, term);
-          let foundInDescription = IssueUtil.searchString(issue.description, term);
-          return foundInTitle || foundInDescription;
+          let foundInSummary = IssueUtil.searchString(issue.summary, term);
+          return foundInTitle || foundInSummary;
         });
         return of(matchIssues);
-      })
+      }),
     );
   }
 
@@ -61,8 +58,8 @@ export class SearchDrawerComponent implements OnInit {
       nzClosable: false,
       nzFooter: null,
       nzComponentParams: {
-        issue$: this._projectQuery.issueById$(issue.id)
-      }
+        issue$: this._projectQuery.issueById$(issue.id),
+      },
     });
     this.closeDrawer();
   }
