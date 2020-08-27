@@ -40,6 +40,18 @@
   ],
   "issues": [
     {
+      "createdAt": "2020-08-27T14:23:38.183Z",
+      "description": "<p>I shared some of my technical decisions behind <a href='http://jira.trungk18.com' rel='noopener noreferrer' target='_blank'>jira.trungk18.com</a> on <a href='https://github.com/SingaporeJS/talk.js/issues/40' rel='noopener noreferrer' target='_blank'>Singapore talk.js August 2020</a> with a very catchy title - <strong>Behind the 900 stars repository 😂</strong> Do you like it? <br/></br/> Hopefully I can change the title to a thousand stars soon... 🤣</p><p><br></p><p>Thanks for having me!</p><p><br></p><p>See the slide deck ➡ <a href='https://slides.com/tuantrungvo/behind-the-900-star-repository-jira-clone-angular' rel='noopener noreferrer' target='_blank' style='background-color: rgb(255, 255, 255);'>https://slides.com/tuantrungvo/behind-the-900-star-repository-jira-clone-angular</a></p><p><br></p><p><img src='https://pbs.twimg.com/media/EgWe01qUcAIoNdi?format=jpg&amp;name=large' alt='Image'></p><p><br></p><p><br></p>",
+      "id": "6527",
+      "priority": "Medium",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
+      "status": "Backlog",
+      "title": "Behind the 900 stars - Update 08/2020",
+      "type": "Story",
+      "updatedAt": "2020-08-27T14:23:38.183Z",
+      "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1"]
+    },
+    {
       "id": "9013",
       "title": "Set up project structure ⛏️⛏️",
       "description": "<h3>Create front end and backend folder</h3><ul><li>npm init</li><li>CLI new application</li><li>TailwindCSS configuration&nbsp;</li><li>WIP Landing Page</li><li>Build command on the root folder</li><li>Deploy to Netlify</li><li>Configure sub domain redirect - Need to retest</li><li>Configure SVG icon definition</li><li>Add Google Analytics - IMPORTANT</li><li>Refactor to module lazy loading</li><li>Add Akita - <a href='https://datorama.github.io/akita/docs/angular/architecture/#session-feature' rel='noopener noreferrer' target='_blank' style='color: inherit;'>https://datorama.github.io/akita/docs/angular/architecture/#session-feature</a></li><li>Tweet Icon</li></ul>",
@@ -80,8 +92,8 @@
     },
     {
       "id": "9451",
-      "title": "Preparing backend API with GraphQL",
-      "description": "<h3>I will set up a GraphQL endpoint as soon as possible</h3><p>I am currently using NestJS and storing data on a <code>json</code> file. I like the idea behind GraphQL, it is the good chance to learn more about that technology.</p>",
+      "title": "Preparing backend API with GraphQL - Update 08/2020",
+      "description": "<p>GraphQL authentication API is ready with the enormous support from <a href='https://github.com/nartc' rel='noopener noreferrer' target='_blank'>@nartc</a></p><p><br></p><p>I am using Apollo to integrate with his well-written API. I have closed the first loop <strong>Login -&gt; Received token -&gt; Fetch me -&gt; Fetch project using token.</strong></p><p><br></p><p>Hopefully I will be able to deploy Phase 2 soon to AWS or Azure. Stay tuned!</p><p><br><p>See the current working branch: <a href='https://github.com/trungk18/jira-clone-angular/tree/feature/gql' rel='noopener noreferrer' target='_blank'>https://github.com/trungk18/jira-clone-angular/tree/feature/gql</a></p><br/></p><p><img src='https://i.imgur.com/sonzLl9.gif'/></p>",
       "type": "Story",
       "status": "InProgress",
       "priority": "Medium",
@@ -109,7 +121,7 @@
       "title": "Set up Akita state management",
       "description": "<h2>I heard about Akita and would love to try this</h2><p>Akita is a state management pattern, built on top of RxJS, which takes the idea of multiple data stores from Flux and the immutable updates from Redux, along with the concept of streaming data, to create the Observable Data Stores model.</p><p></p>",
       "type": "Story",
-      "status": "InProgress",
+      "status": "Done",
       "priority": "High",
       "listPosition": 1,
       "createdAt": "2020-06-12T14:40:01.304Z",
@@ -146,7 +158,7 @@
     {
       "id": "9554",
       "title": "Who is the author of Angular Jira clone?",
-      "description": "<h3>Hi! My name is Trung.</h3><p>I’m the only front-end engineer at Zyllem, where I work mostly with Angular to build client side web app. I love thinking about development and user experience. </p><br/><p>Find me around the web</p><p><br></p><ul><li>My blog: <a href='https://trungk18.com/' rel='noopener noreferrer' target='_blank'>https://trungk18.com/</a></li><li><a href='https://github.com/trungk18' rel='noopener noreferrer' target='_blank'>https://github.com/trungk18</a></li><li><a href='https://stackoverflow.com/users/3375906/trungk18' rel='noopener noreferrer' target='_blank'>https://stackoverflow.com/users/3375906/trungk18</a></li></ul><p><br></p>",
+      "description": "<h3>Hi! My name is Trung.</h3><p>I’m the <u>lead front-end engineer</u> at Zyllem, where I work mostly with Angular to build client side web app. I love thinking about development and user experience. </p><br/><p>Find me around the web</p><p><br></p><ul><li>My blog: <a href='https://trungk18.com/' rel='noopener noreferrer' target='_blank'>https://trungk18.com/</a></li><li><a href='https://github.com/trungk18' rel='noopener noreferrer' target='_blank'>https://github.com/trungk18</a></li><li><a href='https://stackoverflow.com/users/3375906/trungk18' rel='noopener noreferrer' target='_blank'>https://stackoverflow.com/users/3375906/trungk18</a></li><li><a href='https://stackblitz.com/@trungk18' rel='noopener noreferrer' target='_blank'>https://stackblitz.com/@trungk18</a></li><li><a href='https://twitter.com/tuantrungvo' rel='noopener noreferrer' target='_blank'>https://twitter.com/tuantrungvo</a></li></ul><p><br></p>",
       "type": "Task",
       "status": "Backlog",
       "priority": "High",

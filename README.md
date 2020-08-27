@@ -177,11 +177,15 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 
 | Part | Description                                                                     | Status |
 | ---- | ------------------------------------------------------------------------------- | ------ |
+| -1   | [Behind the 900 stars repository - Slide][part-1]                               | Done   |
 | 00   | [Prerequisites][part00]                                                         | Done   |
 | 01   | [Create a new repository and set up a new Angular application with CLI][part01] | Done   |
+| 01   | [Create a new repository and set up a new Angular application with CLI][part02] | Done   |
 
+[part-1]: https://slides.com/tuantrungvo/behind-the-900-star-repository-jira-clone-angular
 [part00]: https://trungk18.com/experience/angular-jira-clone-tutorial-00-prerequisites
 [part01]: https://trungk18.com/experience/angular-jira-clone-tutorial-01-planning-and-set-up
+[part02]: https://trungk18.com/experience/angular-jira-clone-tutorial-02-application-layout-tailwindcss-flex/
 [todo-list]: https://www.notion.so/trungk18/Tasks-636be5c5c0dd4d8cab30808e4e41facc
 
 ## Time spending

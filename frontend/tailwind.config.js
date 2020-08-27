@@ -6,7 +6,19 @@ module.exports = {
     enabled: true,
     content: ['./src/**/*.ts', './src/**/*.html'],
     options: {
-      whitelistPatterns: [/^font/, /^cursor/, /^pl-/, /^px-/, /^pr-/, /^ml-/, /^mx-/, /^mr-/, /^mb-/, /^mt-/, /^ng-/]
+      whitelistPatterns: [
+        /^font/,
+        /^cursor/,
+        /^pl-/,
+        /^px-/,
+        /^pr-/,
+        /^ml-/,
+        /^mx-/,
+        /^mr-/,
+        /^mb-/,
+        /^mt-/,
+        /^ng-/
+      ]
     }
   },
   theme: {
@@ -107,7 +119,7 @@ module.exports = {
         700: '#4c51bf',
         800: '#434190',
         900: '#3c366b'
-      },    
+      },
       primary: '#0747A6',
       tertiary: '#e6e9f0',
       textDarkest: '#172b4d',
@@ -129,11 +141,8 @@ module.exports = {
       borderInputFocus: '#4c9aff'
     },
     spacing: {
-      sidebar: '230px',
-      sidebarShort: '210px',
+      sidebar: '240px',
       navbarLeft: '64px',
-      navbarLeftSidebar: `${230 + 64}px`,
-      navbarLeftSidebarShort: `${210 + 64}px`,
       px: '1px',
       '0': '0',
       '1': '0.25rem',
