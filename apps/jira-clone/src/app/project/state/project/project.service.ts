@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
+import { setLoading } from '@datorama/akita';
 import {
   CreateIssueGQL,
   CreateIssueMutationVariables,
   FindProjectBySlugGQL,
   ProjectDto,
   ProjectIssueDto,
-  ReorderIssuesGQL,
-  ProjectLaneDto,
+  ReorderIssuesGQL
 } from '@trungk18/core/graphql/service/graphql';
 import { JComment } from '@trungk18/interface/comment';
 import { FetchResult } from 'apollo-link';
+import { environment } from 'apps/jira-clone/src/environments/environment';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { ProjectStore } from './project.store';
-import { environment } from 'apps/jira-clone/src/environments/environment';
-import { setLoading, arrayUpsert } from '@datorama/akita';
 
 @Injectable({
   providedIn: 'root',
@@ -88,7 +87,7 @@ export class ProjectService {
       .pipe(
         setLoading(this._store),
         tap(({ data }) => {
-          this.updateProject(<any>data.reorderIssueInLane);
+          this.updateProject(data.reorderIssueInLane);
         }),
       );
   }

@@ -508,19 +508,19 @@ export type ReorderIssuesMutation = (
   { __typename?: 'Mutation' }
   & { reorderIssueInLane: (
     { __typename?: 'ProjectDto' }
-    & Pick<ProjectDto, 'id' | 'name' | 'slug' | 'description' | 'category' | 'createdAt' | 'updatedAt'>
+    & Pick<ProjectDto, 'id' | 'name' | 'slug' | 'description' | 'category' | 'createdAt' | 'updatedAt' | 'isActive'>
     & { users: Array<(
       { __typename?: 'UserDto' }
-      & Pick<UserDto, 'id' | 'avatarUrl' | 'createdAt' | 'updatedAt' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
+      & Pick<UserDto, 'avatarUrl' | 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
     )>, lanes: Array<Maybe<(
       { __typename?: 'ProjectLaneDto' }
       & Pick<ProjectLaneDto, 'id' | 'title' | 'isActive' | 'createdAt' | 'updatedAt'>
       & { issues: Array<Maybe<(
         { __typename?: 'ProjectIssueDto' }
-        & Pick<ProjectIssueDto, 'id' | 'name' | 'summary' | 'title' | 'isActive' | 'createdAt' | 'updatedAt' | 'type' | 'status' | 'priority'>
+        & Pick<ProjectIssueDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'name' | 'title' | 'summary' | 'type' | 'status' | 'priority'>
         & { tags: Array<Maybe<(
           { __typename?: 'ProjectIssueTagDto' }
-          & Pick<ProjectIssueTagDto, 'id' | 'text' | 'description'>
+          & Pick<ProjectIssueTagDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'text' | 'description'>
           & { styles: (
             { __typename?: 'ProjectIssueTagStyle' }
             & Pick<ProjectIssueTagStyle, 'color' | 'backgroundColor'>
@@ -530,7 +530,14 @@ export type ReorderIssuesMutation = (
           & Pick<UserDto, 'id' | 'avatarUrl' | 'createdAt' | 'updatedAt' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
         ) }
       )>> }
-    )>> }
+    )>>, teams: Array<(
+      { __typename?: 'TeamDto' }
+      & Pick<TeamDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'title' | 'description'>
+      & { members: Array<(
+        { __typename?: 'UserDto' }
+        & Pick<UserDto, 'avatarUrl' | 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
+      )> }
+    )> }
   ) }
 );
 
@@ -710,11 +717,14 @@ export const ReorderIssuesDocument = gql`
     slug
     description
     category
+    createdAt
+    updatedAt
+    isActive
     users {
-      id
       avatarUrl
       createdAt
       updatedAt
+      id
       isActive
       email
       firstName
@@ -725,19 +735,24 @@ export const ReorderIssuesDocument = gql`
       id
       title
       isActive
+      createdAt
+      updatedAt
       issues {
-        id
-        name
-        summary
-        title
-        isActive
         createdAt
         updatedAt
+        id
+        isActive
+        name
+        title
+        summary
         type
         status
         priority
         tags {
+          createdAt
+          updatedAt
           id
+          isActive
           text
           styles {
             color
@@ -757,11 +772,26 @@ export const ReorderIssuesDocument = gql`
           fullName
         }
       }
+    }
+    teams {
       createdAt
       updatedAt
+      id
+      isActive
+      title
+      description
+      members {
+        avatarUrl
+        createdAt
+        updatedAt
+        id
+        isActive
+        email
+        firstName
+        lastName
+        fullName
+      }
     }
-    createdAt
-    updatedAt
   }
 }
     `;

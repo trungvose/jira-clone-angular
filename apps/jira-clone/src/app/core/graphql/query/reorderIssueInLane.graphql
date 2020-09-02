@@ -5,11 +5,14 @@ mutation ReorderIssues($projectId: String!, $laneId: String!, $issues: [String!]
     slug
     description
     category
+    createdAt
+    updatedAt
+    isActive
     users {
-      id
       avatarUrl
       createdAt
       updatedAt
+      id
       isActive
       email
       firstName
@@ -20,19 +23,24 @@ mutation ReorderIssues($projectId: String!, $laneId: String!, $issues: [String!]
       id
       title
       isActive
+      createdAt
+      updatedAt
       issues {
-        id
-        name
-        summary
-        title
-        isActive
         createdAt
         updatedAt
+        id
+        isActive
+        name
+        title
+        summary
         type
         status
         priority
         tags {
+          createdAt
+          updatedAt
           id
+          isActive
           text
           styles {
             color
@@ -52,10 +60,25 @@ mutation ReorderIssues($projectId: String!, $laneId: String!, $issues: [String!]
           fullName
         }
       }
+    }
+    teams {
       createdAt
       updatedAt
+      id
+      isActive
+      title
+      description
+      members {
+        avatarUrl
+        createdAt
+        updatedAt
+        id
+        isActive
+        email
+        firstName
+        lastName
+        fullName
+      }
     }
-    createdAt
-    updatedAt
   }
 }
