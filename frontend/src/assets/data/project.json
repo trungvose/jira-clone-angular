@@ -93,7 +93,7 @@
     {
       "id": "9451",
       "title": "Preparing backend API with GraphQL - Update 08/2020",
-      "description": "<p>GraphQL authentication API is ready with the enormous support from <a href='https://github.com/nartc' rel='noopener noreferrer' target='_blank'>@nartc</a></p><p><br></p><p>I am using Apollo to integrate with his well-written API. I have closed the first loop <strong>Login -&gt; Received token -&gt; Fetch me -&gt; Fetch project using token.</strong></p><p><br></p><p>Hopefully I will be able to deploy Phase 2 soon to AWS or Azure. Stay tuned!</p><p><br><p>See the current working branch: <a href='https://github.com/trungk18/jira-clone-angular/tree/feature/gql' rel='noopener noreferrer' target='_blank'>https://github.com/trungk18/jira-clone-angular/tree/feature/gql</a></p><br/></p><p><img src='https://i.imgur.com/sonzLl9.gif'/></p>",
+      "description": "<p>GraphQL authentication API is ready with the enormous support from <a href='https://github.com/nartc' rel='noopener noreferrer' target='_blank'>@nartc</a></p><p><br></p><p>I am using Apollo to integrate with his well-written API. I have closed the first loop <strong>Login -&gt; Received token -&gt; Fetch me -&gt; Fetch project using token.</strong></p><p><br></p><p>Hopefully I will be able to deploy Phase 2 soon to AWS or Azure. Stay tuned!</p><p><br><p>See the current working branch: <a href='https://github.com/trungk18/jira-clone-angular/tree/feature/gql' rel='noopener noreferrer' target='_blank'>https://github.com/trungk18/jira-clone-angular/tree/feature/gql</a></p><br/></p><p><img src='https://i.imgur.com/MpGReIF.gif'/></p>",
       "type": "Story",
       "status": "InProgress",
       "priority": "Medium",
