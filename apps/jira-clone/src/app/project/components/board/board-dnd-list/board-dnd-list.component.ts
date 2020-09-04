@@ -49,7 +49,7 @@ export class BoardDndListComponent implements OnInit {
       this._projectService
         .reorderIssues(
           this.lane.id,
-          newIssues.map((issue) => issue.id),
+          newIssues,
         )
         .subscribe();
     } else {

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { setLoading } from '@datorama/akita';
+import { setLoading, arrayUpdate } from '@datorama/akita';
 import {
   CreateIssueGQL,
   CreateIssueMutationVariables,
   FindProjectBySlugGQL,
   ProjectDto,
   ProjectIssueDto,
-  ReorderIssuesGQL
+  ReorderIssuesGQL,
+  ProjectLaneDto,
 } from '@trungk18/core/graphql/service/graphql';
 import { JComment } from '@trungk18/interface/comment';
 import { FetchResult } from 'apollo-link';
@@ -48,7 +49,6 @@ export class ProjectService {
               ...state,
               ...project,
             };
-            console.log(newState);
             return newState;
           });
         }),
@@ -65,6 +65,20 @@ export class ProjectService {
     }));
   }
 
+  updateLaneIssues(laneId: string, issues: ProjectIssueDto[]) {
+    this._store.update((state) => {
+      let lane = state.lanes.find((x) => x.id === laneId);
+      let lanes = arrayUpdate(state.lanes, laneId, {
+        ...lane,
+        issues,
+      });
+      return {
+        ...state,
+        lanes,
+      };
+    });
+  }
+
   createIssue(issueInput: CreateIssueMutationVariables) {
     let input: CreateIssueMutationVariables = {
       ...issueInput,
@@ -77,12 +91,14 @@ export class ProjectService {
     );
   }
 
-  reorderIssues(laneId: string, issues: string[]) {
+  reorderIssues(laneId: string, issues: ProjectIssueDto[]) {
+    let issueIds = issues.map((x) => x.id);
+    this.updateLaneIssues(laneId, issues)
     return this.reorderIssueGql
       .mutate({
         laneId,
         projectId: this._store.getValue().id,
-        issues,
+        issues: issueIds,
       })
       .pipe(
         setLoading(this._store),
