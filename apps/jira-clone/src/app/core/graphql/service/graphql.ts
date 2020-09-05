@@ -399,18 +399,51 @@ export type CreateIssueMutation = (
   { __typename?: 'Mutation' }
   & { createIssue: (
     { __typename?: 'ProjectIssueDto' }
-    & Pick<ProjectIssueDto, 'id' | 'name' | 'title' | 'isActive' | 'createdAt' | 'updatedAt' | 'type' | 'status' | 'priority'>
+    & Pick<ProjectIssueDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'name' | 'title' | 'summary' | 'type' | 'status' | 'priority'>
     & { tags: Array<Maybe<(
       { __typename?: 'ProjectIssueTagDto' }
-      & Pick<ProjectIssueTagDto, 'id' | 'text' | 'description'>
+      & Pick<ProjectIssueTagDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'text' | 'description'>
       & { styles: (
         { __typename?: 'ProjectIssueTagStyle' }
         & Pick<ProjectIssueTagStyle, 'color' | 'backgroundColor'>
       ) }
     )>>, main: (
       { __typename?: 'UserDto' }
-      & Pick<UserDto, 'id' | 'avatarUrl' | 'fullName'>
+      & Pick<UserDto, 'id' | 'avatarUrl' | 'createdAt' | 'updatedAt' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
     ) }
+  ) }
+);
+
+export type FindIssueByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type FindIssueByIdQuery = (
+  { __typename?: 'Query' }
+  & { findIssueById: (
+    { __typename?: 'ProjectIssueDetailDto' }
+    & Pick<ProjectIssueDetailDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'name' | 'title' | 'summary' | 'type' | 'status' | 'priority' | 'bodyMarkdown' | 'outputHtml'>
+    & { tags: Array<Maybe<(
+      { __typename?: 'ProjectIssueTagDto' }
+      & Pick<ProjectIssueTagDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'text' | 'description'>
+      & { styles: (
+        { __typename?: 'ProjectIssueTagStyle' }
+        & Pick<ProjectIssueTagStyle, 'color' | 'backgroundColor'>
+      ) }
+    )>>, main: (
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'id' | 'avatarUrl' | 'createdAt' | 'updatedAt' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
+    ), reporter: (
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'avatarUrl'>
+    ), assignee?: Maybe<(
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'avatarUrl'>
+    )>, participants: Array<Maybe<(
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'avatarUrl'>
+    )>> }
   ) }
 );
 
@@ -435,14 +468,14 @@ export type FindProjectBySlugQuery = (
         & Pick<ProjectIssueDto, 'id' | 'name' | 'title' | 'isActive' | 'createdAt' | 'updatedAt' | 'type' | 'status' | 'priority'>
         & { tags: Array<Maybe<(
           { __typename?: 'ProjectIssueTagDto' }
-          & Pick<ProjectIssueTagDto, 'id' | 'text' | 'description'>
+          & Pick<ProjectIssueTagDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'text' | 'description'>
           & { styles: (
             { __typename?: 'ProjectIssueTagStyle' }
             & Pick<ProjectIssueTagStyle, 'color' | 'backgroundColor'>
           ) }
         )>>, main: (
           { __typename?: 'UserDto' }
-          & Pick<UserDto, 'id' | 'avatarUrl' | 'fullName'>
+          & Pick<UserDto, 'id' | 'avatarUrl' | 'createdAt' | 'updatedAt' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
         ) }
       )>> }
     )>> }
@@ -486,6 +519,52 @@ export type MeQuery = (
   ) }
 );
 
+export type MoveIssueBetweenLanesMutationVariables = Exact<{
+  projectId: Scalars['String'];
+  targetLaneId: Scalars['String'];
+  previousLaneId: Scalars['String'];
+  targetIssues: Array<Scalars['String']>;
+  previousIssues: Array<Scalars['String']>;
+}>;
+
+
+export type MoveIssueBetweenLanesMutation = (
+  { __typename?: 'Mutation' }
+  & { moveIssueBetweenLanes: (
+    { __typename?: 'ProjectDto' }
+    & Pick<ProjectDto, 'id' | 'name' | 'slug' | 'description' | 'category' | 'createdAt' | 'updatedAt' | 'isActive'>
+    & { users: Array<(
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'avatarUrl' | 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
+    )>, lanes: Array<Maybe<(
+      { __typename?: 'ProjectLaneDto' }
+      & Pick<ProjectLaneDto, 'id' | 'title' | 'isActive' | 'createdAt' | 'updatedAt'>
+      & { issues: Array<Maybe<(
+        { __typename?: 'ProjectIssueDto' }
+        & Pick<ProjectIssueDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'name' | 'title' | 'summary' | 'type' | 'status' | 'priority'>
+        & { tags: Array<Maybe<(
+          { __typename?: 'ProjectIssueTagDto' }
+          & Pick<ProjectIssueTagDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'text' | 'description'>
+          & { styles: (
+            { __typename?: 'ProjectIssueTagStyle' }
+            & Pick<ProjectIssueTagStyle, 'color' | 'backgroundColor'>
+          ) }
+        )>>, main: (
+          { __typename?: 'UserDto' }
+          & Pick<UserDto, 'id' | 'avatarUrl' | 'createdAt' | 'updatedAt' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
+        ) }
+      )>> }
+    )>>, teams: Array<(
+      { __typename?: 'TeamDto' }
+      & Pick<TeamDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'title' | 'description'>
+      & { members: Array<(
+        { __typename?: 'UserDto' }
+        & Pick<UserDto, 'avatarUrl' | 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
+      )> }
+    )> }
+  ) }
+);
+
 export type RefreshTokenQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -495,6 +574,18 @@ export type RefreshTokenQuery = (
     { __typename?: 'TokenResultDto' }
     & Pick<TokenResultDto, 'expiry' | 'token'>
   ) }
+);
+
+export type RegisterMutationVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+  fullName: Scalars['String'];
+}>;
+
+
+export type RegisterMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'register'>
 );
 
 export type ReorderIssuesMutationVariables = Exact<{
@@ -541,20 +632,92 @@ export type ReorderIssuesMutation = (
   ) }
 );
 
+export type UpdateIssueMutationVariables = Exact<{
+  projectId: Scalars['String'];
+  issue: UpdateIssueDetailDto;
+}>;
+
+
+export type UpdateIssueMutation = (
+  { __typename?: 'Mutation' }
+  & { updateIssue: (
+    { __typename?: 'ProjectIssueDetailDto' }
+    & Pick<ProjectIssueDetailDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'name' | 'title' | 'summary' | 'type' | 'status' | 'priority' | 'bodyMarkdown' | 'outputHtml'>
+    & { tags: Array<Maybe<(
+      { __typename?: 'ProjectIssueTagDto' }
+      & Pick<ProjectIssueTagDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'text' | 'description'>
+      & { styles: (
+        { __typename?: 'ProjectIssueTagStyle' }
+        & Pick<ProjectIssueTagStyle, 'color' | 'backgroundColor'>
+      ) }
+    )>>, main: (
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'id' | 'avatarUrl' | 'createdAt' | 'updatedAt' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
+    ), reporter: (
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'avatarUrl'>
+    ), assignee?: Maybe<(
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'avatarUrl'>
+    )>, participants: Array<Maybe<(
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'avatarUrl'>
+    )>> }
+  ) }
+);
+
+export type UpdateMarkdownMutationVariables = Exact<{
+  markdown: Scalars['String'];
+  id: Scalars['String'];
+}>;
+
+
+export type UpdateMarkdownMutation = (
+  { __typename?: 'Mutation' }
+  & { updateMarkdown: (
+    { __typename?: 'ProjectIssueDetailDto' }
+    & Pick<ProjectIssueDetailDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'name' | 'title' | 'summary' | 'type' | 'status' | 'priority' | 'bodyMarkdown' | 'outputHtml'>
+    & { tags: Array<Maybe<(
+      { __typename?: 'ProjectIssueTagDto' }
+      & Pick<ProjectIssueTagDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'text' | 'description'>
+      & { styles: (
+        { __typename?: 'ProjectIssueTagStyle' }
+        & Pick<ProjectIssueTagStyle, 'color' | 'backgroundColor'>
+      ) }
+    )>>, main: (
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'id' | 'avatarUrl' | 'createdAt' | 'updatedAt' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName'>
+    ), reporter: (
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'avatarUrl'>
+    ), assignee?: Maybe<(
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'avatarUrl'>
+    )>, participants: Array<Maybe<(
+      { __typename?: 'UserDto' }
+      & Pick<UserDto, 'createdAt' | 'updatedAt' | 'id' | 'isActive' | 'email' | 'firstName' | 'lastName' | 'fullName' | 'avatarUrl'>
+    )>> }
+  ) }
+);
+
 export const CreateIssueDocument = gql`
     mutation CreateIssue($projectId: String!, $title: String!, $bodyMarkdown: String!, $summary: String!, $type: ProjectIssueType!, $tags: [CreateUpdateTagParamsDto!], $priority: ProjectIssuePriority, $assigneeId: String) {
   createIssue(projectId: $projectId, title: $title, bodyMarkdown: $bodyMarkdown, summary: $summary, type: $type, tags: $tags, priority: $priority, assigneeId: $assigneeId) {
-    id
-    name
-    title
-    isActive
     createdAt
     updatedAt
+    id
+    isActive
+    name
+    title
+    summary
     type
     status
     priority
     tags {
+      createdAt
+      updatedAt
       id
+      isActive
       text
       styles {
         color
@@ -565,6 +728,12 @@ export const CreateIssueDocument = gql`
     main {
       id
       avatarUrl
+      createdAt
+      updatedAt
+      isActive
+      email
+      firstName
+      lastName
       fullName
     }
   }
@@ -576,6 +745,88 @@ export const CreateIssueDocument = gql`
   })
   export class CreateIssueGQL extends Apollo.Mutation<CreateIssueMutation, CreateIssueMutationVariables> {
     document = CreateIssueDocument;
+    
+  }
+export const FindIssueByIdDocument = gql`
+    query FindIssueById($id: String!) {
+  findIssueById(id: $id) {
+    createdAt
+    updatedAt
+    id
+    isActive
+    name
+    title
+    summary
+    type
+    status
+    priority
+    tags {
+      createdAt
+      updatedAt
+      id
+      isActive
+      text
+      styles {
+        color
+        backgroundColor
+      }
+      description
+    }
+    main {
+      id
+      avatarUrl
+      createdAt
+      updatedAt
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+    }
+    bodyMarkdown
+    outputHtml
+    reporter {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+    assignee {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+    participants {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FindIssueByIdGQL extends Apollo.Query<FindIssueByIdQuery, FindIssueByIdQueryVariables> {
+    document = FindIssueByIdDocument;
     
   }
 export const FindProjectBySlugDocument = gql`
@@ -605,7 +856,10 @@ export const FindProjectBySlugDocument = gql`
         status
         priority
         tags {
+          createdAt
+          updatedAt
           id
+          isActive
           text
           styles {
             color
@@ -616,6 +870,12 @@ export const FindProjectBySlugDocument = gql`
         main {
           id
           avatarUrl
+          createdAt
+          updatedAt
+          isActive
+          email
+          firstName
+          lastName
           fullName
         }
       }
@@ -693,6 +953,100 @@ export const MeDocument = gql`
     document = MeDocument;
     
   }
+export const MoveIssueBetweenLanesDocument = gql`
+    mutation MoveIssueBetweenLanes($projectId: String!, $targetLaneId: String!, $previousLaneId: String!, $targetIssues: [String!]!, $previousIssues: [String!]!) {
+  moveIssueBetweenLanes(projectId: $projectId, targetLaneId: $targetLaneId, previousLaneId: $previousLaneId, targetIssues: $targetIssues, previousIssues: $previousIssues) {
+    id
+    name
+    slug
+    description
+    category
+    createdAt
+    updatedAt
+    isActive
+    users {
+      avatarUrl
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+    }
+    lanes {
+      id
+      title
+      isActive
+      createdAt
+      updatedAt
+      issues {
+        createdAt
+        updatedAt
+        id
+        isActive
+        name
+        title
+        summary
+        type
+        status
+        priority
+        tags {
+          createdAt
+          updatedAt
+          id
+          isActive
+          text
+          styles {
+            color
+            backgroundColor
+          }
+          description
+        }
+        main {
+          id
+          avatarUrl
+          createdAt
+          updatedAt
+          isActive
+          email
+          firstName
+          lastName
+          fullName
+        }
+      }
+    }
+    teams {
+      createdAt
+      updatedAt
+      id
+      isActive
+      title
+      description
+      members {
+        avatarUrl
+        createdAt
+        updatedAt
+        id
+        isActive
+        email
+        firstName
+        lastName
+        fullName
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MoveIssueBetweenLanesGQL extends Apollo.Mutation<MoveIssueBetweenLanesMutation, MoveIssueBetweenLanesMutationVariables> {
+    document = MoveIssueBetweenLanesDocument;
+    
+  }
 export const RefreshTokenDocument = gql`
     query RefreshToken {
   refreshToken {
@@ -707,6 +1061,19 @@ export const RefreshTokenDocument = gql`
   })
   export class RefreshTokenGQL extends Apollo.Query<RefreshTokenQuery, RefreshTokenQueryVariables> {
     document = RefreshTokenDocument;
+    
+  }
+export const RegisterDocument = gql`
+    mutation Register($email: String!, $password: String!, $fullName: String!) {
+  register(email: $email, password: $password, fullName: $fullName)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RegisterGQL extends Apollo.Mutation<RegisterMutation, RegisterMutationVariables> {
+    document = RegisterDocument;
     
   }
 export const ReorderIssuesDocument = gql`
@@ -801,5 +1168,169 @@ export const ReorderIssuesDocument = gql`
   })
   export class ReorderIssuesGQL extends Apollo.Mutation<ReorderIssuesMutation, ReorderIssuesMutationVariables> {
     document = ReorderIssuesDocument;
+    
+  }
+export const UpdateIssueDocument = gql`
+    mutation UpdateIssue($projectId: String!, $issue: UpdateIssueDetailDto!) {
+  updateIssue(projectId: $projectId, issue: $issue) {
+    createdAt
+    updatedAt
+    id
+    isActive
+    name
+    title
+    summary
+    type
+    status
+    priority
+    tags {
+      createdAt
+      updatedAt
+      id
+      isActive
+      text
+      styles {
+        color
+        backgroundColor
+      }
+      description
+    }
+    main {
+      id
+      avatarUrl
+      createdAt
+      updatedAt
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+    }
+    bodyMarkdown
+    outputHtml
+    reporter {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+    assignee {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+    participants {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateIssueGQL extends Apollo.Mutation<UpdateIssueMutation, UpdateIssueMutationVariables> {
+    document = UpdateIssueDocument;
+    
+  }
+export const UpdateMarkdownDocument = gql`
+    mutation UpdateMarkdown($markdown: String!, $id: String!) {
+  updateMarkdown(markdown: $markdown, id: $id) {
+    createdAt
+    updatedAt
+    id
+    isActive
+    name
+    title
+    summary
+    type
+    status
+    priority
+    tags {
+      createdAt
+      updatedAt
+      id
+      isActive
+      text
+      styles {
+        color
+        backgroundColor
+      }
+      description
+    }
+    main {
+      id
+      avatarUrl
+      createdAt
+      updatedAt
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+    }
+    bodyMarkdown
+    outputHtml
+    reporter {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+    assignee {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+    participants {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateMarkdownGQL extends Apollo.Mutation<UpdateMarkdownMutation, UpdateMarkdownMutationVariables> {
+    document = UpdateMarkdownDocument;
     
   }

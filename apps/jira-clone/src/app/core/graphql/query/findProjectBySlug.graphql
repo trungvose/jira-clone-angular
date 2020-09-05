@@ -24,7 +24,10 @@ query FindProjectBySlug($slug: String!) {
         status
         priority
         tags {
+          createdAt
+          updatedAt
           id
+          isActive
           text
           styles {
             color
@@ -35,6 +38,12 @@ query FindProjectBySlug($slug: String!) {
         main {
           id
           avatarUrl
+          createdAt
+          updatedAt
+          isActive
+          email
+          firstName
+          lastName
           fullName
         }
       }

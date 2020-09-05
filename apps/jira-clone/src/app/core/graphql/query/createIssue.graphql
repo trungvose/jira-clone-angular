@@ -18,17 +18,21 @@ mutation CreateIssue(
     priority: $priority
     assigneeId: $assigneeId
   ) {
-    id
-    name
-    title
-    isActive
     createdAt
     updatedAt
+    id
+    isActive
+    name
+    title
+    summary
     type
     status
     priority
     tags {
+      createdAt
+      updatedAt
       id
+      isActive
       text
       styles {
         color
@@ -39,6 +43,12 @@ mutation CreateIssue(
     main {
       id
       avatarUrl
+      createdAt
+      updatedAt
+      isActive
+      email
+      firstName
+      lastName
       fullName
     }
   }

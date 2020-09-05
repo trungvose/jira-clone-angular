@@ -6,6 +6,7 @@ import {
   TokenResultDto,
   UserInformationDto,
   LogoutGQL,
+  RegisterGQL,
 } from '@trungk18/core/graphql/service/graphql';
 import { LoginPayload } from '@trungk18/interface/payload/login';
 import { EMPTY, Observable, of, pipe, Subscription, throwError, timer } from 'rxjs';
@@ -18,17 +19,18 @@ import { setLoading } from '@datorama/akita';
 export class AuthService {
   constructor(
     private _store: AuthStore,
-    private _loginGQL: LoginGQL,
-    private _logoutGQL: LogoutGQL,
-    private _refreshTokenGQL: RefreshTokenGQL,
-    private _meGQL: MeGQL,
+    private _loginGql: LoginGQL,
+    private _logoutGql: LogoutGQL,
+    private _registerGql: RegisterGQL,
+    private _refreshTokenGql: RefreshTokenGQL,
+    private _meGql: MeGQL,
   ) {}
 
   private _jwtTimerSubscription: Subscription;
 
   login({ email, password }: LoginPayload): Observable<UserInformationDto> {
     this._store.setLoading(true);
-    return this._loginGQL
+    return this._loginGql
       .mutate({
         email,
         password,
@@ -42,8 +44,16 @@ export class AuthService {
       );
   }
 
+  register(email: string, password: string, fullName: string) {
+    this._registerGql.mutate({
+      email,
+      password,
+      fullName,
+    });
+  }
+
   logout() {
-    return this._logoutGQL.mutate().pipe(
+    return this._logoutGql.mutate().pipe(
       tap(() => {
         this._store.update(createInitialAuthState());
       }),
@@ -64,7 +74,7 @@ export class AuthService {
   }
 
   private _refreshToken(): Observable<TokenResultDto> {
-    return this._refreshTokenGQL.fetch().pipe(
+    return this._refreshTokenGql.fetch().pipe(
       setLoading(this._store),
       map(({ data }) => data?.refreshToken),
       catchError((err) => {
@@ -102,7 +112,7 @@ export class AuthService {
   };
 
   private _me(): Observable<UserInformationDto> {
-    return this._meGQL.fetch().pipe(map(({ data }) => data?.me));
+    return this._meGql.fetch().pipe(map(({ data }) => data?.me));
   }
 
   private _setupRefreshTimer(tokenResult: TokenResultDto) {

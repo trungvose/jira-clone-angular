@@ -1,0 +1,96 @@
+mutation MoveIssueBetweenLanes(
+  $projectId: String!
+  $targetLaneId: String!
+  $previousLaneId: String!
+  $targetIssues: [String!]!
+  $previousIssues: [String!]!
+) {
+  moveIssueBetweenLanes(
+    projectId: $projectId
+    targetLaneId: $targetLaneId
+    previousLaneId: $previousLaneId
+    targetIssues: $targetIssues
+    previousIssues: $previousIssues
+  ) {
+    id
+    name
+    slug
+    description
+    category
+    createdAt
+    updatedAt
+    isActive
+    users {
+      avatarUrl
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+    }
+    lanes {
+      id
+      title
+      isActive
+      createdAt
+      updatedAt
+      issues {
+        createdAt
+        updatedAt
+        id
+        isActive
+        name
+        title
+        summary
+        type
+        status
+        priority
+        tags {
+          createdAt
+          updatedAt
+          id
+          isActive
+          text
+          styles {
+            color
+            backgroundColor
+          }
+          description
+        }
+        main {
+          id
+          avatarUrl
+          createdAt
+          updatedAt
+          isActive
+          email
+          firstName
+          lastName
+          fullName
+        }
+      }
+    }
+    teams {
+      createdAt
+      updatedAt
+      id
+      isActive
+      title
+      description
+      members {
+        avatarUrl
+        createdAt
+        updatedAt
+        id
+        isActive
+        email
+        firstName
+        lastName
+        fullName
+      }
+    }
+  }
+}
