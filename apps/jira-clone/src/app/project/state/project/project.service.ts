@@ -124,10 +124,21 @@ export class ProjectService {
   }
 
   updateIssue(issue: UpdateIssueDetailDto) {
-    this._updateIssueGql.mutate({
-      projectId: this._raw.id,
-      issue,
-    });
+    return this._updateIssueGql
+      .mutate({
+        projectId: this._raw.id,
+        issue,
+      })
+      .pipe(
+        setLoading(this._store),
+        tap(({ data }) => {
+          let lane = this._raw.lanes.find((x) => x.issues.some(({ id }) => id === issue.id));
+          if (lane) {
+            let newIssues = arrayUpdate(lane.issues, issue.id, data.updateIssue);
+            this.updateLaneIssues(lane.id, newIssues);
+          }
+        }),
+      );
   }
 
   updateMarkdown(issueId: string, markdown: string) {
