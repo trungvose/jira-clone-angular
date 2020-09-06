@@ -21,17 +21,13 @@ export class IssueAssigneesComponent implements OnInit, OnChanges {
 
   removeUser() {
     this._projectService.updateIssue({
-      ...this.issue,
-      main: null
+      ...this.issue
     });
   }
 
   replaceUser(user: UserDto) {
     this._projectService.updateIssue({
-      ...this.issue,
-      main: {
-        ...user
-      }
+      ...this.issue
     });
   }
 
