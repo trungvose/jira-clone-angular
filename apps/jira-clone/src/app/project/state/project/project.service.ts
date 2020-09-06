@@ -69,27 +69,6 @@ export class ProjectService {
       );
   }
 
-  updateProject(project: Partial<ProjectDto>) {
-    this._store.update((state) => ({
-      ...state,
-      ...project,
-    }));
-  }
-
-  updateLaneIssues(laneId: string, issues: ProjectIssueDto[]) {
-    this._store.update((state) => {
-      let lane = state.lanes.find((x) => x.id === laneId);
-      let lanes = arrayUpdate(state.lanes, laneId, {
-        ...lane,
-        issues,
-      });
-      return {
-        ...state,
-        lanes,
-      };
-    });
-  }
-
   createIssue(issueInput: CreateIssueMutationVariables) {
     let input: CreateIssueMutationVariables = {
       ...issueInput,
@@ -104,7 +83,7 @@ export class ProjectService {
 
   reorderIssues(laneId: string, issues: ProjectIssueDto[]) {
     let issueIds = issues.map((x) => x.id);
-    this.updateLaneIssues(laneId, issues);
+    this._updateLaneIssues(laneId, issues);
     return this._reorderIssueGql
       .mutate({
         laneId,
@@ -119,8 +98,29 @@ export class ProjectService {
       );
   }
 
-  moveIssueBetweenLanes(input: MoveIssueBetweenLanesMutationVariables) {
-    this._moveIssueBetweenLanesGql.mutate(input);
+  moveIssueBetweenLanes(
+    previousLaneId: string,
+    previousIssues: ProjectIssueDto[],
+    targetLaneId: string,
+    targetIssues: ProjectIssueDto[],
+  ) {
+    this._updateLaneIssues(previousLaneId, previousIssues);
+    this._updateLaneIssues(targetLaneId, targetIssues);
+    
+    return this._moveIssueBetweenLanesGql
+      .mutate({
+        previousLaneId,
+        previousIssues: previousIssues.map((x) => x.id),
+        targetLaneId,
+        targetIssues: targetIssues.map((x) => x.id),
+        projectId: this._raw.id,
+      })
+      .pipe(
+        setLoading(this._store),
+        tap(({ data }) => {
+          this.updateProject(data.moveIssueBetweenLanes);
+        }),
+      );
   }
 
   updateIssue(issue: UpdateIssueDetailDto) {
@@ -135,7 +135,7 @@ export class ProjectService {
           let lane = this._raw.lanes.find((x) => x.issues.some(({ id }) => id === issue.id));
           if (lane) {
             let newIssues = arrayUpdate(lane.issues, issue.id, data.updateIssue);
-            this.updateLaneIssues(lane.id, newIssues);
+            this._updateLaneIssues(lane.id, newIssues);
           }
         }),
       );
@@ -145,6 +145,27 @@ export class ProjectService {
     this._updateMarkdownGql.mutate({
       id: issueId,
       markdown,
+    });
+  }
+
+  updateProject(project: Partial<ProjectDto>) {
+    this._store.update((state) => ({
+      ...state,
+      ...project,
+    }));
+  }
+
+  private _updateLaneIssues(laneId: string, issues: ProjectIssueDto[]) {
+    this._store.update((state) => {
+      let lane = state.lanes.find((x) => x.id === laneId);
+      let lanes = arrayUpdate(state.lanes, laneId, {
+        ...lane,
+        issues,
+      });
+      return {
+        ...state,
+        lanes,
+      };
     });
   }
 
