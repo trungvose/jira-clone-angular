@@ -6,11 +6,12 @@ import { IssueUtil } from '@trungk18/project/utils/issue';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { IssueModalComponent } from '../issue-modal/issue-modal.component';
 import { ProjectIssueDto, UserDto } from '@trungk18/core/graphql/service/graphql';
+import { ProjectService } from '@trungk18/project/state/project/project.service';
 
 @Component({
   selector: 'issue-card',
   templateUrl: './issue-card.component.html',
-  styleUrls: ['./issue-card.component.scss']
+  styleUrls: ['./issue-card.component.scss'],
 })
 @UntilDestroy()
 export class IssueCardComponent implements OnChanges {
@@ -18,7 +19,7 @@ export class IssueCardComponent implements OnChanges {
   issueTypeIcon: string;
   priorityIcon: IssuePriorityIcon;
 
-  constructor(private _modalService: NzModalService, private _projectQuery: ProjectQuery) {}
+  constructor(private _modalService: NzModalService, private _projectService: ProjectService) {}
 
   ngOnInit(): void {}
 
@@ -37,8 +38,8 @@ export class IssueCardComponent implements OnChanges {
       nzClosable: false,
       nzFooter: null,
       nzComponentParams: {
-        issue$: this._projectQuery.issueById$(issueId)
-      }
+        issue$: this._projectService.findIssueById(issueId),
+      },
     });
   }
 }

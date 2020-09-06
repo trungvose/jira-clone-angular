@@ -9,6 +9,7 @@ import { map, switchMap, debounceTime, startWith } from 'rxjs/operators';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { IssueModalComponent } from '../../issues/issue-modal/issue-modal.component';
 import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
+import { ProjectService } from '@trungk18/project/state/project/project.service';
 
 @Component({
   selector: 'search-drawer',
@@ -27,6 +28,7 @@ export class SearchDrawerComponent implements OnInit {
 
   constructor(
     private _projectQuery: ProjectQuery,
+    private _projectService: ProjectService,
     private _drawer: NzDrawerRef,
     private _modalService: NzModalService,
   ) {}
@@ -58,7 +60,7 @@ export class SearchDrawerComponent implements OnInit {
       nzClosable: false,
       nzFooter: null,
       nzComponentParams: {
-        issue$: this._projectQuery.issueById$(issue.id),
+        issue$: this._projectService.findIssueById(issue.id),
       },
     });
     this.closeDrawer();

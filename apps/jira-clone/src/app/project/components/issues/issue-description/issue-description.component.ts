@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@
 import { FormControl } from '@angular/forms';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
-import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
+import { ProjectIssueDto, ProjectIssueDetailDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-description',
@@ -11,7 +11,7 @@ import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
   encapsulation: ViewEncapsulation.None
 })
 export class IssueDescriptionComponent implements OnChanges {
-  @Input() issue: ProjectIssueDto;
+  @Input() issue: ProjectIssueDetailDto;
   descriptionControl: FormControl;
   editorOptions = quillConfiguration;
   isEditing: boolean;
@@ -22,7 +22,7 @@ export class IssueDescriptionComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     let issueChange = changes.issue;
     if (issueChange.currentValue !== issueChange.previousValue) {
-      this.descriptionControl = new FormControl(this.issue.summary);
+      this.descriptionControl = new FormControl(this.issue.outputHtml);
     }
   }
 
@@ -37,13 +37,14 @@ export class IssueDescriptionComponent implements OnChanges {
   save() {
     this._projectService.updateIssue({
       ...this.issue,
+      //TODO: change to bodyMarkdown
       summary: this.descriptionControl.value
     });
     this.setEditMode(false);
   }
 
   cancel() {
-    this.descriptionControl.patchValue(this.issue.summary);
+    this.descriptionControl.patchValue(this.issue.outputHtml);
     this.setEditMode(false);
   }
 

@@ -12,12 +12,14 @@ import {
   UpdateMarkdownGQL,
   MoveIssueBetweenLanesMutationVariables,
   UpdateIssueDetailDto,
+  FindIssueByIdGQL,
+  ProjectIssueDetailDto,
 } from '@trungk18/core/graphql/service/graphql';
 import { JComment } from '@trungk18/interface/comment';
 import { FetchResult } from 'apollo-link';
 import { environment } from 'apps/jira-clone/src/environments/environment';
 import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize, tap, map } from 'rxjs/operators';
 import { ProjectState, ProjectStore } from './project.store';
 
 @Injectable({
@@ -34,6 +36,7 @@ export class ProjectService {
     private _moveIssueBetweenLanesGql: MoveIssueBetweenLanesGQL,
     private _updateIssueGql: UpdateIssueGQL,
     private _updateMarkdownGql: UpdateMarkdownGQL,
+    private _findIssueByIdGql: FindIssueByIdGQL
   ) {
     this.baseUrl = environment.apiUrl;
   }
@@ -67,6 +70,12 @@ export class ProjectService {
           this.setLoading(false);
         }),
       );
+  }
+
+  findIssueById(issueId: string): Observable<ProjectIssueDetailDto> {
+    return this._findIssueByIdGql.fetch({
+      id: issueId
+    }).pipe(map(({data}) => data.findIssueById as any))//timelines is missing
   }
 
   createIssue(issueInput: CreateIssueMutationVariables) {
