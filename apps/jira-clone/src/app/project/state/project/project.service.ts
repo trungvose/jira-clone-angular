@@ -36,7 +36,7 @@ export class ProjectService {
     private _moveIssueBetweenLanesGql: MoveIssueBetweenLanesGQL,
     private _updateIssueGql: UpdateIssueGQL,
     private _updateMarkdownGql: UpdateMarkdownGQL,
-    private _findIssueByIdGql: FindIssueByIdGQL
+    private _findIssueByIdGql: FindIssueByIdGQL,
   ) {
     this.baseUrl = environment.apiUrl;
   }
@@ -73,9 +73,11 @@ export class ProjectService {
   }
 
   findIssueById(issueId: string): Observable<ProjectIssueDetailDto> {
-    return this._findIssueByIdGql.fetch({
-      id: issueId
-    }).pipe(map(({data}) => data.findIssueById as any))//timelines is missing
+    return this._findIssueByIdGql
+      .fetch({
+        id: issueId,
+      })
+      .pipe(map(({ data }) => data.findIssueById as any)); //timelines is missing
   }
 
   createIssue(issueInput: CreateIssueMutationVariables) {
@@ -92,7 +94,7 @@ export class ProjectService {
 
   reorderIssues(laneId: string, issues: ProjectIssueDto[]) {
     let issueIds = issues.map((x) => x.id);
-    this._updateLaneIssues(laneId, issues);
+    this._updateStoreLaneIssues(laneId, issues);
     return this._reorderIssueGql
       .mutate({
         laneId,
@@ -102,7 +104,7 @@ export class ProjectService {
       .pipe(
         setLoading(this._store),
         tap(({ data }) => {
-          this.updateProject(data.reorderIssueInLane);
+          this.updateStoreProject(data.reorderIssueInLane);
         }),
       );
   }
@@ -113,9 +115,9 @@ export class ProjectService {
     targetLaneId: string,
     targetIssues: ProjectIssueDto[],
   ) {
-    this._updateLaneIssues(previousLaneId, previousIssues);
-    this._updateLaneIssues(targetLaneId, targetIssues);
-    
+    this._updateStoreLaneIssues(previousLaneId, previousIssues);
+    this._updateStoreLaneIssues(targetLaneId, targetIssues);
+
     return this._moveIssueBetweenLanesGql
       .mutate({
         previousLaneId,
@@ -127,7 +129,7 @@ export class ProjectService {
       .pipe(
         setLoading(this._store),
         tap(({ data }) => {
-          this.updateProject(data.moveIssueBetweenLanes);
+          this.updateStoreProject(data.moveIssueBetweenLanes);
         }),
       );
   }
@@ -141,30 +143,40 @@ export class ProjectService {
       .pipe(
         setLoading(this._store),
         tap(({ data }) => {
-          let lane = this._raw.lanes.find((x) => x.issues.some(({ id }) => id === issue.id));
-          if (lane) {
-            let newIssues = arrayUpdate(lane.issues, issue.id, data.updateIssue);
-            this._updateLaneIssues(lane.id, newIssues);
-          }
+          this._updateStoreIssue(issue.id, data.updateIssue as any);
         }),
       );
   }
 
   updateMarkdown(issueId: string, markdown: string) {
-    this._updateMarkdownGql.mutate({
-      id: issueId,
-      markdown,
-    });
+    return this._updateMarkdownGql
+      .mutate({
+        id: issueId,
+        markdown,
+      })
+      .pipe(
+        setLoading(this._store),
+        tap(({ data }) => {
+          this._updateStoreIssue(issueId, data.updateMarkdown as any);
+        }),
+      );
   }
 
-  updateProject(project: Partial<ProjectDto>) {
+  updateStoreProject(project: Partial<ProjectDto>) {
     this._store.update((state) => ({
       ...state,
       ...project,
     }));
   }
 
-  private _updateLaneIssues(laneId: string, issues: ProjectIssueDto[]) {
+  private _updateStoreIssue(issueId: string, newIssue: ProjectIssueDetailDto) {
+    let lane = this._raw.lanes.find((x) => x.issues.some(({ id }) => id === issueId));
+    if (lane) {
+      let newIssues = arrayUpdate(lane.issues, issueId, newIssue);
+      this._updateStoreLaneIssues(lane.id, newIssues);
+    }
+  }
+  private _updateStoreLaneIssues(laneId: string, issues: ProjectIssueDto[]) {
     this._store.update((state) => {
       let lane = state.lanes.find((x) => x.id === laneId);
       let lanes = arrayUpdate(state.lanes, laneId, {

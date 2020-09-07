@@ -1,14 +1,14 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ProjectIssueDetailDto } from '@trungk18/core/graphql/service/graphql';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
-import { ProjectIssueDto, ProjectIssueDetailDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-description',
   templateUrl: './issue-description.component.html',
   styleUrls: ['./issue-description.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class IssueDescriptionComponent implements OnChanges {
   @Input() issue: ProjectIssueDetailDto;
@@ -34,13 +34,15 @@ export class IssueDescriptionComponent implements OnChanges {
     editor.focus && editor.focus();
   }
 
+  convertHtmlToMarkdown(html: string): string {
+    return html;
+  }
+
   save() {
-    this._projectService.updateIssue({
-      ...this.issue,
-      //TODO: change to bodyMarkdown
-      summary: this.descriptionControl.value
+    let markdownBody = this.convertHtmlToMarkdown(this.descriptionControl.value);
+    this._projectService.updateMarkdown(this.issue.id, markdownBody).subscribe(() => {
+      this.setEditMode(false);
     });
-    this.setEditMode(false);
   }
 
   cancel() {
