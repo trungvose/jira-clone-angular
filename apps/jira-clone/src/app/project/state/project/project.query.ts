@@ -21,17 +21,4 @@ export class ProjectQuery extends Query<ProjectState> {
       return lanes.reduce((issues, lane) => [...issues, ...lane.issues], []);
     }),
   );
-
-  issueById$(issueId: string) {
-    return this.lanes$.pipe(
-      delay(500),
-      map((lanes) => {
-        return lanes.reduce((issues: ProjectIssueDto[], lane: ProjectLaneDto) => [...issues, ...lane.issues], []);
-      }),
-      map((issues) => {
-        let issue = issues.find((x) => x.id === issueId);
-        return issue;
-      }),
-    );
-  }
 }

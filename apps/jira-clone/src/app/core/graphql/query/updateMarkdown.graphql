@@ -1,0 +1,72 @@
+mutation UpdateMarkdown($markdown: String!, $id: String!) {
+  updateMarkdown(markdown: $markdown, id: $id) {
+    createdAt
+    updatedAt
+    id
+    isActive
+    name
+    title
+    summary
+    type
+    status
+    priority
+    tags {
+      createdAt
+      updatedAt
+      id
+      isActive
+      text
+      styles {
+        color
+        backgroundColor
+      }
+      description
+    }
+    main {
+      id
+      avatarUrl
+      createdAt
+      updatedAt
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+    }
+    bodyMarkdown
+    outputHtml
+    reporter {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+    assignee {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+    participants {
+      createdAt
+      updatedAt
+      id
+      isActive
+      email
+      firstName
+      lastName
+      fullName
+      avatarUrl
+    }
+  }
+}

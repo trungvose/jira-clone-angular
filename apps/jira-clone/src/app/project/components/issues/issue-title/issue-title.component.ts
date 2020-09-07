@@ -6,7 +6,7 @@ import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 @Component({
   selector: 'issue-title',
   templateUrl: './issue-title.component.html',
-  styleUrls: ['./issue-title.component.scss']
+  styleUrls: ['./issue-title.component.scss'],
 })
 export class IssueTitleComponent implements OnChanges {
   @Input() issue: ProjectIssueDto;
@@ -21,10 +21,12 @@ export class IssueTitleComponent implements OnChanges {
     }
   }
 
-  onBlur() {
-    this._projectService.updateIssue({
-      ...this.issue,
-      title: this.titleControl.value
-    });
+  onBlur() {    
+    this._projectService
+      .updateIssue({
+        ...this.issue,
+        title: this.titleControl.value,
+      })
+      .subscribe();
   }
 }

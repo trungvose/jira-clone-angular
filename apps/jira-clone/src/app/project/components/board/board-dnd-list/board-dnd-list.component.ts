@@ -46,25 +46,14 @@ export class BoardDndListComponent implements OnInit {
         return;
       }
       moveItemInArray(newIssues, event.previousIndex, event.currentIndex);
-      this._projectService
-        .reorderIssues(
-          this.lane.id,
-          newIssues.map((issue) => issue.id),
-        )
-        .subscribe();
+      this._projectService.reorderIssues(this.lane.id, newIssues).subscribe();
     } else {
-      transferArrayItem(event.previousContainer.data, newIssues, event.previousIndex, event.currentIndex);
-      this.updateListPosition(newIssues);
-      newIssue.status = event.container.id as ProjectIssueStatus;
-      this._projectService.updateIssue(newIssue);
+      let previousLaneId = event.previousContainer.id;
+      let previousIssues = [...event.previousContainer.data];
+      let targetLaneId = event.container.id as ProjectIssueStatus;
+      transferArrayItem(previousIssues, newIssues, event.previousIndex, event.currentIndex);
+      this._projectService.moveIssueBetweenLanes(previousLaneId, previousIssues, targetLaneId, newIssues).subscribe();
     }
-  }
-
-  private updateListPosition(newList: ProjectIssueDto[]) {
-    newList.forEach((issue, idx) => {
-      let newIssueWithNewPosition = { ...issue, listPosition: idx + 1 };
-      this._projectService.updateIssue(newIssueWithNewPosition);
-    });
   }
 
   filterIssues(issues: ProjectIssueDto[], filter: FilterState): ProjectIssueDto[] {

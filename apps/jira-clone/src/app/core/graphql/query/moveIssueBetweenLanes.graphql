@@ -1,5 +1,17 @@
-mutation ReorderIssues($projectId: String!, $laneId: String!, $issues: [String!]!) {
-  reorderIssueInLane(projectId: $projectId, laneId: $laneId, issues: $issues) {
+mutation MoveIssueBetweenLanes(
+  $projectId: String!
+  $targetLaneId: String!
+  $previousLaneId: String!
+  $targetIssues: [String!]!
+  $previousIssues: [String!]!
+) {
+  moveIssueBetweenLanes(
+    projectId: $projectId
+    targetLaneId: $targetLaneId
+    previousLaneId: $previousLaneId
+    targetIssues: $targetIssues
+    previousIssues: $previousIssues
+  ) {
     id
     name
     slug

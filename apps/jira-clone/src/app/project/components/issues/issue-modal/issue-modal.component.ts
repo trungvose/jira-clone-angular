@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProjectIssueDetailDto } from '@trungk18/core/graphql/service/graphql';
+import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-model';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { Observable } from 'rxjs';
-import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-model';
-import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
 
 @Component({
   selector: 'issue-modal',
@@ -12,7 +12,7 @@ import { ProjectIssueDto } from '@trungk18/core/graphql/service/graphql';
   styleUrls: ['./issue-modal.component.scss']
 })
 export class IssueModalComponent implements OnInit {
-  @Input() issue$: Observable<ProjectIssueDto>;
+  @Input() issue$: Observable<ProjectIssueDetailDto>;
 
   constructor(
     private _modal: NzModalRef,
