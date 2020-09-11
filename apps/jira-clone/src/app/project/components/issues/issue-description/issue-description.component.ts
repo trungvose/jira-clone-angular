@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ProjectIssueDetailDto } from '@trungk18/core/graphql/service/graphql';
-import { quillConfiguration } from '@trungk18/project/config/editor';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 
 @Component({
@@ -13,7 +12,6 @@ import { ProjectService } from '@trungk18/project/state/project/project.service'
 export class IssueDescriptionComponent implements OnChanges {
   @Input() issue: ProjectIssueDetailDto;
   descriptionControl: FormControl;
-  editorOptions = quillConfiguration;
   isEditing: boolean;
   isWorking: boolean;
 

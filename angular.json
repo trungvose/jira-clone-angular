@@ -25,12 +25,9 @@
             "tsConfig": "apps/jira-clone/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/jira-clone/src/favicon.ico", "apps/jira-clone/src/assets"],
-            "styles": [
-              "./node_modules/quill/dist/quill.core.css",
-              "./node_modules/quill/dist/quill.snow.css",
+            "styles": [              
               "apps/jira-clone/src/styles.scss"
-            ],
-            "scripts": ["./node_modules/quill/dist/quill.min.js"]
+            ]            
           },
           "configurations": {
             "production": {

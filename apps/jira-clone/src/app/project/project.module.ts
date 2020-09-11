@@ -13,7 +13,6 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { QuillModule } from 'ngx-quill';
 import { JiraControlModule } from '../jira-control/jira-control.module';
 import { AddIssueModalComponent } from './components/add-issue-modal/add-issue-modal.component';
 import { IssueAssigneesSelectComponent } from './components/add-issue-modal/issue-assignees-select/issue-assignees-select.component';
@@ -70,8 +69,7 @@ import { ProjectComponent } from './project.component';
     ReactiveFormsModule,
     JiraCoreModule,
     JiraControlModule,
-    ContentLoaderModule,
-    QuillModule
+    ContentLoaderModule    
   ]
 })
 export class ProjectModule {}

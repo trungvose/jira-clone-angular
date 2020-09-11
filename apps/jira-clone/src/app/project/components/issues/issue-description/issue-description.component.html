@@ -1,10 +1,5 @@
 <ng-container *ngIf="isEditing; else readonlyModeTmpl">
-    <quill-editor class="content-editor"
-                  [modules]="editorOptions"
-                  [formControl]="descriptionControl"
-                  [placeholder]="''"
-                  (onEditorCreated)="editorCreated($event)">
-    </quill-editor>
+    
 
     <div class="pt-3 flex
       items-center">
