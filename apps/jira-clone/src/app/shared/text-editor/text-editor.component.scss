@@ -13,7 +13,10 @@ $blue-border: #4c9aff;
     padding-right: 15px;
     resize: none;
     border-color: transparent;
+    min-height: 100px;
+    overflow-y: hidden;
     @apply w-full;
+
     &:focus {
       outline: none;
       border: transparent;
