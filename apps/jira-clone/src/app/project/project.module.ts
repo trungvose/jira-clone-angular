@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContentLoaderModule } from '@ngneat/content-loader';
-import { JiraCoreModule } from '@trungk18/core/core.module';
+import { JiraDirectivesModule } from '@trungk18/shared/directives/directives.module';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -68,7 +68,7 @@ import { TEXT_EDITOR_ICONS } from '@trungk18/shared/text-editor/icons';
     TextFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    JiraCoreModule,
+    JiraDirectivesModule,
     JiraControlModule,
     JiraTextEditorModule,
     ContentLoaderModule,
