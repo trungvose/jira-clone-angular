@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { JiraControlModule } from './jira-control/jira-control.module';
+import { JiraControlModule } from './shared/jira-control/jira-control.module';
 import { GraphQLModule } from './core/graphql/graphql.module';
 import { AuthInterceptorProvider } from './core/interceptors/auth.interceptor';
 import { WithCredentialInterceptorProvider } from './core/interceptors/with-credential.interceptor';

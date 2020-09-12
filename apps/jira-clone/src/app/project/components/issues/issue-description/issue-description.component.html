@@ -1,5 +1,7 @@
 <ng-container *ngIf="isEditing; else readonlyModeTmpl">
-    
+    <j-text-editor [control]="descriptionControl">
+
+    </j-text-editor>
 
     <div class="pt-3 flex
       items-center">
@@ -16,7 +18,7 @@
 </ng-container>
 
 <ng-template #readonlyModeTmpl>
-    <div class="ql-snow content-readonly"
+    <div class="content-readonly"
          *ngIf="!isEditing"
          (click)="setEditMode(true)">
         <div class="ql-editor"
