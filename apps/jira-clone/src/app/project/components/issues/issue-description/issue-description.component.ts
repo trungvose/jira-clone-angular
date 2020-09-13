@@ -36,6 +36,7 @@ export class IssueDescriptionComponent implements OnChanges {
   save() {
     let markdown = this.descriptionControl.value;
     if (markdown === this.issue.bodyMarkdown) {
+      this.cancel();
       return;
     }
     this._projectService.updateMarkdown(this.issue.id, this.descriptionControl.value).subscribe(() => {
