@@ -1,10 +1,7 @@
 <ng-container *ngIf="isEditing; else readonlyModeTmpl">
-    <quill-editor class="content-editor"
-                  [modules]="editorOptions"
-                  [formControl]="descriptionControl"
-                  [placeholder]="''"
-                  (onEditorCreated)="editorCreated($event)">
-    </quill-editor>
+    <j-text-editor [control]="descriptionControl"
+                   [autoFocus]="true">
+    </j-text-editor>
 
     <div class="pt-3 flex
       items-center">
@@ -21,7 +18,7 @@
 </ng-container>
 
 <ng-template #readonlyModeTmpl>
-    <div class="ql-snow content-readonly"
+    <div class="content-readonly"
          *ngIf="!isEditing"
          (click)="setEditMode(true)">
         <div class="ql-editor"

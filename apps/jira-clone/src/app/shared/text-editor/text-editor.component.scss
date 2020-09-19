@@ -1,0 +1,54 @@
+$hover-color: #06c;
+$border-color: #d9d9d9;
+$blue-border: #4c9aff;
+
+:host {
+  border: 1px solid $border-color;
+  box-shadow: 0 0 0 1px $border-color;
+  border-radius: 3px;
+  outline: none;
+  @apply bg-white flex flex-col;
+
+  .text-editor {
+    padding-left: 15px;
+    padding-right: 15px;
+    resize: none;
+    border-color: transparent;
+    min-height: 100px;
+    overflow-y: hidden;
+    @apply w-full;
+
+    &:focus {
+      outline: none;
+      border: transparent;
+    }
+  }
+
+  &.focus {
+    border: 1px solid $hover-color;
+    box-shadow: 0 0 0 1px $hover-color;
+  }
+}
+
+markdown-toolbar {
+  padding: 8px;
+
+  .btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    padding: 3px 5px;
+    width: 28px;
+    color: #222;
+
+    i {
+      @apply flex;
+    }
+
+    &:hover {
+      color: $hover-color;
+    }
+  }
+}

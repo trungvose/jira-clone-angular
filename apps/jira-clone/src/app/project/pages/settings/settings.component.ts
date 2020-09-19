@@ -58,7 +58,7 @@ export class SettingsComponent implements OnInit {
 
   submitForm() {
     let formValue: Partial<ProjectDto> = this.projectForm.getRawValue();
-    this._projectService.updateProject(formValue);
+    this._projectService.updateStoreProject(formValue);
     this._notification.create('success', 'Changes have been saved successfully.', '');
   }
 

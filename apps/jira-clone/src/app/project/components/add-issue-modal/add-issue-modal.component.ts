@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
-import { quillConfiguration } from '@trungk18/project/config/editor';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { DateUtil } from '@trungk18/project/utils/date';
@@ -28,7 +27,6 @@ export class AddIssueModalComponent implements OnInit {
   reporterUsers$: Observable<UserDto[]>;
   assignees$: Observable<UserDto[]>;
   issueForm: FormGroup;
-  editorOptions = quillConfiguration;
 
   get f() {
     return this.issueForm?.controls;

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { AutofocusDirective } from './directives/autofocus.directive';
+import { AutofocusDirective } from './autofocus.directive';
 
 const directives = [AutofocusDirective];
 @NgModule({
   imports: [],
   exports: [...directives],
-  declarations: [...directives]
+  declarations: [...directives],
 })
-export class JiraCoreModule {}
+export class JiraDirectivesModule {}

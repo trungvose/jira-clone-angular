@@ -39,7 +39,7 @@ export class IssueCommentComponent implements OnInit {
     this._authQuery.user$.pipe(untilDestroyed(this)).subscribe((user) => {
       this.user = user;
       if (this.createMode) {
-        //this.comment = new JComment(this.issueId, this.user);
+        this.comment = new JComment(this.issueId, this.user);
       }
     });
   }

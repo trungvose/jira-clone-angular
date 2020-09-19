@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContentLoaderModule } from '@ngneat/content-loader';
-import { JiraCoreModule } from '@trungk18/core/core.module';
+import { JiraDirectivesModule } from '@trungk18/shared/directives/directives.module';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -13,8 +13,8 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { QuillModule } from 'ngx-quill';
-import { JiraControlModule } from '../jira-control/jira-control.module';
+import { JiraControlModule } from '../shared/jira-control/jira-control.module';
+import { JiraTextEditorModule } from '../shared/text-editor/text-editor.module';
 import { AddIssueModalComponent } from './components/add-issue-modal/add-issue-modal.component';
 import { IssueAssigneesSelectComponent } from './components/add-issue-modal/issue-assignees-select/issue-assignees-select.component';
 import { IssuePrioritySelectComponent } from './components/add-issue-modal/issue-priority-select/issue-priority-select.component';
@@ -33,7 +33,7 @@ import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-d
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
-
+import { TEXT_EDITOR_ICONS } from '@trungk18/shared/text-editor/icons';
 @NgModule({
   declarations: [
     ...NavigationComponents,
@@ -51,12 +51,12 @@ import { ProjectComponent } from './project.component';
     IssuePrioritySelectComponent,
     IssueReporterSelectComponent,
     IssueAssigneesSelectComponent,
-    ResizerComponent
+    ResizerComponent,
   ],
   imports: [
     CommonModule,
     ProjectRoutingModule,
-    NzIconModule.forChild(NZ_JIRA_ICONS),
+    NzIconModule.forChild([...NZ_JIRA_ICONS, ...TEXT_EDITOR_ICONS]),
     NzToolTipModule,
     NzModalModule,
     NzDropDownModule,
@@ -68,10 +68,10 @@ import { ProjectComponent } from './project.component';
     TextFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    JiraCoreModule,
+    JiraDirectivesModule,
     JiraControlModule,
+    JiraTextEditorModule,
     ContentLoaderModule,
-    QuillModule
-  ]
+  ],
 })
 export class ProjectModule {}

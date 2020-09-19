@@ -2,7 +2,7 @@
   position: relative;
   min-height: 50px;
   cursor: pointer;
-  
+
   .icon-edit {
     @apply font-normal;
     display: none;
@@ -46,5 +46,17 @@
 
   ul {
     @apply pl-2;
+    li {
+      padding-left: 1.5em;
+      &:before {
+        margin-left: -1.5em;
+        margin-right: 0.3em;
+        text-align: right;
+        content: '\2022';        
+        white-space: nowrap;
+        width: 1.2em;
+        @apply inline-block;
+      }
+    }
   }
 }
