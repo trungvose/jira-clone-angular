@@ -157,13 +157,13 @@ I will take two weeks break to:
 
 ### Phase 2
 
-> September 2020
+> September ~ October 2020
 
 - [ ] Refactor the mono repo to use Nx Workspace
 - [ ] GraphQL API and store data on the actual database
 - [ ] Authentication
-- [ ] Websocket realtime update
-- [ ] Interactive report
+
+View the current [work in progress branch][gql]
 
 ## Tutorial
 
@@ -184,6 +184,7 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 | 03   | [Setup Akita state management][part03]                                          | Done   |
 | 04   | [Build an editable textbox][part04]                                             | Done   |
 | 05   | [Build an interactive drag and drop board][part05]                              | Done   |
+| 06   | [Build a markdown text editor][part06]                                          | Done   |
 
 [part-1]: https://slides.com/tuantrungvo/behind-the-900-star-repository-jira-clone-angular
 [part00]: https://trungk18.com/experience/angular-jira-clone-tutorial-00-prerequisites/
@@ -192,6 +193,7 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 [part03]: https://trungk18.com/experience/angular-jira-clone-tutorial-03-akita-state-management/
 [part04]: https://trungk18.com/experience/angular-jira-clone-tutorial-04-editable-textbox/
 [part05]: https://trungk18.com/experience/angular-jira-clone-tutorial-05-interactive-drag-and-drop-board/
+[part06]: https://trungk18.com/experience/angular-jira-clone-tutorial-06-angular-markdown-text-editor/
 [todo-list]: https://www.notion.so/trungk18/Tasks-636be5c5c0dd4d8cab30808e4e41facc
 
 ## Time spending
@@ -308,3 +310,4 @@ Feel free to use my code on your project. It would be great if you put a referen
 [lazy-load]: https://angular.io/guide/lazy-loading-ngmodules
 [chau]: https://github.com/nartc
 [tiep]: https://github.com/tieppt
+[gql]: https://github.com/trungk18/jira-clone-angular/tree/feature/gql
