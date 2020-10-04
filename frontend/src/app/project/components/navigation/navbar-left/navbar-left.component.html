@@ -2,7 +2,7 @@
     <div class="navbarLeft-content">
         <div class="logoLink"
              title="Angular Jira Clone by trungk18">
-            <svg class="h-8 w-8 text-textLogo"
+            <svg class="w-8 h-8 text-textLogo"
                  viewBox="0 0 32 32"
                  xmlns="http://www.w3.org/2000/svg"
                  aria-hidden="true">
@@ -44,11 +44,12 @@
         <div *ngFor="let item of items"
              class="item">
             <div (click)="item.handler()"
+                [attr.aria-label]="item.tooltip"
                  nz-tooltip
                  [nzTooltipTitle]="item.tooltip"
                  nzTooltipPlacement="right"
                  class="itemIcon">
-                <i class="text-white text-xl"
+                <i class="text-xl text-white"
                    nz-icon
                    [nzType]="item.icon"
                    nzTheme="outline"></i>
@@ -76,7 +77,7 @@
                      nzTooltipTitle="About"
                      nzTooltipPlacement="right"
                      class="itemIcon">
-                    <i class="text-white text-xl"
+                    <i class="text-xl text-white"
                        nz-icon
                        nzType="question-circle"
                        nzTheme="fill">
