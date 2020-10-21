@@ -1,6 +1,6 @@
 import { AfterContentInit, Directive, ElementRef, Input, OnDestroy } from '@angular/core';
 
-var BASE_TIMER_DELAY = 10;
+const BASE_TIMER_DELAY = 10;
 
 @Directive({
   selector: '[jAutofocus]'

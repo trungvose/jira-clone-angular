@@ -15,7 +15,7 @@ export class IssueTitleComponent implements OnChanges {
   constructor(private _projectService: ProjectService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    let issueChange = changes.issue;
+    const issueChange = changes.issue;
     if (issueChange.currentValue !== issueChange.previousValue) {
       this.titleControl = new FormControl(this.issue.title);
     }

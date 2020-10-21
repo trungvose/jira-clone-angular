@@ -20,7 +20,7 @@ export class IssueDescriptionComponent implements OnChanges {
   constructor(private _projectService: ProjectService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    let issueChange = changes.issue;
+    const issueChange = changes.issue;
     if (issueChange.currentValue !== issueChange.previousValue) {
       this.descriptionControl = new FormControl(this.issue.description);
     }

@@ -38,8 +38,8 @@ export class BoardDndListComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<JIssue[]>) {
-    let newIssue: JIssue = { ...event.item.data };
-    let newIssues = [...event.container.data];
+    const newIssue: JIssue = { ...event.item.data };
+    const newIssues = [...event.container.data];
     if (event.previousContainer === event.container) {
       moveItemInArray(newIssues, event.previousIndex, event.currentIndex);
       this.updateListPosition(newIssues);
@@ -58,7 +58,7 @@ export class BoardDndListComponent implements OnInit {
 
   private updateListPosition(newList: JIssue[]) {
     newList.forEach((issue, idx) => {
-      let newIssueWithNewPosition = { ...issue, listPosition: idx + 1 };
+      const newIssueWithNewPosition = { ...issue, listPosition: idx + 1 };
       this._projectService.updateIssue(newIssueWithNewPosition);
     });
   }
@@ -66,27 +66,27 @@ export class BoardDndListComponent implements OnInit {
   filterIssues(issues: JIssue[], filter: FilterState): JIssue[] {
     const { onlyMyIssue, ignoreResolved, searchTerm, userIds } = filter;
     return issues.filter((issue) => {
-      let isMatchTerm = searchTerm
+      const isMatchTerm = searchTerm
         ? IssueUtil.searchString(issue.title, searchTerm)
         : true;
 
-      let isIncludeUsers = userIds.length
+      const isIncludeUsers = userIds.length
         ? issue.userIds.some((userId) => userIds.includes(userId))
         : true;
 
-      let isMyIssue = onlyMyIssue
+      const isMyIssue = onlyMyIssue
         ? this.currentUserId && issue.userIds.includes(this.currentUserId)
         : true;
 
-      let isIgnoreResolved = ignoreResolved ? issue.status !== IssueStatus.DONE : true;
+      const isIgnoreResolved = ignoreResolved ? issue.status !== IssueStatus.DONE : true;
 
       return isMatchTerm && isIncludeUsers && isMyIssue && isIgnoreResolved;
     });
   }
 
   isDateWithinThreeDaysFromNow(date: string) {
-    let now = new Date();
-    let inputDate = new Date(date);
+    const now = new Date();
+    const inputDate = new Date(date);
     return dateFns.isAfter(inputDate, dateFns.subDays(now, 3));
   }
 }

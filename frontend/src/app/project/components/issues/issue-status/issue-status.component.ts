@@ -33,7 +33,7 @@ export class IssueStatusComponent implements OnInit {
   }
 
   updateIssue(status: IssueStatus) {
-    let newPosition = this._projectQuery.lastIssuePosition(status);
+    const newPosition = this._projectQuery.lastIssuePosition(status);
     this._projectService.updateIssue({
       ...this.issue,
       status,

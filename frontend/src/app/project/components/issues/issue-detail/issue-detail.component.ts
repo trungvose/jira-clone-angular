@@ -28,12 +28,12 @@ export class IssueDetailComponent implements OnInit {
       nzClosable: false,
       nzFooter: null,
       nzStyle: {
-        top: "140px"
+        top: '140px'
       },
       nzComponentParams: {
         issueId: this.issue.id,
-        onDelete: this.onDelete                
-      }      
+        onDelete: this.onDelete
+      }
     });
   }
 

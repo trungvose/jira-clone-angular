@@ -9,7 +9,7 @@ import { IssueUtil } from '@trungk18/project/utils/issue';
 })
 export class IssueResultComponent implements OnInit {
   @Input() issue: JIssue;
-  
+
   get issueTypeIcon() {
     return IssueUtil.getIssueTypeIcon(this.issue?.type);
   }

@@ -40,7 +40,7 @@ export class AddIssueModalComponent implements OnInit {
     this.reporterUsers$ = this._projectQuery.users$.pipe(
       untilDestroyed(this),
       tap((users) => {
-        let [user] = users;
+        const [user] = users;
         if (user) {
           this.f.reporterId.patchValue(user.id);
         }
@@ -65,8 +65,8 @@ export class AddIssueModalComponent implements OnInit {
     if (this.issueForm.invalid) {
       return;
     }
-    let now = DateUtil.getNow();
-    let issue: JIssue = {
+    const now = DateUtil.getNow();
+    const issue: JIssue = {
       ...this.issueForm.getRawValue(),
       id: IssueUtil.getRandomId(),
       status: IssueStatus.BACKLOG,

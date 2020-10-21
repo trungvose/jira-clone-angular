@@ -8,9 +8,9 @@ import { FormControl } from '@angular/forms';
 })
 export class InputComponent implements OnInit {
   @Input() control: FormControl;
-  @Input() containerClassName: string = '';
+  @Input() containerClassName = '';
   @Input() icon: string;
-  @Input() iconSize: number = 16;
+  @Input() iconSize = 16;
   @Input() placeholder = '';
   @Input() enableClearButton: boolean;
 
@@ -25,7 +25,7 @@ export class InputComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.control = this.control ?? new FormControl("");
+    this.control = this.control ?? new FormControl('');
   }
 
   clear() {

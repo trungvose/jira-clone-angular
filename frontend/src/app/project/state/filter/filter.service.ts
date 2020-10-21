@@ -15,8 +15,8 @@ export class FilterService {
 
   toggleUserId(userId: string) {
     this.store.update((state) => {
-      let hasUser = state.userIds.includes(userId);
-      let userIds = hasUser
+      const hasUser = state.userIds.includes(userId);
+      const userIds = hasUser
         ? state.userIds.filter((x) => x !== userId)
         : [...state.userIds, userId];
       return {
@@ -28,7 +28,7 @@ export class FilterService {
 
   toggleOnlyMyIssue() {
     this.store.update((state) => {
-      let onlyMyIssue = !state.onlyMyIssue;
+      const onlyMyIssue = !state.onlyMyIssue;
       return {
         ...state,
         onlyMyIssue
@@ -38,7 +38,7 @@ export class FilterService {
 
   toggleIgnoreResolve() {
     this.store.update((state) => {
-      let ignoreResolved = !state.ignoreResolved;
+      const ignoreResolved = !state.ignoreResolved;
       return {
         ...state,
         ignoreResolved

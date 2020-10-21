@@ -18,9 +18,9 @@ export class GoogleAnalyticsService {
       return;
     }
     gtag('event', eventName, {
-      'event_category': eventCategory,
-      'event_label': eventLabel,
-      'value': eventValue
+      event_category: eventCategory,
+      event_label: eventLabel,
+      value: eventValue
     });
   }
 

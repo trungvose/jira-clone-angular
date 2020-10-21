@@ -6,8 +6,8 @@ export function NoWhitespaceValidator(): ValidatorFn {
     if (typeof controlVal === 'number') {
       controlVal = `${controlVal}`;
     }
-    let isWhitespace = (controlVal || '').trim().length === 0;
-    let isValid = !isWhitespace;
+    const isWhitespace = (controlVal || '').trim().length === 0;
+    const isValid = !isWhitespace;
     return isValid ? null : { whitespace: 'value is only whitespace' };
   };
 }

@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 export class SvgIconComponent {
   @Input() name: String;
   @Input() size = 16;
-  @Input() fill = "currentColor"
+  @Input() fill = 'currentColor';
 
   constructor() {}
 
