@@ -1,6 +1,7 @@
-# A simplified Jira clone built with Angular 9 and Akita
+# A simplified Jira clone built with Angular 10, Akita and ng-zorro
 
-> Phase two will not be completed as planned for 25 July. Both [Chau Tran][chau] and I was too busy with some other commitments.
+> Phase two will not be completed as planned for 25 July. Both [Chau Tran][chau] and I was too busy with some other commitments. View our [working in progress Graph QL branch][gql].
+>
 > You can check the latest Tetris game that I built with Angular and Akita in the meantime ➡ [tetris.trungk18.com](https://tetris.trungk18.com/) 🎮
 >
 > Thanks for your continuous support. Stay tuned! :muscle:
