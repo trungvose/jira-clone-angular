@@ -1,8 +1,6 @@
 <div class="px-8 py-5 modal">
     <div class="flex items-center py-3 text-textDarkest">
-        <div class="text-xl modal-title">
-            Create issue
-        </div>
+        <div class="text-xl modal-title">Create issue</div>
         <div class="flex-auto"></div>
         <j-button icon="times"
                   [iconSize]="24"
@@ -29,6 +27,7 @@
                 Short summary
             </label>
             <input class="form-input"
+                   name="IssueTitle"
                    formControlName="title"
                    jAutofocus
                    [timerDelay]="300" />
