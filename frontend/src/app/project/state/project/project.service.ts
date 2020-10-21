@@ -55,7 +55,7 @@ export class ProjectService {
   updateIssue(issue: JIssue) {
     issue.updatedAt = DateUtil.getNow();
     this._store.update((state) => {
-      let issues = arrayUpsert(state.issues, issue.id, issue);
+      const issues = arrayUpsert(state.issues, issue.id, issue);
       return {
         ...state,
         issues
@@ -65,7 +65,7 @@ export class ProjectService {
 
   deleteIssue(issueId: string) {
     this._store.update((state) => {
-      let issues = arrayRemove(state.issues, issueId);
+      const issues = arrayRemove(state.issues, issueId);
       return {
         ...state,
         issues
@@ -74,13 +74,13 @@ export class ProjectService {
   }
 
   updateIssueComment(issueId: string, comment: JComment) {
-    let allIssues = this._store.getValue().issues;
-    let issue = allIssues.find((x) => x.id === issueId);
+    const allIssues = this._store.getValue().issues;
+    const issue = allIssues.find((x) => x.id === issueId);
     if (!issue) {
       return;
     }
 
-    let comments = arrayUpsert(issue.comments ?? [], comment.id, comment);
+    const comments = arrayUpsert(issue.comments ?? [], comment.id, comment);
     this.updateIssue({
       ...issue,
       comments

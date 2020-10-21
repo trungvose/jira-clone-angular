@@ -49,6 +49,4 @@ class NavItem {
   constructor(public icon: string, public tooltip: string, public handler: Handler) {}
 }
 
-interface Handler {
-  (): void;
-}
+type Handler = () => void;

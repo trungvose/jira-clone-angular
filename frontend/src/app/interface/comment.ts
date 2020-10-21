@@ -2,7 +2,7 @@ import { JUser } from './user';
 
 export class JComment {
   constructor(issueId: string, user: JUser) {
-    let now = new Date();
+    const now = new Date();
     this.id = `${now.getTime()}`;
     this.issueId = issueId;
     this.user = user;
@@ -16,6 +16,6 @@ export class JComment {
   updatedAt: string;
   issueId: string;
   userId: string;
-  //mapped to display by userId
+  // mapped to display by userId
   user: JUser;
 }

@@ -63,12 +63,12 @@ export class SettingsComponent implements OnInit {
   }
 
   submitForm() {
-    let formValue: Partial<JProject> = this.projectForm.getRawValue();
+    const formValue: Partial<JProject> = this.projectForm.getRawValue();
     this._projectService.updateProject(formValue);
     this._notification.create(
-      "success",
+      'success',
       'Changes have been saved successfully.',
-      ""      
+      ''
     );
   }
 

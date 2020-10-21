@@ -14,6 +14,6 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {}
 
   sendTwitterEventButton() {
-    this._googleAnalytics.sendEvent("Share Twitter", "button")
+    this._googleAnalytics.sendEvent('Share Twitter', 'button');
   }
 }

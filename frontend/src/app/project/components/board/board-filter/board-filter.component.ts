@@ -14,7 +14,7 @@ import { JUser } from '@trungk18/interface/user';
 })
 @UntilDestroy()
 export class BoardFilterComponent implements OnInit {
-  searchControl: FormControl = new FormControl("");
+  searchControl: FormControl = new FormControl('');
   userIds: string[];
 
   constructor(

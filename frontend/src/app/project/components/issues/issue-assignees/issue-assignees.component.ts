@@ -22,14 +22,14 @@ export class IssueAssigneesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    let issueChange = changes.issue;
+    const issueChange = changes.issue;
     if (this.users && issueChange.currentValue !== issueChange.previousValue) {
       this.assignees = this.issue.userIds.map((userId) => this.users.find((x) => x.id === userId));
     }
   }
 
   removeUser(userId: string) {
-    let newUserIds = this.issue.userIds.filter((x) => x !== userId);
+    const newUserIds = this.issue.userIds.filter((x) => x !== userId);
     this._projectService.updateIssue({
       ...this.issue,
       userIds: newUserIds
@@ -40,7 +40,7 @@ export class IssueAssigneesComponent implements OnInit, OnChanges {
     this._projectService.updateIssue({
       ...this.issue,
       userIds: [...this.issue.userIds, user.id]
-    })
+    });
   }
 
   isUserSelected(user: JUser): boolean {

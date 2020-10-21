@@ -49,7 +49,7 @@ export class IssueCommentComponent implements OnInit {
   }
 
   addComment() {
-    let now = new Date();
+    const now = new Date();
     this.projectService.updateIssueComment(this.issueId, {
       ...this.comment,
       id: `${now.getTime()}`,

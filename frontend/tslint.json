@@ -1,6 +1,7 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "nz-secondary-entry-imports": true,
     "align": {
       "options": [
         "parameters",
@@ -143,6 +144,7 @@
     "use-pipe-transform-interface": true
   },
   "rulesDirectory": [
-    "codelyzer"
+    "codelyzer",
+    "node_modules/nz-tslint-rules"
   ]
 }

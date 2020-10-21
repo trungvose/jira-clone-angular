@@ -10,7 +10,6 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 import { JUser } from '@trungk18/interface/user';
 import { tap } from 'rxjs/operators';
-import { until } from 'protractor';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 import { DateUtil } from '@trungk18/project/utils/date';
 
@@ -34,15 +33,14 @@ export class AddIssueModalComponent implements OnInit {
     private _fb: FormBuilder,
     private _modalRef: NzModalRef,
     private _projectService: ProjectService,
-    public _projectQuery: ProjectQuery
-  ) {}
+    private _projectQuery: ProjectQuery) {}
 
   ngOnInit(): void {
     this.initForm();
     this.reporterUsers$ = this._projectQuery.users$.pipe(
       untilDestroyed(this),
       tap((users) => {
-        let [user] = users;
+        const [user] = users;
         if (user) {
           this.f.reporterId.patchValue(user.id);
         }
@@ -67,8 +65,8 @@ export class AddIssueModalComponent implements OnInit {
     if (this.issueForm.invalid) {
       return;
     }
-    let now = DateUtil.getNow();
-    let issue: JIssue = {
+    const now = DateUtil.getNow();
+    const issue: JIssue = {
       ...this.issueForm.getRawValue(),
       id: IssueUtil.getRandomId(),
       status: IssueStatus.BACKLOG,

@@ -15,7 +15,7 @@ export class AvatarComponent implements OnChanges {
   style: {};
 
   constructor() {}
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     this.updateStyle();
   }

@@ -32,14 +32,14 @@ export class SearchDrawerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let search$ = this.searchControl.valueChanges.pipe(debounceTime(50), startWith(this.searchControl.value));
+    const search$ = this.searchControl.valueChanges.pipe(debounceTime(50), startWith(this.searchControl.value));
     this.recentIssues$ = this._projectQuery.issues$.pipe(map((issues) => issues.slice(0, 5)));
     this.results$ = combineLatest([search$, this._projectQuery.issues$]).pipe(
       untilDestroyed(this),
       switchMap(([term, issues]) => {
-        let matchIssues = issues.filter((issue) => {
-          let foundInTitle = IssueUtil.searchString(issue.title, term);
-          let foundInDescription = IssueUtil.searchString(issue.description, term);
+        const matchIssues = issues.filter((issue) => {
+          const foundInTitle = IssueUtil.searchString(issue.title, term);
+          const foundInDescription = IssueUtil.searchString(issue.description, term);
           return foundInTitle || foundInDescription;
         });
         return of(matchIssues);
