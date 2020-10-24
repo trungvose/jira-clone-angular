@@ -7315,6 +7315,14 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/jira-control/breadcrumbs/breadcrumbs.stories.ts",
+                "type": "Story<BreadcrumbsComponent>",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -7413,7 +7421,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/jira-control/avatar/avatar.stories.ts",
-                "type": "",
+                "type": "Story<AvatarComponent>",
                 "defaultValue": "Template.bind({})"
             },
             {
@@ -7429,8 +7437,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/jira-control/avatar/avatar.stories.ts",
-                "type": "",
+                "type": "Story<AvatarComponent>",
                 "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/jira-control/breadcrumbs/breadcrumbs.stories.ts",
+                "type": "Story<BreadcrumbsComponent>",
+                "defaultValue": "(args: BreadcrumbsComponent) => ({\n  component: BreadcrumbsComponent,\n  props: args\n})"
             },
             {
                 "name": "Template",
@@ -7603,7 +7619,7 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/app/jira-control/avatar/avatar.stories.ts",
-                    "type": "",
+                    "type": "Story<AvatarComponent>",
                     "defaultValue": "Template.bind({})"
                 },
                 {
@@ -7611,7 +7627,7 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/app/jira-control/avatar/avatar.stories.ts",
-                    "type": "",
+                    "type": "Story<AvatarComponent>",
                     "defaultValue": "Template.bind({})"
                 },
                 {
@@ -7658,6 +7674,24 @@
                     "subtype": "variable",
                     "file": "src/test.ts",
                     "type": "literal type"
+                }
+            ],
+            "src/app/jira-control/breadcrumbs/breadcrumbs.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/jira-control/breadcrumbs/breadcrumbs.stories.ts",
+                    "type": "Story<BreadcrumbsComponent>",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/jira-control/breadcrumbs/breadcrumbs.stories.ts",
+                    "type": "Story<BreadcrumbsComponent>",
+                    "defaultValue": "(args: BreadcrumbsComponent) => ({\n  component: BreadcrumbsComponent,\n  props: args\n})"
                 }
             ],
             "src/environments/environment.ts": [
@@ -8178,6 +8212,26 @@
                 "name": "BreadcrumbsComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/jira-control/breadcrumbs/breadcrumbs.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/jira-control/breadcrumbs/breadcrumbs.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
