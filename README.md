@@ -186,6 +186,7 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 | 04   | [Build an editable textbox][part04]                                             | Done   |
 | 05   | [Build an interactive drag and drop board][part05]                              | Done   |
 | 06   | [Build a markdown text editor][part06]                                          | Done   |
+| 07   | [Build a rich text HTML editor][part07]                                         | Done   |
 
 [part-1]: https://slides.com/tuantrungvo/behind-the-900-star-repository-jira-clone-angular
 [part00]: https://trungk18.com/experience/angular-jira-clone-tutorial-00-prerequisites/
@@ -195,6 +196,7 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 [part04]: https://trungk18.com/experience/angular-jira-clone-tutorial-04-editable-textbox/
 [part05]: https://trungk18.com/experience/angular-jira-clone-tutorial-05-interactive-drag-and-drop-board/
 [part06]: https://trungk18.com/experience/angular-jira-clone-tutorial-06-angular-markdown-text-editor/
+[part07]: https://trungk18.com/experience/angular-jira-clone-tutorial-07-rich-text-editor/
 [todo-list]: https://www.notion.so/trungk18/Tasks-636be5c5c0dd4d8cab30808e4e41facc
 
 ## Time spending
