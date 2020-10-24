@@ -7,7 +7,7 @@ export default {
 } as Meta;
 
 const avatarUrl =
-  'https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1593253478/trung-vo_bioxmc.png';
+  'https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_128/v1593253478/trung-vo_bioxmc.png';
 
 const Template: Story<AvatarComponent> = (args: AvatarComponent) => ({
   component: AvatarComponent,
