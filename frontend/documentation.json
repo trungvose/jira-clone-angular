@@ -22,6 +22,26 @@
             "extends": "JUser"
         },
         {
+            "name": "ButtonProps",
+            "id": "interface-ButtonProps-80336ca223ec2db03b581e9533ee38c2",
+            "file": "src/app/jira-control/button/button.stories.ts",
+            "type": "interface",
+            "sourceCode": "import { Meta, Story } from '@storybook/angular';\nimport { ButtonComponent } from './button.component';\n\nexport default {\n  title: 'Components/Button',\n  component: ButtonComponent\n} as Meta;\n\ninterface ButtonProps extends ButtonComponent {\n  label: string;\n}\n\nconst Template: Story<ButtonComponent> = ({ label, className }: Partial<ButtonProps>) => ({\n  component: ButtonComponent,\n  moduleMetadata: {\n    declarations: [ButtonComponent], // Removed if no template\n    imports: []\n  },\n  template: `<j-button className='${className}'>${label}</j-button>`\n});\n\nexport const Primary: Story<ButtonProps> = Template.bind({});\nPrimary.args = {\n  className: 'btn-primary',\n  label: 'Primary'\n};\n\nexport const Secondary: Story<ButtonProps> = Template.bind({});\nSecondary.args = {\n  className: 'btn-secondary',\n  label: 'Secondary'\n};\n\nexport const Empty: Story<ButtonProps> = Template.bind({});\nEmpty.args = {\n  icon: \"times\",\n  className: 'btn-empty',\n  label: 'Cancel'\n};\n",
+            "properties": [
+                {
+                    "name": "label",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": [],
+            "extends": "ButtonComponent"
+        },
+        {
             "name": "EnvironmentModel",
             "id": "interface-EnvironmentModel-c0087a9667cca7c104b85aa4bebc9698",
             "file": "src/environments/environment-model.ts",
@@ -7288,7 +7308,7 @@
                 "subtype": "variable",
                 "file": "src/app/jira-control/avatar/avatar.stories.ts",
                 "type": "string",
-                "defaultValue": "'https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1593253478/trung-vo_bioxmc.png'"
+                "defaultValue": "'https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_128/v1593253478/trung-vo_bioxmc.png'"
             },
             {
                 "name": "BASE_TIMER_DELAY",
@@ -7323,6 +7343,14 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Empty",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/jira-control/button/button.stories.ts",
+                "type": "Story<ButtonProps>",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -7337,6 +7365,14 @@
                 "file": "src/environments/environment.prod.ts",
                 "type": "EnvironmentModel",
                 "defaultValue": "{\n  production: true,\n  apiUrl: '/assets/data' // 'https://jira-clone-angular-api.herokuapp.com'\n}"
+            },
+            {
+                "name": "Flat",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/jira-control/input/input.stories.ts",
+                "type": "Story<InputComponent>",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "GOOGLE_ANALYTICS_ID",
@@ -7402,6 +7438,14 @@
                 "defaultValue": "[\n  QuestionCircleFill,\n  PlusOutline,\n  SearchOutline,\n  CloseOutline,\n  TwitterOutline,\n  EditOutline\n]"
             },
             {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/jira-control/button/button.stories.ts",
+                "type": "Story<ButtonProps>",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "quillConfiguration",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -7425,6 +7469,14 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/jira-control/button/button.stories.ts",
+                "type": "Story<ButtonProps>",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "SideBarLinks",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -7439,6 +7491,22 @@
                 "file": "src/app/jira-control/avatar/avatar.stories.ts",
                 "type": "Story<AvatarComponent>",
                 "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/jira-control/input/input.stories.ts",
+                "type": "Story<InputComponent>",
+                "defaultValue": "(args: InputComponent) => ({\n  component: InputComponent,\n  props: args\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/jira-control/button/button.stories.ts",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "({ label, className }: Partial<ButtonProps>) => ({\n  component: ButtonComponent,\n  moduleMetadata: {\n    declarations: [ButtonComponent], // Removed if no template\n    imports: []\n  },\n  template: `<j-button className='${className}'>${label}</j-button>`\n})"
             },
             {
                 "name": "Template",
@@ -7612,7 +7680,7 @@
                     "subtype": "variable",
                     "file": "src/app/jira-control/avatar/avatar.stories.ts",
                     "type": "string",
-                    "defaultValue": "'https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_48/v1593253478/trung-vo_bioxmc.png'"
+                    "defaultValue": "'https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_128/v1593253478/trung-vo_bioxmc.png'"
                 },
                 {
                     "name": "Rounded",
@@ -7694,6 +7762,40 @@
                     "defaultValue": "(args: BreadcrumbsComponent) => ({\n  component: BreadcrumbsComponent,\n  props: args\n})"
                 }
             ],
+            "src/app/jira-control/button/button.stories.ts": [
+                {
+                    "name": "Empty",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/jira-control/button/button.stories.ts",
+                    "type": "Story<ButtonProps>",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/jira-control/button/button.stories.ts",
+                    "type": "Story<ButtonProps>",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/jira-control/button/button.stories.ts",
+                    "type": "Story<ButtonProps>",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/jira-control/button/button.stories.ts",
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "({ label, className }: Partial<ButtonProps>) => ({\n  component: ButtonComponent,\n  moduleMetadata: {\n    declarations: [ButtonComponent], // Removed if no template\n    imports: []\n  },\n  template: `<j-button className='${className}'>${label}</j-button>`\n})"
+                }
+            ],
             "src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -7712,6 +7814,24 @@
                     "file": "src/environments/environment.prod.ts",
                     "type": "EnvironmentModel",
                     "defaultValue": "{\n  production: true,\n  apiUrl: '/assets/data' // 'https://jira-clone-angular-api.herokuapp.com'\n}"
+                }
+            ],
+            "src/app/jira-control/input/input.stories.ts": [
+                {
+                    "name": "Flat",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/jira-control/input/input.stories.ts",
+                    "type": "Story<InputComponent>",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/jira-control/input/input.stories.ts",
+                    "type": "Story<InputComponent>",
+                    "defaultValue": "(args: InputComponent) => ({\n  component: InputComponent,\n  props: args\n})"
                 }
             ],
             "src/app/core/services/google-analytics.service.ts": [
@@ -8244,12 +8364,81 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/jira-control/button/button.stories.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ButtonProps",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/jira-control/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Empty",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/jira-control/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/jira-control/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/jira-control/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/jira-control/input/input.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "InputComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/jira-control/input/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Flat",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/jira-control/input/input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

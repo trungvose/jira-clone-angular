@@ -1,207 +1,93 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-import Code from './assets/code-brackets.svg';
-import Colors from './assets/colors.svg';
-import Comments from './assets/comments.svg';
-import Direction from './assets/direction.svg';
-import Flow from './assets/flow.svg';
-import Plugin from './assets/plugin.svg';
-import Repo from './assets/repo.svg';
-import StackAlt from './assets/stackalt.svg';
-
 <Meta title="Introduction" />
 
-<style>{`
-  .subheading {
-    --mediumdark: '#999999';
-    font-weight: 900;
-    font-size: 13px;
-    color: #999;
-    letter-spacing: 6px;
-    line-height: 24px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    margin-top: 40px;
-  }
+# Welcome to Angular Jira Clone Storybook
 
-  .link-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    row-gap: 10px;
-  }
-
-  @media (min-width: 620px) {
-    .link-list {
-      row-gap: 20px;
-      column-gap: 20px;
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  @media all and (-ms-high-contrast:none) {
-  .link-list {
-      display: -ms-grid;
-      -ms-grid-columns: 1fr 1fr;
-      -ms-grid-rows: 1fr 1fr;
-    }
-  }
-
-  .link-item {
-    display: block;
-    padding: 20px 30px 20px 15px;
-    border: 1px solid #00000010;
-    border-radius: 5px;
-    transition: background 150ms ease-out, border 150ms ease-out, transform 150ms ease-out;
-    color: #333333;
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .link-item:hover {
-    border-color: #1EA7FD50;
-    transform: translate3d(0, -3px, 0);
-    box-shadow: rgba(0, 0, 0, 0.08) 0 3px 10px 0;
-  }
-
-  .link-item:active {
-    border-color: #1EA7FD;
-    transform: translate3d(0, 0, 0);
-  }
-
-  .link-item strong {
-    font-weight: 700;
-    display: block;
-    margin-bottom: 2px;
-  }
-  
-  .link-item img {
-    height: 40px;
-    width: 40px;
-    margin-right: 15px;
-    flex: none;
-  }
-
-  .link-item span {
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .tip {
-    display: inline-block;
-    border-radius: 1em;
-    font-size: 11px;
-    line-height: 12px;
-    font-weight: 700;
-    background: #E7FDD8;
-    color: #66BF3C;
-    padding: 4px 12px;
-    margin-right: 10px;
-    vertical-align: top;
-  }
-
-  .tip-wrapper {
-    font-size: 13px;
-    line-height: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-
-  .tip-wrapper code {
-    font-size: 12px;
-    display: inline-block;
-  }
-
-  
-`}</style>
-
-# Welcome to Storybook
+## What is Storybook
 
 Storybook helps you build UI components in isolation from your app's business logic, data, and context.
 That makes it easy to develop hard-to-reach states. Save these UI states as **stories** to revisit during development, testing, or QA.
 
-Browse example stories now by navigating to them in the sidebar.
-View their code in the `src/storybook-examples` directory to learn how they work.
-We recommend building UIs with a [**component-driven**](https://componentdriven.org) process starting with atomic components and ending with pages.
+## What is Angular Jira Clone Storybook
 
-<div className="subheading">Configure</div>
+This is the collection of components that I wrote for [jira.trungk18.com][jira], includes
 
-<div className="link-list">
-  <a className="link-item" href="https://storybook.js.org/docs/react/api/presets" target="_blank">
-    <img src={Plugin} alt="plugin" />
-    <span>
-      <strong>Presets for popular tools</strong>
-      Easy setup for TypeScript, SCSS and more.
-    </span>
-  </a>
-  <a
-    className="link-item"
-    href="https://storybook.js.org/docs/react/configure/webpack"
-    target="_blank"
-  >
-    <img src={StackAlt} alt="Build" />
-    <span>
-      <strong>Build configuration</strong>
-      How to customize webpack and Babel
-    </span>
-  </a>
-  <a
-    className="link-item"
-    href="https://storybook.js.org/docs/react/configure/styling-and-css"
-    target="_blank"
-  >
-    <img src={Colors} alt="colors" />
-    <span>
-      <strong>Styling</strong>
-      How to load and configure CSS libraries
-    </span>
-  </a>
-  <a
-    className="link-item"
-    href="https://storybook.js.org/docs/react/get-started/setup#configure-storybook-for-your-stack"
-    target="_blank"
-  >
-    <img src={Flow} alt="flow" />
-    <span>
-      <strong>Data</strong>
-      Providers and mocking for data libraries
-    </span>
-  </a>
-</div>
+- Avatar
+- Breadcrumbs
+- Button
+- Input
+- More to come...
 
-<div className="subheading">Learn</div>
+## What is Angular Jira Clone
 
-<div className="link-list">
-  <a className="link-item" href="https://storybook.js.org/docs" target="_blank">
-    <img src={Repo} alt="repo" />
-    <span>
-      <strong>Storybook documentation</strong>
-      Configure, customize, and extend
-    </span>
-  </a>
-  <a className="link-item" href="https://www.learnstorybook.com" target="_blank">
-    <img src={Direction} alt="direction" />
-    <span>
-      <strong>In-depth guides</strong>
-      Best practices from leading teams
-    </span>
-  </a>
-  <a className="link-item" href="https://github.com/storybookjs/storybook" target="_blank">
-    <img src={Code} alt="code" />
-    <span>
-      <strong>GitHub project</strong>
-      View the source and add issues
-    </span>
-  </a>
-  <a className="link-item" href="https://discord.gg/UUt2PJb" target="_blank">
-    <img src={Comments} alt="comments" />
-    <span>
-      <strong>Discord chat</strong>
-      Chat with maintainers and the community
-    </span>
-  </a>
-</div>
+There have been a handful of cool Jira-cloned apps written in `React`/`VueJS`, which makes me wonder **Why not Angular**? And here you go.
+This is not only a simplified Jira clone built with Angular 9, but also an example of a **modern**, **real-world** Angular codebase.
 
-<div className="tip-wrapper">
-  <span className="tip">Tip</span>Edit the Markdown in{' '}
-  <code>src/storybook-examples/welcome.mdx</code>
-</div>
+## Tech stack
+
+![Tech Stack][stack]
+
+- [Angular CLI][cli]
+- [Akita][akita] state management
+- [NestJS][nestjs]
+- UI modules:
+  - [TailwindCSS][tailwind]
+  - Angular CDK [drag and drop][cdkdrag]
+  - [ng-zorro][ng-zorro] UI component: `tooltip`, `modal`, `select`, `icon` and more.
+  - [ngx-quill][quill]
+- [Netlify][netlify]
+- [Heroku][heroku]
+
+[cli]: https://cli.angular.io/
+[akita]: https://datorama.github.io/akita/
+[nestjs]: https://nestjs.com/
+[tailwind]: https://tailwindcss.com/
+[cdkdrag]: https://material.angular.io/cdk/drag-drop/overview
+[ng-zorro]: https://ng.ant.design/docs/introduce/en
+[quill]: https://github.com/KillerCodeMonkey/ngx-quill
+[netlify]: https://www.netlify.com/
+[heroku]: https://www.heroku.com/
+
+## Working application
+
+- Live demo ➡️ [jira.trungk18.com][jira]
+- Source code ➡️ [github.com/trungk18/jira-clone-angular][source]
+
+![Jira clone built with Angular 10 and Akita][demo]
+
+## Tutorial
+
+When I look at the application, it is huge. When the task is huge, you usually don't know where and how to start working with them. I started to break the big task into a [simple to-do list on notion][todo-list]. Once I know what needs to be done, what I need is to follow the plan. That's my approach.
+
+I learned a lot of stuff. I know you might also have a curiosity about the process of building the same scale app as well. That's why I am writing a tutorial series on how I built Angular Jira clone from scratch. I hope you guys will learn something from that too :)
+
+I will try to be as detailed as possible. Hopefully through the tutorial, you will get the idea and will start working on your own application soon. Please bear with me.
+
+Its series will also be published in Vietnamese as part of our [angular-vietnam/100-days-of-angular][100days].
+
+| Part | Description                                                                     | Status |
+| ---- | ------------------------------------------------------------------------------- | ------ |
+| -1   | [Behind the 900 stars repository - Slide][part-1]                               | Done   |
+| 00   | [Prerequisites][part00]                                                         | Done   |
+| 01   | [Create a new repository and set up a new Angular application with CLI][part01] | Done   |
+| 02   | [Build the application layout with flex and TailwindCSS][part02]                | Done   |
+| 03   | [Setup Akita state management][part03]                                          | Done   |
+| 04   | [Build an editable textbox][part04]                                             | Done   |
+| 05   | [Build an interactive drag and drop board][part05]                              | Done   |
+| 06   | [Build a markdown text editor][part06]                                          | Done   |
+| 07   | [Build a rich text HTML editor][part07]                                         | Done   |
+
+[part-1]: https://slides.com/tuantrungvo/behind-the-900-star-repository-jira-clone-angular
+[part00]: https://trungk18.com/experience/angular-jira-clone-tutorial-00-prerequisites/
+[part01]: https://trungk18.com/experience/angular-jira-clone-tutorial-01-planning-and-set-up/
+[part02]: https://trungk18.com/experience/angular-jira-clone-tutorial-02-application-layout-tailwindcss-flex/
+[part03]: https://trungk18.com/experience/angular-jira-clone-tutorial-03-akita-state-management/
+[part04]: https://trungk18.com/experience/angular-jira-clone-tutorial-04-editable-textbox/
+[part05]: https://trungk18.com/experience/angular-jira-clone-tutorial-05-interactive-drag-and-drop-board/
+[part06]: https://trungk18.com/experience/angular-jira-clone-tutorial-06-angular-markdown-text-editor/
+[part07]: https://trungk18.com/experience/angular-jira-clone-tutorial-07-rich-text-editor/
+[todo-list]: https://www.notion.so/trungk18/Tasks-636be5c5c0dd4d8cab30808e4e41facc
+[100days]: https://github.com/angular-vietnam/100-days-of-angular
+[stack]: https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-tech-stack.png
+[demo]: https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-clone-angular-demo-trungk18.gif
+[jira]: https://jira.trungk18.com/
+[source]: https://github.com/trungk18/jira-clone-angular
