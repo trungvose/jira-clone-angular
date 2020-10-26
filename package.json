@@ -8,11 +8,13 @@
     "install-dependencies-back": "cd backend && npm i",
     "start:front": "npm run install-dependencies-front && cd frontend && npm start",
     "build:front": "cd frontend && npm run build",
+    "build:storybook": "cd frontend && npm run build-storybook",
     "start:back": "npm run install-dependencies-back && cd backend && npm run start:dev",
     "build:back": "cd backend && npm run build",
     "build": "npm run install-dependencies && npm run build:back && npm run build:front",
     "heroku-postbuild": "npm run install-dependencies-back && npm run build:back",
-    "netlify-build": "npm run install-dependencies-front && npm run build:front"
+    "netlify-build": "npm run install-dependencies-front && npm run build:front",
+    "build-storybook": "npm run install-dependencies-front && npm run build:storybook"
   },
   "repository": {
     "type": "git",

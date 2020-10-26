@@ -7354,17 +7354,17 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
+                "file": "src/environments/environment.ts",
                 "type": "EnvironmentModel",
-                "defaultValue": "{\n  production: true,\n  apiUrl: '/assets/data' // 'https://jira-clone-angular-api.herokuapp.com'\n}"
+                "defaultValue": "{\n  production: false,\n  apiUrl: '/assets/data' // 'http://localhost:3000'\n}"
             },
             {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
+                "file": "src/environments/environment.prod.ts",
                 "type": "EnvironmentModel",
-                "defaultValue": "{\n  production: false,\n  apiUrl: '/assets/data' // 'http://localhost:3000'\n}"
+                "defaultValue": "{\n  production: true,\n  apiUrl: '/assets/data' // 'https://jira-clone-angular-api.herokuapp.com'\n}"
             },
             {
                 "name": "Flat",
@@ -7504,6 +7504,14 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/jira-control/button/button.stories.ts",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "({ label, className }: Partial<ButtonProps>) => ({\n  component: ButtonComponent,\n  moduleMetadata: {\n    declarations: [ButtonComponent], // Removed if no template\n    imports: []\n  },\n  template: `<j-button className='${className}'>${label}</j-button>`\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/jira-control/breadcrumbs/breadcrumbs.stories.ts",
                 "type": "Story<BreadcrumbsComponent>",
                 "defaultValue": "(args: BreadcrumbsComponent) => ({\n  component: BreadcrumbsComponent,\n  props: args\n})"
@@ -7515,14 +7523,6 @@
                 "file": "src/app/jira-control/avatar/avatar.stories.ts",
                 "type": "Story<AvatarComponent>",
                 "defaultValue": "(args: AvatarComponent) => ({\n  component: AvatarComponent,\n  props: args\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/jira-control/button/button.stories.ts",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "({ label, className }: Partial<ButtonProps>) => ({\n  component: ButtonComponent,\n  moduleMetadata: {\n    declarations: [ButtonComponent], // Removed if no template\n    imports: []\n  },\n  template: `<j-button className='${className}'>${label}</j-button>`\n})"
             }
         ],
         "functions": [
@@ -7796,16 +7796,6 @@
                     "defaultValue": "({ label, className }: Partial<ButtonProps>) => ({\n  component: ButtonComponent,\n  moduleMetadata: {\n    declarations: [ButtonComponent], // Removed if no template\n    imports: []\n  },\n  template: `<j-button className='${className}'>${label}</j-button>`\n})"
                 }
             ],
-            "src/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
-                    "type": "EnvironmentModel",
-                    "defaultValue": "{\n  production: true,\n  apiUrl: '/assets/data' // 'https://jira-clone-angular-api.herokuapp.com'\n}"
-                }
-            ],
             "src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -7814,6 +7804,16 @@
                     "file": "src/environments/environment.ts",
                     "type": "EnvironmentModel",
                     "defaultValue": "{\n  production: false,\n  apiUrl: '/assets/data' // 'http://localhost:3000'\n}"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "type": "EnvironmentModel",
+                    "defaultValue": "{\n  production: true,\n  apiUrl: '/assets/data' // 'https://jira-clone-angular-api.herokuapp.com'\n}"
                 }
             ],
             "src/app/jira-control/input/input.stories.ts": [
