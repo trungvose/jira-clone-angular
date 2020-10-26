@@ -54,6 +54,20 @@
     },
     {
       "type": "Story",
+      "priority": "Medium",
+      "title": "Jira Clone Storybook - Update 10/2020",
+      "description": "<h3>What is Storybook</h3><p>Storybook helps you build UI components in isolation from your app's business logic, data, and context. That makes it easy to develop hard-to-reach states. Save these UI states as&nbsp;stories&nbsp;to revisit during development, testing, or QA.</p><h3><br></h3><h3>Jira Clone Storybook</h3><p>This is the collection of components that I wrote for <a href='http://jira.trungk18.com/' rel='noopener noreferrer' target='_blank' style='color: var(--vscode-textLink-foreground);'>jira.trungk18.com</a>, includes:</p><ul><li>Avatar</li><li>Breadcrumbs</li><li>Button</li><li>Input</li><li>More to come...</li></ul><p><br></p><p>Check out the&nbsp;storybook demo&nbsp;-&gt;&nbsp;<a href=\"https://jira-storybook.trungk18.com/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: var(--color-text-link);\">https://jira-storybook.trungk18.com/</a></p><p><br></p><p><a href=\"https://github.com/trungk18/jira-clone-angular/blob/master/frontend/src/assets/img/jira-storybook.gif\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: var(--color-text-link); background-color: var(--color-bg-primary);\"><img src=\"https://github.com/trungk18/jira-clone-angular/raw/master/frontend/src/assets/img/jira-storybook.gif\" alt=\"Jira clone built with Angular 10, Akita and ng-zorro\"></a></p>",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
+      "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1"],
+      "id": "73",
+      "status": "Backlog",
+      "createdAt": "2020-10-26T15:13:08.070Z",
+      "updatedAt": "2020-10-26T15:13:10.418Z",
+      "listPosition": 1
+    },
+
+    {
+      "type": "Story",
       "priority": "Highest",
       "title": "How to build Jira clone 😍? Follow these tutorials from its author",
       "description": "<h3>I have prepared a set of tutorial for some major components of Jira clone, feel free to take a look! More to come, the tutorials will have at least 10 posts 😊😊😊</h3><p><br></p><ol><li><a href='https://trungk18.com/experience/angular-jira-clone-tutorial-00-prerequisites/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Prerequisites</a></li><li><a href='https://trungk18.com/experience/angular-jira-clone-tutorial-01-planning-and-set-up/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Create a new repository and set up a new Angular application with CLI</a></li><li><a href='https://trungk18.com/experience/angular-jira-clone-tutorial-02-application-layout-tailwindcss-flex/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Build the application layout with flex and TailwindCSS</a></li><li><a href='https://trungk18.com/experience/angular-jira-clone-tutorial-03-akita-state-management/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Setup Akita state management</a></li><li><a href='https://trungk18.com/experience/angular-jira-clone-tutorial-04-editable-textbox/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Build an editable textbox</a></li><li><a href='https://trungk18.com/experience/angular-jira-clone-tutorial-05-interactive-drag-and-drop-board/' rel='noopener noreferrer' target='_blank' style='color: rgb(3, 102, 214);'>Build an interactive drag and drop board</a></li><li><a href='https://trungk18.com/experience/angular-jira-clone-tutorial-06-angular-markdown-text-editor/' rel='noopener noreferrer' target='_blank'>Build a markdown text editor</a></li><li><a href='https://trungk18.com/experience/angular-jira-clone-tutorial-07-rich-text-editor/' rel='noopener noreferrer' target='_blank'>Build a rich text HTML editor</a></li></ol>",

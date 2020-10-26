@@ -1,8 +1,8 @@
 # A simplified Jira clone built with Angular 10, Akita and ng-zorro
 
-> Phase two will not be completed as planned for 25 July. Both [Chau Tran][chau] and I was too busy with some other commitments. View our [working in progress Graph QL branch][gql].
+> Phase two will not be completed as planned. Both [Chau Tran][chau] and I was too busy with some other commitments. View our [working in progress Graph QL branch][gql].
 >
-> You can check the latest Tetris game that I built with Angular and Akita in the meantime ➡ [tetris.trungk18.com](https://tetris.trungk18.com/) 🎮
+> You can check the storybook collection of components I wrote for Jira Clone ➡ [jira-storybook.trungk18.com](https://jira-storybook.trungk18.com/) 📕
 >
 > Thanks for your continuous support. Stay tuned! :muscle:
 
@@ -14,9 +14,11 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
   <summary>Table Of Content</summary>
   <p>
 
-- [A simplified Jira clone built with Angular 9 and Akita](#a-simplified-jira-clone-built-with-angular-9-and-akita)
-
+- [A simplified Jira clone built with Angular 10, Akita and ng-zorro](#a-simplified-jira-clone-built-with-angular-10-akita-and-ng-zorro)
   - [Working application](#working-application)
+  - [Storybook](#storybook)
+    - [What is Storybook](#what-is-storybook)
+    - [Jira Clone Storybook](#jira-clone-storybook)
   - [Support](#support)
   - [Who is it for 🤷‍♀️](#who-is-it-for-️)
   - [Tech stack](#tech-stack)
@@ -58,7 +60,7 @@ That makes it easy to develop hard-to-reach states. Save these UI states as **st
 
 ### Jira Clone Storybook
 
-This is the collection of components that I wrote for [jira.trungk18.com][jira], includes
+This is the collection of components that I wrote for [jira.trungk18.com][jira], includes:
 
 - Avatar
 - Breadcrumbs
@@ -316,6 +318,7 @@ Feel free to use my code on your project. It would be great if you put a referen
 
 [MIT](https://opensource.org/licenses/MIT)
 
+[jira]: http://jira.trungk18.com/
 [oldboyxx]: https://github.com/oldboyxx/jira_clone
 [datlyfe]: https://github.com/Datlyfe/jira_clone
 [stack]: frontend/src/assets/img/jira-clone-tech-stack.png
