@@ -49,6 +49,27 @@ Check out the **live demo** -> https://jira.trungk18.com
 
 ![Jira clone built with Angular 9 and Akita][demo]
 
+## Storybook
+
+### What is Storybook
+
+Storybook helps you build UI components in isolation from your app's business logic, data, and context.
+That makes it easy to develop hard-to-reach states. Save these UI states as **stories** to revisit during development, testing, or QA.
+
+### Jira Clone Storybook
+
+This is the collection of components that I wrote for [jira.trungk18.com][jira], includes
+
+- Avatar
+- Breadcrumbs
+- Button
+- Input
+- More to come...
+
+Check out the **storybook demo** -> https://jira-storybook.trungk18.com/
+
+![Jira clone built with Angular 9 and Akita][demo-storybook]
+
 ## Support
 
 If you like my work, feel free to:
@@ -299,6 +320,7 @@ Feel free to use my code on your project. It would be great if you put a referen
 [datlyfe]: https://github.com/Datlyfe/jira_clone
 [stack]: frontend/src/assets/img/jira-clone-tech-stack.png
 [demo]: frontend/src/assets/img/jira-clone-angular-demo-trungk18.gif
+[demo-storybook]: frontend/src/assets/img/jira-storybook.gif
 [time]: frontend/src/assets/img/time-spending.png
 [issues]: https://github.com/trungk18/jira-clone-angular/issues/new
 [pull]: https://github.com/trungk18/jira-clone-angular/compare
