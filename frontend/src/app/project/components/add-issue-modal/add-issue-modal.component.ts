@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder as FormBuilderWithTyped,
+  FormGroup as FormGroupWithTyped
+} from '@ngneat/reactive-forms';
 import { IssueType, JIssue, IssueStatus, IssuePriority } from '@trungk18/interface/issue';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -12,6 +16,7 @@ import { JUser } from '@trungk18/interface/user';
 import { tap } from 'rxjs/operators';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 import { DateUtil } from '@trungk18/project/utils/date';
+import { AddIssueDTO } from '@trungk18/interface/dto/add-issue';
 
 @Component({
   selector: 'add-issue-modal',
@@ -23,17 +28,27 @@ export class AddIssueModalComponent implements OnInit {
   reporterUsers$: Observable<JUser[]>;
   assignees$: Observable<JUser[]>;
   issueForm: FormGroup;
+  issueFormTyped: FormGroupWithTyped<AddIssueDTO>;
   editorOptions = quillConfiguration;
+
+  private _fbTyped: FormBuilderWithTyped;
 
   get f() {
     return this.issueForm?.controls;
+  }
+
+  get fTyped() {
+    return this.issueFormTyped?.controls;
   }
 
   constructor(
     private _fb: FormBuilder,
     private _modalRef: NzModalRef,
     private _projectService: ProjectService,
-    private _projectQuery: ProjectQuery) {}
+    private _projectQuery: ProjectQuery
+  ) {
+    this._fbTyped = new FormBuilderWithTyped();
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -59,12 +74,21 @@ export class AddIssueModalComponent implements OnInit {
       reporterId: [''],
       userIds: [[]]
     });
+
+    this.issueFormTyped = this._fbTyped.group({
+      type: [IssueType.TASK],
+      priority: [IssuePriority.MEDIUM],
+      title: ['', NoWhitespaceValidator()],
+      description: [''],
+      reporterId: [''],
+      userIds: [[]]
+    });
   }
 
   submitForm() {
-    if (this.issueForm.invalid) {
+    if (this.issueFormTyped.invalid) {
       return;
-    }
+    }            
     const now = DateUtil.getNow();
     const issue: JIssue = {
       ...this.issueForm.getRawValue(),
