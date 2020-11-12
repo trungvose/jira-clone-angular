@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@ngneat/reactive-forms';
 import { IssueType, JIssue, IssueStatus, IssuePriority } from '@trungk18/interface/issue';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -12,29 +12,32 @@ import { JUser } from '@trungk18/interface/user';
 import { tap } from 'rxjs/operators';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 import { DateUtil } from '@trungk18/project/utils/date';
+import { AddIssueDTO } from '@trungk18/interface/dto/add-issue';
 
 @Component({
-  selector: 'add-issue-modal',
-  templateUrl: './add-issue-modal.component.html',
-  styleUrls: ['./add-issue-modal.component.scss']
+  selector: 'add-issue-modal-typed',
+  templateUrl: './add-issue-modal-typed.component.html',
+  styleUrls: ['./add-issue-modal-typed.component.scss']
 })
 @UntilDestroy()
-export class AddIssueModalComponent implements OnInit {
+export class AddIssueModalTypedComponent implements OnInit {
   reporterUsers$: Observable<JUser[]>;
   assignees$: Observable<JUser[]>;
-  issueForm: FormGroup;
+  issueForm: FormGroup<AddIssueDTO>;
   editorOptions = quillConfiguration;
+
+  private _fb: FormBuilder;
 
   get f() {
     return this.issueForm?.controls;
   }
 
   constructor(
-    private _fb: FormBuilder,
     private _modalRef: NzModalRef,
     private _projectService: ProjectService,
     private _projectQuery: ProjectQuery
   ) {
+    this._fb = new FormBuilder();
   }
 
   ngOnInit(): void {
@@ -53,7 +56,7 @@ export class AddIssueModalComponent implements OnInit {
   }
 
   initForm() {
-    this.issueForm = this._fb.group({
+    this.issueForm = this._fb.group<AddIssueDTO>({
       type: [IssueType.TASK],
       priority: [IssuePriority.MEDIUM],
       title: ['', NoWhitespaceValidator()],

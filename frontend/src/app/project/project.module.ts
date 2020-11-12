@@ -33,6 +33,8 @@ import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-d
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectComponent } from './project.component';
+import { FormTypedComponent } from './components/form-typed/form-typed.component';
+import { AddIssueModalTypedComponent } from './components/add-issue-modal-typed/add-issue-modal-typed.component';
 
 @NgModule({
   declarations: [
@@ -47,12 +49,14 @@ import { ProjectComponent } from './project.component';
     SearchDrawerComponent,
     IssueResultComponent,
     AddIssueModalComponent,
+    AddIssueModalTypedComponent,
     UserComponent,
     IssueTypeSelectComponent,
     IssuePrioritySelectComponent,
     IssueReporterSelectComponent,
     IssueAssigneesSelectComponent,
-    ResizerComponent
+    ResizerComponent,
+    FormTypedComponent
   ],
   imports: [
     CommonModule,
