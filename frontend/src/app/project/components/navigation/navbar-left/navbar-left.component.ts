@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthQuery } from '@trungk18/project/auth/auth.query';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
-import { SearchDrawerComponent } from '../../search/search-drawer/search-drawer.component';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { AddIssueModalComponent } from '../../add-issue-modal/add-issue-modal.component';
+import { AddIssueModalTypedComponent } from '../../add-issue-modal-typed/add-issue-modal-typed.component';
+import { SearchDrawerComponent } from '../../search/search-drawer/search-drawer.component';
 
 @Component({
   selector: 'app-navbar-left',
@@ -27,7 +27,7 @@ export class NavbarLeftComponent implements OnInit {
 
   openCreateIssueModal() {
     this._modalService.create({
-      nzContent: AddIssueModalComponent,
+      nzContent: AddIssueModalTypedComponent,
       nzClosable: false,
       nzFooter: null,
       nzWidth: 700

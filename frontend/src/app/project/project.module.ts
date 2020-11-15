@@ -50,6 +50,7 @@ import { AddIssueModalTypedComponent } from './components/add-issue-modal-typed/
     IssueResultComponent,
     AddIssueModalComponent,
     AddIssueModalTypedComponent,
+    FormTypedComponent,
     UserComponent,
     IssueTypeSelectComponent,
     IssuePrioritySelectComponent,

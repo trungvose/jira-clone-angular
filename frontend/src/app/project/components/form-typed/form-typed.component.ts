@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 interface Profile {
@@ -7,6 +7,11 @@ interface Profile {
   age: number
 }
 
+
+@Component({
+  selector: 'form-typed',
+  templateUrl: 'form-typed.component.html'
+})
 export class FormTypedComponent implements OnInit {
   ngOnInit(): void {
     const profileForm = new FormGroup({

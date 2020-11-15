@@ -50,6 +50,7 @@ export class AddIssueModalComponent implements OnInit {
     );
 
     this.assignees$ = this._projectQuery.users$;
+    this.issueForm.statusChanges
   }
 
   initForm() {

@@ -13,13 +13,12 @@ import { tap } from 'rxjs/operators';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 import { DateUtil } from '@trungk18/project/utils/date';
 import { AddIssueDTO } from '@trungk18/interface/dto/add-issue';
-
+@UntilDestroy()
 @Component({
   selector: 'add-issue-modal-typed',
   templateUrl: './add-issue-modal-typed.component.html',
   styleUrls: ['./add-issue-modal-typed.component.scss']
 })
-@UntilDestroy()
 export class AddIssueModalTypedComponent implements OnInit {
   reporterUsers$: Observable<JUser[]>;
   assignees$: Observable<JUser[]>;
@@ -46,7 +45,7 @@ export class AddIssueModalTypedComponent implements OnInit {
       untilDestroyed(this),
       tap((users) => {
         const [user] = users;
-        if (user) {
+        if (user && !this.f.reporterId.value) {
           this.f.reporterId.patchValue(user.id);
         }
       })
@@ -64,6 +63,8 @@ export class AddIssueModalTypedComponent implements OnInit {
       reporterId: [''],
       userIds: [[]]
     });
+
+    this.issueForm.persist('addIssue', {}).subscribe();
   }
 
   submitForm() {
@@ -72,7 +73,7 @@ export class AddIssueModalTypedComponent implements OnInit {
     }
     const now = DateUtil.getNow();
     const issue: JIssue = {
-      ...this.issueForm.getRawValue(),
+      ...<any>this.issueForm.getRawValue(),
       id: IssueUtil.getRandomId(),
       status: IssueStatus.BACKLOG,
       createdAt: now,
@@ -80,6 +81,7 @@ export class AddIssueModalTypedComponent implements OnInit {
     };
 
     this._projectService.updateIssue(issue);
+    localStorage.removeItem('addIssue');
     this.closeModal();
   }
 
