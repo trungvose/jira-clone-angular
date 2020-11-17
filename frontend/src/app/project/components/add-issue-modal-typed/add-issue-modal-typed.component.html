@@ -32,6 +32,7 @@
                    formControlName="title"
                    jAutofocus
                    [timerDelay]="500" />
+            <span *ngIf='issueForm.controls.title.touched && issueForm.controls.tittle.hasError("required")'></span>
         </div>
         <div class="mt-3 form-group">
             <label class="label">
