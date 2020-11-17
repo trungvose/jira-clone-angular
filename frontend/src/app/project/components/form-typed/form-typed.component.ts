@@ -7,7 +7,6 @@ interface Profile {
   age: number
 }
 
-
 @Component({
   selector: 'form-typed',
   templateUrl: 'form-typed.component.html'
