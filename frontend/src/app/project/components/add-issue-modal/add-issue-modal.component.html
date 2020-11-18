@@ -1,4 +1,4 @@
-<div class="py-5 px-8">
+<div class="px-8 py-5">
     <div class="flex items-center py-3 text-textDarkest">
         <div class="text-xl">
             Create issue
@@ -18,22 +18,22 @@
             </label>
             <issue-type-select [control]="f?.type"></issue-type-select>
         </div>
-        <div class="form-group mt-3">
+        <div class="mt-3 form-group">
             <label class="label">
                 Issue priority
             </label>
             <issue-priority-select [control]="f?.priority"></issue-priority-select>
         </div>
-        <div class="form-group mt-3">
+        <div class="mt-3 form-group">
             <label class="label">
                 Short summary
             </label>
             <input class="form-input"
                    formControlName="title"
                    jAutofocus
-                   [timerDelay]="300" />
+                   [timerDelay]="500" />
         </div>
-        <div class="form-group mt-3">
+        <div class="mt-3 form-group">
             <label class="label">
                 Description
             </label>
@@ -44,7 +44,7 @@
                           [placeholder]="''">
             </quill-editor>
         </div>
-        <div class="form-group mt-3">
+        <div class="mt-3 form-group">
             <label class="label">
                 Reporter
             </label>
@@ -52,7 +52,7 @@
                                    [users]="reporterUsers$ | async">
             </issue-reporter-select>
         </div>
-        <div class="form-group mt-3">
+        <div class="mt-3 form-group">
             <label class="label">
                 Assignees
             </label>
@@ -60,7 +60,7 @@
                                     [users]="assignees$ | async">
             </issue-assignees-select>
         </div>
-        <div class="form-group mt-5 form-action">
+        <div class="mt-5 form-group form-action">
             <j-button className="btn-primary mr-2"
                       type="submit"
                       [disabled]="issueForm?.invalid"
