@@ -32,7 +32,9 @@
                    formControlName="title"
                    jAutofocus
                    [timerDelay]="500" />
-            <span *ngIf='issueForm.controls.title.touched && issueForm.controls.tittle.hasError("required")'></span>
+            <span *ngIf='issueForm.controls.title.touched && issueForm.controls.tittle.hasError("required")'>
+                Title is required
+            </span>
         </div>
         <div class="mt-3 form-group">
             <label class="label">
@@ -60,7 +62,7 @@
             <issue-assignees-select [control]="f.userIds"
                                     [users]="assignees$ | async">
             </issue-assignees-select>
-        </div>        
+        </div>
         <div class="mt-5 form-group form-action">
             <j-button className="btn-primary mr-2"
                       type="submit"
