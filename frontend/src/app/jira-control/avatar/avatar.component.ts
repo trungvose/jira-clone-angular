@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class AvatarComponent {
   @Input() avatarUrl: string;
   @Input() size = 12;
-  @Input() name = "";
+  @Input() name = '';
   @Input() rounded = true;
   @Input() className = '';
 
@@ -19,5 +19,5 @@ export class AvatarComponent {
       'background-image': `url('${this.avatarUrl}')`,
       'border-radius': this.rounded ? '100%' : '3px'
     };
-  }  
+  }
 }
