@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { JIssue } from '@trungk18/interface/issue';
 import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
@@ -14,7 +14,7 @@ import { IssueModalComponent } from '../issue-modal/issue-modal.component';
   styleUrls: ['./issue-card.component.scss']
 })
 @UntilDestroy()
-export class IssueCardComponent implements OnChanges {
+export class IssueCardComponent implements OnChanges, OnInit {
   @Input() issue: JIssue;
   assignees: JUser[];
   issueTypeIcon: string;
