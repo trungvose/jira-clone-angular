@@ -1,5 +1,5 @@
-import { AppModule } from "@trungk18/app.module";
-import { TestBed } from "@angular/core/testing";
+import { AppModule } from '@trungk18/app.module';
+import { TestBed } from '@angular/core/testing';
 
 describe('AppModule', () => {
   let module: AppModule;

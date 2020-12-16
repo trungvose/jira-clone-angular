@@ -1,6 +1,6 @@
-import {AppComponent} from "@trungk18/app.component";
-import {NavigationEnd} from "@angular/router";
-import {environment} from "../environments/environment";
+import { AppComponent } from '@trungk18/app.component';
+import { NavigationEnd } from '@angular/router';
+import { environment } from '../environments/environment';
 
 describe('AppComponent', () => {
   let component: AppComponent;

@@ -21,14 +21,17 @@ export class IssueCommentComponent implements OnInit {
   user: JUser;
   isEditing: boolean;
 
-  constructor(private _authQuery: AuthQuery, private projectService: ProjectService) {}
+  constructor(
+    private _authQuery: AuthQuery,
+    private projectService: ProjectService
+  ) {}
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (!this.createMode || this.isEditing) {
       return;
     }
-    if (event.key == 'M') {
+    if (event.key === 'M') {
       this.commentBoxRef.nativeElement.focus();
       this.isEditing = true;
     }
