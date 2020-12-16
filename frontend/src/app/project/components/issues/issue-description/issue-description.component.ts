@@ -31,7 +31,9 @@ export class IssueDescriptionComponent implements OnChanges {
   }
 
   editorCreated(editor: any) {
-    editor.focus && editor.focus();
+    if (editor && editor.focus) {
+      editor.focus();
+    }
   }
 
   save() {
