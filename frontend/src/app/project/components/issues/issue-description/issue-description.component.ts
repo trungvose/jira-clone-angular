@@ -46,6 +46,4 @@ export class IssueDescriptionComponent implements OnChanges {
     this.descriptionControl.patchValue(this.issue.description);
     this.setEditMode(false);
   }
-
-  ngOnInit(): void {}
 }
