@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { JIssue } from '@trungk18/interface/issue';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -10,7 +10,7 @@ import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-mode
   templateUrl: './issue-detail.component.html',
   styleUrls: ['./issue-detail.component.scss']
 })
-export class IssueDetailComponent implements OnInit {
+export class IssueDetailComponent{
   @Input() issue: JIssue;
   @Input() isShowFullScreenButton: boolean;
   @Input() isShowCloseButton: boolean;
@@ -19,8 +19,6 @@ export class IssueDetailComponent implements OnInit {
   @Output() onDelete = new EventEmitter<DeleteIssueModel>();
 
   constructor(public projectQuery: ProjectQuery, private _modalService: NzModalService) {}
-
-  ngOnInit(): void {}
 
   openDeleteIssueModal() {
     this._modalService.create({
