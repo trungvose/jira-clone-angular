@@ -8,7 +8,6 @@ describe('IssuePrioritySelectComponent', () => {
   });
 
   it('should be able to get Priority Icon', () => {
-    console.log(component.getPriorityIcon(IssuePriority.LOW));
     const expectedIcon = component.getPriorityIcon(IssuePriority.LOW);
     expect(expectedIcon.value).toEqual('Low');
     expect(expectedIcon.icon).toEqual('arrow-down');
