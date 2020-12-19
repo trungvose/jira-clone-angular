@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
 import { IssueUtil } from '@trungk18/project/utils/issue';
@@ -10,7 +10,7 @@ import { ProjectConst } from '@trungk18/project/config/const';
   templateUrl: './issue-priority-select.component.html',
   styleUrls: ['./issue-priority-select.component.scss']
 })
-export class IssuePrioritySelectComponent implements OnInit {
+export class IssuePrioritySelectComponent {
   @Input() control: FormControl;
   priorities: IssuePriorityIcon[];
 
@@ -21,6 +21,4 @@ export class IssuePrioritySelectComponent implements OnInit {
   getPriorityIcon(priority: IssuePriority) {
     return IssueUtil.getIssuePriorityIcon(priority);
   }
-
-  ngOnInit(): void {}
 }
