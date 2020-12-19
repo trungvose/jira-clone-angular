@@ -15,6 +15,7 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
   <p>
 
 - [A simplified Jira clone built with Angular 10, Akita and ng-zorro](#a-simplified-jira-clone-built-with-angular-10-akita-and-ng-zorro)
+  - [Merry Christmas](#merry-christmas)
   - [Working application](#working-application)
   - [Storybook](#storybook)
     - [What is Storybook](#what-is-storybook)
@@ -44,6 +45,12 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
 
   </p>
 </details>
+
+## Merry Christmas
+
+Thank you for your support! -> https://jira.trungk18.com/project/issue/2020
+
+![Jira clone built with Angular 9 and Akita][christmas2020]
 
 ## Working application
 
@@ -325,6 +332,7 @@ Feel free to use my code on your project. It would be great if you put a referen
 [datlyfe]: https://github.com/Datlyfe/jira_clone
 [stack]: frontend/src/assets/img/jira-clone-tech-stack.png
 [demo]: frontend/src/assets/img/jira-clone-angular-demo-trungk18.gif
+[christmas2020]: frontend/src/assets/img/merry-christmas-2020.gif
 [demo-storybook]: frontend/src/assets/img/jira-storybook.gif
 [time]: frontend/src/assets/img/time-spending.png
 [issues]: https://github.com/trungk18/jira-clone-angular/issues/new

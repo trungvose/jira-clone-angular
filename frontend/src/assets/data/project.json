@@ -63,9 +63,21 @@
       "status": "Backlog",
       "createdAt": "2020-10-26T15:13:08.070Z",
       "updatedAt": "2020-10-26T15:13:10.418Z",
+      "listPosition": 2
+    },
+    {
+      "type": "Story",
+      "priority": "Highest",
+      "title": "Merry Christmas 🎄🎄🎄",
+      "description": "<p><span style='background-color: transparent;'>2020 is about to an end, and the holiday session is coming. It was such a particular year for you and me. I have been staying in Singapore for more than eight months without traveling anywhere else. Probably, I will not be able to come back home for our upcoming Tet holiday. But tough times will make us </span><u style='background-color: transparent;'>stronger</u><span style='background-color: transparent;'>, I believe so :)</span></p><p><br></p><p><span style='background-color: transparent;'>I want to take this opportunity to say </span><u style='background-color: transparent;'>thank you for all of your support</u><span style='background-color: transparent;'> for my project, especially for Angular Jira Clone. Seeing my work got lots of positive comments and discussions made my 2020 genuinely unforgettable. I am working on some exciting Angular projects, and hopefully I can publish them very soon in 2021.</span></p><p><br></p><p><strong style='background-color: transparent;'>I hope your holiday season is full of peace, joy, and happiness. Stay safe!</strong></p><p><br></p><p><span style='color: rgb(0, 0, 0);'><img src='https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_250/v1608345048/christmas_totoro_2013-02_wphb7s.jpg'></span></p><p><br></p><p>P/s: This is Totoro, my most favorite character 😂</p>",
+      "reporterId": "d65047e5-f4cf-4caa-9a38-6073dcbab7d1",
+      "userIds": ["d65047e5-f4cf-4caa-9a38-6073dcbab7d1"],
+      "id": "2020",
+      "status": "Backlog",
+      "createdAt": "2020-12-19T03:00:00.000Z",
+      "updatedAt": "2020-12-19T03:00:00.000Z",
       "listPosition": 1
     },
-
     {
       "type": "Story",
       "priority": "Highest",
