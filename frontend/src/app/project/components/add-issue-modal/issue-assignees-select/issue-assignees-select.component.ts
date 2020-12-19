@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { JUser } from '@trungk18/interface/user';
 import { FormControl } from '@angular/forms';
 
@@ -8,13 +8,11 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./issue-assignees-select.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class IssueAssigneesSelectComponent implements OnInit {
+export class IssueAssigneesSelectComponent {
   @Input() control: FormControl;
   @Input() users: JUser[];
 
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  ngOnInit(): void {}
+  constructor() {}
 
   getUser(userId: string) {
     return this.users.find((user) => user.id === userId);
