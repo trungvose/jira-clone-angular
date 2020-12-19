@@ -37,6 +37,10 @@ board-dnd {
 }
 
 //ng-zorro override
+body {
+  overflow: hidden;
+}
+
 body,
 .ant-modal {
   @apply text-textDark;
