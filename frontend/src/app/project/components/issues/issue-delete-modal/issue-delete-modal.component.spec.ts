@@ -1,6 +1,6 @@
 import {IssueDeleteModalComponent} from '@trungk18/project/components/issues/issue-delete-modal/issue-delete-modal.component';
 
-describe('', () => {
+describe('IssueDeleteModalComponent', () => {
   let component: IssueDeleteModalComponent;
 
   const nzModalRef: any = {

@@ -1,7 +1,7 @@
 import {IssueDetailComponent} from '@trungk18/project/components/issues/issue-detail/issue-detail.component';
 import {IssuePriority, IssueStatus, IssueType} from '@trungk18/interface/issue';
 
-describe('', () => {
+describe('IssueDetailComponent', () => {
   let component: IssueDetailComponent;
 
   const projectQuery: any = {
