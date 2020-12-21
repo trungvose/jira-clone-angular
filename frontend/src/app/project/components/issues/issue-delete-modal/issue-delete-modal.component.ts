@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-model';
 
@@ -7,14 +7,12 @@ import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-mode
   templateUrl: './issue-delete-modal.component.html',
   styleUrls: ['./issue-delete-modal.component.scss']
 })
-export class IssueDeleteModalComponent implements OnInit {
+export class IssueDeleteModalComponent {
   issueId: string;
 
   onDelete = new EventEmitter<DeleteIssueModel>();
 
   constructor(private _modalRef: NzModalRef) {}
-
-  ngOnInit(): void {}
 
   deleteIssue() {
     this.onDelete.emit(new DeleteIssueModel(this.issueId, this._modalRef));

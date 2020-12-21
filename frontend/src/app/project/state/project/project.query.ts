@@ -2,8 +2,8 @@ import { ProjectState, ProjectStore } from './project.store';
 import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 import { IssueStatus, JIssue } from '@trungk18/interface/issue';
-import { filter, map, delay } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { map, delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,10 +25,9 @@ export class ProjectQuery extends Query<ProjectState> {
   issueByStatusSorted$ = (status: IssueStatus): Observable<JIssue[]> => {
     return this.issues$.pipe(
       map((issues) => {
-        const filteredIssues = issues
+        return issues
           .filter((x) => x.status === status)
           .sort((a, b) => a.listPosition - b.listPosition);
-        return filteredIssues;
       })
     );
   }
@@ -37,8 +36,7 @@ export class ProjectQuery extends Query<ProjectState> {
     return this.issues$.pipe(
       delay(500),
       map((issues) => {
-        const issue = issues.find(x => x.id === issueId);
-        return issue;
+        return issues.find(x => x.id === issueId);
       })
     );
   }

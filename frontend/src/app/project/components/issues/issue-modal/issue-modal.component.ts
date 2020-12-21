@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { JIssue } from '@trungk18/interface/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
@@ -11,7 +11,7 @@ import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-mode
   templateUrl: './issue-modal.component.html',
   styleUrls: ['./issue-modal.component.scss']
 })
-export class IssueModalComponent implements OnInit {
+export class IssueModalComponent {
   @Input() issue$: Observable<JIssue>;
 
   constructor(
@@ -19,8 +19,6 @@ export class IssueModalComponent implements OnInit {
     private _router: Router,
     private _projectService: ProjectService
   ) {}
-
-  ngOnInit(): void {}
 
   closeModal() {
     this._modal.close();
