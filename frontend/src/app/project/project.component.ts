@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from './state/project/project.service';
-import { AuthService, LoginPayload } from './auth/auth.service';
+import { AuthService } from './auth/auth.service';
+import { LoginPayload } from '@trungk18/project/auth/loginPayload';
 
 @Component({
   selector: 'app-project',

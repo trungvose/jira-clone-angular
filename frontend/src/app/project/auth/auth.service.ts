@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { AuthStore } from './auth.store';
 import { environment } from 'src/environments/environment';
+import { LoginPayload } from '@trungk18/project/auth/loginPayload';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -36,11 +37,4 @@ export class AuthService {
   }
 }
 
-export class LoginPayload {
-  email: string;
-  password: string;
-  constructor() {
-    this.email = 'trungk18@gmail.com';
-    this.password = `${new Date().getTime()}`;
-  }
-}
+
