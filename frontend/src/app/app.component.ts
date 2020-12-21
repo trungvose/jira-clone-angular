@@ -20,17 +20,16 @@ export class AppComponent implements AfterViewInit {
     private _googleAnalytics: GoogleAnalyticsService
   ) {
     this._projectService.setLoading(true);
+
     if (environment.production) {
-      this.handleGoogleAnalytics();
+      this.router.events.subscribe(this.handleGoogleAnalytics);
     }
   }
 
-  handleGoogleAnalytics() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this._googleAnalytics.sendPageView(event.urlAfterRedirects);
-      }
-    });
+  handleGoogleAnalytics = (event: any): void => {
+    if (event instanceof NavigationEnd) {
+      this._googleAnalytics.sendPageView(event.urlAfterRedirects);
+    }
   }
 
   ngAfterViewInit() {

@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build --prod=true --sourceMap=true",
     "test": "ng test",
+    "test-cover": "ng test --code-coverage --source-map=false",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix=true",
     "e2e": "ng e2e",

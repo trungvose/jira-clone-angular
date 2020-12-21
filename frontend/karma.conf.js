@@ -25,8 +25,25 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    customLaunchers: {
+      HeadlessChrome: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--disable-web-security',
+          '--disable-setuid-sandbox',
+          '--no-sandbox',
+          '--headless',
+          '--disable-gpu',
+          '--disable-translate',
+          '--disable-extensions',
+          '--proxy-server=\'direct://\'',
+          '--proxy-bypass-list=*',
+          '--blockDomainsExcept',
+        ]
+      }
+    },
   });
 };

@@ -31,7 +31,9 @@ export class IssueDescriptionComponent implements OnChanges {
   }
 
   editorCreated(editor: any) {
-    editor.focus && editor.focus();
+    if (editor && editor.focus) {
+      editor.focus();
+    }
   }
 
   save() {
@@ -46,6 +48,4 @@ export class IssueDescriptionComponent implements OnChanges {
     this.descriptionControl.patchValue(this.issue.description);
     this.setEditMode(false);
   }
-
-  ngOnInit(): void {}
 }
