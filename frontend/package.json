@@ -30,6 +30,8 @@
     "@datorama/akita-ng-entity-service": "^5.1.1",
     "@ngneat/content-loader": "^6.0.0",
     "@ngneat/until-destroy": "^8.0.3",
+    "@sentry/angular": "^5.29.2",
+    "@sentry/tracing": "^5.29.2",
     "date-fns": "^2.14.0",
     "karma-coverage": "^2.0.3",
     "ng-zorro-antd": "^11.0.0",
