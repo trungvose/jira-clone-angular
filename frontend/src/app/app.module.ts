@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { QuillModule } from 'ngx-quill';
 import { SnowModule } from './core/snow/snow.module';
+import * as Sentry from "@sentry/angular";
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,12 +28,17 @@ import { SnowModule } from './core/snow/snow.module';
     environment.production ? [] : AkitaNgDevtools,
     AkitaNgRouterStoreModule,
     QuillModule.forRoot(),
-    SnowModule    
+    SnowModule
   ],
   providers: [
     {
       provide: NG_ENTITY_SERVICE_CONFIG,
       useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }
+    },
+
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler()
     }
   ],
   bootstrap: [AppComponent]
