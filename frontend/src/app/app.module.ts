@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +14,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { QuillModule } from 'ngx-quill';
 import { SnowModule } from './core/snow/snow.module';
 import * as Sentry from "@sentry/angular";
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,11 +36,20 @@ import * as Sentry from "@sentry/angular";
       provide: NG_ENTITY_SERVICE_CONFIG,
       useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }
     },
-
     {
       provide: ErrorHandler,
       useValue: Sentry.createErrorHandler()
-    }
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
