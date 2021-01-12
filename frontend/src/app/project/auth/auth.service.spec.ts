@@ -1,6 +1,6 @@
 import { AuthService } from './auth.service';
 import { Subject } from 'rxjs';
-import { fakeAsync, tick } from '@angular/core/testing';
+import { fakeAsync } from '@angular/core/testing';
 
 describe('AuthService', () => {
   let service: AuthService;
