@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-declare var gtag: any;
+declare const gtag: any;
 const GOOGLE_ANALYTICS_ID = 'UA-80363801-4';
 @Injectable({
   providedIn: 'root'
@@ -22,16 +22,19 @@ export class GoogleAnalyticsService {
       return;
     }
     this.gtag('event', eventName, {
+      /* eslint-disable @typescript-eslint/naming-convention */
       event_category: eventCategory,
       event_label: eventLabel,
+      /* eslint-enable @typescript-eslint/naming-convention */
       value: eventValue
     });
-  }
+  };
 
   public sendPageView(url: string) {
     if (!this.gtag) {
       return;
     }
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     this.gtag('config', GOOGLE_ANALYTICS_ID, { page_path: url });
   }
 }

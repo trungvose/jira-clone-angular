@@ -30,12 +30,10 @@ export class ProjectService {
       .pipe(
         setLoading(this._store),
         tap((project) => {
-          this._store.update((state) => {
-            return {
+          this._store.update((state) => ({
               ...state,
               ...project
-            };
-          });
+            }));
         }),
         catchError((error) => {
           this._store.setError(error);

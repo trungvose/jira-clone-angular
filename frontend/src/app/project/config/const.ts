@@ -4,6 +4,7 @@ import { IssueUtil } from '../utils/issue';
 import { IssueTypeWithIcon } from '@trungk18/interface/issue-type-icon';
 
 export class ProjectConst {
+  /* eslint-disable @typescript-eslint/naming-convention */
   static readonly IssueId = 'issueId';
   static readonly Projects = 'Projects';
   static PrioritiesWithIcon: IssuePriorityIcon[] = [
@@ -19,4 +20,5 @@ export class ProjectConst {
     new IssueTypeWithIcon(IssueType.STORY),
     new IssueTypeWithIcon(IssueType.TASK)
   ];
+  /* eslint-enable @typescript-eslint/naming-convention */
 }

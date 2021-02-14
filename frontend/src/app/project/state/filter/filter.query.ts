@@ -4,15 +4,16 @@ import { FilterStore, FilterState } from './filter.store';
 
 @Injectable({ providedIn: 'root' })
 export class FilterQuery extends Query<FilterState> {
-  constructor(protected store: FilterStore) {
-    super(store);
-  }
-
-  any$ = this.select(({ searchTerm, userIds, onlyMyIssue, ignoreResolved }) => {
-    return !!searchTerm || !!userIds?.length || onlyMyIssue || ignoreResolved;
-  });
+  any$ = this.select(
+    ({ searchTerm, userIds, onlyMyIssue, ignoreResolved }) =>
+      !!searchTerm || !!userIds?.length || onlyMyIssue || ignoreResolved
+  );
   all$ = this.select();
   userIds$ = this.select('userIds');
   onlyMyIssue$ = this.select('onlyMyIssue');
   ignoreResolve$ = this.select('ignoreResolved');
+
+  constructor(protected store: FilterStore) {
+    super(store);
+  }
 }

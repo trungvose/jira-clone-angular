@@ -10,6 +10,7 @@ import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 })
 export class IssueStatusComponent implements OnInit {
   @Input() issue: JIssue;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   IssueStatusDisplay = IssueStatusDisplay;
 
   variants = {

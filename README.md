@@ -1,4 +1,4 @@
-# A simplified Jira clone built with Angular 10, Akita and ng-zorro
+# A simplified Jira clone built with Angular, Akita and ng-zorro
 
 > Phase two will not be completed as planned. Both [Chau Tran][chau] and I was too busy with some other commitments. View our [working in progress Graph QL branch][gql].
 >
@@ -8,13 +8,13 @@
 
 There have been a handful of cool Jira-cloned apps written in `React`/`VueJS`, which makes me wonder **Why not Angular**? And here you go.
 
-This is not only a simplified Jira clone built with Angular 9, but also an example of a **modern**, **real-world** Angular codebase.
+This is not only a simplified Jira clone built with Angular, but also an example of a **modern**, **real-world** Angular codebase.
 
 <details>
   <summary>Table Of Content</summary>
   <p>
 
-- [A simplified Jira clone built with Angular 10, Akita and ng-zorro](#a-simplified-jira-clone-built-with-angular-10-akita-and-ng-zorro)
+- [A simplified Jira clone built with Angular, Akita and ng-zorro](#a-simplified-jira-clone-built-with-angular-akita-and-ng-zorro)
   - [Merry Christmas](#merry-christmas)
   - [Working application](#working-application)
   - [Storybook](#storybook)
@@ -50,13 +50,13 @@ This is not only a simplified Jira clone built with Angular 9, but also an examp
 
 Thank you for your support! -> https://jira.trungk18.com/project/issue/2020
 
-![Jira clone built with Angular 9 and Akita][christmas2020]
+![Jira clone built with Angular and Akita][christmas2020]
 
 ## Working application
 
 Check out the **live demo** -> https://jira.trungk18.com
 
-![Jira clone built with Angular 9 and Akita][demo]
+![Jira clone built with Angular and Akita][demo]
 
 ## Storybook
 
@@ -77,7 +77,7 @@ This is the collection of components that I wrote for [jira.trungk18.com][jira],
 
 Check out the **storybook demo** -> https://jira-storybook.trungk18.com/
 
-![Jira clone built with Angular 9 and Akita][demo-storybook]
+![Jira clone built with Angular and Akita][demo-storybook]
 
 ## Support
 
@@ -138,7 +138,7 @@ As requested by [@eric_cart][eric_cart], I draw a simple high-level design for t
 
 I have an AppModule that will import:
 
-![Jira clone built with Angular 9 and Akita - Application architecture][application-architecture]
+![Jira clone built with Angular and Akita - Application architecture][application-architecture]
 
 - Angular needed modules such as `BrowserModule` and any module that need to run `forRoot`.
 - The application core modules such as `AuthModule` that need to available on the whole platform.
@@ -149,7 +149,7 @@ I have an AppModule that will import:
 
 As I am using [Akita][akita] state management, I follow the Akita documentation for the data flow. I found it is simple to understand comparing with ngrx terms (`reducer`, `selector`, `effect`)
 
-![Jira clone built with Angular 9 and Akita - Simple data interaction flow][interaction-data-flow]
+![Jira clone built with Angular and Akita - Simple data interaction flow][interaction-data-flow]
 
 I set up a [project state with initial data][project-store]. The main heavy lifting part I think is the [project service][project-service], it contains all the interacting with [project store][project-store]. Such as after fetching the project successfully, I update the store immediately inside the service itself. The last lego block was to expose the data through [project query][project-query]. Any components can start to inject [project query][project-query] and consume data from there.
 
@@ -239,7 +239,7 @@ According to waka time report, I have spent about 45 hours working on this proje
 
 I really enjoyed working on this project. The interactive kanban board took me sometimes, it is challenging but exciting at the same time.
 
-![Jira clone built with Angular 9 and Akita - Time spending][time]
+![Jira clone built with Angular and Akita - Time spending][time]
 
 ## What's currently missing?
 

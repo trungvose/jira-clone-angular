@@ -11,15 +11,14 @@ import { ProjectConst } from '@trungk18/project/config/const';
   styleUrls: ['./issue-priority.component.scss']
 })
 export class IssuePriorityComponent implements OnInit, OnChanges {
-  selectedPriority: IssuePriority;
+  @Input() issue: JIssue;
 
+  selectedPriority: IssuePriority;
   get selectedPriorityIcon() {
     return IssueUtil.getIssuePriorityIcon(this.selectedPriority);
   }
 
   priorities: IssuePriorityIcon[];
-
-  @Input() issue: JIssue;
 
   constructor(private _projectService: ProjectService) {}
 

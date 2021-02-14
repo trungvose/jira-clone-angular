@@ -1,4 +1,4 @@
-import {IssueAssigneesSelectComponent} from '@trungk18/project/components/add-issue-modal/issue-assignees-select/issue-assignees-select.component';
+import { IssueAssigneesSelectComponent } from '@trungk18/project/components/add-issue-modal/issue-assignees-select/issue-assignees-select.component';
 
 describe('IssueAssigneesSelectComponent', () => {
   let component: IssueAssigneesSelectComponent;
@@ -13,9 +13,9 @@ describe('IssueAssigneesSelectComponent', () => {
         avatarUrl: '',
         createdAt: '',
         updatedAt: '',
-        issueIds: [],
+        issueIds: []
       }
-      ];
+    ];
   });
 
   it('should be able to ', () => {

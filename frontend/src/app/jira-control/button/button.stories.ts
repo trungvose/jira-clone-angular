@@ -33,7 +33,7 @@ Secondary.args = {
 
 export const Empty: Story<ButtonProps> = Template.bind({});
 Empty.args = {
-  icon: "times",
+  icon: 'times',
   className: 'btn-empty',
   label: 'Cancel'
 };

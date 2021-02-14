@@ -44,6 +44,11 @@
   "devDependencies": {
     "@angular-builders/custom-webpack": "^10.0.1",
     "@angular-devkit/build-angular": "~0.1100.5",
+    "@angular-eslint/builder": "1.1.0",
+    "@angular-eslint/eslint-plugin": "1.1.0",
+    "@angular-eslint/eslint-plugin-template": "1.1.0",
+    "@angular-eslint/schematics": "1.1.0",
+    "@angular-eslint/template-parser": "1.1.0",
     "@angular/cli": "~11.0.5",
     "@angular/compiler-cli": "~11.0.5",
     "@babel/core": "^7.12.10",
@@ -58,8 +63,15 @@
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^14.14.14",
+    "@typescript-eslint/eslint-plugin": "4.3.0",
+    "@typescript-eslint/parser": "4.3.0",
     "babel-loader": "^8.2.2",
     "codelyzer": "^6.0.0",
+    "eslint": "^7.6.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-prefer-arrow": "1.2.2",
+    "husky": "^5.0.9",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~6.0.0",
     "karma": "~5.2.3",
@@ -67,6 +79,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "lint-staged": "^10.5.4",
     "nz-tslint-rules": "^0.901.2",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
@@ -77,5 +90,13 @@
     "ts-node": "~9.1.1",
     "tslint": "~6.1.0",
     "typescript": "~4.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "npm run lint:fix"
   }
 }
