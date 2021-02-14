@@ -30,7 +30,7 @@ export class AppComponent implements AfterViewInit {
     if (event instanceof NavigationEnd) {
       this._googleAnalytics.sendPageView(event.urlAfterRedirects);
     }
-  }
+  };
 
   ngAfterViewInit() {
     this._cdr.detectChanges();

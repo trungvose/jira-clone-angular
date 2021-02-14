@@ -1,5 +1,7 @@
+
 import { JComment } from './comment';
 
+/* eslint-disable no-shadow */
 export enum IssueType {
   STORY = 'Story',
   TASK = 'Task',
@@ -9,6 +11,7 @@ export enum IssueType {
 export enum IssueStatus {
   BACKLOG = 'Backlog',
   SELECTED = 'Selected',
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   IN_PROGRESS = 'InProgress',
   DONE = 'Done'
 }
@@ -53,3 +56,4 @@ export interface JIssue {
   comments: JComment[];
   projectId: string;
 }
+/* eslint-enable no-shadow */

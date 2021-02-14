@@ -8,36 +8,31 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectQuery extends Query<ProjectState> {
-  constructor(protected store: ProjectStore) {
-    super(store);
-  }
   isLoading$ = this.selectLoading();
   all$ = this.select();
   issues$ = this.select('issues');
   users$ = this.select('users');
 
+  constructor(protected store: ProjectStore) {
+    super(store);
+  }
+
   lastIssuePosition = (status: IssueStatus): number => {
     const raw = this.store.getValue();
     const issuesByStatus = raw.issues.filter(x => x.status === status);
     return issuesByStatus.length;
-  }
+  };
 
-  issueByStatusSorted$ = (status: IssueStatus): Observable<JIssue[]> => {
-    return this.issues$.pipe(
-      map((issues) => {
-        return issues
+  issueByStatusSorted$ = (status: IssueStatus): Observable<JIssue[]> => this.issues$.pipe(
+      map((issues) => issues
           .filter((x) => x.status === status)
-          .sort((a, b) => a.listPosition - b.listPosition);
-      })
+          .sort((a, b) => a.listPosition - b.listPosition))
     );
-  }
 
   issueById$(issueId: string){
     return this.issues$.pipe(
       delay(500),
-      map((issues) => {
-        return issues.find(x => x.id === issueId);
-      })
+      map((issues) => issues.find(x => x.id === issueId))
     );
   }
 }

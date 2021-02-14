@@ -16,13 +16,13 @@ const Template: Story<AvatarComponent> = (args: AvatarComponent) => ({
 
 export const Rounded: Story<AvatarComponent> = Template.bind({});
 Rounded.args = {
-  avatarUrl: avatarUrl,
+  avatarUrl,
   size: 64
 };
 
 export const Square: Story<AvatarComponent> = Template.bind({});
 Square.args = {
-  avatarUrl: avatarUrl,
+  avatarUrl,
   size: 64,
   rounded: false
 };

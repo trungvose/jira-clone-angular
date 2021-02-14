@@ -13,6 +13,7 @@ export interface JProject {
   users: JUser[];
 }
 
+// eslint-disable-next-line no-shadow
 export enum ProjectCategory {
   SOFTWARE = 'Software',
   MARKETING = 'Marketing',

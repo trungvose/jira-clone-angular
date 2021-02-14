@@ -57,7 +57,9 @@
         ],
         "typescript-eslint/quotes": "off",
         "no-underscore-dangle": "off",
-        "radix": "off"
+        "radix": "off",
+        "max-len": "off",
+        "prefer-arrow/prefer-arrow-functions": "off"
       }
     },
     {

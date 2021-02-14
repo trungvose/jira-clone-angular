@@ -17,10 +17,12 @@ import { IssueUtil } from '@trungk18/project/utils/issue';
 })
 @UntilDestroy()
 export class BoardDndListComponent implements OnInit {
-  IssueStatusDisplay = IssueStatusDisplay;
   @Input() status: IssueStatus;
   @Input() currentUserId: string;
   @Input() issues$: Observable<JIssue[]>;
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  IssueStatusDisplay = IssueStatusDisplay;
   issues: JIssue[] = [];
 
   get issuesCount(): number {
@@ -56,19 +58,10 @@ export class BoardDndListComponent implements OnInit {
     }
   }
 
-  private updateListPosition(newList: JIssue[]) {
-    newList.forEach((issue, idx) => {
-      const newIssueWithNewPosition = { ...issue, listPosition: idx + 1 };
-      this._projectService.updateIssue(newIssueWithNewPosition);
-    });
-  }
-
   filterIssues(issues: JIssue[], filter: FilterState): JIssue[] {
     const { onlyMyIssue, ignoreResolved, searchTerm, userIds } = filter;
     return issues.filter((issue) => {
-      const isMatchTerm = searchTerm
-        ? IssueUtil.searchString(issue.title, searchTerm)
-        : true;
+      const isMatchTerm = searchTerm ? IssueUtil.searchString(issue.title, searchTerm) : true;
 
       const isIncludeUsers = userIds.length
         ? issue.userIds.some((userId) => userIds.includes(userId))
@@ -88,5 +81,12 @@ export class BoardDndListComponent implements OnInit {
     const now = new Date();
     const inputDate = new Date(date);
     return dateFns.isAfter(inputDate, dateFns.subDays(now, 3));
+  }
+
+  private updateListPosition(newList: JIssue[]) {
+    newList.forEach((issue, idx) => {
+      const newIssueWithNewPosition = { ...issue, listPosition: idx + 1 };
+      this._projectService.updateIssue(newIssueWithNewPosition);
+    });
   }
 }

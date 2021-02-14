@@ -37,6 +37,12 @@ export class FullIssueDetailComponent implements OnInit {
     });
   }
 
+  deleteIssue({issueId, deleteModalRef}: DeleteIssueModel) {
+    this._projectService.deleteIssue(issueId);
+    deleteModalRef.close();
+    this.backHome();
+  }
+
   private getIssue() {
     this.issueId = this._route.snapshot.paramMap.get(ProjectConst.IssueId);
     if (!this.issueId) {
@@ -44,12 +50,6 @@ export class FullIssueDetailComponent implements OnInit {
       return;
     }
     this.issueById$ = this._projectQuery.issueById$(this.issueId);
-  }
-
-  deleteIssue({issueId, deleteModalRef}: DeleteIssueModel) {
-    this._projectService.deleteIssue(issueId);
-    deleteModalRef.close();
-    this.backHome();
   }
 
   private backHome() {
