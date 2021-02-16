@@ -188,7 +188,7 @@ I will take two weeks break to:
 
 ### Phase 2
 
-> September ~ October 2020
+> TBD
 
 - [ ] Refactor the mono repo to use Nx Workspace
 - [ ] GraphQL API and store data on the actual database
@@ -208,7 +208,8 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 
 | Part | Description                                                                     | Status |
 | ---- | ------------------------------------------------------------------------------- | ------ |
-| -1   | [Behind the 900 stars repository - Slide][part-1]                               | Done   |
+| 00   | [Behind the 900 stars repository - Slide][part-1]                               | Done   |
+| 00   | [Behind a thousand stars repository - Angular Air][part-1-video]                | Done   |
 | 00   | [Prerequisites][part00]                                                         | Done   |
 | 01   | [Create a new repository and set up a new Angular application with CLI][part01] | Done   |
 | 02   | [Build the application layout with flex and TailwindCSS][part02]                | Done   |
@@ -220,6 +221,7 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 | 08   | [Create placeholder loading (like Facebook's cards loading)][part08]            | Done   |
 
 [part-1]: https://slides.com/tuantrungvo/behind-the-900-star-repository-jira-clone-angular
+[part-1-video]: https://youtu.be/3dukbsRX0tc
 [part00]: https://trungk18.com/experience/angular-jira-clone-tutorial-00-prerequisites/
 [part01]: https://trungk18.com/experience/angular-jira-clone-tutorial-01-planning-and-set-up/
 [part02]: https://trungk18.com/experience/angular-jira-clone-tutorial-02-application-layout-tailwindcss-flex/
