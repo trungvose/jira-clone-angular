@@ -46,15 +46,10 @@ export class BoardDndListComponent implements OnInit {
       moveItemInArray(newIssues, event.previousIndex, event.currentIndex);
       this.updateListPosition(newIssues);
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        newIssues,
-        event.previousIndex,
-        event.currentIndex
-      );
-      this.updateListPosition(newIssues);
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       newIssue.status = event.container.id as IssueStatus;
-      this._projectService.updateIssue(newIssue);
+      newIssues.splice(event.currentIndex, 0, newIssue);
+      this.updateListPosition(newIssues);
     }
   }
 
