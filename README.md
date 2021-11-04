@@ -10,42 +10,6 @@ There have been a handful of cool Jira-cloned apps written in `React`/`VueJS`, w
 
 This is not only a simplified Jira clone built with Angular, but also an example of a **modern**, **real-world** Angular codebase.
 
-<details>
-  <summary>Table Of Content</summary>
-  <p>
-
-- [A simplified Jira clone built with Angular, Akita and ng-zorro](#a-simplified-jira-clone-built-with-angular-akita-and-ng-zorro)
-  - [Merry Christmas](#merry-christmas)
-  - [Working application](#working-application)
-  - [Storybook](#storybook)
-    - [What is Storybook](#what-is-storybook)
-    - [Jira Clone Storybook](#jira-clone-storybook)
-  - [Support](#support)
-  - [Who is it for 🤷‍♀️](#who-is-it-for-️)
-  - [Tech stack](#tech-stack)
-  - [High level design](#high-level-design)
-    - [Application architecture](#application-architecture)
-    - [Simple data interaction flow](#simple-data-interaction-flow)
-  - [Features and Roadmap](#features-and-roadmap)
-    - [Phase 1 - Angular application and simple Nest API](#phase-1---angular-application-and-simple-nest-api)
-    - [Phase 2](#phase-2)
-  - [Tutorial](#tutorial)
-  - [Time spending](#time-spending)
-  - [What's currently missing?](#whats-currently-missing)
-    - [Proper backend API](#proper-backend-api)
-    - [Proper authentication system 🔐](#proper-authentication-system-)
-    - [Accessibility ♿](#accessibility-)
-  - [Setting up development environment 🛠](#setting-up-development-environment-)
-    - [Unit/Integration tests 🧪](#unitintegration-tests-)
-  - [Compatibility](#compatibility)
-  - [Author: Trung Vo ✍️](#author-trung-vo-️)
-  - [Contributing](#contributing)
-  - [Credits](#credits)
-  - [License](#license)
-
-  </p>
-</details>
-
 ## Merry Christmas
 
 Thank you for your support! -> https://jira.trungk18.com/project/issue/2020
@@ -90,6 +54,17 @@ If you like my work, feel free to:
 Thanks a bunch for stopping by and supporting me!
 
 [tweet]: https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Ftrungk18%2Fjira-clone-angular&text=Awesome%20Jira%20clone%20app%20built%20with%20Angular%209%20and%20Akita&hashtags=angular,akita,typescript
+
+## Cake Defi
+
+I am working at [Cake Defi][cake]. We offer the easiest way to generate consistently high returns from your crypto assets. We are a team of passionate people who are committed to building a better future for everyone.
+
+I built the landing page at [cakedefi.com][cake] and architect the entire app at [app.cakedefi.com][cakeapp].
+
+[Sign up using my referral code: 136431][cake] to get started and get $20 FREE.
+
+[cake]: https://cakedefi.com/?ref=136431&utm_source=trungvo
+[cakeapp]: https://app.cakedefi.com/?ref=136431&utm_source=trungvo
 
 ## Who is it for 🤷‍♀️
 
