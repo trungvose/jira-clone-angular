@@ -35,6 +35,7 @@
     "@ngneat/until-destroy": "^8.0.3",
     "@sentry/angular": "^6.18.1",
     "@sentry/tracing": "^6.18.1",
+    "cypress": "https://cdn.cypress.io/beta/npm/10.0.0/darwin-x64/circle-10.0-release-9f624b4f7a2cfbae4e7a69a0b2036642a3945c2c/cypress.tgz",
     "date-fns": "^2.14.0",
     "karma-coverage": "^2.0.3",
     "ng-zorro-antd": "^13.1.0",
