@@ -97,21 +97,21 @@
                   "maximumError": "100kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "frontend:build",
-            "customWebpackConfig": {
-              "path": "./webpack.config.js"
-            }
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "frontend:build:production"
-            }
+            "browserTarget": "frontend:build:development"
           }
         },
         "extract-i18n": {
