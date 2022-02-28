@@ -1,5 +1,6 @@
 :host {
   @apply flex;
+  flex-grow: 1;
   margin-bottom: 5px;
 }
 
@@ -7,10 +8,12 @@
   touch-action: manipulation;
   cursor: grab;
   @apply flex;
+  flex-grow: 1;
 }
 
 .issue {
   @apply flex flex-col rounded-sm bg-white transition-all duration-100 select-none;
+  flex-grow: 1;
   padding: 10px;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 2px 0px;
 }
