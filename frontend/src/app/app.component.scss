@@ -1,4 +1,4 @@
-@import './core/styles/custom';
+@import './core/styles/custom.scss';
 
 #app-frame {
   position: absolute;
@@ -9,10 +9,12 @@
   flex-direction: column;
 
   > nz-spin {
-    @apply flex flex-grow;
+    @apply flex;
+    flex-grow: 1;
 
     > .ant-spin-container {
-      @apply flex flex-grow;
+      @apply flex;
+      flex-grow: 1;
     }
   }
 }
@@ -26,7 +28,8 @@ app-project {
 }
 
 board-dnd {
-  @apply flex flex-grow;
+  @apply flex;
+  flex-grow: 1;
 }
 
 .global-spinner {
