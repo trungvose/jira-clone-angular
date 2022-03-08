@@ -5,8 +5,7 @@ import { JComment } from '@trungk18/interface/comment';
 import { JIssue } from '@trungk18/interface/issue';
 import { JProject } from '@trungk18/interface/project';
 import { DateUtil } from '@trungk18/project/utils/date';
-import { of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProjectStore } from './project.store';
 

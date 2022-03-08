@@ -2,8 +2,7 @@ import { ProjectState, ProjectStore } from './project.store';
 import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 import { IssueStatus, JIssue } from '@trungk18/interface/issue';
-import { map, delay } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { delay, map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
