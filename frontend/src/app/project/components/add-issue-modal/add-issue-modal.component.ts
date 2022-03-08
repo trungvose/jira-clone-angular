@@ -7,9 +7,8 @@ import { ProjectService } from '@trungk18/project/state/project/project.service'
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { JUser } from '@trungk18/interface/user';
-import { tap } from 'rxjs/operators';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 import { DateUtil } from '@trungk18/project/utils/date';
 

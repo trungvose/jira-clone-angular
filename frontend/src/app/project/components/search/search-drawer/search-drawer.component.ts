@@ -5,8 +5,7 @@ import { JIssue } from '@trungk18/interface/issue';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { NzDrawerRef } from 'ng-zorro-antd/drawer';
-import { combineLatest, Observable, of } from 'rxjs';
-import { map, switchMap, debounceTime, startWith } from 'rxjs/operators';
+import { combineLatest, debounceTime, map, Observable, of, startWith, switchMap } from 'rxjs';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { IssueModalComponent } from '../../issues/issue-modal/issue-modal.component';
 

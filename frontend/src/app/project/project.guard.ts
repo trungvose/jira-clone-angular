@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
-import { Observable, of, combineLatest } from 'rxjs';
-import { catchError, filter, switchMap, take, map } from 'rxjs/operators';
+import { Observable, of, combineLatest, switchMap, catchError, map, filter, take } from 'rxjs';
 import { ProjectQuery } from './state/project/project.query';
 import { ProjectService } from './state/project/project.service';
 import { ProjectState } from './state/project/project.store';
