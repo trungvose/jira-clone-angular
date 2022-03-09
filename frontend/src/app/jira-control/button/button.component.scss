@@ -7,7 +7,7 @@ $secondary: #f4f5f7;
 $jira-bg: rgb(222, 235, 255);
 
 .btn {
-  @apply text-btn inline-flex items-center justify-center h-8 align-middle leading-none whitespace-no-wrap rounded-sm transition-all duration-100 appearance-none cursor-pointer select-none px-3;
+  @apply text-btn inline-flex items-center justify-center h-8 align-middle leading-none whitespace-nowrap rounded-sm transition-all duration-100 appearance-none cursor-pointer select-none px-3;
 
   &.icon-only {
     @apply px-2;
