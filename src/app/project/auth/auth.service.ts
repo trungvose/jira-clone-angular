@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JUser } from '@trungk18/interface/user';
-import { of } from 'rxjs';
-import { catchError, finalize, map } from 'rxjs/operators';
+import { catchError, finalize, map, of } from 'rxjs';
 import { AuthStore } from './auth.store';
 import { environment } from 'src/environments/environment';
 import { LoginPayload } from '@trungk18/project/auth/loginPayload';

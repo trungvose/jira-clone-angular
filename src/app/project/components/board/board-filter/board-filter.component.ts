@@ -3,9 +3,9 @@ import { FormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FilterQuery } from '@trungk18/project/state/filter/filter.query';
 import { FilterService } from '@trungk18/project/state/filter/filter.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { JUser } from '@trungk18/interface/user';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'board-filter',
