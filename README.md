@@ -222,10 +222,6 @@ I really enjoyed working on this project. The interactive kanban board took me s
 
 There are missing features from the live demo which should exist in a real product. All of them will be finished on Phase 2:
 
-### Proper backend API
-
-I built a very simple NestJS API to send a fixed data structure to the client. All of your interactivity with data will only be saved on the memory. If you refresh the page, it will be gone. Phase 2 will bring the application to live by saving the data into a database.
-
 ### Proper authentication system 🔐
 
 I am currently sending the same email and a random password to the server without any check to get the current user back. Phase 2 will also bring a proper authentication system.
@@ -238,39 +234,8 @@ Not all components have properly defined [aria attributes](https://developer.moz
 
 - `git clone https://github.com/trungk18/jira-clone-angular.git`
 - `cd jira-clone-angular`
-- `npm run start:front` for angular web application
+- `npm start` for angular web application
 - The app should run on `http://localhost:4200/`
-
-> Update August 02, 2020: I changed the the API to use two simple JSON files for project and user. The API on heroku will go to sleep after sometimes idle. Therefore, if you open the webpage after a while without anyone using before, it will be very slow for the first load.
-
-If you still want to use the API, you should follow those steps:
-
-- `npm run start:back` for the API
-- The API server should run on `http://localhost:3000`
-- Open `environment.ts` and `environment.prod.ts` and uncomment the actual URL.
-- Open `auth.service.ts`, change
-
-```ts
-this._http.get<JUser>(`${this.baseUrl}/auth.json`);
-```
-
-to
-
-```ts
-this._http.post<JUser>(`${this.baseUrl}/auth`, { email, password });
-```
-
-- Open `project.service.ts` and change
-
-```ts
-this._http.get<JProject>(`${this.baseUrl}/project.json`);
-```
-
-to
-
-```ts
-this._http.get<JProject>(`${this.baseUrl}/project`);
-```
 
 ### Unit/Integration tests 🧪
 
