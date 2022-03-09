@@ -10,7 +10,6 @@
     "lint": "ng lint",
     "lint:fix": "ng lint --fix=true",
     "e2e": "ng e2e",
-    "postinstall": "ngcc",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "docs:html": "npx compodoc -p tsconfig.json src  && npx serve documentation",
     "storybook": "npm run docs:json && start-storybook -p 6006",
