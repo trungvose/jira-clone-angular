@@ -222,10 +222,6 @@ I really enjoyed working on this project. The interactive kanban board took me s
 
 There are missing features from the live demo which should exist in a real product. All of them will be finished on Phase 2:
 
-### Proper backend API
-
-I built a very simple NestJS API to send a fixed data structure to the client. All of your interactivity with data will only be saved on the memory. If you refresh the page, it will be gone. Phase 2 will bring the application to live by saving the data into a database.
-
 ### Proper authentication system 🔐
 
 I am currently sending the same email and a random password to the server without any check to get the current user back. Phase 2 will also bring a proper authentication system.
@@ -238,39 +234,8 @@ Not all components have properly defined [aria attributes](https://developer.moz
 
 - `git clone https://github.com/trungk18/jira-clone-angular.git`
 - `cd jira-clone-angular`
-- `npm run start:front` for angular web application
+- `npm start` for angular web application
 - The app should run on `http://localhost:4200/`
-
-> Update August 02, 2020: I changed the the API to use two simple JSON files for project and user. The API on heroku will go to sleep after sometimes idle. Therefore, if you open the webpage after a while without anyone using before, it will be very slow for the first load.
-
-If you still want to use the API, you should follow those steps:
-
-- `npm run start:back` for the API
-- The API server should run on `http://localhost:3000`
-- Open `environment.ts` and `environment.prod.ts` and uncomment the actual URL.
-- Open `auth.service.ts`, change
-
-```ts
-this._http.get<JUser>(`${this.baseUrl}/auth.json`);
-```
-
-to
-
-```ts
-this._http.post<JUser>(`${this.baseUrl}/auth`, { email, password });
-```
-
-- Open `project.service.ts` and change
-
-```ts
-this._http.get<JProject>(`${this.baseUrl}/project.json`);
-```
-
-to
-
-```ts
-this._http.get<JProject>(`${this.baseUrl}/project`);
-```
 
 ### Unit/Integration tests 🧪
 
@@ -307,21 +272,21 @@ Feel free to use my code on your project. It would be great if you put a referen
 [jira]: http://jira.trungk18.com/
 [oldboyxx]: https://github.com/oldboyxx/jira_clone
 [datlyfe]: https://github.com/Datlyfe/jira_clone
-[stack]: frontend/src/assets/img/jira-clone-tech-stack.png
-[demo]: frontend/src/assets/img/jira-clone-angular-demo-trungk18.gif
-[christmas2020]: frontend/src/assets/img/merry-christmas-2020.gif
-[demo-storybook]: frontend/src/assets/img/jira-storybook.gif
-[time]: frontend/src/assets/img/time-spending.png
+[stack]: src/assets/img/jira-clone-tech-stack.png
+[demo]: src/assets/img/jira-clone-angular-demo-trungk18.gif
+[christmas2020]: src/assets/img/merry-christmas-2020.gif
+[demo-storybook]: src/assets/img/jira-storybook.gif
+[time]: src/assets/img/time-spending.png
 [issues]: https://github.com/trungk18/jira-clone-angular/issues/new
 [pull]: https://github.com/trungk18/jira-clone-angular/compare
 [100days]: https://github.com/angular-vietnam/100-days-of-angular
 [stranger]: https://www.bingeclock.com/s/stranger-things/
 [eric_cart]: https://www.reddit.com/r/Angular2/comments/hj4kxd/angular_jira_clone_application_built_akita_and/fwu1tbm/
-[application-architecture]: frontend/src/assets/img/diagram/application-architecture.png
-[interaction-data-flow]: frontend/src/assets/img/diagram/interaction-data-flow.png
-[project-store]: frontend/src/app/project/state/project/project.store.ts
-[project-service]: frontend/src/app/project/state/project/project.service.ts
-[project-query]: frontend/src/app/project/state/project/project.query.ts
+[application-architecture]: src/assets/img/diagram/application-architecture.png
+[interaction-data-flow]: src/assets/img/diagram/interaction-data-flow.png
+[project-store]: src/app/project/state/project/project.store.ts
+[project-service]: src/app/project/state/project/project.service.ts
+[project-query]: src/app/project/state/project/project.query.ts
 [lazy-load]: https://angular.io/guide/lazy-loading-ngmodules
 [chau]: https://github.com/nartc
 [tiep]: https://github.com/tieppt
