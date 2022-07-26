@@ -54,18 +54,6 @@ If you like my work, feel free to:
 Thanks a bunch for stopping by and supporting me!
 
 [tweet]: https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Ftrungk18%2Fjira-clone-angular&text=Awesome%20Jira%20clone%20app%20built%20with%20Angular%209%20and%20Akita&hashtags=angular,akita,typescript
-
-## Cake Defi
-
-I am working at [Cake Defi][cake]. We offer the easiest way to generate consistently high returns from your crypto assets. We are a team of passionate people who are committed to building a better future for everyone.
-
-I built the landing page at [cakedefi.com][cake] and architect the entire app at [app.cakedefi.com][cakeapp].
-
-[Sign up using my referral code: 136431][cake] to get started and get $20 FREE.
-
-[cake]: https://cakedefi.com/?ref=136431&utm_source=trungvo
-[cakeapp]: https://app.cakedefi.com/?ref=136431&utm_source=trungvo
-
 ## Who is it for 🤷‍♀️
 
 I have been working with Angular for about four years. I built cool stuff at [Zyllem][zyllem] but almost all of them are internal apps which is difficult to show.
