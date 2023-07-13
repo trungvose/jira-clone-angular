@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { JComment } from '@trungk18/interface/comment';
 import { JUser } from '@trungk18/interface/user';
@@ -17,7 +17,7 @@ export class IssueCommentComponent implements OnInit {
   @Input() comment: JComment;
   @Input() createMode: boolean;
   @ViewChild('commentBoxRef') commentBoxRef: ElementRef;
-  commentControl: FormControl;
+  commentControl: UntypedFormControl;
   user: JUser;
   isEditing: boolean;
 
@@ -38,7 +38,7 @@ export class IssueCommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.commentControl = new FormControl('');
+    this.commentControl = new UntypedFormControl('');
     this._authQuery.user$.pipe(untilDestroyed(this)).subscribe((user) => {
       this.user = user;
       if (this.createMode) {
