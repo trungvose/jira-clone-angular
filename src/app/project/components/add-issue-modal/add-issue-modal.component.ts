@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Signal } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { IssueType, JIssue, IssueStatus, IssuePriority } from '@trungk18/interface/issue';
+import { IssuePriority, IssueStatus, IssueType, JIssue } from '@trungk18/interface/issue';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
 import { JUser } from '@trungk18/interface/user';
-import { tap } from 'rxjs/operators';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 import { DateUtil } from '@trungk18/project/utils/date';
 
@@ -18,10 +15,9 @@ import { DateUtil } from '@trungk18/project/utils/date';
   templateUrl: './add-issue-modal.component.html',
   styleUrls: ['./add-issue-modal.component.scss']
 })
-@UntilDestroy()
 export class AddIssueModalComponent implements OnInit {
-  reporterUsers$: Observable<JUser[]>;
-  assignees$: Observable<JUser[]>;
+  reporterUsers: Signal<JUser[]>;
+  assignees: Signal<JUser[]>;
   issueForm: UntypedFormGroup;
   editorOptions = quillConfiguration;
 
@@ -37,17 +33,14 @@ export class AddIssueModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.reporterUsers$ = this._projectQuery.users$.pipe(
-      untilDestroyed(this),
-      tap((users) => {
-        const [user] = users;
-        if (user) {
-          this.f.reporterId.patchValue(user.id);
-        }
-      })
-    );
 
-    this.assignees$ = this._projectQuery.users$;
+    this.reporterUsers = this._projectQuery.users;
+    const [user] = this._projectQuery.users();
+    if (user) {
+      this.f.reporterId.patchValue(user.id);
+    }
+
+    this.assignees = this._projectQuery.users;
   }
 
   initForm() {

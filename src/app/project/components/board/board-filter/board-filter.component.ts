@@ -32,9 +32,7 @@ export class BoardFilterComponent implements OnInit {
         this.filterService.updateSearchTerm(term);
       });
 
-    this.filterQuery.userIds$.pipe(untilDestroyed(this)).subscribe((userIds) => {
-      this.userIds = userIds;
-    });
+    this.userIds = this.filterQuery.userIds();
   }
 
   isUserSelected(user: JUser) {

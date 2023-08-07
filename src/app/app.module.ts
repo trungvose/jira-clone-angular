@@ -3,9 +3,6 @@ import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NG_ENTITY_SERVICE_CONFIG } from '@datorama/akita-ng-entity-service';
-import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
-import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +11,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { QuillModule } from 'ngx-quill';
 import * as Sentry from '@sentry/angular';
 import { Router } from '@angular/router';
+import { ReduxDevtoolsExtension, StoreModule } from "@mini-rx/signal-store";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,15 +23,12 @@ import { Router } from '@angular/router';
     AppRoutingModule,
     NzSpinModule,
     NzIconModule.forRoot([]),
-    environment.production ? [] : AkitaNgDevtools,
-    AkitaNgRouterStoreModule,
+    environment.production ? [] : StoreModule.forRoot({extensions: [new ReduxDevtoolsExtension({
+        name: 'MiniRx Signal Store'
+      })]}),
     QuillModule.forRoot()
   ],
   providers: [
-    {
-      provide: NG_ENTITY_SERVICE_CONFIG,
-      useValue: { baseUrl: 'https://jsonplaceholder.typicode.com' }
-    },
     {
       provide: ErrorHandler,
       useValue: Sentry.createErrorHandler()

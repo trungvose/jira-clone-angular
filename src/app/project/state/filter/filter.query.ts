@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Query } from '@datorama/akita';
-import { FilterStore, FilterState } from './filter.store';
+import { FilterStore } from './filter.store';
 
 @Injectable({ providedIn: 'root' })
-export class FilterQuery extends Query<FilterState> {
-  any$ = this.select(
+export class FilterQuery {
+  any = this.store.select(
     ({ searchTerm, userIds, onlyMyIssue, ignoreResolved }) =>
       !!searchTerm || !!userIds?.length || onlyMyIssue || ignoreResolved
   );
-  all$ = this.select();
-  userIds$ = this.select('userIds');
-  onlyMyIssue$ = this.select('onlyMyIssue');
-  ignoreResolve$ = this.select('ignoreResolved');
+  all = this.store.select();
+  userIds = this.store.select(state => state.userIds);
+  onlyMyIssue = this.store.select(state => state.onlyMyIssue);
+  ignoreResolve = this.store.select(state => state.ignoreResolved);
 
   constructor(protected store: FilterStore) {
-    super(store);
   }
 }

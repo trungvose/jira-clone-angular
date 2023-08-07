@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectConst } from '@trungk18/project/config/const';
 import { JProject, ProjectCategory } from '@trungk18/interface/project';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -13,7 +12,6 @@ import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.v
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-@UntilDestroy()
 export class SettingsComponent implements OnInit {
   project: JProject;
   projectForm: UntypedFormGroup;
@@ -38,10 +36,8 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this._projectQuery.all$.pipe(untilDestroyed(this)).subscribe((project) => {
-      this.project = project;
-      this.updateForm(project);
-    });
+    this.project = this._projectQuery.all();
+    this.updateForm(this.project);
   }
 
   initForm() {

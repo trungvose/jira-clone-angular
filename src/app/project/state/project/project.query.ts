@@ -1,36 +1,37 @@
-import { ProjectState, ProjectStore } from './project.store';
-import { Injectable } from '@angular/core';
-import { Query } from '@datorama/akita';
+import { ProjectStore } from './project.store';
+import { Injectable, Signal } from '@angular/core';
 import { IssueStatus, JIssue } from '@trungk18/interface/issue';
-import { map, delay } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
+import { toObservable } from "@angular/core/rxjs-interop";
+
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectQuery extends Query<ProjectState> {
-  isLoading$ = this.selectLoading();
-  all$ = this.select();
-  issues$ = this.select('issues');
-  users$ = this.select('users');
+export class ProjectQuery {
+  isLoading = this.store.select(state => state.isLoading);
+  all = this.store.select();
+  issues = this.store.select(state => state.issues);
+  recentIssues = this.store.select(state => state.issues.slice(0, 5))
+  users = this.store.select(state => state.users);
 
   constructor(protected store: ProjectStore) {
-    super(store);
   }
 
   lastIssuePosition = (status: IssueStatus): number => {
-    const raw = this.store.getValue();
+    const raw = this.store.state();
     const issuesByStatus = raw.issues.filter(x => x.status === status);
     return issuesByStatus.length;
   };
 
-  issueByStatusSorted$ = (status: IssueStatus): Observable<JIssue[]> => this.issues$.pipe(
-      map((issues) => issues
-          .filter((x) => x.status === status)
-          .sort((a, b) => a.listPosition - b.listPosition))
-    );
+  issueByStatusSorted = (status: IssueStatus): Signal<JIssue[]> => this.store.select(
+    state =>
+      state.issues
+        .filter((x) => x.status === status)
+        .sort((a, b) => a.listPosition - b.listPosition)
+  )
 
-  issueById$(issueId: string){
-    return this.issues$.pipe(
+  issueById$(issueId: string) {
+    return toObservable(this.issues).pipe(
       delay(500),
       map((issues) => issues.find(x => x.id === issueId))
     );
