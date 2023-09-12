@@ -13,7 +13,8 @@
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "docs:html": "npx compodoc -p tsconfig.json src  && npx serve documentation",
     "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "STORYBOOK_GA_ID=UA-80363801-4 STORYBOOK_REACT_GA_OPTIONS={} npm run docs:json && build-storybook"
+    "build-storybook": "STORYBOOK_GA_ID=UA-80363801-4 STORYBOOK_REACT_GA_OPTIONS={} npm run docs:json && build-storybook",
+    "cypress:open": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -69,6 +70,7 @@
     "@typescript-eslint/parser": "5.11.0",
     "babel-loader": "^8.2.2",
     "codelyzer": "^6.0.0",
+    "cypress": "^13.1.0",
     "eslint": "^8.2.0",
     "husky": "^5.0.9",
     "jasmine-core": "~4.0.1",
