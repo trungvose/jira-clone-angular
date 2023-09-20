@@ -1,14 +1,20 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { JIssue } from '@trungk18/interface/issue';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { ButtonComponent } from '../../../../jira-control/button/button.component';
+import { QuillModule } from 'ngx-quill';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'issue-description',
-  templateUrl: './issue-description.component.html',
-  styleUrls: ['./issue-description.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'issue-description',
+    templateUrl: './issue-description.component.html',
+    styleUrls: ['./issue-description.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [NgIf, QuillModule, ReactiveFormsModule, ButtonComponent, NzIconModule]
 })
 export class IssueDescriptionComponent implements OnChanges {
   @Input() issue: JIssue;

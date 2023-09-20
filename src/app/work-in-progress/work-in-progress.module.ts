@@ -6,10 +6,10 @@ import { WorkInProgressComponent } from './work-in-progress.component';
 
 
 @NgModule({
-  declarations: [WorkInProgressComponent],
-  imports: [
-    CommonModule,
-    WorkInProgressRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        WorkInProgressRoutingModule,
+        WorkInProgressComponent
+    ]
 })
 export class WorkInProgressModule { }

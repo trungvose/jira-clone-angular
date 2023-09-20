@@ -4,11 +4,19 @@ import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { SearchDrawerComponent } from '../../search/search-drawer/search-drawer.component';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AddIssueModalComponent } from '../../add-issue-modal/add-issue-modal.component';
+import { ButtonComponent } from '../../../../jira-control/button/button.component';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { AvatarComponent } from '../../../../jira-control/avatar/avatar.component';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NgFor, NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-navbar-left',
-  templateUrl: './navbar-left.component.html',
-  styleUrls: ['./navbar-left.component.scss']
+    selector: 'app-navbar-left',
+    templateUrl: './navbar-left.component.html',
+    styleUrls: ['./navbar-left.component.scss'],
+    standalone: true,
+    imports: [NgFor, NzToolTipModule, NzIconModule, NgIf, AvatarComponent, NzPopoverModule, ButtonComponent, AsyncPipe]
 })
 export class NavbarLeftComponent implements OnInit {
   items: NavItem[];

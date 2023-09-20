@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IssueType, JIssue, IssueStatus, IssuePriority } from '@trungk18/interface/issue';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -12,11 +12,21 @@ import { JUser } from '@trungk18/interface/user';
 import { tap } from 'rxjs/operators';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 import { DateUtil } from '@trungk18/project/utils/date';
+import { AsyncPipe } from '@angular/common';
+import { IssueAssigneesSelectComponent } from './issue-assignees-select/issue-assignees-select.component';
+import { IssueReporterSelectComponent } from './issue-reporter-select/issue-reporter-select.component';
+import { QuillModule } from 'ngx-quill';
+import { AutofocusDirective } from '../../../core/directives/autofocus.directive';
+import { IssuePrioritySelectComponent } from './issue-priority-select/issue-priority-select.component';
+import { IssueTypeSelectComponent } from './issue-type-select/issue-type-select.component';
+import { ButtonComponent } from '../../../jira-control/button/button.component';
 
 @Component({
-  selector: 'add-issue-modal',
-  templateUrl: './add-issue-modal.component.html',
-  styleUrls: ['./add-issue-modal.component.scss']
+    selector: 'add-issue-modal',
+    templateUrl: './add-issue-modal.component.html',
+    styleUrls: ['./add-issue-modal.component.scss'],
+    standalone: true,
+    imports: [ButtonComponent, ReactiveFormsModule, IssueTypeSelectComponent, IssuePrioritySelectComponent, AutofocusDirective, QuillModule, IssueReporterSelectComponent, IssueAssigneesSelectComponent, AsyncPipe]
 })
 @UntilDestroy()
 export class AddIssueModalComponent implements OnInit {

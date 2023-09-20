@@ -1,12 +1,15 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { JIssue } from '@trungk18/interface/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @Component({
-  selector: 'issue-title',
-  templateUrl: './issue-title.component.html',
-  styleUrls: ['./issue-title.component.scss']
+    selector: 'issue-title',
+    templateUrl: './issue-title.component.html',
+    styleUrls: ['./issue-title.component.scss'],
+    standalone: true,
+    imports: [TextFieldModule, ReactiveFormsModule]
 })
 export class IssueTitleComponent implements OnChanges {
   @Input() issue: JIssue;

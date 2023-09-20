@@ -17,8 +17,7 @@ const JiraControlComponents = [
   AvatarComponent
 ];
 @NgModule({
-  declarations: JiraControlComponents,
-  exports: JiraControlComponents,
-  imports: [CommonModule, ReactiveFormsModule]
+    exports: JiraControlComponents,
+    imports: [CommonModule, ReactiveFormsModule, ...JiraControlComponents]
 })
 export class JiraControlModule {}
