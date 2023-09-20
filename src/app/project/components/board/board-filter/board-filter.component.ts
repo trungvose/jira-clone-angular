@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FilterQuery } from '@trungk18/project/state/filter/filter.query';
 import { FilterService } from '@trungk18/project/state/filter/filter.service';
@@ -14,7 +14,7 @@ import { JUser } from '@trungk18/interface/user';
 })
 @UntilDestroy()
 export class BoardFilterComponent implements OnInit {
-  searchControl: FormControl = new FormControl('');
+  searchControl: UntypedFormControl = new UntypedFormControl('');
   userIds: string[];
 
   constructor(

@@ -1,6 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { JUser } from '@trungk18/interface/user';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   selector: 'issue-assignees-select',
@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class IssueAssigneesSelectComponent {
-  @Input() control: FormControl;
+  @Input() control: UntypedFormControl;
   @Input() users: JUser[];
 
   constructor() {}
