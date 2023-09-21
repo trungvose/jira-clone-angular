@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: 'wip',
     loadChildren: () =>
-      import('./work-in-progress/work-in-progress.module').then((m) => m.WorkInProgressModule)
+      import('./work-in-progress/work-in-progress-routes').then((m) => m.WORK_IN_PROGRESS_ROUTES)
   },
   {
     path: '',
