@@ -3,11 +3,11 @@ import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-    selector: 'j-button',
-    templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss'],
-    standalone: true,
-    imports: [NgClass, NgIf, SvgIconComponent]
+  selector: 'j-button',
+  templateUrl: './button.component.html',
+  styleUrls: ['./button.component.scss'],
+  standalone: true,
+  imports: [NgClass, NgIf, SvgIconComponent]
 })
 export class ButtonComponent {
   @Input() type = 'button';
@@ -19,5 +19,4 @@ export class ButtonComponent {
   @Input() disabled: boolean;
 
   constructor() {}
-
 }
