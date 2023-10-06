@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/angular';
 import { ButtonComponent } from './button.component';
+import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 
 export default {
   title: 'Components/Button',
@@ -13,8 +14,7 @@ interface ButtonProps extends ButtonComponent {
 const Template: Story<ButtonComponent> = ({ label, className }: Partial<ButtonProps>) => ({
   component: ButtonComponent,
   moduleMetadata: {
-    declarations: [ButtonComponent], // Removed if no template
-    imports: []
+    imports: [SvgIconComponent]
   },
   template: `<j-button className='${className}'>${label}</j-button>`
 });

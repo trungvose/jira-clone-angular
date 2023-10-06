@@ -3,20 +3,26 @@ import { ProjectConst } from '@trungk18/project/config/const';
 import { JProject, ProjectCategory } from '@trungk18/interface/project';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
+import { ButtonComponent } from '../../../jira-control/button/button.component';
+import { NgFor } from '@angular/common';
+import { AutofocusDirective } from '../../../core/directives/autofocus.directive';
+import { BreadcrumbsComponent } from '../../../jira-control/breadcrumbs/breadcrumbs.component';
 
 @Component({
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+    templateUrl: './settings.component.html',
+    styleUrls: ['./settings.component.scss'],
+    standalone: true,
+    imports: [BreadcrumbsComponent, ReactiveFormsModule, AutofocusDirective, NgFor, ButtonComponent]
 })
 @UntilDestroy()
 export class SettingsComponent implements OnInit {
   project: JProject;
-  projectForm: FormGroup;
+  projectForm: UntypedFormGroup;
   categories: ProjectCategory[];
   get breadcrumbs(): string[] {
     return [ProjectConst.Projects, this.project?.name, 'Settings'];
@@ -26,7 +32,7 @@ export class SettingsComponent implements OnInit {
     private _projectQuery: ProjectQuery,
     private _projectService: ProjectService,
     private _notification: NzNotificationService,
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     private _router: Router
   ) {
     this.categories = [

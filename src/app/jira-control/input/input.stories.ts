@@ -8,8 +8,7 @@ export default {
   component: InputComponent,
   decorators: [
     moduleMetadata({
-      imports: [ReactiveFormsModule],
-      declarations: [InputComponent]
+      imports: [ReactiveFormsModule]
     })
   ],
   argTypes: {

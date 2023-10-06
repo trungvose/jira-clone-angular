@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "paths": {      
+    "paths": {
       "@trungk18/*": ["src/app/*"],
       "@trungk18/interface/*": ["src/app/interface/*"]
     },
@@ -14,8 +14,10 @@
     "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
-    "lib": ["es2018", "dom"]
+    "target": "ES2022",
+    "lib": ["es2018", "dom"],
+    "useDefineForClassFields": false,
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -7,11 +7,17 @@ import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { IssueModalComponent } from '../issue-modal/issue-modal.component';
+import { SvgIconComponent } from '../../../../jira-control/svg-icon/svg-icon.component';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { AvatarComponent } from '../../../../jira-control/avatar/avatar.component';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'issue-card',
-  templateUrl: './issue-card.component.html',
-  styleUrls: ['./issue-card.component.scss']
+    selector: 'issue-card',
+    templateUrl: './issue-card.component.html',
+    styleUrls: ['./issue-card.component.scss'],
+    standalone: true,
+    imports: [NgFor, AvatarComponent, NzToolTipModule, SvgIconComponent]
 })
 @UntilDestroy()
 export class IssueCardComponent implements OnChanges, OnInit {

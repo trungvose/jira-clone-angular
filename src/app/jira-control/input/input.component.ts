@@ -1,13 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
+import { SvgIconComponent } from '../svg-icon/svg-icon.component';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'j-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+    selector: 'j-input',
+    templateUrl: './input.component.html',
+    styleUrls: ['./input.component.scss'],
+    standalone: true,
+    imports: [NgClass, NgIf, SvgIconComponent, ReactiveFormsModule]
 })
 export class InputComponent implements OnInit {
-  @Input() control: FormControl;
+  @Input() control: UntypedFormControl;
   @Input() containerClassName = '';
   @Input() icon: string;
   @Input() iconSize = 16;
@@ -25,7 +29,7 @@ export class InputComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.control = this.control ?? new FormControl('');
+    this.control = this.control ?? new UntypedFormControl('');
   }
 
   clear() {

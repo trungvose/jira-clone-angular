@@ -1,15 +1,21 @@
 import { Component, Input, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { JComment } from '@trungk18/interface/comment';
 import { JUser } from '@trungk18/interface/user';
 import { AuthQuery } from '@trungk18/project/auth/auth.query';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
+import { ButtonComponent } from '../../../../jira-control/button/button.component';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { NgIf, DatePipe } from '@angular/common';
+import { AvatarComponent } from '../../../../jira-control/avatar/avatar.component';
 
 @Component({
-  selector: 'issue-comment',
-  templateUrl: './issue-comment.component.html',
-  styleUrls: ['./issue-comment.component.scss']
+    selector: 'issue-comment',
+    templateUrl: './issue-comment.component.html',
+    styleUrls: ['./issue-comment.component.scss'],
+    standalone: true,
+    imports: [AvatarComponent, NgIf, TextFieldModule, ReactiveFormsModule, ButtonComponent, DatePipe]
 })
 @UntilDestroy()
 export class IssueCommentComponent implements OnInit {
@@ -17,7 +23,7 @@ export class IssueCommentComponent implements OnInit {
   @Input() comment: JComment;
   @Input() createMode: boolean;
   @ViewChild('commentBoxRef') commentBoxRef: ElementRef;
-  commentControl: FormControl;
+  commentControl: UntypedFormControl;
   user: JUser;
   isEditing: boolean;
 
@@ -38,7 +44,7 @@ export class IssueCommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.commentControl = new FormControl('');
+    this.commentControl = new UntypedFormControl('');
     this._authQuery.user$.pipe(untilDestroyed(this)).subscribe((user) => {
       this.user = user;
       if (this.createMode) {
