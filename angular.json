@@ -61,7 +61,9 @@
               "./node_modules/quill/dist/quill.snow.css",
               "src/styles.scss"
             ],
-            "scripts": ["./node_modules/quill/dist/quill.min.js"]
+            "scripts": [
+              "./node_modules/quill/dist/quill.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -125,19 +127,26 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/assets"],
+            "assets": [
+              "src/assets"
+            ],
             "styles": [
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.snow.css",
               "src/styles.scss"
             ],
-            "scripts": ["./node_modules/quill/dist/quill.min.js"]
+            "scripts": [
+              "./node_modules/quill/dist/quill.min.js"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -151,13 +160,45 @@
               "devServerTarget": "frontend:serve:production"
             }
           }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "frontend:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
+            ],
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "frontend:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
+            ],
+            "outputDir": "storybook-static"
+          }
         }
       }
     }
   },
   "cli": {
     "analytics": false,
-    "schematicCollections": ["@datorama/akita"]
+    "schematicCollections": [
+      "@datorama/akita"
+    ]
   },
   "schematics": {
     "@angular-eslint/schematics:application": {
