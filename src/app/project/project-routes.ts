@@ -1,10 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { BoardComponent } from './pages/board/board.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 import { ProjectComponent } from './project.component';
 import { ProjectConst } from './config/const';
-import { FullIssueDetailComponent } from './pages/full-issue-detail/full-issue-detail.component';
 
 export const PROJECT_ROUTES: Routes = [
   {
@@ -17,11 +14,15 @@ export const PROJECT_ROUTES: Routes = [
       },
       {
         path: 'settings',
-        component: SettingsComponent
+        loadComponent: () =>
+          import('./pages/settings/settings.component').then((m) => m.SettingsComponent)
       },
       {
         path: `issue/:${ProjectConst.IssueId}`,
-        component: FullIssueDetailComponent
+        loadComponent: () =>
+          import('./pages/full-issue-detail/full-issue-detail.component').then(
+            (m) => m.FullIssueDetailComponent
+          )
       },
       {
         path: '',
