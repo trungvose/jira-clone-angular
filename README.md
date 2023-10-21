@@ -49,7 +49,7 @@ If you like my work, feel free to:
 
 - ⭐ this repository. And we will be happy together :)
 - [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)][tweet] about Angular Jira clone
-- <a title="Thanks for your support!" href="https://www.buymeacoffee.com/tuantrungvo" target="_blank"><img src="https://res.cloudinary.com/dvujyxh7e/image/upload/c_thumb,w_140,g_face/v1596378474/default-orange_uthxgz.jpg" alt="Buy Me A Coffee"></a>
+- <a title="Thanks for your support!" href="https://www.buymeacoffee.com/trungvose" target="_blank"><img src="https://res.cloudinary.com/dvujyxh7e/image/upload/c_thumb,w_140,g_face/v1596378474/default-orange_uthxgz.jpg" alt="Buy Me A Coffee"></a>
 
 Thanks a bunch for stopping by and supporting me!
 
@@ -183,7 +183,7 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 | 07   | [Build a rich text HTML editor][part07]                                         | Done   |
 | 08   | [Create placeholder loading (like Facebook's cards loading)][part08]            | Done   |
 
-[part-1]: https://slides.com/tuantrungvo/behind-the-900-star-repository-jira-clone-angular
+[part-1]: https://slides.com/trungvose/behind-the-900-star-repository-jira-clone-angular
 [part-1-video]: https://youtu.be/3dukbsRX0tc
 [part00]: https://trungk18.com/experience/angular-jira-clone-tutorial-00-prerequisites/
 [part01]: https://trungk18.com/experience/angular-jira-clone-tutorial-01-planning-and-set-up/
