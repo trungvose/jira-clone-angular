@@ -1,5 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { JIssue } from '@trungk18/interface/issue';
 import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
 import { JUser } from '@trungk18/interface/user';
@@ -13,7 +12,6 @@ import { IssueModalComponent } from '../issue-modal/issue-modal.component';
   templateUrl: './issue-card.component.html',
   styleUrls: ['./issue-card.component.scss']
 })
-@UntilDestroy()
 export class IssueCardComponent implements OnChanges, OnInit {
   @Input() issue: JIssue;
   assignees: JUser[];
@@ -23,9 +21,7 @@ export class IssueCardComponent implements OnChanges, OnInit {
   constructor(private _projectQuery: ProjectQuery, private _modalService: NzModalService) {}
 
   ngOnInit(): void {
-    this._projectQuery.users$.pipe(untilDestroyed(this)).subscribe((users) => {
-      this.assignees = this.issue.userIds.map((userId) => users.find((x) => x.id === userId));
-    });
+    this.assignees = this.issue.userIds.map((userId) => this._projectQuery.users().find((x) => x.id === userId));
   }
 
   ngOnChanges(changes: SimpleChanges): void {

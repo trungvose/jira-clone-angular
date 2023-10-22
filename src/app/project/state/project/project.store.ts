@@ -1,6 +1,6 @@
 import { JProject } from '@trungk18/interface/project';
-import { Store, StoreConfig } from '@datorama/akita';
 import { Injectable } from '@angular/core';
+import { FeatureStore } from "@mini-rx/signal-store";
 
 export type ProjectState = JProject;
 
@@ -14,11 +14,16 @@ function createInitialState(): ProjectState {
 @Injectable({
   providedIn: 'root'
 })
-@StoreConfig({
-  name: 'project'
-})
-export class ProjectStore extends Store<ProjectState> {
+export class ProjectStore extends FeatureStore<ProjectState> {
   constructor() {
-    super(createInitialState());
+    super('project', createInitialState());
+  }
+
+  setLoading(isLoading: boolean) {
+    this.update({isLoading});
+  }
+
+  setError(error: string) {
+    this.update({error});
   }
 }

@@ -56,7 +56,7 @@
         </div>
         <div class="flex-auto"></div>
         <div class="item"
-             *ngIf="authQuery.user$ | async as user">
+             *ngIf="authQuery.user() as user">
             <div nz-tooltip
                  [nzTooltipTitle]="user.name"
                  nzTooltipPlacement="right"

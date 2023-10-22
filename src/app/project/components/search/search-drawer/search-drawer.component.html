@@ -19,7 +19,7 @@
 </ng-container>
 
 <ng-template #noSearchInputTmpl>
-    <ng-container *ngIf="recentIssues$ | async as recentIssues">
+    <ng-container *ngIf="recentIssues() as recentIssues">
         <ng-container *ngIf="recentIssues?.length; else noResultTmpl">
             <div class="section-title">Recent Issues</div>
             <issue-result *ngFor="let issue of recentIssues"

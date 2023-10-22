@@ -22,8 +22,7 @@
         "@schematics/angular:interceptor": {
           "skipTests": true
         },
-        "@schematics/angular:module": {
-        },
+        "@schematics/angular:module": {},
         "@schematics/angular:pipe": {
           "skipTests": true
         },
@@ -47,7 +46,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [              
+            "assets": [
               "src/assets",
               "src/data",
               {
@@ -127,7 +126,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [              
+            "assets": [
               "src/assets"
             ],
             "styles": [
@@ -164,9 +163,18 @@
       }
     }
   },
-  "defaultProject": "frontend",
   "cli": {
     "analytics": false,
-    "defaultCollection": "@datorama/akita"
+    "schematicCollections": [
+      "@datorama/akita"
+    ]
+  },
+  "schematics": {
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
   }
 }

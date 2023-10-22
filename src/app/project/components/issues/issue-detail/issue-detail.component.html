@@ -40,10 +40,10 @@
         <div class="sm:w-full md:w-5/12 lg:w-2/6 pt-1">
             <issue-status [issue]="issue"></issue-status>
             <issue-reporter [issue]="issue"
-                            [users]="projectQuery.users$ | async">
+                            [users]="projectQuery.users()">
             </issue-reporter>
             <issue-assignees [issue]="issue"
-                             [users]="projectQuery.users$ | async">
+                             [users]="projectQuery.users()">
             </issue-assignees>
             <issue-priority [issue]="issue"></issue-priority>
 

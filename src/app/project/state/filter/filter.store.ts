@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store, StoreConfig } from '@datorama/akita';
+import { FeatureStore } from "@mini-rx/signal-store";
 
 export interface FilterState {
   searchTerm: string;
@@ -20,11 +20,8 @@ export function createInitialFilterState(): FilterState {
 @Injectable({
   providedIn: 'root'
 })
-@StoreConfig({
-  name: 'filter'
-})
-export class FilterStore extends Store<FilterState> {
+export class FilterStore extends FeatureStore<FilterState> {
   constructor() {
-    super(createInitialFilterState());
+    super('filter', createInitialFilterState());
   }
 }

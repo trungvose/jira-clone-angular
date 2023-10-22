@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectConst } from '@trungk18/project/config/const';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { JProject } from '@trungk18/interface/project';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 import { JIssue } from '@trungk18/interface/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
@@ -14,7 +13,6 @@ import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-mode
   templateUrl: './full-issue-detail.component.html',
   styleUrls: ['./full-issue-detail.component.scss']
 })
-@UntilDestroy()
 export class FullIssueDetailComponent implements OnInit {
   project: JProject;
   issueById$: Observable<JIssue>;
@@ -32,9 +30,7 @@ export class FullIssueDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getIssue();
-    this._projectQuery.all$.pipe(untilDestroyed(this)).subscribe((project) => {
-      this.project = project;
-    });
+    this.project = this._projectQuery.all()
   }
 
   deleteIssue({issueId, deleteModalRef}: DeleteIssueModel) {
