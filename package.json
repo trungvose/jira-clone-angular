@@ -13,7 +13,9 @@
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "docs:html": "npx compodoc -p tsconfig.json src  && npx serve documentation",
     "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "STORYBOOK_GA_ID=UA-80363801-4 STORYBOOK_REACT_GA_OPTIONS={} npm run docs:json && build-storybook"
+    "build-storybook": "STORYBOOK_GA_ID=UA-80363801-4 STORYBOOK_REACT_GA_OPTIONS={} npm run docs:json && build-storybook",
+    "serve-local":"http-server dist -p 4000",
+    "build-worker": "workbox generateSW workbox-config.js"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +28,7 @@
     "@angular/platform-browser": "~13.2.4",
     "@angular/platform-browser-dynamic": "~13.2.4",
     "@angular/router": "~13.2.4",
+    "@angular/service-worker": "^13.2.4",
     "@ant-design/icons-angular": "^13.1.0",
     "@datorama/akita": "^7.1.1",
     "@datorama/akita-ng-entity-service": "^7.0.0",
@@ -35,6 +38,7 @@
     "@sentry/angular": "^6.18.1",
     "@sentry/tracing": "^6.18.1",
     "date-fns": "^2.14.0",
+    "http-server": "^14.1.1",
     "karma-coverage": "^2.0.3",
     "ng-zorro-antd": "^13.1.0",
     "ngx-quill": "^16.1.2",
@@ -88,7 +92,8 @@
     "tailwindcss": "^3.0.12",
     "ts-node": "~9.1.1",
     "tslint": "~6.1.0",
-    "typescript": "~4.5.5"
+    "typescript": "~4.5.5",
+    "workbox-cli": "^7.0.0"
   },
   "husky": {
     "hooks": {
