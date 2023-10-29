@@ -14,6 +14,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { QuillModule } from 'ngx-quill';
 import * as Sentry from '@sentry/angular';
 import { Router } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import { Router } from '@angular/router';
     NzIconModule.forRoot([]),
     environment.production ? [] : AkitaNgDevtools,
     AkitaNgRouterStoreModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    ServiceWorkerModule.register('/sw.js', { enabled: environment.production })
   ],
   providers: [
     {
@@ -40,14 +42,14 @@ import { Router } from '@angular/router';
     },
     {
       provide: Sentry.TraceService,
-      deps: [Router],
+      deps: [Router]
     },
     {
       provide: APP_INITIALIZER,
       useFactory: () => () => {},
       deps: [Sentry.TraceService],
-      multi: true,
-    },
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
