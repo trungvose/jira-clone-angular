@@ -42,8 +42,8 @@ export class IssueCardComponent implements OnChanges, OnInit {
       nzWidth: 1040,
       nzClosable: false,
       nzFooter: null,
-      nzComponentParams: {
-        issue$: this._projectQuery.issueById$(issueId)
+      nzData: {
+        issueId: issueId
       }
     });
   }
