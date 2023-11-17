@@ -26,7 +26,7 @@ export class ProjectService {
 
   getProject() {
     this._http
-      .get<JProject>(`${this.baseUrl}/project.json`)
+      .get<JProject>(`${this.baseUrl}/all_project.json`)
       .pipe(
         setLoading(this._store),
         tap((project) => {
