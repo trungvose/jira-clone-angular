@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { IssueTitleComponent } from './issue-title.component';
 import {SimpleChange} from '@angular/core';
 import {JComment} from '@trungk18/interface/comment';
@@ -15,7 +15,7 @@ describe('IssueTitleComponent', () => {
     component = new IssueTitleComponent(
       projectService
     );
-    component.titleControl = new FormControl('test');
+    component.titleControl = new UntypedFormControl('test');
   });
 
   it('should be able to make onBlur action', () => {

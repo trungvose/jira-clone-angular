@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { JUser } from '@trungk18/interface/user';
 
 @Component({
@@ -8,7 +8,7 @@ import { JUser } from '@trungk18/interface/user';
   styleUrls: ['./issue-reporter-select.component.scss']
 })
 export class IssueReporterSelectComponent {
-  @Input() control: FormControl;
+  @Input() control: UntypedFormControl;
   @Input() users: JUser[];
 
   constructor() {}

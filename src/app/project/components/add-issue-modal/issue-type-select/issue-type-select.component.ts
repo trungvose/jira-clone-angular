@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { IssueType } from '@trungk18/interface/issue';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { IssueTypeWithIcon } from '@trungk18/interface/issue-type-icon';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { ProjectConst } from '@trungk18/project/config/const';
 
 @Component({
@@ -11,7 +11,7 @@ import { ProjectConst } from '@trungk18/project/config/const';
   styleUrls: ['./issue-type-select.component.scss']
 })
 export class IssueTypeSelectComponent {
-  @Input() control: FormControl;
+  @Input() control: UntypedFormControl;
 
   issueTypes: IssueTypeWithIcon[];
 
