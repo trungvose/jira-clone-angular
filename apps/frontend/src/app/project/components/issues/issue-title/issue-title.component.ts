@@ -1,0 +1,30 @@
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
+import { JIssue } from '@trunk18/interface';
+import { ProjectService } from '@trunk18/project';
+
+@Component({
+  selector: 'issue-title',
+  templateUrl: './issue-title.component.html',
+  styleUrls: ['./issue-title.component.scss'],
+})
+export class IssueTitleComponent implements OnChanges {
+  @Input() issue: JIssue;
+  titleControl: UntypedFormControl;
+
+  constructor(private _projectService: ProjectService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const issueChange = changes.issue;
+    if (issueChange.currentValue !== issueChange.previousValue) {
+      this.titleControl = new UntypedFormControl(this.issue.title);
+    }
+  }
+
+  onBlur() {
+    this._projectService.updateIssue({
+      ...this.issue,
+      title: this.titleControl.value,
+    });
+  }
+}

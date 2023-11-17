@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@trunk18/interface": ["libs/trunk18-interface/src/index.ts"],
+      "@trunk18/project": ["libs/trunk18/src/index.ts"],
+      "@trunk18/core": ["libs/core/src/index.ts"]
+    },
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "lib": ["es2018", "dom"],
+    "useDefineForClassFields": false,
+    "rootDir": "."
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  },
+  "exclude": ["node_modules", "tmp"]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "frontend-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/frontend-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@angular-devkit/build-angular:protractor",
+      "options": {
+        "protractorConfig": "apps/frontend-e2e/protractor.conf.js",
+        "devServerTarget": "frontend:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "frontend:serve:production"
+        }
+      }
+    }
+  },
+  "implicitDependencies": ["frontend"],
+  "tags": []
+}

@@ -1,0 +1,20 @@
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { JUser } from '@trunk18/interface';
+import { UntypedFormControl } from '@angular/forms';
+
+@Component({
+  selector: 'issue-assignees-select',
+  templateUrl: './issue-assignees-select.component.html',
+  styleUrls: ['./issue-assignees-select.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+})
+export class IssueAssigneesSelectComponent {
+  @Input() control: UntypedFormControl;
+  @Input() users: JUser[];
+
+  constructor() {}
+
+  getUser(userId: string): any {
+    return this.users.find((user) => user.id === userId);
+  }
+}

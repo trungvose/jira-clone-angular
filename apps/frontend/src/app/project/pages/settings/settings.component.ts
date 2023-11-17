@@ -1,0 +1,78 @@
+import { Component, OnInit } from '@angular/core';
+import { ProjectConst } from '@trunk18/project';
+import { JProject, ProjectCategory } from '@trunk18/interface';
+import { ProjectQuery } from '@trunk18/project';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
+import { ProjectService } from '@trunk18/project';
+import { Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NoWhitespaceValidator } from '@trunk18/core';
+
+@Component({
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
+})
+@UntilDestroy()
+export class SettingsComponent implements OnInit {
+  project: JProject;
+  projectForm: UntypedFormGroup;
+  categories: ProjectCategory[];
+  get breadcrumbs(): string[] {
+    return [ProjectConst.Projects, this.project?.name, 'Settings'];
+  }
+
+  constructor(
+    private _projectQuery: ProjectQuery,
+    private _projectService: ProjectService,
+    private _notification: NzNotificationService,
+    private _fb: UntypedFormBuilder,
+    private _router: Router
+  ) {
+    this.categories = [
+      ProjectCategory.BUSINESS,
+      ProjectCategory.MARKETING,
+      ProjectCategory.SOFTWARE,
+    ];
+  }
+
+  ngOnInit(): void {
+    this.initForm();
+    this._projectQuery.all$.pipe(untilDestroyed(this)).subscribe((project) => {
+      this.project = project;
+      this.updateForm(project);
+    });
+  }
+
+  initForm() {
+    this.projectForm = this._fb.group({
+      name: ['', NoWhitespaceValidator()],
+      url: [''],
+      description: [''],
+      category: [ProjectCategory.SOFTWARE],
+    });
+  }
+
+  updateForm(project: JProject) {
+    this.projectForm.patchValue({
+      name: project.name,
+      url: project.url,
+      description: project.description,
+      category: project.category,
+    });
+  }
+
+  submitForm() {
+    const formValue: Partial<JProject> = this.projectForm.getRawValue();
+    this._projectService.updateProject(formValue);
+    this._notification.create(
+      'success',
+      'Changes have been saved successfully.',
+      ''
+    );
+  }
+
+  cancel() {
+    this._router.navigate(['/']);
+  }
+}
