@@ -3,9 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@trunk18/core": ["libs/core/src/index.ts"],
       "@trunk18/interface": ["libs/trunk18-interface/src/index.ts"],
-      "@trunk18/project": ["libs/trunk18/src/index.ts"],
-      "@trunk18/core": ["libs/core/src/index.ts"]
+      "@trunk18/project": ["libs/trunk18/src/index.ts"]
     },
     "sourceMap": true,
     "declaration": false,

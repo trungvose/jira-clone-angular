@@ -1,4 +1,4 @@
-const { createGlobPatternsForDependencies } = require('@nrwl/angular/tailwind');
+const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const { join } = require('path');
 
 module.exports = {
@@ -6,28 +6,6 @@ module.exports = {
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
-  prefix: '',
-  important: false,
-  separator: ':',
-  purge: {
-    enabled: true,
-    content: ['./src/**/*.ts', './src/**/*.html'],
-    options: {
-      whitelistPatterns: [
-        /^font/,
-        /^cursor/,
-        /^pl-/,
-        /^px-/,
-        /^pr-/,
-        /^ml-/,
-        /^mx-/,
-        /^mr-/,
-        /^mb-/,
-        /^mt-/,
-        /^ng-/
-      ]
-    }
-  },
   theme: {
     screens: {
       sm: '640px',

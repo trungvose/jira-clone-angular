@@ -7,12 +7,10 @@
   "prefix": "",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:webpack-browser",
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "customWebpackConfig": {
-          "path": "apps/frontend/webpack.config.js"
-        },
-        "outputPath": "dist",
+        "outputPath": "dist/apps/frontend",
         "index": "apps/frontend/src/index.html",
         "main": "apps/frontend/src/main.ts",
         "polyfills": "apps/frontend/src/polyfills.ts",
@@ -30,7 +28,8 @@
         "styles": [
           "node_modules/quill/dist/quill.core.css",
           "node_modules/quill/dist/quill.snow.css",
-          "apps/frontend/src/styles.scss"
+          "apps/frontend/src/styles.scss",
+          "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
         ],
         "scripts": ["node_modules/quill/dist/quill.min.js"]
       },
@@ -78,7 +77,7 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/angular:webpack-dev-server",
+      "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
         "browserTarget": "frontend:build:development"
       }
