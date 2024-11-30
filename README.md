@@ -147,7 +147,7 @@ I will take two weeks break to:
 - Fix bugs and UI enhancements for Angular Jira clone.
 - Continue working with the [typescript-data-structures][typescript-dsa] repo.
 
-[typescript-dsa]: https://github.com/trungk18/typescript-data-structures
+[typescript-dsa]: https://github.com/trungvose/typescript-data-structures
 
 ### Phase 2
 
@@ -185,16 +185,16 @@ Its series will also be published in Vietnamese as part of our [angular-vietnam/
 
 [part-1]: https://slides.com/trungvose/behind-the-900-star-repository-jira-clone-angular
 [part-1-video]: https://youtu.be/3dukbsRX0tc
-[part00]: https://trungk18.com/experience/angular-jira-clone-tutorial-00-prerequisites/
-[part01]: https://trungk18.com/experience/angular-jira-clone-tutorial-01-planning-and-set-up/
-[part02]: https://trungk18.com/experience/angular-jira-clone-tutorial-02-application-layout-tailwindcss-flex/
-[part03]: https://trungk18.com/experience/angular-jira-clone-tutorial-03-akita-state-management/
-[part04]: https://trungk18.com/experience/angular-jira-clone-tutorial-04-editable-textbox/
-[part05]: https://trungk18.com/experience/angular-jira-clone-tutorial-05-interactive-drag-and-drop-board/
-[part06]: https://trungk18.com/experience/angular-jira-clone-tutorial-06-angular-markdown-text-editor/
-[part07]: https://trungk18.com/experience/angular-jira-clone-tutorial-07-rich-text-editor/
-[part08]: https://trungk18.com/experience/angular-jira-clone-tutorial-08-angular-placeholder-loading/
-[todo-list]: https://www.notion.so/trungk18/Tasks-636be5c5c0dd4d8cab30808e4e41facc
+[part00]: https://trungvose.com/blog/angular-jira-clone-tutorial-00-prerequisites/
+[part01]: https://trungvose.com/blog/angular-jira-clone-tutorial-01-planning-and-set-up/
+[part02]: https://trungvose.com/blog/angular-jira-clone-tutorial-02-application-layout-tailwindcss-flex/
+[part03]: https://trungvose.com/blog/angular-jira-clone-tutorial-03-akita-state-management/
+[part04]: https://trungvose.com/blog/angular-jira-clone-tutorial-04-editable-textbox/
+[part05]: https://trungvose.com/blog/angular-jira-clone-tutorial-05-interactive-drag-and-drop-board/
+[part06]: https://trungvose.com/blog/angular-jira-clone-tutorial-06-angular-markdown-text-editor/
+[part07]: https://trungvose.com/blog/angular-jira-clone-tutorial-07-rich-text-editor/
+[part08]: https://trungvose.com/blog/angular-jira-clone-tutorial-08-angular-placeholder-loading/
+[todo-list]: https://trungvose.notion.site/Angular-Jira-clone-Phase-1-79d3205e26024357a75ebfc00aba558e?pvs=4
 
 ## Time spending
 
@@ -220,7 +220,7 @@ Not all components have properly defined [aria attributes](https://developer.moz
 
 ## Setting up development environment 🛠
 
-- `git clone https://github.com/trungk18/jira-clone-angular.git`
+- `git clone https://github.com/trungvose/jira-clone-angular.git`
 - `cd jira-clone-angular`
 - `npm start` for angular web application
 - The app should run on `http://localhost:4200/`
@@ -265,8 +265,8 @@ Feel free to use my code on your project. It would be great if you put a referen
 [christmas2020]: src/assets/img/merry-christmas-2020.gif
 [demo-storybook]: src/assets/img/jira-storybook.gif
 [time]: src/assets/img/time-spending.png
-[issues]: https://github.com/trungk18/jira-clone-angular/issues/new
-[pull]: https://github.com/trungk18/jira-clone-angular/compare
+[issues]: https://github.com/trungvose/jira-clone-angular/issues/new
+[pull]: https://github.com/trungvose/jira-clone-angular/compare
 [100days]: https://github.com/angular-vietnam/100-days-of-angular
 [stranger]: https://www.bingeclock.com/s/stranger-things/
 [eric_cart]: https://www.reddit.com/r/Angular2/comments/hj4kxd/angular_jira_clone_application_built_akita_and/fwu1tbm/
@@ -278,4 +278,4 @@ Feel free to use my code on your project. It would be great if you put a referen
 [lazy-load]: https://angular.io/guide/lazy-loading-ngmodules
 [chau]: https://github.com/nartc
 [tiep]: https://github.com/tieppt
-[gql]: https://github.com/trungk18/jira-clone-angular/tree/feature/gql
+[gql]: https://github.com/trungvose/jira-clone-angular/tree/feature/gql
