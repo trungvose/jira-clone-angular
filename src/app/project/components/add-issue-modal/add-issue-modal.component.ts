@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { IssueType, JIssue, IssueStatus, IssuePriority } from '@trungk18/interface/issue';
 import { quillConfiguration } from '@trungk18/project/config/editor';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -22,7 +22,7 @@ import { DateUtil } from '@trungk18/project/utils/date';
 export class AddIssueModalComponent implements OnInit {
   reporterUsers$: Observable<JUser[]>;
   assignees$: Observable<JUser[]>;
-  issueForm: FormGroup;
+  issueForm: UntypedFormGroup;
   editorOptions = quillConfiguration;
 
   get f() {
@@ -30,7 +30,7 @@ export class AddIssueModalComponent implements OnInit {
   }
 
   constructor(
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     private _modalRef: NzModalRef,
     private _projectService: ProjectService,
     private _projectQuery: ProjectQuery) {}
