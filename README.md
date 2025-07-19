@@ -222,6 +222,7 @@ Not all components have properly defined [aria attributes](https://developer.moz
 
 - `git clone https://github.com/trungvose/jira-clone-angular.git`
 - `cd jira-clone-angular`
+- `npm install` for installing npm-modules
 - `npm start` for angular web application
 - The app should run on `http://localhost:4200/`
 
