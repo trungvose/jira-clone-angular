@@ -16,14 +16,17 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { CdkDragDrop, moveItemInArray, transferArrayItem, DragDropModule } from '@angular/cdk/drag-drop';
 
 import { RetrospectiveService } from '../../state/retrospective.service';
 import { RetrospectiveQuery } from '../../state/retrospective.query';
 import { AuthQuery } from '../../../project/auth/auth.query';
+import { ProjectQuery } from '../../../project/state/project/project.query';
 import { RetrospectiveBoard, StickyNote, StickyNoteColor, RetroPhase, RetroColumn } from '../../interfaces/retrospective.interface';
 import { RetroColumnComponent } from '../../components/retro-column/retro-column.component';
 import { JiraControlModule } from '../../../jira-control/jira-control.module';
+import { JUser } from '../../../interface/user';
 
 @Component({
   selector: 'app-retrospective-board',
@@ -43,6 +46,7 @@ import { JiraControlModule } from '../../../jira-control/jira-control.module';
     NzSelectModule,
     NzToolTipModule,
     NzDividerModule,
+    NzAvatarModule,
     DragDropModule,
     RetroColumnComponent,
     JiraControlModule
@@ -61,9 +65,14 @@ export class RetrospectiveBoardPageComponent implements OnInit, OnDestroy {
   
   isPhaseModalVisible = false;
   isSettingsModalVisible = false;
+  isParticipantsModalVisible = false;
   selectedPhase: RetroPhase = RetroPhase.BRAINSTORMING;
   settingsTitle = '';
   settingsDescription = '';
+  
+  // User data
+  users: JUser[] = [];
+  participantUsers: JUser[] = [];
 
   phaseOptions = [
     { value: RetroPhase.BRAINSTORMING, label: 'Brainstorming', icon: 'bulb' },
@@ -80,6 +89,7 @@ export class RetrospectiveBoardPageComponent implements OnInit, OnDestroy {
     private retrospectiveService: RetrospectiveService,
     private retrospectiveQuery: RetrospectiveQuery,
     private authQuery: AuthQuery,
+    private projectQuery: ProjectQuery,
     private modal: NzModalService
   ) {}
 
@@ -90,6 +100,14 @@ export class RetrospectiveBoardPageComponent implements OnInit, OnDestroy {
     if (boardId) {
       this.retrospectiveService.loadBoard(boardId);
     }
+
+    // Subscribe to users
+    this.projectQuery.users$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(users => {
+        this.users = users;
+        this.updateParticipantUsers();
+      });
 
     // Subscribe to current board
     this.retrospectiveQuery.currentBoard$
@@ -103,6 +121,9 @@ export class RetrospectiveBoardPageComponent implements OnInit, OnDestroy {
           
           // Initialize column data arrays for drag & drop
           this.initializeColumnArrays();
+          
+          // Update participant users when board changes
+          this.updateParticipantUsers();
         }
       });
   }
@@ -452,19 +473,48 @@ export class RetrospectiveBoardPageComponent implements OnInit, OnDestroy {
   }
 
   // Participant helpers
+  updateParticipantUsers(): void {
+    if (!this.currentBoard || !this.users.length) {
+      this.participantUsers = [];
+      return;
+    }
+    
+    this.participantUsers = this.currentBoard.participants
+      .map(participantId => this.users.find(user => user.id === participantId))
+      .filter(user => user !== undefined) as JUser[];
+  }
+
   getParticipantAvatar(participantId: string): string | undefined {
-    // In a real app, you would look up participant details
-    return undefined;
+    const user = this.users.find(u => u.id === participantId);
+    return user?.avatarUrl;
   }
 
   getParticipantInitials(participantId: string): string {
-    // In a real app, you would look up participant details
-    return participantId.slice(0, 2).toUpperCase();
+    const user = this.users.find(u => u.id === participantId);
+    if (!user?.name) return participantId.slice(0, 2).toUpperCase();
+    return user.name
+      .split(' ')
+      .map(name => name.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
   }
 
   getParticipantName(participantId: string): string {
-    // In a real app, you would look up participant details
-    return `User ${participantId}`;
+    const user = this.users.find(u => u.id === participantId);
+    return user?.name || `User ${participantId}`;
+  }
+  
+  showParticipantsModal(): void {
+    this.isParticipantsModalVisible = true;
+  }
+  
+  closeParticipantsModal(): void {
+    this.isParticipantsModalVisible = false;
+  }
+  
+  isFacilitator(userId: string): boolean {
+    return this.currentBoard?.facilitatorId === userId;
   }
 
   // Note event handlers

@@ -275,6 +275,12 @@
       padding: 16px 24px;
     }
 
+    // Participants modal
+    .participants-list {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
     // Modal form styles to match create issue modal
     .form-action {
       text-align: right;
