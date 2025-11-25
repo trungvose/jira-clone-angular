@@ -21,9 +21,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 
 import { OrganizationService } from '../../state/organization.service';
 import { OrganizationQuery } from '../../state/organization.query';
-import { Organization, Team, OrganizationSettings, TeamSettings } from '../../interfaces/organization.interface';
-import { OrganizationCardComponent } from '../../components/organization-card/organization-card.component';
+import { AuthQuery } from '../../../project/auth/auth.query';
+import { Organization, Team, OrganizationMember, OrganizationSettings, TeamSettings } from '../../interfaces/organization.interface';
+import { TeamCardComponent } from '../../components/team-card/team-card.component';
 import { JiraControlModule } from '../../../jira-control/jira-control.module';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 @Component({
   selector: 'app-organization-dashboard',
@@ -45,7 +47,9 @@ import { JiraControlModule } from '../../../jira-control/jira-control.module';
     NzSwitchModule,
     NzFormModule,
     NzTagModule,
-    OrganizationCardComponent,
+    NzAvatarModule,
+    NzGridModule,
+    TeamCardComponent,
     JiraControlModule
   ],
   templateUrl: './organization-dashboard.component.html',
@@ -56,9 +60,9 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
   
   organizations: Organization[] = [];
   teams: Team[] = [];
+  members: OrganizationMember[] = [];
   currentOrganization: Organization | null = null;
   
-  isCreateOrgModalVisible = false;
   isCreateTeamModalVisible = false;
   
   // Jira Integration Modal
@@ -74,8 +78,6 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
     apiToken: ''
   };
   
-  newOrgName = '';
-  newOrgDescription = '';
   newTeamName = '';
   newTeamDescription = '';
 
@@ -84,6 +86,7 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private organizationService: OrganizationService,
     private organizationQuery: OrganizationQuery,
+    private authQuery: AuthQuery,
     private message: NzMessageService
   ) {}
 
@@ -93,6 +96,14 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(organizations => {
         this.organizations = organizations;
+        
+        // Auto-select first/only organization or create one if none exists
+        if (organizations.length > 0 && !this.currentOrganization) {
+          this.setCurrentOrganization(organizations[0]);
+        } else if (organizations.length === 0) {
+          // Auto-create organization on first load
+          this.autoCreateOrganization();
+        }
       });
 
     // Subscribe to current organization
@@ -100,19 +111,45 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(org => {
         this.currentOrganization = org;
-      });
-
-    // Subscribe to teams
-    this.organizationQuery.teams$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(teams => {
-        this.teams = this.currentOrganization 
-          ? teams.filter(team => team.organizationId === this.currentOrganization!.id)
-          : [];
+        
+        // Load teams and members when org changes
+        if (org) {
+          this.loadTeamsAndMembers(org.id);
+        }
       });
 
     // Check for OAuth callback parameters
     this.handleOAuthCallback();
+  }
+  
+  private autoCreateOrganization() {
+    const user = this.authQuery.getValue();
+    if (user) {
+      const orgName = `${user.name}'s Organization`;
+      const orgDescription = 'Your organization workspace';
+      this.organizationService.createOrganization(orgName, orgDescription);
+    }
+  }
+  
+  private setCurrentOrganization(org: Organization) {
+    this.currentOrganization = org;
+    this.organizationService.setCurrentOrganization(org.id);
+  }
+  
+  private loadTeamsAndMembers(orgId: string) {
+    // Subscribe to teams for this organization
+    this.organizationQuery.getTeamsByOrganization(orgId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(teams => {
+        this.teams = teams;
+      });
+
+    // Subscribe to members for this organization  
+    this.organizationQuery.getMembersByOrganization(orgId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(members => {
+        this.members = members;
+      });
   }
 
   ngOnDestroy() {
@@ -228,35 +265,9 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
   }
 
   // Organization Management
-  showCreateOrganizationModal() {
-    this.isCreateOrgModalVisible = true;
-    this.newOrgName = '';
-    this.newOrgDescription = '';
-  }
-
-  createOrganization() {
-    if (this.newOrgName.trim()) {
-      this.organizationService.createOrganization(
-        this.newOrgName.trim(),
-        this.newOrgDescription.trim()
-      );
-      this.cancelCreateOrganization();
-    }
-  }
-
-  cancelCreateOrganization() {
-    this.isCreateOrgModalVisible = false;
-    this.newOrgName = '';
-    this.newOrgDescription = '';
-  }
-
-  selectOrganization(organization: Organization) {
-    this.router.navigate(['/organization/org', organization.id]);
-  }
-
-  showOrganizationSettings(organization: Organization) {
-    // TODO: Implement organization settings modal
-    console.log('Show organization settings:', organization);
+  showInviteMemberModal() {
+    // TODO: Implement invite member modal
+    console.log('Invite member modal');
   }
 
   deleteOrganization(organization: Organization) {
@@ -294,10 +305,6 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
 
   openTeamManagement(team: Team) {
     if (this.currentOrganization) {
-      const teamUrl = this.organizationService.getTeamUrl(this.currentOrganization, team.id);
-      this.router.navigate(teamUrl);
-    } else {
-      // Fallback to old route structure
       this.router.navigate(['/organization/teams', team.id]);
     }
   }
@@ -321,6 +328,10 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
   trackByTeamId(index: number, team: Team): string {
     return team.id;
   }
+  
+  trackByMemberId(index: number, member: OrganizationMember): string {
+    return member.id;
+  }
 
   getOrganizationInitials(): string {
     if (!this.currentOrganization) return '';
@@ -331,19 +342,42 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
       .toUpperCase()
       .slice(0, 2);
   }
+  
+  getInitials(name: string): string {
+    return name
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  }
+  
+  getRoleColor(role: string): string {
+    switch (role) {
+      case 'owner': return 'purple';
+      case 'admin': return 'blue';
+      case 'member': return 'green';
+      default: return 'default';
+    }
+  }
+
+  getStatusColor(status: string): string {
+    switch (status) {
+      case 'active': return 'green';
+      case 'pending': return 'orange';
+      case 'suspended': return 'red';
+      default: return 'default';
+    }
+  }
 
   loadSampleData() {
     this.organizationService.loadSampleData();
   }
 
   // Jira Integration Methods
-  hasAnyJiraLinkedOrg(): boolean {
-    return this.organizations.some(org => org.jiraIntegration?.isConnected);
-  }
-
   showLinkJiraModal() {
     this.isJiraLinkModalVisible = true;
-    this.selectedOrgForJira = null;
+    this.selectedOrgForJira = this.currentOrganization;
     this.resetJiraConfig();
   }
 
@@ -351,20 +385,6 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
     this.isJiraLinkModalVisible = false;
     this.selectedOrgForJira = null;
     this.resetJiraConfig();
-  }
-
-  selectOrganizationForJira(organization: Organization) {
-    this.selectedOrgForJira = organization;
-    this.resetJiraConfig();
-  }
-
-  // Helper method to update the organization in the local arrays
-  private updateOrganizationInArrays(updatedOrg: Organization) {
-    // Update in the organizations array
-    const orgIndex = this.organizations.findIndex(org => org.id === updatedOrg.id);
-    if (orgIndex !== -1) {
-      this.organizations[orgIndex] = updatedOrg;
-    }
   }
 
   resetJiraConfig() {
@@ -443,15 +463,6 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
       // Update the organization in the service
       this.organizationService.updateOrganization(this.selectedOrgForJira.id, { jiraIntegration });
       
-      // Update the local selectedOrgForJira object to reflect the changes immediately
-      this.selectedOrgForJira = {
-        ...this.selectedOrgForJira,
-        jiraIntegration
-      };
-      
-      // Also update the organization in the organizations array for immediate UI update
-      this.updateOrganizationInArrays(this.selectedOrgForJira);
-      
       console.log('Jira disconnected successfully!');
       this.resetJiraConfig();
     } catch (error) {
@@ -468,10 +479,5 @@ export class OrganizationDashboardComponent implements OnInit, OnDestroy {
       .join('')
       .toUpperCase()
       .slice(0, 2);
-  }
-
-  showCreateOrganizationModalFromJira() {
-    this.cancelJiraLink();
-    this.showCreateOrganizationModal();
   }
 }

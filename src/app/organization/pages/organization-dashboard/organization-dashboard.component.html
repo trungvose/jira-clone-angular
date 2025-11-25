@@ -1,10 +1,26 @@
 <div class="organization-dashboard p-6">
-  <!-- Header -->
-  <div class="mb-8">
-    <div class="flex items-center justify-between">
-      <div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">Organization Management</h1>
-        <p class="text-lg text-gray-600">Manage your organizations and teams</p>
+  <!-- Organization Header -->
+  <div *ngIf="currentOrganization" class="mb-8">
+    <div class="flex items-start justify-between">
+      <div class="flex items-start gap-4">
+        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+          {{ getOrganizationInitials() }}
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ currentOrganization.name }}</h1>
+          <p class="text-lg text-gray-600 mb-4">{{ currentOrganization.description }}</p>
+          <div class="flex items-center gap-4 text-sm text-gray-500">
+            <span class="flex items-center gap-1">
+              <span nz-icon nzType="team" nzTheme="outline"></span>
+              {{ currentOrganization.memberCount }} member{{ currentOrganization.memberCount !== 1 ? 's' : '' }}
+            </span>
+            <span class="flex items-center gap-1">
+              <span nz-icon nzType="apartment" nzTheme="outline"></span>
+              {{ currentOrganization.teamCount }} team{{ currentOrganization.teamCount !== 1 ? 's' : '' }}
+            </span>
+            <span>Created {{ currentOrganization.createdAt | date:'MMM d, yyyy' }}</span>
+          </div>
+        </div>
       </div>
       
       <div class="flex items-center gap-3">
@@ -14,10 +30,10 @@
           nzSize="medium"
           (click)="showLinkJiraModal()"
           class="flex items-center gap-2 jira-link-button"
-          [class.linked]="hasAnyJiraLinkedOrg()"
+          [class.linked]="currentOrganization.jiraIntegration?.isConnected"
         >
           <span nz-icon nzType="link" nzTheme="outline"></span>
-          {{ hasAnyJiraLinkedOrg() ? 'Manage Jira Links' : 'Link Jira' }}
+          {{ currentOrganization.jiraIntegration?.isConnected ? 'Manage Jira' : 'Link Jira' }}
         </button>
         
         <button 
@@ -33,147 +49,145 @@
         
         <button 
           nz-button 
+          nzType="default"
+          nzSize="medium"
+          (click)="showInviteMemberModal()"
+          class="flex items-center gap-2"
+        >
+          <span nz-icon nzType="user-add" nzTheme="outline"></span>
+          Invite Members
+        </button>
+        
+        <button 
+          nz-button 
           nzType="primary"
           nzSize="medium"
-          (click)="showCreateOrganizationModal()"
+          (click)="showCreateTeamModal()"
           class="flex items-center gap-2"
         >
           <span nz-icon nzType="plus" nzTheme="outline"></span>
-          Create Organization
+          Create Team
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Content - Organizations Grid -->
-  <div class="tab-content">
-    <!-- Organizations Grid -->
-    <div *ngIf="organizations.length > 0" class="organizations-grid">
-      <app-organization-card
-        *ngFor="let org of organizations; trackBy: trackByOrgId"
-        [organization]="org"
-        (cardClick)="selectOrganization($event)"
-        (settings)="showOrganizationSettings($event)"
-        (delete)="deleteOrganization($event)"
-      ></app-organization-card>
-    </div>
+  <!-- Content Grid - Teams and Members -->
+  <nz-row [nzGutter]="[24, 24]" *ngIf="currentOrganization">
+    <!-- Teams Section -->
+    <nz-col [nzSpan]="16">
+      <nz-card nzTitle="Teams" class="h-full">
+        <div *ngIf="teams.length > 0" class="teams-grid">
+          <app-team-card
+            *ngFor="let team of teams; trackBy: trackByTeamId"
+            [team]="team"
+            (cardClick)="openTeamManagement($event)"
+            (edit)="showTeamSettings($event)"
+          ></app-team-card>
+        </div>
 
-    <!-- Empty State -->
-    <div *ngIf="organizations.length === 0" class="empty-state">
-      <nz-empty 
-        [nzNotFoundContent]="emptyOrganizationsTemplate"
-        nzNotFoundImage="simple"
-      ></nz-empty>
-    </div>
+        <!-- Empty Teams State -->
+        <div *ngIf="teams.length === 0" class="empty-state">
+          <nz-empty nzNotFoundImage="simple">
+            <div nz-empty-content class="text-center py-8">
+              <div class="mb-4">
+                <span nz-icon nzType="team" nzTheme="outline" class="text-4xl text-gray-300"></span>
+              </div>
+              <h3 class="text-lg font-medium text-gray-900 mb-2">No teams yet</h3>
+              <p class="text-gray-500 mb-4">Create your first team to organize members and projects</p>
+              <button 
+                nz-button 
+                nzType="primary"
+                nzSize="medium"
+                (click)="showCreateTeamModal()"
+                class="flex items-center gap-2 mx-auto"
+              >
+                <span nz-icon nzType="plus" nzTheme="outline"></span>
+                Create First Team
+              </button>
+            </div>
+          </nz-empty>
+        </div>
+      </nz-card>
+    </nz-col>
+
+    <!-- Members Section -->
+    <nz-col [nzSpan]="8">
+      <nz-card nzTitle="Members" class="h-full">
+        <div *ngIf="members.length > 0">
+          <div class="member-list space-y-3">
+            <div 
+              *ngFor="let member of members; trackBy: trackByMemberId"
+              class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <div class="flex items-center gap-3">
+                <nz-avatar 
+                  [nzSrc]="member.user.avatarUrl" 
+                  [nzText]="getInitials(member.user.name)"
+                  nzSize="medium"
+                ></nz-avatar>
+                <div>
+                  <div class="font-medium text-gray-900">{{ member.user.name }}</div>
+                  <div class="text-sm text-gray-500">{{ member.user.email }}</div>
+                </div>
+              </div>
+              <div class="flex flex-col items-end gap-1">
+                <nz-tag [nzColor]="getRoleColor(member.role)" class="m-0">
+                  {{ member.role }}
+                </nz-tag>
+                <nz-tag [nzColor]="getStatusColor(member.status)" class="m-0">
+                  {{ member.status }}
+                </nz-tag>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty Members State -->
+        <div *ngIf="members.length === 0" class="empty-state">
+          <nz-empty nzNotFoundImage="simple">
+            <div nz-empty-content class="text-center py-8">
+              <div class="mb-4">
+                <span nz-icon nzType="user" nzTheme="outline" class="text-4xl text-gray-300"></span>
+              </div>
+              <h3 class="text-lg font-medium text-gray-900 mb-2">No members yet</h3>
+              <p class="text-gray-500 mb-4">Invite people to join this organization</p>
+              <button 
+                nz-button 
+                nzType="primary"
+                nzSize="medium"
+                (click)="showInviteMemberModal()"
+                class="flex items-center gap-2 mx-auto"
+              >
+                <span nz-icon nzType="user-add" nzTheme="outline"></span>
+                Invite Members
+              </button>
+            </div>
+          </nz-empty>
+        </div>
+      </nz-card>
+    </nz-col>
+  </nz-row>
+
+  <!-- Empty Organization State -->
+  <div *ngIf="!currentOrganization" class="empty-state">
+    <nz-empty 
+      [nzNotFoundContent]="emptyOrganizationsTemplate"
+      nzNotFoundImage="simple"
+    ></nz-empty>
   </div>
 </div>
 
-<!-- Empty State Templates -->
+<!-- Empty Organization State -->
 <ng-template #emptyOrganizationsTemplate>
   <div class="text-center py-12">
     <div class="mb-4">
       <span nz-icon nzType="apartment" nzTheme="outline" class="text-6xl text-gray-300"></span>
     </div>
-    <h3 class="text-lg font-medium text-gray-900 mb-2">No organizations yet</h3>
-    <p class="text-gray-500 mb-6">Create your first organization to start managing teams and projects</p>
-    <button 
-      nz-button 
-      nzType="primary" 
-      nzSize="medium"
-      (click)="showCreateOrganizationModal()"
-      class="flex items-center gap-2 mx-auto"
-    >
-      <span nz-icon nzType="plus" nzTheme="outline"></span>
-      Create Your First Organization
-    </button>
+    <h3 class="text-lg font-medium text-gray-900 mb-2">Setting up your organization</h3>
+    <p class="text-gray-500 mb-6">Please wait while we create your workspace...</p>
   </div>
 </ng-template>
-
-<ng-template #emptyTeamsTemplate>
-  <div class="text-center py-12">
-    <div class="mb-4">
-      <span nz-icon nzType="team" nzTheme="outline" class="text-6xl text-gray-300"></span>
-    </div>
-    <h3 class="text-lg font-medium text-gray-900 mb-2">No teams yet</h3>
-    <p class="text-gray-500 mb-6">Create your first team to organize your members and projects</p>
-    <button 
-      nz-button 
-      nzType="primary" 
-      nzSize="medium"
-      (click)="showCreateTeamModal()"
-      class="flex items-center gap-2 mx-auto"
-    >
-      <span nz-icon nzType="plus" nzTheme="outline"></span>
-      Create Your First Team
-    </button>
-  </div>
-</ng-template>
-
-<!-- Create Organization Modal -->
-<nz-modal
-  [(nzVisible)]="isCreateOrgModalVisible"
-  nzClosable="false"
-  nzFooter="null"
-  nzWidth="700px"
->
-  <ng-container *nzModalContent>
-    <div class="px-8 py-5">
-      <div class="flex items-center py-3 text-textDarkest">
-        <div class="text-xl">
-          Create New Organization
-        </div>
-        <div class="flex-auto"></div>
-        <j-button icon="times"
-                  [iconSize]="24"
-                  (click)="cancelCreateOrganization()"
-                  [className]="'btn-empty'">
-        </j-button>
-      </div>
-      <form class="org-form modal-form">
-        <div class="form-group">
-          <label class="label">
-            Organization Name *
-          </label>
-          <input
-            [(ngModel)]="newOrgName"
-            name="orgName"
-            class="form-input"
-            placeholder="e.g., Acme Corporation"
-            #nameInput
-          />
-        </div>
-        
-        <div class="mt-3 form-group">
-          <label class="label">
-            Description
-          </label>
-          <textarea
-            [(ngModel)]="newOrgDescription"
-            name="orgDescription"
-            class="form-input"
-            cdkTextareaAutosize
-            [cdkAutosizeMinRows]="3"
-            [cdkAutosizeMaxRows]="6"
-            placeholder="Describe your organization's purpose and goals"
-          ></textarea>
-        </div>
-
-        <div class="mt-5 form-group form-action">
-          <j-button className="btn-primary mr-2"
-                    type="button"
-                    [disabled]="!newOrgName.trim()"
-                    (click)="createOrganization()">
-            Create Organization
-          </j-button>
-          <j-button className="btn-empty"
-                    (click)="cancelCreateOrganization()">
-            Cancel
-          </j-button>
-        </div>
-      </form>
-    </div>
-  </ng-container>
-</nz-modal>
 
 <!-- Create Team Modal -->
 <nz-modal
@@ -248,7 +262,7 @@
   [nzFooter]="null"
   [nzClosable]="false"
   (nzOnCancel)="cancelJiraLink()"
-  nzWidth="900px"
+  nzWidth="700px"
   nzBodyStyle="padding: 0"
   nzClassName="jira-modal"
 >
@@ -262,7 +276,7 @@
           </div>
           <div class="header-text">
             <h2 class="title">Jira Integration</h2>
-            <p class="subtitle">Connect your organizations to Jira for seamless project management</p>
+            <p class="subtitle" *ngIf="currentOrganization">Connect {{ currentOrganization.name }} to Jira for seamless project management</p>
           </div>
         </div>
         <button 
@@ -277,83 +291,40 @@
       </div>
 
       <!-- Content Area -->
-      <div class="modal-content">
-        <!-- Organizations Section -->
-        <div class="organizations-section">
-          <div class="section-header">
-            <h3 class="section-title">Select Organization</h3>
-            <div class="section-badge">{{ organizations.length }} organization{{ organizations.length !== 1 ? 's' : '' }}</div>
-          </div>
-          
-          <div class="organizations-grid" *ngIf="organizations.length > 0">
-            <div 
-              *ngFor="let org of organizations; trackBy: trackByOrgId"
-              class="org-card"
-              [class.selected]="selectedOrgForJira?.id === org.id"
-              [class.connected]="org.jiraIntegration?.isConnected"
-              (click)="selectOrganizationForJira(org)"
-            >
-              <div class="org-card-content">
-                <div class="org-avatar">
-                  {{ getOrgInitials(org) }}
-                </div>
-                <div class="org-info">
-                  <h4 class="org-name">{{ org.name }}</h4>
-                  <p class="org-description">{{ org.description }}</p>
-                  <div class="org-meta">
-                    <span class="meta-item">
-                      <span nz-icon nzType="team" nzTheme="outline"></span>
-                      {{ org.memberCount }} members
-                    </span>
-                    <span class="meta-item">
-                      <span nz-icon nzType="apartment" nzTheme="outline"></span>
-                      {{ org.teamCount }} teams
-                    </span>
-                  </div>
+      <div class="modal-content" *ngIf="currentOrganization">
+        <!-- Organization Display -->
+        <div class="organization-section">
+          <div class="org-card selected">
+            <div class="org-card-content">
+              <div class="org-avatar">
+                {{ getOrganizationInitials() }}
+              </div>
+              <div class="org-info">
+                <h4 class="org-name">{{ currentOrganization.name }}</h4>
+                <p class="org-description">{{ currentOrganization.description }}</p>
+                <div class="org-meta">
+                  <span class="meta-item">
+                    <span nz-icon nzType="team" nzTheme="outline"></span>
+                    {{ currentOrganization.memberCount }} members
+                  </span>
+                  <span class="meta-item">
+                    <span nz-icon nzType="apartment" nzTheme="outline"></span>
+                    {{ currentOrganization.teamCount }} teams
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- Empty State -->
-          <div *ngIf="organizations.length === 0" class="empty-organizations">
-            <div class="empty-icon">
-              <span nz-icon nzType="apartment" nzTheme="outline"></span>
+            <div class="connection-status" [class.connected]="currentOrganization.jiraIntegration?.isConnected">
+              <div class="status-dot"></div>
+              <span>{{ currentOrganization.jiraIntegration?.isConnected ? 'Jira Integration Active' : 'Not connected' }}</span>
             </div>
-            <h3 class="empty-title">No Organizations Found</h3>
-            <p class="empty-description">Create your first organization to get started with Jira integration</p>
-            <button 
-              nz-button 
-              nzType="primary"
-              nzSize="medium"
-              (click)="showCreateOrganizationModalFromJira()"
-              class="empty-action"
-            >
-              <span nz-icon nzType="plus" nzTheme="outline"></span>
-              Create Organization
-            </button>
           </div>
         </div>
 
         <!-- Configuration Panel -->
-        <div class="config-section" *ngIf="selectedOrgForJira">
-          <div class="config-header">
-            <div class="selected-org">
-              <div class="selected-org-avatar">
-                {{ getOrgInitials(selectedOrgForJira) }}
-              </div>
-              <div class="selected-org-info">
-                <h3 class="selected-org-name">{{ selectedOrgForJira.name }}</h3>
-                <div class="connection-status" [class.connected]="selectedOrgForJira.jiraIntegration?.isConnected">
-                  <div class="status-dot"></div>
-                  <span>{{ selectedOrgForJira.jiraIntegration?.isConnected ? 'Jira Integration Active' : 'Not connected' }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <div class="config-section">
           <!-- Not Connected State -->
-          <div *ngIf="!selectedOrgForJira.jiraIntegration?.isConnected" class="connection-form">
+          <div *ngIf="!currentOrganization.jiraIntegration?.isConnected" class="connection-form">
             <form nz-form [nzLayout]="'vertical'" class="modern-form">
               <nz-form-item>
                 <nz-form-label nzRequired>Jira Site URL</nz-form-label>
@@ -387,21 +358,21 @@
           </div>
 
           <!-- Connected State -->
-          <div *ngIf="selectedOrgForJira.jiraIntegration?.isConnected" class="connected-state">
+          <div *ngIf="currentOrganization.jiraIntegration?.isConnected" class="connected-state">
             <div class="connection-details">
               <div class="detail-row">
                 <div class="detail-label">
                   <span nz-icon nzType="global" nzTheme="outline"></span>
                   Jira Site
                 </div>
-                <div class="detail-value">{{ selectedOrgForJira.jiraIntegration?.siteUrl }}</div>
+                <div class="detail-value">{{ currentOrganization.jiraIntegration?.siteUrl }}</div>
               </div>
               <div class="detail-row">
                 <div class="detail-label">
                   <span nz-icon nzType="calendar" nzTheme="outline"></span>
                   Connected
                 </div>
-                <div class="detail-value">{{ selectedOrgForJira.jiraIntegration?.connectedAt | date:'MMM d, yyyy \'at\' h:mm a' }}</div>
+                <div class="detail-value">{{ currentOrganization.jiraIntegration?.connectedAt | date:'MMM d, yyyy \'at\' h:mm a' }}</div>
               </div>
             </div>
 
@@ -418,87 +389,6 @@
                 <span nz-icon nzType="disconnect" nzTheme="outline" *ngIf="!isDisconnecting"></span>
                 {{ isDisconnecting ? 'Disconnecting...' : 'Disconnect' }}
               </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- No Organizations Jira Setup State -->
-        <div class="config-section" *ngIf="organizations.length === 0">
-          <div class="getting-started-content">
-            <h3>Get Started with Jira Integration</h3>
-            <p>Connect your Jira account to start syncing your projects, issues, and workflows.</p>
-            <div class="features-list">
-              <div class="feature-item">
-                <span nz-icon nzType="check-circle" nzTheme="outline"></span>
-                <span>Sync projects and issues</span>
-              </div>
-              <div class="feature-item">
-                <span nz-icon nzType="check-circle" nzTheme="outline"></span>
-                <span>Track work progress</span>
-              </div>
-              <div class="feature-item">
-                <span nz-icon nzType="check-circle" nzTheme="outline"></span>
-                <span>Manage team workflows</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Direct Jira Connection Form for No Organizations -->
-          <div class="connection-form">
-            <form nz-form [nzLayout]="'vertical'" class="modern-form">
-              <nz-form-item>
-                <nz-form-label nzRequired>Jira Site URL</nz-form-label>
-                <nz-form-control>
-                  <nz-input-group nzPrefixIcon="global">
-                    <input 
-                      nz-input 
-                      [(ngModel)]="jiraConfig.siteUrl" 
-                      name="siteUrl"
-                      placeholder="https://yourcompany.atlassian.net"
-                    />
-                  </nz-input-group>
-                </nz-form-control>
-              </nz-form-item>
-
-              <div class="form-actions">
-                <button 
-                  nz-button 
-                  nzType="primary" 
-                  nzSize="medium"
-                  (click)="connectJira()"
-                  [nzLoading]="isConnecting"
-                  [disabled]="!jiraConfig.siteUrl?.trim()"
-                  class="action-btn primary"
-                >
-                  <span nz-icon nzType="thunderbolt" nzTheme="outline" *ngIf="!isConnecting"></span>
-                  {{ isConnecting ? 'Connecting...' : 'Connect to Jira' }}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Getting Started State -->
-        <div class="getting-started" *ngIf="!selectedOrgForJira && organizations.length > 0">
-          <div class="getting-started-content">
-            <div class="getting-started-icon">
-              <span nz-icon nzType="rocket" nzTheme="outline"></span>
-            </div>
-            <h3>Get Started with Jira Integration</h3>
-            <p>Select an organization from the list to configure Jira integration and start syncing your projects, issues, and workflows.</p>
-            <div class="features-list">
-              <div class="feature-item">
-                <span nz-icon nzType="check-circle" nzTheme="outline"></span>
-                <span>Sync projects and issues</span>
-              </div>
-              <div class="feature-item">
-                <span nz-icon nzType="check-circle" nzTheme="outline"></span>
-                <span>Track work progress</span>
-              </div>
-              <div class="feature-item">
-                <span nz-icon nzType="check-circle" nzTheme="outline"></span>
-                <span>Manage team workflows</span>
-              </div>
             </div>
           </div>
         </div>
