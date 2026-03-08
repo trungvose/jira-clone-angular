@@ -37,7 +37,7 @@
     "date-fns": "^2.14.0",
     "karma-coverage": "^2.0.3",
     "ng-zorro-antd": "^16.2.2",
-    "ngx-quill": "^16.1.2",
+    "ngx-quill": "^22.1.1",
     "quill": "^1.3.7",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
