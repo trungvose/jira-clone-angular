@@ -28,7 +28,7 @@ export class IssueDetailComponent{
       nzStyle: {
         top: '140px'
       },
-      nzComponentParams: {
+      nzData: {
         issueId: this.issue.id,
         onDelete: this.onDelete
       }

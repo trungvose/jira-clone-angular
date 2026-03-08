@@ -1,5 +1,5 @@
-import { Component, EventEmitter } from '@angular/core';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import { Component, EventEmitter, Inject } from '@angular/core';
+import { NzModalRef, NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
 import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-model';
 
 @Component({
@@ -12,7 +12,13 @@ export class IssueDeleteModalComponent {
 
   onDelete = new EventEmitter<DeleteIssueModel>();
 
-  constructor(private _modalRef: NzModalRef) {}
+  constructor(
+    private _modalRef: NzModalRef,
+    @Inject(NZ_MODAL_DATA) private modalData: { issueId: string; onDelete: EventEmitter<DeleteIssueModel> }
+  ) {
+    this.issueId = this.modalData.issueId;
+    this.onDelete = this.modalData.onDelete;
+  }
 
   deleteIssue() {
     this.onDelete.emit(new DeleteIssueModel(this.issueId, this._modalRef));
