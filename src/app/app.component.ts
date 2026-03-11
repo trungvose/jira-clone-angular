@@ -1,15 +1,20 @@
 import { Component, ViewEncapsulation, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { environment } from '../environments/environment';
 import { ProjectQuery } from './project/state/project/project.query';
 import { ProjectService } from './project/state/project/project.service';
 import { GoogleAnalyticsService } from './core/services/google-analytics.service';
+import { AsyncPipe } from '@angular/common';
+import { SnowComponent } from './core/snow/snow.component';
+import { NzSpinComponent } from 'ng-zorro-antd/spin';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [NzSpinComponent, RouterOutlet, SnowComponent, AsyncPipe]
 })
 export class AppComponent implements AfterViewInit {
   constructor(
