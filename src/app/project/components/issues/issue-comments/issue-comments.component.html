@@ -1,7 +1,9 @@
 <issue-comment [createMode]="true"
-               [issueId]="issue?.id">
+  [issueId]="issue?.id">
 
 </issue-comment>
-<issue-comment *ngFor="let comment of issue?.comments"
-               [comment]="comment">
-</issue-comment>
+@for (comment of issue?.comments; track comment) {
+  <issue-comment
+    [comment]="comment">
+  </issue-comment>
+}

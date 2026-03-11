@@ -9,14 +9,14 @@ import { NzDropDownADirective, NzDropDownDirective, NzDropdownMenuComponent } fr
 import { SvgIconComponent } from '../../../../jira-control/svg-icon/svg-icon.component';
 import { UserComponent } from '../../user/user.component';
 import { ButtonComponent } from '../../../../jira-control/button/button.component';
-import { NgFor, NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'issue-assignees',
     templateUrl: './issue-assignees.component.html',
     styleUrls: ['./issue-assignees.component.scss'],
     standalone: true,
-    imports: [NgFor, ButtonComponent, UserComponent, SvgIconComponent, NzDropDownADirective, NzDropDownDirective, NzIconDirective, NzDropdownMenuComponent, NzMenuDirective, NgIf, NzMenuItemComponent]
+    imports: [ButtonComponent, UserComponent, SvgIconComponent, NzDropDownADirective, NzDropDownDirective, NzIconDirective, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent]
 })
 @UntilDestroy()
 export class IssueAssigneesComponent implements OnInit, OnChanges {

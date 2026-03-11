@@ -3,7 +3,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { JIssue } from '@trungk18/interface/issue';
 import { JUser } from '@trungk18/interface/user';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
-import { NgFor, NgIf } from '@angular/common';
+
 import { NzMenuDirective, NzMenuItemComponent } from 'ng-zorro-antd/menu';
 import { UserComponent } from '../../user/user.component';
 import { NzDropDownDirective, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
@@ -14,7 +14,7 @@ import { ButtonComponent } from '../../../../jira-control/button/button.componen
     templateUrl: './issue-reporter.component.html',
     styleUrls: ['./issue-reporter.component.scss'],
     standalone: true,
-    imports: [ButtonComponent, NzDropDownDirective, UserComponent, NzDropdownMenuComponent, NzMenuDirective, NgFor, NgIf, NzMenuItemComponent]
+    imports: [ButtonComponent, NzDropDownDirective, UserComponent, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent]
 })
 @UntilDestroy()
 export class IssueReporterComponent implements OnChanges {

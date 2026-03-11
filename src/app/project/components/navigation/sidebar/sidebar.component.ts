@@ -6,7 +6,7 @@ import { SideBarLinks } from '@trungk18/project/config/sidebar';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { SvgIconComponent } from '../../../../jira-control/svg-icon/svg-icon.component';
 import { RouterLinkActive, RouterLink } from '@angular/router';
-import { NgFor, NgIf } from '@angular/common';
+
 import { AvatarComponent } from '../../../../jira-control/avatar/avatar.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { AvatarComponent } from '../../../../jira-control/avatar/avatar.componen
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
     standalone: true,
-    imports: [AvatarComponent, NgFor, NgIf, RouterLinkActive, RouterLink, SvgIconComponent]
+    imports: [AvatarComponent, RouterLinkActive, RouterLink, SvgIconComponent]
 })
 @UntilDestroy()
 export class SidebarComponent implements OnInit {

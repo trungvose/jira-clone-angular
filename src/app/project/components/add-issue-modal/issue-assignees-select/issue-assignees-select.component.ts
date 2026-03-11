@@ -2,7 +2,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { JUser } from '@trungk18/interface/user';
 import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from '../../user/user.component';
-import { NgFor } from '@angular/common';
+
 import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
 
 @Component({
@@ -11,7 +11,7 @@ import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
     styleUrls: ['./issue-assignees-select.component.scss'],
     encapsulation: ViewEncapsulation.None,
     standalone: true,
-    imports: [NzSelectComponent, ReactiveFormsModule, NgFor, NzOptionComponent, UserComponent]
+    imports: [NzSelectComponent, ReactiveFormsModule, NzOptionComponent, UserComponent]
 })
 export class IssueAssigneesSelectComponent {
   @Input() control: UntypedFormControl;

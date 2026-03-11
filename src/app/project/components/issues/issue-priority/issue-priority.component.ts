@@ -4,7 +4,7 @@ import { IssuePriorityIcon } from '@trungk18/interface/issue-priority-icon';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { ProjectConst } from '@trungk18/project/config/const';
-import { NgFor, NgIf } from '@angular/common';
+
 import { NzMenuDirective, NzMenuItemComponent } from 'ng-zorro-antd/menu';
 import { SvgIconComponent } from '../../../../jira-control/svg-icon/svg-icon.component';
 import { NzDropDownDirective, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
@@ -15,7 +15,7 @@ import { ButtonComponent } from '../../../../jira-control/button/button.componen
     templateUrl: './issue-priority.component.html',
     styleUrls: ['./issue-priority.component.scss'],
     standalone: true,
-    imports: [ButtonComponent, NzDropDownDirective, SvgIconComponent, NzDropdownMenuComponent, NzMenuDirective, NgFor, NgIf, NzMenuItemComponent]
+    imports: [ButtonComponent, NzDropDownDirective, SvgIconComponent, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent]
 })
 export class IssuePriorityComponent implements OnInit, OnChanges {
   @Input() issue: JIssue;

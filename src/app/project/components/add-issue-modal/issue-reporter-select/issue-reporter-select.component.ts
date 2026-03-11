@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { JUser } from '@trungk18/interface/user';
 import { UserComponent } from '../../user/user.component';
-import { NgFor } from '@angular/common';
+
 import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
 
 @Component({
@@ -10,7 +10,7 @@ import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
     templateUrl: './issue-reporter-select.component.html',
     styleUrls: ['./issue-reporter-select.component.scss'],
     standalone: true,
-    imports: [NzSelectComponent, ReactiveFormsModule, NgFor, NzOptionComponent, UserComponent]
+    imports: [NzSelectComponent, ReactiveFormsModule, NzOptionComponent, UserComponent]
 })
 export class IssueReporterSelectComponent {
   @Input() control: UntypedFormControl;

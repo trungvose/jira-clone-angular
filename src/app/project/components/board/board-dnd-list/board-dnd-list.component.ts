@@ -9,7 +9,7 @@ import { FilterQuery } from '@trungk18/project/state/filter/filter.query';
 import * as dateFns from 'date-fns';
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { IssueCardComponent } from '../../issues/issue-card/issue-card.component';
-import { NgFor } from '@angular/common';
+
 
 @Component({
     selector: '[board-dnd-list]',
@@ -17,7 +17,7 @@ import { NgFor } from '@angular/common';
     styleUrls: ['./board-dnd-list.component.scss'],
     encapsulation: ViewEncapsulation.None,
     standalone: true,
-    imports: [CdkDropList, NgFor, IssueCardComponent, CdkDrag]
+    imports: [CdkDropList, IssueCardComponent, CdkDrag]
 })
 @UntilDestroy()
 export class BoardDndListComponent implements OnInit {

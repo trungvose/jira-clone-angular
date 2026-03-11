@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NoWhitespaceValidator } from '@trungk18/core/validators/no-whitespace.validator';
 import { ButtonComponent } from '../../../jira-control/button/button.component';
-import { NgFor } from '@angular/common';
+
 import { AutofocusDirective } from '../../../core/directives/autofocus.directive';
 import { BreadcrumbsComponent } from '../../../jira-control/breadcrumbs/breadcrumbs.component';
 
@@ -17,7 +17,7 @@ import { BreadcrumbsComponent } from '../../../jira-control/breadcrumbs/breadcru
     templateUrl: './settings.component.html',
     styleUrls: ['./settings.component.scss'],
     standalone: true,
-    imports: [BreadcrumbsComponent, ReactiveFormsModule, AutofocusDirective, NgFor, ButtonComponent]
+    imports: [BreadcrumbsComponent, ReactiveFormsModule, AutofocusDirective, ButtonComponent]
 })
 @UntilDestroy()
 export class SettingsComponent implements OnInit {

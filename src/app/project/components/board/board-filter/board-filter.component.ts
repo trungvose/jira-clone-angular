@@ -9,7 +9,7 @@ import { JUser } from '@trungk18/interface/user';
 import { ButtonComponent } from '../../../../jira-control/button/button.component';
 import { AvatarComponent } from '../../../../jira-control/avatar/avatar.component';
 import { NzTooltipDirective } from 'ng-zorro-antd/tooltip';
-import { NgFor, NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { InputComponent } from '../../../../jira-control/input/input.component';
 
 @Component({
@@ -17,7 +17,7 @@ import { InputComponent } from '../../../../jira-control/input/input.component';
     templateUrl: './board-filter.component.html',
     styleUrls: ['./board-filter.component.scss'],
     standalone: true,
-    imports: [ReactiveFormsModule, FormsModule, InputComponent, NgFor, NzTooltipDirective, AvatarComponent, ButtonComponent, NgIf, AsyncPipe]
+    imports: [ReactiveFormsModule, FormsModule, InputComponent, NzTooltipDirective, AvatarComponent, ButtonComponent, AsyncPipe]
 })
 @UntilDestroy()
 export class BoardFilterComponent implements OnInit {

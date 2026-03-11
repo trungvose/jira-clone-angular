@@ -4,7 +4,7 @@ import { IssueStatus } from '@trungk18/interface/issue';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 import { AuthQuery } from '@trungk18/project/auth/auth.query';
 import { BoardDndListComponent } from '../board-dnd-list/board-dnd-list.component';
-import { NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 @UntilDestroy()
 @Component({
@@ -12,7 +12,7 @@ import { CdkDropListGroup } from '@angular/cdk/drag-drop';
     templateUrl: './board-dnd.component.html',
     styleUrls: ['./board-dnd.component.scss'],
     standalone: true,
-    imports: [CdkDropListGroup, NgFor, BoardDndListComponent, AsyncPipe]
+    imports: [CdkDropListGroup, BoardDndListComponent, AsyncPipe]
 })
 export class BoardDndComponent {
   issueStatuses: IssueStatus[] = [

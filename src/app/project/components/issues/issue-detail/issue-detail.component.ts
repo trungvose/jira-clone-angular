@@ -14,14 +14,14 @@ import { IssueDescriptionComponent } from '../issue-description/issue-descriptio
 import { IssueTitleComponent } from '../issue-title/issue-title.component';
 import { ButtonComponent } from '../../../../jira-control/button/button.component';
 import { IssueTypeComponent } from '../issue-type/issue-type.component';
-import { NgIf, AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'issue-detail',
     templateUrl: './issue-detail.component.html',
     styleUrls: ['./issue-detail.component.scss'],
     standalone: true,
-    imports: [NgIf, IssueTypeComponent, ButtonComponent, IssueTitleComponent, IssueDescriptionComponent, IssueCommentsComponent, IssueStatusComponent, IssueReporterComponent, IssueAssigneesComponent, IssuePriorityComponent, IssueLoaderComponent, AsyncPipe, DatePipe]
+    imports: [IssueTypeComponent, ButtonComponent, IssueTitleComponent, IssueDescriptionComponent, IssueCommentsComponent, IssueStatusComponent, IssueReporterComponent, IssueAssigneesComponent, IssuePriorityComponent, IssueLoaderComponent, AsyncPipe, DatePipe]
 })
 export class IssueDetailComponent{
   @Input() issue: JIssue;

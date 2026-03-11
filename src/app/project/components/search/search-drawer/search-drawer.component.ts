@@ -11,7 +11,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { IssueModalComponent } from '../../issues/issue-modal/issue-modal.component';
 import { SvgIconComponent } from '../../../../jira-control/svg-icon/svg-icon.component';
 import { IssueResultComponent } from '../issue-result/issue-result.component';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { InputComponent } from '../../../../jira-control/input/input.component';
 
 @Component({
@@ -19,7 +19,7 @@ import { InputComponent } from '../../../../jira-control/input/input.component';
     templateUrl: './search-drawer.component.html',
     styleUrls: ['./search-drawer.component.scss'],
     standalone: true,
-    imports: [InputComponent, NgIf, NgFor, IssueResultComponent, SvgIconComponent, AsyncPipe]
+    imports: [InputComponent, IssueResultComponent, SvgIconComponent, AsyncPipe]
 })
 @UntilDestroy()
 export class SearchDrawerComponent implements OnInit {

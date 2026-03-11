@@ -9,7 +9,7 @@ import { JIssue } from '@trungk18/interface/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-model';
 import { IssueDetailComponent } from '../../components/issues/issue-detail/issue-detail.component';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { BreadcrumbsComponent } from '../../../jira-control/breadcrumbs/breadcrumbs.component';
 
 @Component({
@@ -17,7 +17,7 @@ import { BreadcrumbsComponent } from '../../../jira-control/breadcrumbs/breadcru
     templateUrl: './full-issue-detail.component.html',
     styleUrls: ['./full-issue-detail.component.scss'],
     standalone: true,
-    imports: [BreadcrumbsComponent, NgIf, IssueDetailComponent, AsyncPipe]
+    imports: [BreadcrumbsComponent, IssueDetailComponent, AsyncPipe]
 })
 @UntilDestroy()
 export class FullIssueDetailComponent implements OnInit {

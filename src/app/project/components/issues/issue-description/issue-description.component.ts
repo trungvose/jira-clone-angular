@@ -6,7 +6,7 @@ import { ProjectService } from '@trungk18/project/state/project/project.service'
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { ButtonComponent } from '../../../../jira-control/button/button.component';
 import { QuillEditorComponent } from 'ngx-quill';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'issue-description',
@@ -14,7 +14,7 @@ import { NgIf } from '@angular/common';
     styleUrls: ['./issue-description.component.scss'],
     encapsulation: ViewEncapsulation.None,
     standalone: true,
-    imports: [NgIf, QuillEditorComponent, ReactiveFormsModule, ButtonComponent, NzIconDirective]
+    imports: [QuillEditorComponent, ReactiveFormsModule, ButtonComponent, NzIconDirective]
 })
 export class IssueDescriptionComponent implements OnChanges {
   @Input() issue: JIssue;

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IssueStatus, IssueStatusDisplay, JIssue } from '@trungk18/interface/issue';
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
-import { NgFor, NgIf } from '@angular/common';
+
 import { NzMenuDirective, NzMenuItemComponent } from 'ng-zorro-antd/menu';
 import { NzDropDownDirective, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 import { ButtonComponent } from '../../../../jira-control/button/button.component';
@@ -12,7 +12,7 @@ import { ButtonComponent } from '../../../../jira-control/button/button.componen
     templateUrl: './issue-status.component.html',
     styleUrls: ['./issue-status.component.scss'],
     standalone: true,
-    imports: [ButtonComponent, NzDropDownDirective, NzDropdownMenuComponent, NzMenuDirective, NgFor, NgIf, NzMenuItemComponent]
+    imports: [ButtonComponent, NzDropDownDirective, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent]
 })
 export class IssueStatusComponent implements OnInit {
   @Input() issue: JIssue;

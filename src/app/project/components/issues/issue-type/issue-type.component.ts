@@ -5,7 +5,7 @@ import { ProjectService } from '@trungk18/project/state/project/project.service'
 import { IssueUtil } from '@trungk18/project/utils/issue';
 import { ProjectConst } from '@trungk18/project/config/const';
 import { SvgIconComponent } from '../../../../jira-control/svg-icon/svg-icon.component';
-import { NgFor, NgIf } from '@angular/common';
+
 import { NzMenuDirective, NzMenuItemComponent } from 'ng-zorro-antd/menu';
 import { NzDropDownDirective, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 import { ButtonComponent } from '../../../../jira-control/button/button.component';
@@ -15,7 +15,7 @@ import { ButtonComponent } from '../../../../jira-control/button/button.componen
     templateUrl: './issue-type.component.html',
     styleUrls: ['./issue-type.component.scss'],
     standalone: true,
-    imports: [ButtonComponent, NzDropDownDirective, NzDropdownMenuComponent, NzMenuDirective, NgFor, NgIf, NzMenuItemComponent, SvgIconComponent]
+    imports: [ButtonComponent, NzDropDownDirective, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent, SvgIconComponent]
 })
 export class IssueTypeComponent implements OnInit, OnChanges {
   @Input() issue: JIssue;
