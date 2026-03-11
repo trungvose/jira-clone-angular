@@ -14,7 +14,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { QuillModule } from 'ngx-quill';
 import * as Sentry from '@sentry/angular';
 import { Router } from '@angular/router';
-import { SnowModule } from './core/snow/snow.module';
+import { SnowComponent } from './core/snow/snow.component';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,8 +30,8 @@ import { SnowModule } from './core/snow/snow.module';
     environment.production ? [] : AkitaNgDevtools,
     AkitaNgRouterStoreModule,
     QuillModule.forRoot(),
-    SnowModule
-  ],
+    SnowComponent
+],
   providers: [
     {
       provide: NG_ENTITY_SERVICE_CONFIG,
