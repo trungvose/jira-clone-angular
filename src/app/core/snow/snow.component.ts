@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'j-snow',
-  templateUrl: './snow.component.html',
-  styleUrls: ['./snow.component.scss']
+    selector: 'j-snow',
+    templateUrl: './snow.component.html',
+    styleUrls: ['./snow.component.scss'],
+    standalone: true
 })
 export class SnowComponent implements OnInit {
 

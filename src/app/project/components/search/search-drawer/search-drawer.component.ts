@@ -9,11 +9,17 @@ import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap, debounceTime, startWith } from 'rxjs/operators';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { IssueModalComponent } from '../../issues/issue-modal/issue-modal.component';
+import { SvgIconComponent } from '../../../../jira-control/svg-icon/svg-icon.component';
+import { IssueResultComponent } from '../issue-result/issue-result.component';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { InputComponent } from '../../../../jira-control/input/input.component';
 
 @Component({
-  selector: 'search-drawer',
-  templateUrl: './search-drawer.component.html',
-  styleUrls: ['./search-drawer.component.scss']
+    selector: 'search-drawer',
+    templateUrl: './search-drawer.component.html',
+    styleUrls: ['./search-drawer.component.scss'],
+    standalone: true,
+    imports: [InputComponent, NgIf, NgFor, IssueResultComponent, SvgIconComponent, AsyncPipe]
 })
 @UntilDestroy()
 export class SearchDrawerComponent implements OnInit {

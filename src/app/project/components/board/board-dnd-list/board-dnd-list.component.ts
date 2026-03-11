@@ -1,4 +1,4 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { IssueStatus, IssueStatusDisplay, JIssue } from '@trungk18/interface/issue';
 import { FilterState } from '@trungk18/project/state/filter/filter.store';
@@ -8,12 +8,16 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { FilterQuery } from '@trungk18/project/state/filter/filter.query';
 import * as dateFns from 'date-fns';
 import { IssueUtil } from '@trungk18/project/utils/issue';
+import { IssueCardComponent } from '../../issues/issue-card/issue-card.component';
+import { NgFor } from '@angular/common';
 
 @Component({
-  selector: '[board-dnd-list]',
-  templateUrl: './board-dnd-list.component.html',
-  styleUrls: ['./board-dnd-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: '[board-dnd-list]',
+    templateUrl: './board-dnd-list.component.html',
+    styleUrls: ['./board-dnd-list.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [CdkDropList, NgFor, IssueCardComponent, CdkDrag]
 })
 @UntilDestroy()
 export class BoardDndListComponent implements OnInit {
