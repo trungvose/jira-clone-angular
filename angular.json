@@ -62,7 +62,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/quill/dist/quill.min.js"
+              "./node_modules/quill/dist/quill.js"
             ]
           },
           "configurations": {
@@ -136,7 +136,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/quill/dist/quill.min.js"
+              "./node_modules/quill/dist/quill.js"
             ]
           }
         },
