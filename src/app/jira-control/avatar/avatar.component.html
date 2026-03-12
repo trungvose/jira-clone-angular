@@ -1,4 +1,6 @@
-<div *ngIf="avatarUrl"
-     [ngClass]="['avatar-container', className]"
-     [ngStyle]="style">
-</div>
+@if (avatarUrl) {
+  <div
+    [ngClass]="['avatar-container', className]"
+    [ngStyle]="style">
+  </div>
+}

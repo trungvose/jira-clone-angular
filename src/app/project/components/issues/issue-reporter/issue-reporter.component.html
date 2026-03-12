@@ -1,22 +1,23 @@
 <div class="mt-6 mb-1 uppercase text-textMedium text-13 font-bold">
-    Reporter
+  Reporter
 </div>
 <j-button className="btn-secondary"
-          nz-dropdown
-          [nzTrigger]="'click'"
-          [nzDropdownMenu]="menu">
-    <j-user [user]="reporter"></j-user>
+  nz-dropdown
+  [nzTrigger]="'click'"
+  [nzDropdownMenu]="menu">
+  <j-user [user]="reporter"></j-user>
 </j-button>
 <nz-dropdown-menu #menu="nzDropdownMenu">
-    <ul class="mt-3"
-        nz-menu
-        nzNoAnimation>
-        <ng-container *ngFor="let option of users">
-            <li nz-menu-item
-                *ngIf="!isUserSelected(option)"
-                (click)="updateIssue(option)">
-                <j-user [user]="option"></j-user>
-            </li>
-        </ng-container>
-    </ul>
+  <ul class="mt-3"
+    nz-menu
+    nzNoAnimation>
+    @for (option of users; track option) {
+      @if (!isUserSelected(option)) {
+        <li nz-menu-item
+          (click)="updateIssue(option)">
+          <j-user [user]="option"></j-user>
+        </li>
+      }
+    }
+  </ul>
 </nz-dropdown-menu>

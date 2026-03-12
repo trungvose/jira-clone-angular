@@ -1,9 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'j-avatar',
-  templateUrl: './avatar.component.html',
-  styleUrls: ['./avatar.component.scss']
+    selector: 'j-avatar',
+    templateUrl: './avatar.component.html',
+    styleUrls: ['./avatar.component.scss'],
+    standalone: true,
+    imports: [NgClass, NgStyle]
 })
 export class AvatarComponent {
   @Input() avatarUrl: string;

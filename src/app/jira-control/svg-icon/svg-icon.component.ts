@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'svg-icon',
-  templateUrl: './svg-icon.component.html'
+    selector: 'svg-icon',
+    templateUrl: './svg-icon.component.html',
+    standalone: true
 })
 export class SvgIconComponent {
   @Input() name: string;

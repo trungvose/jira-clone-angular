@@ -9,8 +9,8 @@
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
@@ -31,6 +31,7 @@
           }
         ],
         "@angular-eslint/no-output-on-prefix": "off",
+        "@angular-eslint/no-empty-lifecycle-method": "off",
         "@typescript-eslint/naming-convention": [
           "error",
           {
@@ -47,6 +48,14 @@
             "trailingUnderscore": "allow"
           },
           {
+            "selector": "import",
+            "format": ["camelCase", "PascalCase"]
+          },
+          {
+            "selector": "objectLiteralProperty",
+            "format": null
+          },
+          {
             "selector": "typeLike",
             "format": ["PascalCase"]
           },
@@ -55,6 +64,9 @@
             "format": ["camelCase", "PascalCase"]
           }
         ],
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-empty-function": "off",
         "typescript-eslint/quotes": "off",
         "no-underscore-dangle": "off",
         "radix": "off",

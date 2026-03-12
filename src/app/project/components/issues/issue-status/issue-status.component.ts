@@ -3,10 +3,16 @@ import { IssueStatus, IssueStatusDisplay, JIssue } from '@trungk18/interface/iss
 import { ProjectService } from '@trungk18/project/state/project/project.service';
 import { ProjectQuery } from '@trungk18/project/state/project/project.query';
 
+import { NzMenuDirective, NzMenuItemComponent } from 'ng-zorro-antd/menu';
+import { NzDropDownDirective, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
+import { ButtonComponent } from '../../../../jira-control/button/button.component';
+
 @Component({
-  selector: 'issue-status',
-  templateUrl: './issue-status.component.html',
-  styleUrls: ['./issue-status.component.scss']
+    selector: 'issue-status',
+    templateUrl: './issue-status.component.html',
+    styleUrls: ['./issue-status.component.scss'],
+    standalone: true,
+    imports: [ButtonComponent, NzDropDownDirective, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent]
 })
 export class IssueStatusComponent implements OnInit {
   @Input() issue: JIssue;

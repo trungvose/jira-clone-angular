@@ -1,11 +1,14 @@
 import { Component, EventEmitter, Inject } from '@angular/core';
 import { NzModalRef, NZ_MODAL_DATA } from 'ng-zorro-antd/modal';
 import { DeleteIssueModel } from '@trungk18/interface/ui-model/delete-issue-model';
+import { ButtonComponent } from '../../../../jira-control/button/button.component';
 
 @Component({
-  selector: 'issue-delete-modal',
-  templateUrl: './issue-delete-modal.component.html',
-  styleUrls: ['./issue-delete-modal.component.scss']
+    selector: 'issue-delete-modal',
+    templateUrl: './issue-delete-modal.component.html',
+    styleUrls: ['./issue-delete-modal.component.scss'],
+    standalone: true,
+    imports: [ButtonComponent]
 })
 export class IssueDeleteModalComponent {
   issueId: string;

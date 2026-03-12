@@ -1,10 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
+import { SvgIconComponent } from '../svg-icon/svg-icon.component';
+import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'j-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss']
+    selector: 'j-input',
+    templateUrl: './input.component.html',
+    styleUrls: ['./input.component.scss'],
+    standalone: true,
+    imports: [NgClass, SvgIconComponent, ReactiveFormsModule]
 })
 export class InputComponent implements OnInit {
   @Input() control: UntypedFormControl;
