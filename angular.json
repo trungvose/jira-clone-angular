@@ -62,7 +62,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/quill/dist/quill.min.js"
+              "./node_modules/quill/dist/quill.js"
             ]
           },
           "configurations": {
@@ -80,7 +80,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
+
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -136,7 +136,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/quill/dist/quill.min.js"
+              "./node_modules/quill/dist/quill.js"
             ]
           }
         },
