@@ -14,7 +14,6 @@ import { AvatarComponent } from '../../../../jira-control/avatar/avatar.componen
     selector: 'issue-comment',
     templateUrl: './issue-comment.component.html',
     styleUrls: ['./issue-comment.component.scss'],
-    standalone: true,
     imports: [AvatarComponent, CdkTextareaAutosize, ReactiveFormsModule, ButtonComponent, DatePipe]
 })
 @UntilDestroy()

@@ -9,7 +9,6 @@ import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
     selector: 'issue-reporter-select',
     templateUrl: './issue-reporter-select.component.html',
     styleUrls: ['./issue-reporter-select.component.scss'],
-    standalone: true,
     imports: [NzSelectComponent, ReactiveFormsModule, NzOptionComponent, UserComponent]
 })
 export class IssueReporterSelectComponent {

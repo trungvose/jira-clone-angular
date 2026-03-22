@@ -16,7 +16,6 @@ import { BreadcrumbsComponent } from '../../../jira-control/breadcrumbs/breadcru
 @Component({
     templateUrl: './settings.component.html',
     styleUrls: ['./settings.component.scss'],
-    standalone: true,
     imports: [BreadcrumbsComponent, ReactiveFormsModule, AutofocusDirective, ButtonComponent]
 })
 @UntilDestroy()

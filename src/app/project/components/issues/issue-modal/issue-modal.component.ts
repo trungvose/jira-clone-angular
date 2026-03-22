@@ -12,7 +12,6 @@ import { IssueDetailComponent } from '../issue-detail/issue-detail.component';
     selector: 'issue-modal',
     templateUrl: './issue-modal.component.html',
     styleUrls: ['./issue-modal.component.scss'],
-    standalone: true,
     imports: [IssueDetailComponent, AsyncPipe]
 })
 export class IssueModalComponent {

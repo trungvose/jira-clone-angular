@@ -5,7 +5,6 @@ import { SvgIconComponent } from '../../../../jira-control/svg-icon/svg-icon.com
     selector: 'app-resizer',
     templateUrl: './resizer.component.html',
     styleUrls: ['./resizer.component.scss'],
-    standalone: true,
     imports: [SvgIconComponent]
 })
 export class ResizerComponent {

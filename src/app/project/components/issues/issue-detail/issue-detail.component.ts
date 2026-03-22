@@ -20,7 +20,6 @@ import { AsyncPipe, DatePipe } from '@angular/common';
     selector: 'issue-detail',
     templateUrl: './issue-detail.component.html',
     styleUrls: ['./issue-detail.component.scss'],
-    standalone: true,
     imports: [IssueTypeComponent, ButtonComponent, IssueTitleComponent, IssueDescriptionComponent, IssueCommentsComponent, IssueStatusComponent, IssueReporterComponent, IssueAssigneesComponent, IssuePriorityComponent, IssueLoaderComponent, AsyncPipe, DatePipe]
 })
 export class IssueDetailComponent{

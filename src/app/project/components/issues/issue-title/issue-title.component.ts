@@ -8,7 +8,6 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
     selector: 'issue-title',
     templateUrl: './issue-title.component.html',
     styleUrls: ['./issue-title.component.scss'],
-    standalone: true,
     imports: [CdkTextareaAutosize, ReactiveFormsModule]
 })
 export class IssueTitleComponent implements OnChanges {

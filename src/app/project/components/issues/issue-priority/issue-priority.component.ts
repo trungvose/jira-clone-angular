@@ -14,7 +14,6 @@ import { ButtonComponent } from '../../../../jira-control/button/button.componen
     selector: 'issue-priority',
     templateUrl: './issue-priority.component.html',
     styleUrls: ['./issue-priority.component.scss'],
-    standalone: true,
     imports: [ButtonComponent, NzDropDownDirective, SvgIconComponent, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent]
 })
 export class IssuePriorityComponent implements OnInit, OnChanges {

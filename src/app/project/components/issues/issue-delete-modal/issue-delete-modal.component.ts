@@ -7,7 +7,6 @@ import { ButtonComponent } from '../../../../jira-control/button/button.componen
     selector: 'issue-delete-modal',
     templateUrl: './issue-delete-modal.component.html',
     styleUrls: ['./issue-delete-modal.component.scss'],
-    standalone: true,
     imports: [ButtonComponent]
 })
 export class IssueDeleteModalComponent {

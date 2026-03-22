@@ -5,7 +5,6 @@ import { ContentLoaderModule } from '@ngneat/content-loader';
     selector: 'issue-loader',
     templateUrl: './issue-loader.component.html',
     styleUrls: ['./issue-loader.component.scss'],
-    standalone: true,
     imports: [ContentLoaderModule]
 })
 export class IssueLoaderComponent {

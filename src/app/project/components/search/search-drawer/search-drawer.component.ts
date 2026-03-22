@@ -18,7 +18,6 @@ import { InputComponent } from '../../../../jira-control/input/input.component';
     selector: 'search-drawer',
     templateUrl: './search-drawer.component.html',
     styleUrls: ['./search-drawer.component.scss'],
-    standalone: true,
     imports: [InputComponent, IssueResultComponent, SvgIconComponent, AsyncPipe]
 })
 @UntilDestroy()

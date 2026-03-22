@@ -3,8 +3,7 @@ import { AfterContentInit, Directive, ElementRef, Input, OnDestroy } from '@angu
 const BASE_TIMER_DELAY = 10;
 
 @Directive({
-    selector: '[jAutofocus]',
-    standalone: true
+    selector: '[jAutofocus]'
 })
 export class AutofocusDirective implements AfterContentInit, OnDestroy {
   @Input('jAutofocus') enable: boolean | string;

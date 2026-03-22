@@ -7,7 +7,6 @@ import { IssueCommentComponent } from '../issue-comment/issue-comment.component'
     selector: 'issue-comments',
     templateUrl: './issue-comments.component.html',
     styleUrls: ['./issue-comments.component.scss'],
-    standalone: true,
     imports: [IssueCommentComponent]
 })
 export class IssueCommentsComponent {

@@ -11,7 +11,6 @@ import { ButtonComponent } from '../../../../jira-control/button/button.componen
     selector: 'issue-status',
     templateUrl: './issue-status.component.html',
     styleUrls: ['./issue-status.component.scss'],
-    standalone: true,
     imports: [ButtonComponent, NzDropDownDirective, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent]
 })
 export class IssueStatusComponent implements OnInit {

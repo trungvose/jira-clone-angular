@@ -13,7 +13,6 @@ import { ButtonComponent } from '../../../../jira-control/button/button.componen
     selector: 'issue-reporter',
     templateUrl: './issue-reporter.component.html',
     styleUrls: ['./issue-reporter.component.scss'],
-    standalone: true,
     imports: [ButtonComponent, NzDropDownDirective, UserComponent, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent]
 })
 @UntilDestroy()

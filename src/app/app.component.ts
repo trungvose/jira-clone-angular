@@ -13,7 +13,6 @@ import { NzSpinComponent } from 'ng-zorro-antd/spin';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [NzSpinComponent, RouterOutlet, SnowComponent, AsyncPipe]
 })
 export class AppComponent implements AfterViewInit {

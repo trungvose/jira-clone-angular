@@ -25,7 +25,6 @@ import { ButtonComponent } from '../../../jira-control/button/button.component';
     selector: 'add-issue-modal',
     templateUrl: './add-issue-modal.component.html',
     styleUrls: ['./add-issue-modal.component.scss'],
-    standalone: true,
     imports: [ButtonComponent, ReactiveFormsModule, IssueTypeSelectComponent, IssuePrioritySelectComponent, AutofocusDirective, QuillEditorComponent, IssueReporterSelectComponent, IssueAssigneesSelectComponent, AsyncPipe]
 })
 @UntilDestroy()

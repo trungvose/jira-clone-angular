@@ -7,7 +7,6 @@ import { NgClass } from '@angular/common';
     selector: 'j-input',
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.scss'],
-    standalone: true,
     imports: [NgClass, SvgIconComponent, ReactiveFormsModule]
 })
 export class InputComponent implements OnInit {

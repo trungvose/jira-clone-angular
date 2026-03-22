@@ -13,7 +13,6 @@ import { AvatarComponent } from '../../../../jira-control/avatar/avatar.componen
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
-    standalone: true,
     imports: [AvatarComponent, RouterLinkActive, RouterLink, SvgIconComponent]
 })
 @UntilDestroy()
