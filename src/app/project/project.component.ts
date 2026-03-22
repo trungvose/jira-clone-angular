@@ -10,7 +10,6 @@ import { NavigationComponent } from './components/navigation/navigation/navigati
     selector: 'app-project',
     templateUrl: './project.component.html',
     styleUrls: ['./project.component.scss'],
-    standalone: true,
     imports: [NavigationComponent, RouterOutlet, SvgDefinitionsComponent]
 })
 export class ProjectComponent implements OnInit {

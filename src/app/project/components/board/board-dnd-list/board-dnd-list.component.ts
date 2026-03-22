@@ -16,7 +16,6 @@ import { IssueCardComponent } from '../../issues/issue-card/issue-card.component
     templateUrl: './board-dnd-list.component.html',
     styleUrls: ['./board-dnd-list.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [CdkDropList, IssueCardComponent, CdkDrag]
 })
 @UntilDestroy()

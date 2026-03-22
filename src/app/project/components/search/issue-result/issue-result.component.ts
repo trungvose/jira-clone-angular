@@ -7,7 +7,6 @@ import { SvgIconComponent } from '../../../../jira-control/svg-icon/svg-icon.com
     selector: 'issue-result',
     templateUrl: './issue-result.component.html',
     styleUrls: ['./issue-result.component.scss'],
-    standalone: true,
     imports: [SvgIconComponent]
 })
 export class IssueResultComponent {

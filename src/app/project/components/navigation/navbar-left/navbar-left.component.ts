@@ -15,7 +15,6 @@ import { AsyncPipe } from '@angular/common';
     selector: 'app-navbar-left',
     templateUrl: './navbar-left.component.html',
     styleUrls: ['./navbar-left.component.scss'],
-    standalone: true,
     imports: [NzTooltipDirective, NzIconDirective, AvatarComponent, NzPopoverDirective, ButtonComponent, AsyncPipe]
 })
 export class NavbarLeftComponent implements OnInit {

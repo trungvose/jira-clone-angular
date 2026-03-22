@@ -11,7 +11,6 @@ import { CdkDropListGroup } from '@angular/cdk/drag-drop';
     selector: 'board-dnd',
     templateUrl: './board-dnd.component.html',
     styleUrls: ['./board-dnd.component.scss'],
-    standalone: true,
     imports: [CdkDropListGroup, BoardDndListComponent, AsyncPipe]
 })
 export class BoardDndComponent {

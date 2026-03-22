@@ -13,7 +13,6 @@ import { QuillEditorComponent } from 'ngx-quill';
     templateUrl: './issue-description.component.html',
     styleUrls: ['./issue-description.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [QuillEditorComponent, ReactiveFormsModule, ButtonComponent, NzIconDirective]
 })
 export class IssueDescriptionComponent implements OnChanges {

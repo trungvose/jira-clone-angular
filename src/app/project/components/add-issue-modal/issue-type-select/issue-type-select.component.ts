@@ -12,7 +12,6 @@ import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
     selector: 'issue-type-select',
     templateUrl: './issue-type-select.component.html',
     styleUrls: ['./issue-type-select.component.scss'],
-    standalone: true,
     imports: [NzSelectComponent, ReactiveFormsModule, NzOptionComponent, SvgIconComponent]
 })
 export class IssueTypeSelectComponent {

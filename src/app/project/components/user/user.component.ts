@@ -6,7 +6,6 @@ import { AvatarComponent } from '../../../jira-control/avatar/avatar.component';
     selector: 'j-user',
     templateUrl: './user.component.html',
     styleUrls: ['./user.component.scss'],
-    standalone: true,
     imports: [AvatarComponent]
 })
 export class UserComponent {

@@ -6,7 +6,6 @@ import { NgClass } from '@angular/common';
     selector: 'j-button',
     templateUrl: './button.component.html',
     styleUrls: ['./button.component.scss'],
-    standalone: true,
     imports: [NgClass, SvgIconComponent]
 })
 export class ButtonComponent {

@@ -16,7 +16,6 @@ import { InputComponent } from '../../../../jira-control/input/input.component';
     selector: 'board-filter',
     templateUrl: './board-filter.component.html',
     styleUrls: ['./board-filter.component.scss'],
-    standalone: true,
     imports: [ReactiveFormsModule, FormsModule, InputComponent, NzTooltipDirective, AvatarComponent, ButtonComponent, AsyncPipe]
 })
 @UntilDestroy()

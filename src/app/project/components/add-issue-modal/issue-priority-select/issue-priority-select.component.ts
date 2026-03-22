@@ -12,7 +12,6 @@ import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
     selector: 'issue-priority-select',
     templateUrl: './issue-priority-select.component.html',
     styleUrls: ['./issue-priority-select.component.scss'],
-    standalone: true,
     imports: [NzSelectComponent, ReactiveFormsModule, NzOptionComponent, SvgIconComponent]
 })
 export class IssuePrioritySelectComponent {

@@ -16,7 +16,6 @@ import { BreadcrumbsComponent } from '../../../jira-control/breadcrumbs/breadcru
     selector: 'full-issue-detail',
     templateUrl: './full-issue-detail.component.html',
     styleUrls: ['./full-issue-detail.component.scss'],
-    standalone: true,
     imports: [BreadcrumbsComponent, IssueDetailComponent, AsyncPipe]
 })
 @UntilDestroy()

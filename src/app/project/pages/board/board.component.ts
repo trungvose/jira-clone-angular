@@ -10,7 +10,6 @@ import { BreadcrumbsComponent } from '../../../jira-control/breadcrumbs/breadcru
     selector: 'board',
     templateUrl: './board.component.html',
     styleUrls: ['./board.component.scss'],
-    standalone: true,
     imports: [BreadcrumbsComponent, ButtonComponent, NzIconDirective, BoardFilterComponent, BoardDndComponent]
 })
 export class BoardComponent {

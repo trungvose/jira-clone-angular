@@ -10,7 +10,6 @@ import { NzSelectComponent, NzOptionComponent } from 'ng-zorro-antd/select';
     templateUrl: './issue-assignees-select.component.html',
     styleUrls: ['./issue-assignees-select.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    standalone: true,
     imports: [NzSelectComponent, ReactiveFormsModule, NzOptionComponent, UserComponent]
 })
 export class IssueAssigneesSelectComponent {

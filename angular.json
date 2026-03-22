@@ -111,7 +111,7 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "frontend:build:development"
+            "buildTarget": "frontend:build:development"
           }
         },
         "extract-i18n": {

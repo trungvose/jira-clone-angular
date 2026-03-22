@@ -5,7 +5,6 @@ import { NgClass, NgStyle } from '@angular/common';
     selector: 'j-avatar',
     templateUrl: './avatar.component.html',
     styleUrls: ['./avatar.component.scss'],
-    standalone: true,
     imports: [NgClass, NgStyle]
 })
 export class AvatarComponent {

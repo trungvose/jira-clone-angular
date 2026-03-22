@@ -15,7 +15,6 @@ import { ButtonComponent } from '../../../../jira-control/button/button.componen
     selector: 'issue-assignees',
     templateUrl: './issue-assignees.component.html',
     styleUrls: ['./issue-assignees.component.scss'],
-    standalone: true,
     imports: [ButtonComponent, UserComponent, SvgIconComponent, NzDropDownADirective, NzDropDownDirective, NzIconDirective, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent]
 })
 @UntilDestroy()

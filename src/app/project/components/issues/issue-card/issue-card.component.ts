@@ -16,7 +16,6 @@ import { AvatarComponent } from '../../../../jira-control/avatar/avatar.componen
     selector: 'issue-card',
     templateUrl: './issue-card.component.html',
     styleUrls: ['./issue-card.component.scss'],
-    standalone: true,
     imports: [AvatarComponent, NzTooltipDirective, SvgIconComponent]
 })
 @UntilDestroy()
