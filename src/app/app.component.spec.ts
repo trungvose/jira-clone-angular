@@ -7,18 +7,18 @@ describe('AppComponent', () => {
 
   const router: any = {
     events: {
-      subscribe: jasmine.createSpy('subscribe')
+      subscribe: vi.fn()
     }
   };
   const projectQuery: any = {};
   const changeDetectorRef: any = {
-    detectChanges: jasmine.createSpy('detectChanges')
+    detectChanges: vi.fn()
   };
   const projectService: any = {
-    setLoading: jasmine.createSpy('setLoading').and.callThrough()
+    setLoading: vi.fn()
   };
   const googleAnalyticsService: any = {
-    sendPageView: jasmine.createSpy('sendPageView').and.callThrough()
+    sendPageView: vi.fn()
   };
 
   beforeEach(() => {
@@ -45,7 +45,7 @@ describe('AppComponent', () => {
     expect(googleAnalyticsService.sendPageView).toHaveBeenCalled();
   });
   it('should not be able to handle Google Analytics', () => {
-    googleAnalyticsService.sendPageView.calls.reset();
+    googleAnalyticsService.sendPageView.mockReset();
     component.handleGoogleAnalytics({ });
 
     expect(googleAnalyticsService.sendPageView).not.toHaveBeenCalled();

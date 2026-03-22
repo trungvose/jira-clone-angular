@@ -4,16 +4,16 @@ describe('AddIssueModalComponent', () => {
   let component: AddIssueModalComponent;
 
   const formBuilder: any = {
-    group: jasmine.createSpy('group').and.returnValue({
+    group: vi.fn().mockReturnValue({
       invalid: false,
-      getRawValue: jasmine.createSpy('getRawValue')
+      getRawValue: vi.fn()
     }),
   };
   const nzModalRef: any = {
-    close: jasmine.createSpy('close').and.callThrough()
+    close: vi.fn()
   };
   const projectService: any = {
-    updateIssue: jasmine.createSpy('updateIssue')
+    updateIssue: vi.fn()
   };
   const projectQuery: any = {};
 

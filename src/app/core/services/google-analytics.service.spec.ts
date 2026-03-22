@@ -8,7 +8,7 @@ describe('GoogleAnalyticsService', () => {
   });
 
   it('should be able to sendEvent', () => {
-    service.gtag = jasmine.createSpy('gtag').and.returnValue(true);
+    service.gtag = vi.fn().mockReturnValue(true);
     service.sendEvent(
      '',
      '',
@@ -28,7 +28,7 @@ describe('GoogleAnalyticsService', () => {
     )).toEqual();
   });
   it('should be able to sendPageView', () => {
-    service.gtag = jasmine.createSpy('gtag').and.returnValue(true);
+    service.gtag = vi.fn().mockReturnValue(true);
     service.sendPageView(
      ''
     );

@@ -1,7 +1,6 @@
 
 import { JComment } from './comment';
 
-/* eslint-disable no-shadow */
 export enum IssueType {
   STORY = 'Story',
   TASK = 'Task',
@@ -56,4 +55,4 @@ export interface JIssue {
   comments: JComment[];
   projectId: string;
 }
-/* eslint-enable no-shadow */
+

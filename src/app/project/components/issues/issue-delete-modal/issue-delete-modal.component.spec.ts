@@ -1,20 +1,27 @@
 import {IssueDeleteModalComponent} from '@trungk18/project/components/issues/issue-delete-modal/issue-delete-modal.component';
+import { EventEmitter } from '@angular/core';
 
 describe('IssueDeleteModalComponent', () => {
   let component: IssueDeleteModalComponent;
 
   const nzModalRef: any = {
-    close: jasmine.createSpy('close')
+    close: vi.fn()
+  };
+
+  const modalData: any = {
+    issueId: 'test-id',
+    onDelete: new EventEmitter()
   };
 
   beforeEach(() => {
     component = new IssueDeleteModalComponent(
-      nzModalRef
+      nzModalRef,
+      modalData
     );
   });
 
   it('should have delete issue', () => {
-    spyOn(component.onDelete, 'emit').and.callThrough();
+    vi.spyOn(component.onDelete, 'emit');
     component.deleteIssue();
     expect(component.onDelete.emit).toHaveBeenCalled();
   });

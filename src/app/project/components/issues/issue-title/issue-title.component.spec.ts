@@ -8,7 +8,7 @@ describe('IssueTitleComponent', () => {
   let component: IssueTitleComponent;
 
   const projectService: any = {
-    updateIssue: jasmine.createSpy('updateIssue').and.callThrough()
+    updateIssue: vi.fn()
   };
 
   beforeEach(() => {

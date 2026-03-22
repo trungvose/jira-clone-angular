@@ -12,6 +12,7 @@ import { IssueCardComponent } from '../../issues/issue-card/issue-card.component
 
 
 @Component({
+    // eslint-disable-next-line @angular-eslint/component-selector
     selector: '[board-dnd-list]',
     templateUrl: './board-dnd-list.component.html',
     styleUrls: ['./board-dnd-list.component.scss'],
