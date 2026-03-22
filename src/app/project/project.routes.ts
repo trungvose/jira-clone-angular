@@ -3,7 +3,6 @@ import { importProvidersFrom } from '@angular/core';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NZ_JIRA_ICONS } from './config/icons';
 import { ProjectComponent } from './project.component';
 import { BoardComponent } from './pages/board/board.component';
@@ -19,8 +18,7 @@ export const PROJECT_ROUTES: Routes = [
       importProvidersFrom(
         NzIconModule.forChild(NZ_JIRA_ICONS),
         NzDrawerModule,
-        NzModalModule,
-        NzNotificationModule
+        NzModalModule
       )
     ],
     children: [
