@@ -8,7 +8,7 @@ describe('IssueDetailComponent', () => {
 
   };
   const nzModalService: any = {
-    create: jasmine.createSpy('create').and.callThrough()
+    create: vi.fn()
   };
   beforeEach(() => {
     component = new IssueDetailComponent(
@@ -40,12 +40,12 @@ describe('IssueDetailComponent', () => {
     expect(nzModalService.create).toHaveBeenCalled();
   });
   it('should be able to close Modal', () => {
-    spyOn(component.onClosed, 'emit').and.callThrough();
+    vi.spyOn(component.onClosed, 'emit');
     component.closeModal();
     expect(component.onClosed.emit).toHaveBeenCalled();
   });
   it('should be able to open Issue Page', () => {
-    spyOn(component.onOpenIssue, 'emit').and.callThrough();
+    vi.spyOn(component.onOpenIssue, 'emit');
     component.openIssuePage();
     expect(component.onOpenIssue.emit).toHaveBeenCalled();
   });

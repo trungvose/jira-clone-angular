@@ -8,7 +8,7 @@ describe('NavigationComponent', () => {
   });
 
   it('should be able to toggle', () => {
-    spyOn(component.manualToggle, 'emit');
+    vi.spyOn(component.manualToggle, 'emit');
     component.toggle();
     expect(component.manualToggle.emit).toHaveBeenCalled();
   });

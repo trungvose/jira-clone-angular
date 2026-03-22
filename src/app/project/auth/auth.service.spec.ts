@@ -1,17 +1,16 @@
 import { AuthService } from './auth.service';
 import { Subject } from 'rxjs';
-import { fakeAsync } from '@angular/core/testing';
 
 describe('AuthService', () => {
   let service: AuthService;
 
   const httpClient: any = {
-    get: jasmine.createSpy('get')
+    get: vi.fn()
   };
   const authStore: any = {
-    setLoading: jasmine.createSpy('setLoading').and.callThrough(),
-    update: jasmine.createSpy('update').and.callThrough(),
-    setError: jasmine.createSpy('setError').and.callThrough()
+    setLoading: vi.fn(),
+    update: vi.fn(),
+    setError: vi.fn()
   };
 
   beforeEach(() => {
@@ -23,7 +22,7 @@ describe('AuthService', () => {
 
   it('should be able to login', () => {
     const data = new Subject();
-    httpClient.get.and.returnValue(data);
+    httpClient.get.mockReturnValue(data);
     service.login({
       email: '',
       password: '',
@@ -41,18 +40,18 @@ describe('AuthService', () => {
     expect(httpClient.get).toHaveBeenCalledWith('/assets/data/auth.json');
     expect(authStore.update).toHaveBeenCalled();
   });
-  it('should not be able to login', fakeAsync(() => {
+  it('should not be able to login', () => {
     const data = new Subject();
-    httpClient.get.and.returnValue(data);
+    httpClient.get.mockReturnValue(data);
     service.login({
       email: '',
       password: '',
     });
-    authStore.update.and.callFake(() => {
+    authStore.update.mockImplementation(() => {
       throw new Error('Something bad happened');
     });
     expect(authStore.setLoading).toHaveBeenCalledWith(true);
-    authStore.setLoading.calls.reset();
+    authStore.setLoading.mockReset();
     data.next({
       id: '',
       name: '',
@@ -65,5 +64,5 @@ describe('AuthService', () => {
 
     expect(authStore.setLoading).toHaveBeenCalledWith(false);
     expect(authStore.setError).toHaveBeenCalled();
-  }));
+  });
 });

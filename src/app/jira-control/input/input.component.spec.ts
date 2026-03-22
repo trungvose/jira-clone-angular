@@ -19,7 +19,7 @@ describe('InputComponent', () => {
   });
   it('should be able to clear control', () => {
     component.ngOnInit();
-    spyOn(component.control, 'patchValue').and.callThrough();
+    vi.spyOn(component.control, 'patchValue');
     component.clear();
     expect(component.control.patchValue).toHaveBeenCalled();
   });

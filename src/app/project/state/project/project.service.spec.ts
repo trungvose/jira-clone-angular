@@ -5,7 +5,7 @@ describe('ProjectService', () => {
 
   const httpClient: any = {};
   const projectStore: any = {
-    setLoading: jasmine.createSpy('setLoading').and.callThrough()
+    setLoading: vi.fn()
   };
 
   beforeEach(() => {

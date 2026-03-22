@@ -1,30 +1,34 @@
 import { AutofocusDirective } from '@trungk18/core/directives/autofocus.directive';
-import { fakeAsync, tick } from '@angular/core/testing';
 
 describe('AutofocusDirective', () => {
   let component: any;
   const elementRef: any = {
     nativeElement: {
-      focus: jasmine.createSpy('nativeElement')
+      focus: vi.fn()
     }
   };
 
   beforeEach(() => {
+    vi.useFakeTimers();
     component = new AutofocusDirective(
       elementRef
     );
   });
 
-  it('should be able to make ng After Content Init', fakeAsync(() => {
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('should be able to make ng After Content Init', () => {
     component.ngAfterContentInit();
-    tick(10);
+    vi.advanceTimersByTime(10);
     expect(component.enable).toBe(true);
     expect(elementRef.nativeElement.focus).toHaveBeenCalled();
-  }));
-  it('should be able to make ng After Content Init and destroy', fakeAsync(() => {
+  });
+  it('should be able to make ng After Content Init and destroy', () => {
     component.ngAfterContentInit();
-    tick(10);
+    vi.advanceTimersByTime(10);
     component.ngOnDestroy();
     expect(component.timer).toEqual(null);
-  }));
+  });
 });
