@@ -22,10 +22,8 @@ export class GoogleAnalyticsService {
       return;
     }
     this.gtag('event', eventName, {
-      /* eslint-disable @typescript-eslint/naming-convention */
       event_category: eventCategory,
       event_label: eventLabel,
-      /* eslint-enable @typescript-eslint/naming-convention */
       value: eventValue
     });
   };
@@ -34,7 +32,6 @@ export class GoogleAnalyticsService {
     if (!this.gtag) {
       return;
     }
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     this.gtag('config', GOOGLE_ANALYTICS_ID, { page_path: url });
   }
 }
